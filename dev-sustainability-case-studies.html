@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Development &amp; Sustainability Case Studies | IB Global Politics HL</title>
+    <meta name="description" content="Four case studies exploring development and sustainability through the lens of Global Political Challenges: Western Sahara, Nicaragua, Haiti, and the Syr Darya Basin."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{--bg:#f5f6fa;--surface:#fff;--surface2:#eef0f7;--border:rgba(0,0,0,.1);--accent:#2c5fc4;--accent2:#6438b0;--gold:#b07d10;--danger:#c0283e;--green:#1a8a5a;--teal:#0e7c86;--text:#1a1e2e;--muted:#4a5270;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.10)}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh}
+
+        .hero{position:relative;overflow:hidden;padding:72px 24px 64px;text-align:center;background:radial-gradient(ellipse 120% 60% at 50% 0%,rgba(26,138,90,.10) 0%,transparent 70%),linear-gradient(180deg,#e8f5ee 0%,var(--bg) 100%);border-bottom:1px solid var(--border)}
+        .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(0,0,0,0.025)'/%3E%3C/svg%3E");pointer-events:none}
+        .hero-badge{display:inline-block;background:rgba(26,138,90,.10);border:1px solid rgba(26,138,90,.30);color:#1a8a5a;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 18px;border-radius:50px;margin-bottom:22px}
+        .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,3rem);font-weight:800;line-height:1.2;background:linear-gradient(135deg,#0f5e3a 0%,#1a8a5a 55%,#0e7c86 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:900px;margin:0 auto 18px}
+        .hero-sub{font-size:1.05rem;color:var(--muted);max-width:720px;margin:0 auto 32px}
+
+        /* Filter bar */
+        .filter-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;position:sticky;top:0;z-index:100}
+        .filter-label{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+        .filter-btn{padding:6px 16px;border-radius:50px;font-size:.78rem;font-weight:600;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .2s}
+        .filter-btn:hover{border-color:rgba(26,138,90,.4);color:var(--text)}
+        .filter-btn.active{background:rgba(26,138,90,.12);border-color:rgba(26,138,90,.4);color:#0f5e3a}
+
+        .container{max-width:1100px;margin:0 auto;padding:32px 24px 80px}
+
+        /* Case study cards */
+        .cs-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:28px;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+        .cs-card:hover{border-color:rgba(26,138,90,.3);box-shadow:var(--shadow)}
+        .cs-header{padding:28px 32px 20px;cursor:pointer;position:relative}
+        .cs-header::after{content:'▾';position:absolute;right:28px;top:32px;font-size:1.2rem;color:var(--muted);transition:transform .3s}
+        .cs-card.open .cs-header::after{transform:rotate(180deg)}
+        .cs-region{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+        .cs-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin-bottom:6px}
+        .cs-subtitle{font-size:.93rem;color:var(--muted);font-style:italic;margin-bottom:14px}
+        .cs-tags{display:flex;flex-wrap:wrap;gap:6px}
+        .cs-tag{padding:4px 12px;border-radius:50px;font-size:.72rem;font-weight:600;border:1px solid}
+
+        .cs-body{display:none;padding:0 32px 28px}
+        .cs-card.open .cs-body{display:block;animation:fadeIn .3s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+        /* Inner sections */
+        .cs-section{margin-bottom:24px}
+        .cs-section-title{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+        .cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        @media(max-width:680px){.cs-grid{grid-template-columns:1fr}}
+
+        .cs-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+        .cs-box h4{font-size:.9rem;font-weight:700;margin-bottom:6px}
+        .cs-box p,.cs-box li{font-size:.84rem;color:var(--muted)}
+        .cs-box ul{list-style:disc;padding-left:16px;margin-top:6px}
+        .cs-box ul li{margin-bottom:4px}
+
+        .stat-highlight{background:linear-gradient(135deg,rgba(26,138,90,.08),rgba(14,124,134,.08));border:1px solid rgba(26,138,90,.25);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:16px}
+        .stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:var(--green);flex-shrink:0}
+        .stat-desc{font-size:.88rem;color:var(--muted)}
+
+        /* Theory lenses */
+        .theory-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+        @media(max-width:680px){.theory-row{grid-template-columns:1fr}}
+        .theory-lens{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+        .theory-lens h4{font-size:.85rem;font-weight:700;margin-bottom:6px}
+        .theory-lens p{font-size:.8rem;color:var(--muted)}
+        .theory-lens.realism{border-top:3px solid var(--danger)}
+        .theory-lens.liberalism{border-top:3px solid var(--accent)}
+        .theory-lens.constructivism{border-top:3px solid var(--accent2)}
+
+        /* Exam angle */
+        .exam-box{background:linear-gradient(135deg,rgba(100,56,176,.08),rgba(44,95,196,.08));border:1px solid rgba(100,56,176,.25);border-radius:12px;padding:20px 24px}
+        .exam-box h4{font-size:.85rem;font-weight:700;color:var(--accent2);margin-bottom:8px}
+        .exam-box p{font-size:.84rem;color:var(--muted);margin-bottom:6px}
+
+        /* Color themes per case */
+        .cs-ws .cs-region{color:#1a8a5a} .cs-ws .cs-header{border-left:4px solid #1a8a5a}
+        .cs-ni .cs-region{color:#b07d10} .cs-ni .cs-header{border-left:4px solid #b07d10}
+        .cs-ht .cs-region{color:#b03050} .cs-ht .cs-header{border-left:4px solid #b03050}
+        .cs-sd .cs-region{color:#0e7c86} .cs-sd .cs-header{border-left:4px solid #0e7c86}
+
+        /* GPC tag colors */
+        .t-tech{background:rgba(100,56,176,.08);border-color:rgba(100,56,176,.3);color:#6438b0}
+        .t-env{background:rgba(26,138,90,.08);border-color:rgba(26,138,90,.3);color:#0f5e3a}
+        .t-eq{background:rgba(44,95,196,.08);border-color:rgba(44,95,196,.3);color:#1e4ba8}
+        .t-pov{background:rgba(176,125,16,.08);border-color:rgba(176,125,16,.3);color:#7a5800}
+        .t-sec{background:rgba(176,48,80,.08);border-color:rgba(176,48,80,.3);color:#8a1830}
+        .t-hea{background:rgba(14,124,134,.08);border-color:rgba(14,124,134,.3);color:#0b6e78}
+
+        /* Sources */
+        .source-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+        @media(max-width:680px){.source-row{grid-template-columns:1fr}}
+        .source-card{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+        .source-card .sc-perspective{display:inline-block;padding:2px 10px;border-radius:50px;font-size:.65rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;width:fit-content}
+        .sc-critical{background:rgba(176,48,80,.10);color:#8a1830;border:1px solid rgba(176,48,80,.25)}
+        .sc-institutional{background:rgba(44,95,196,.10);color:#1e4ba8;border:1px solid rgba(44,95,196,.25)}
+        .sc-supportive{background:rgba(26,138,90,.10);color:#0f5e3a;border:1px solid rgba(26,138,90,.25)}
+        .sc-investigative{background:rgba(176,125,16,.10);color:#7a5800;border:1px solid rgba(176,125,16,.25)}
+        .source-card .sc-title{font-size:.82rem;font-weight:600;color:var(--text)}
+        .source-card .sc-outlet{font-size:.72rem;color:var(--muted);font-weight:600}
+        .source-card a{font-size:.75rem;color:var(--accent);text-decoration:none;font-weight:600}
+        .source-card a:hover{text-decoration:underline}
+
+        .footer{text-align:center;padding:40px 24px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border);margin-top:40px}
+        @media print{.filter-bar{position:static}.cs-body{display:block!important}.cs-header::after{display:none}}
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-badge">HL Extension · Development &amp; Sustainability</div>
+        <h1>Case Studies: Development &amp; Sustainability</h1>
+        <p class="hero-sub">Four contemporary cases that reveal how development, sustainability, sovereignty, and justice intersect across the Global Political Challenges. Click each card to explore.</p>
+    </header>
+
+    <div class="filter-bar">
+        <span class="filter-label">Filter by GPC:</span>
+        <button class="filter-btn active" data-filter="all" onclick="filterCards('all',this)">All</button>
+        <button class="filter-btn" data-filter="technology" onclick="filterCards('technology',this)">💻 Technology</button>
+        <button class="filter-btn" data-filter="poverty" onclick="filterCards('poverty',this)">🏚 Poverty</button>
+        <button class="filter-btn" data-filter="security" onclick="filterCards('security',this)">🛡 Security</button>
+        <button class="filter-btn" data-filter="equality" onclick="filterCards('equality',this)">⚖️ Equality</button>
+        <button class="filter-btn" data-filter="environment" onclick="filterCards('environment',this)">🌍 Environment</button>
+        <button class="filter-btn" data-filter="health" onclick="filterCards('health',this)">🏥 Health</button>
+    </div>
+
+    <main class="container">
+
+        <!-- CASE 1: WESTERN SAHARA -->
+        <div class="cs-card cs-ws open" data-gpcs="technology equality environment">
+            <div class="cs-header" onclick="toggleCS(this.parentElement)">
+                <div class="cs-region">North Africa · Occupied Territory</div>
+                <h2>🌱 Western Sahara: Green Colonization</h2>
+                <div class="cs-subtitle">Morocco's renewable energy expansion in disputed territory</div>
+                <div class="cs-tags">
+                    <span class="cs-tag t-tech">💻 Technology</span>
+                    <span class="cs-tag t-eq">⚖️ Equality</span>
+                    <span class="cs-tag t-env">🌍 Environment</span>
+                </div>
+            </div>
+            <div class="cs-body">
+                <div class="cs-section">
+                    <div class="cs-section-title">📋 Context</div>
+                    <div class="cs-box">
+                        <p>Morocco is rapidly expanding renewable energy infrastructure — massive solar, wind, and green hydrogen projects — in Western Sahara, a UN-classified non-self-governing territory occupied since 1975. Projects like the "White Dunes" 8 GW hydrogen facility near Dakhla and a 1,400 km electricity transmission line to Casablanca are scheduled for 2025-2027. Critics, including WSRW (Western Sahara Resource Watch) and the Polisario Front, call this <strong>"green colonization"</strong> — using the global climate agenda to entrench occupation without Sahrawi consent.</p>
+                    </div>
+                </div>
+                <div class="cs-section">
+                    <div class="cs-section-title">📰 Key Sources — Differing Perspectives</div>
+                    <div class="source-row">
+                        <div class="source-card">
+                            <span class="sc-perspective sc-critical">Critical Perspective</span>
+                            <div class="sc-title">"Morocco Allocates Land in Occupied Western Sahara to Green Hydrogen Investors"</div>
+                            <div class="sc-outlet">Western Sahara Resource Watch (WSRW) · 2026</div>
+                            <a href="https://wsrw.org/en/news/morocco-allocates-land-in-occupied-western-sahara-to-green-hydrogen-investors" target="_blank" rel="noopener">Read article on wsrw.org ↗</a>
+                            <p style="font-size:.78rem;color:var(--muted);margin-top:4px">Documents how 81% of renewable concession land falls in non-self-governing territory. Argues projects violate international law and bypass Sahrawi consent. Calls EU imports complicit.</p>
+                        </div>
+                        <div class="source-card">
+                            <span class="sc-perspective sc-supportive">Institutional Perspective</span>
+                            <div class="sc-title">"Morocco Moves Forward on Five Major Green Hydrogen Projects in Southern Regions"</div>
+                            <div class="sc-outlet">Morocco World News · 2026</div>
+                            <a href="https://www.moroccoworldnews.com/2026/02/277655/morocco-moves-forward-on-five-major-green-hydrogen-projects-in-southern-regions/" target="_blank" rel="noopener">Read article on moroccoworldnews.com ↗</a>
+                            <p style="font-size:.78rem;color:var(--muted);margin-top:4px">Frames the $36B investment as economic development for the "southern provinces." Emphasizes job creation, green transition leadership, and energy export potential to Europe.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-highlight">
+                    <div class="stat-num">81%</div>
+                    <div class="stat-desc">of land Morocco allocated for new renewable energy projects is situated within occupied Western Sahara, outside Morocco's internationally recognized borders (WSRW, 2025).</div>
+                </div>
+                <div class="cs-section" style="margin-top:24px">
+                    <div class="cs-section-title">👥 Key Actors</div>
+                    <div class="cs-grid">
+                        <div class="cs-box"><h4>States</h4><ul><li><strong>Morocco</strong> — Occupying power; driving renewable expansion</li><li><strong>France, US, Spain, UK</strong> — Recognized Morocco's sovereignty claims</li></ul></div>
+                        <div class="cs-box"><h4>Non-State Actors</h4><ul><li><strong>Polisario Front</strong> — Sahrawi independence movement</li><li><strong>WSRW</strong> — Watchdog documenting resource exploitation</li><li><strong>MGH Energy, AMEA Power</strong> — MNCs operating in territory</li></ul></div>
+                    </div>
+                </div>
+                <div class="cs-section">
+                    <div class="cs-section-title">🔍 Theory Lenses</div>
+                    <div class="theory-row">
+                        <div class="theory-lens realism"><h4>🦁 Realism</h4><p>Morocco uses renewable energy to consolidate territorial control and attract great-power recognition. Resource extraction = power projection.</p></div>
+                        <div class="theory-lens liberalism"><h4>🕊 Liberalism</h4><p>International law (UN resolutions, EU trade rulings) should protect Sahrawi self-determination. Yet enforcement is weak — exposing limits of the liberal order.</p></div>
+                        <div class="theory-lens constructivism"><h4>🧠 Constructivism</h4><p>"Green" energy is being socially constructed as progressive, masking colonial extraction. The label "sustainable" legitimizes what might otherwise be condemned.</p></div>
+                    </div>
+                </div>
+                <div class="cs-section">
+                    <div class="cs-section-title">📝 Exam Angle</div>
+                    <div class="exam-box">
+                        <h4>Paper 2 Prompt</h4>
+                        <p>"To what extent does sustainable development require self-determination?" Use Western Sahara to argue that development without political consent is exploitation, not sustainability.</p>
+                        <h4 style="margin-top:14px">Paper 3 Connection</h4>
+                        <p><strong>Q2b Policy:</strong> Recommend that the EU enforce its own Court of Justice ruling banning imports from Western Sahara by implementing origin-of-energy tracing for green hydrogen. <strong>Q3 Essay:</strong> Link Technology + Equality — how green tech can reproduce colonial power asymmetries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASE 2: NICARAGUA -->
+        <div class="cs-card cs-ni" data-gpcs="poverty security environment">
+            <div class="cs-header" onclick="toggleCS(this.parentElement)">
+                <div class="cs-region">Central America · Authoritarian Governance</div>
+                <h2>⛏ Nicaragua: Minerals for Sovereignty</h2>
+                <div class="cs-subtitle">Chinese mining concessions covering 60% of national territory</div>
+                <div class="cs-tags">
+                    <span class="cs-tag t-pov">🏚 Poverty</span>
+                    <span class="cs-tag t-sec">🛡 Security</span>
+                    <span class="cs-tag t-env">🌍 Environment</span>
+                </div>
+            </div>
+            <div class="cs-body">
+                <div class="cs-section">
+                    <div class="cs-section-title">📋 Context</div>
+                    <div class="cs-box">
+                        <p>Since restoring diplomatic ties with Beijing in 2021 and signing a free trade agreement in 2024, the Ortega-Murillo regime has granted over <strong>500,000 hectares in mining concessions</strong> to Chinese-owned companies. By 2026, 16 Chinese firms hold over one million hectares. Gold exports reached $1.39 billion in 2024 (+20.1% year-on-year). The government has earmarked <strong>7.1 million hectares — nearly 60% of national territory</strong> — for potential concessions, many overlapping protected areas and indigenous territories. A 2025 law amendment would allow resource extraction within protected areas.</p>
+                    </div>
+                </div>
+                <div class="cs-section">
+                    <div class="cs-section-title">📰 Key Sources — Differing Perspectives</div>
+                    <div class="source-row">
+                        <div class="source-card">
+                            <span class="sc-perspective sc-investigative">Investigative Perspective</span>
+                            <div class="sc-title">"As the Gold Rush Surges in Nicaragua, Indigenous Communities Pay the Price"</div>
+                            <div class="sc-outlet">Mongabay · 2025</div>
+                            <a href="https://news.mongabay.com/2025/01/as-the-gold-rush-surges-in-nicaragua-indigenous-communities-pay-the-price/" target="_blank" rel="noopener">Read article on mongabay.com ↗</a>
+                            <p style="font-size:.78rem;color:var(--muted);margin-top:4px">Details how 43 concessions totaling 6,600 km² were granted without FPIC. Maps overlap with Miskito and Mayangna indigenous lands. Documents violence against community leaders.</p>
+                        </div>
+                        <div class="source-card">
+                            <span class="sc-perspective sc-institutional">Government/Trade Perspective</span>
+                            <div class="sc-title">"China Seeks Gold in Nicaragua, Receives 13 Concessions in 190 Days"</div>
+                            <div class="sc-outlet">Confidencial Digital · 2024</div>
+                            <a href="https://confidencial.digital/english/china-seeks-gold-in-nicaragua-receives-13-concessions-in-190-days/" target="_blank" rel="noopener">Read article on confidencial.digital ↗</a>
+                            <p style="font-size:.78rem;color:var(--muted);margin-top:4px">Reports Nicaragua's mining exports reached $1.39B in 2024 (+20.1%). Presents the China-Nicaragua FTA as modernization. Notes tax exemptions designed to incentivize investment.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-highlight" style="margin-top:0">
+                    <div class="stat-num" style="color:var(--gold)">$1.39B</div>
+                    <div class="stat-desc">Nicaragua's mining export revenue in 2024 — with gold as the most valuable export, up 20% from 2023. Revenue flows to Managua and Beijing, not local communities.</div>
+                </div>
+                <div class="cs-section" style="margin-top:24px">
+                    <div class="cs-section-title">👥 Key Actors</div>
+                    <div class="cs-grid">
+                        <div class="cs-box"><h4>States</h4><ul><li><strong>Nicaragua (Ortega-Murillo)</strong> — Granting concessions, weakening environmental law</li><li><strong>China</strong> — Strategic investment partner; FTA signed 2024</li><li><strong>United States</strong> — Imposed mining sanctions 2022, 2024</li></ul></div>
+                        <div class="cs-box"><h4>Non-State Actors</h4><ul><li><strong>Zhong Fu Development, Thomas Metal, Global Group</strong> — Chinese mining MNCs</li><li><strong>Fundación del Río</strong> — Environmental NGO raising transparency concerns</li><li><strong>Indigenous communities</strong> — Denied free, prior, informed consent</li></ul></div>
+                    </div>
+                </div>
+                <div class="cs-section">
+                    <div class="cs-section-title">🔍 Theory Lenses</div>
+                    <div class="theory-row">
+                        <div class="theory-lens realism"><h4>🦁 Realism</h4><p>Nicaragua trades sovereignty over resources for Chinese economic partnership — a survival strategy against US sanctions. It's rational self-interest by the regime, not the people.</p></div>
+                        <div class="theory-lens liberalism"><h4>🕊 Liberalism</h4><p>The erosion of environmental protections and indigenous rights violates liberal norms of governance and accountability. The 2025 law amendment shows institutional capture.</p></div>
+                        <div class="theory-lens constructivism"><h4>🧠 Constructivism</h4><p>"Development" is constructed as GDP growth via extraction, ignoring alternative models (community forestry, ecotourism) that indigenous groups advocate. Whose development counts?</p></div>
+                    </div>
+                </div>
+                <div class="cs-section">
+                    <div class="cs-section-title">📝 Exam Angle</div>
+                    <div class="exam-box">
+                        <h4>Paper 2 Prompt</h4>
+                        <p>"Evaluate the claim that economic development always comes at the cost of environmental sustainability." Nicaragua shows how authoritarian governance can accelerate extractivism while bypassing civil society.</p>
+                        <h4 style="margin-top:14px">Paper 3 Connection</h4>
+                        <p><strong>Q2b Policy:</strong> Recommend the ICMM (International Council on Mining and Metals) enforce free, prior, and informed consent (FPIC) protocols for all member-state concessions. <strong>Q3 Essay:</strong> Link Poverty + Environment — how resource extraction deepens inequality while degrading ecosystems.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASE 3: HAITI -->
+        <div class="cs-card cs-ht" data-gpcs="security poverty equality health">
+            <div class="cs-header" onclick="toggleCS(this.parentElement)">
+                <div class="cs-region">Caribbean · Failed State Dynamics</div>
+                <h2>🏴 Haiti: R2P vs. Neocolonialism</h2>
+                <div class="cs-subtitle">Kenya-led MSS to Gang Suppression Force: intervention or occupation?</div>
+                <div class="cs-tags">
+                    <span class="cs-tag t-sec">🛡 Security</span>
+                    <span class="cs-tag t-pov">🏚 Poverty</span>
+                    <span class="cs-tag t-eq">⚖️ Equality</span>
+                    <span class="cs-tag t-hea">🏥 Health</span>
+                </div>
+            </div>
+            <div class="cs-body">
+                <div class="cs-section">
+                    <div class="cs-section-title">📋 Context</div>
+                    <div class="cs-box">
+                        <p>Haiti's security crisis escalated through 2024-2026 as armed gangs committed mass killings, sexual violence, and territorial control that the OAS R2P Special Adviser classified as <strong>crimes against humanity</strong> (May 2025). The UN authorized a Kenya-led Multinational Security Support (MSS) mission in October 2023; Kenyan officers arrived June 2024. In October 2025, the UN Security Council transitioned the MSS into the <strong>Gang Suppression Force (GSF)</strong> — a larger mission of up to 5,500 personnel. Kenya subsequently withdrew. Critics argue these interventions serve the "Core Group" (US, EU, Canada, France) rather than Haitian self-determination, perpetuating a cycle of external control.</p>
+                    </div>
+                </div>
+                <div class="cs-section">
+                    <div class="cs-section-title">📰 Key Sources — Differing Perspectives</div>
+                    <div class="source-row">
+                        <div class="source-card">
+                            <span class="sc-perspective sc-critical">Critical Perspective</span>
+                            <div class="sc-title">"Haiti: Strong International Engagement Necessary to Ensure Rights-Based Security"</div>
+                            <div class="sc-outlet">Human Rights Watch (HRW) · 2025</div>
+                            <a href="https://www.hrw.org/news/2025/10/02/haiti-strong-international-engagement-necessary-to-ensure-rights-based-security-and" target="_blank" rel="noopener">Read article on hrw.org ↗</a>
+                            <p style="font-size:.78rem;color:var(--muted);margin-top:4px">Documents 5,600+ killed in 2024 after MSS deployment. Raises vetting and accountability concerns about Kenyan police. Questions whether the mission genuinely empowers Haitian self-governance.</p>
+                        </div>
+                        <div class="source-card">
+                            <span class="sc-perspective sc-supportive">Supportive Perspective</span>
+                            <div class="sc-title">"Ruto Hails Success of Kenya-Led Security Mission in Haiti"</div>
+                            <div class="sc-outlet">The Star (Kenya) · 2025</div>
+                            <a href="https://www.the-star.co.ke/news/2025-09-22-ruto-hails-kenya-led-security-mission-in-haiti" target="_blank" rel="noopener">Read article on the-star.co.ke ↗</a>
+                            <p style="font-size:.78rem;color:var(--muted);margin-top:4px">Reports restored freedom of movement, reopened roads, and successful national exams. Cites President Ruto praising the mission as proof R2P can work through Global South leadership.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-highlight" style="margin-top:0">
+                    <div class="stat-num" style="color:var(--danger)">5,500</div>
+                    <div class="stat-desc">Maximum uniformed personnel authorized for the Gang Suppression Force (UNSC Resolution 2793, October 2025) — the latest iteration of international security intervention in Haiti.</div>
+                </div>
+                <div class="cs-section" style="margin-top:24px">
+                    <div class="cs-section-title">👥 Key Actors</div>
+                    <div class="cs-grid">
+                        <div class="cs-box"><h4>States &amp; IGOs</h4><ul><li><strong>Haiti</strong> — Transitional government; limited sovereignty</li><li><strong>Kenya</strong> — Led MSS; withdrew after GSF transition</li><li><strong>UNSC</strong> — Authorized both MSS and GSF</li><li><strong>"Core Group"</strong> — US, EU, Canada, France (critics say they steer Haiti policy)</li></ul></div>
+                        <div class="cs-box"><h4>Non-State Actors</h4><ul><li><strong>Armed gangs</strong> — Territorial control of Port-au-Prince</li><li><strong>Haitian National Police</strong> — Under-resourced, collaborating with GSF</li><li><strong>Human rights orgs</strong> — HRW raised vetting and immunity concerns about MSS</li></ul></div>
+                    </div>
+                </div>
+                <div class="cs-section">
+                    <div class="cs-section-title">🔍 Theory Lenses</div>
+                    <div class="theory-row">
+                        <div class="theory-lens realism"><h4>🦁 Realism</h4><p>Great powers use R2P rhetoric to advance their strategic interests. The "Core Group" controls Haiti's political direction — sovereignty is a fiction for weak states.</p></div>
+                        <div class="theory-lens liberalism"><h4>🕊 Liberalism</h4><p>R2P is the liberal order's promise to prevent atrocities. Haiti tests whether that promise has substance — the gap between R2P rhetoric and actual resource commitment is damning.</p></div>
+                        <div class="theory-lens constructivism"><h4>🧠 Constructivism</h4><p>The framing of Haiti as a "failed state" constructs it as permanently needing external management, denying Haitian agency and reproducing colonial narratives of incapacity.</p></div>
+                    </div>
+                </div>
+                <div class="cs-section">
+                    <div class="cs-section-title">📝 Exam Angle</div>
+                    <div class="exam-box">
+                        <h4>Paper 2 Prompt</h4>
+                        <p>"To what extent is the Responsibility to Protect a tool of neocolonialism?" Haiti offers the strongest counter-case: real atrocities demand response, but the response mechanism bypasses local sovereignty.</p>
+                        <h4 style="margin-top:14px">Paper 3 Connection</h4>
+                        <p><strong>Q2b Policy:</strong> Recommend the UNSC embed a mandatory Haitian civil society consultation mechanism within GSF operational planning. <strong>Q3 Essay:</strong> Link Security + Equality — how security interventions can deepen structural inequality if they lack local legitimacy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASE 4: SYR DARYA -->
+        <div class="cs-card cs-sd" data-gpcs="environment security poverty">
+            <div class="cs-header" onclick="toggleCS(this.parentElement)">
+                <div class="cs-region">Central Asia · Transboundary Resources</div>
+                <h2>💧 Syr Darya: Water Protocols</h2>
+                <div class="cs-subtitle">Trilateral water-sharing between Kazakhstan, Uzbekistan, and Kyrgyzstan</div>
+                <div class="cs-tags">
+                    <span class="cs-tag t-env">🌍 Environment</span>
+                    <span class="cs-tag t-sec">🛡 Security</span>
+                    <span class="cs-tag t-pov">🏚 Poverty</span>
+                </div>
+            </div>
+            <div class="cs-body">
+                <div class="cs-section">
+                    <div class="cs-section-title">📋 Context</div>
+                    <div class="cs-box">
+                        <p>The Syr Darya — Central Asia's second-longest river — flows through Kyrgyzstan, Uzbekistan, and Kazakhstan, supplying irrigation for millions of farmers and hydroelectric power. In May 2025, the three states signed a trilateral protocol in Tashkent on water allocations and energy facility operations. The ICWC (Interstate Coordination Water Management Commission) set non-growing season allocations at <strong>4.219 billion cubic meters</strong> for 2025-26, with Uzbekistan receiving the lion's share (3.347 billion m³). In 2026, Kazakhstan and Uzbekistan began installing <strong>joint automated hydro posts</strong> along the river, supported by Germany's GIZ, to improve transparency in water accounting.</p>
+                    </div>
+                </div>
+                <div class="cs-section">
+                    <div class="cs-section-title">📰 Key Sources — Differing Perspectives</div>
+                    <div class="source-row">
+                        <div class="source-card">
+                            <span class="sc-perspective sc-critical">Critical Perspective</span>
+                            <div class="sc-title">"The Future of Central Asian Water Diplomacy"</div>
+                            <div class="sc-outlet">Climate Diplomacy / adelphi · 2024</div>
+                            <a href="https://climate-diplomacy.org/magazine/cooperation/future-central-asian-water-diplomacy" target="_blank" rel="noopener">Read article on climate-diplomacy.org ↗</a>
+                            <p style="font-size:.78rem;color:var(--muted);margin-top:4px">Argues the ICWC's Soviet-era allocation model is outdated. Climate change is shrinking glaciers faster than protocols can adapt. Raises risk of "water nationalism" as resources diminish.</p>
+                        </div>
+                        <div class="source-card">
+                            <span class="sc-perspective sc-supportive">Cooperative Perspective</span>
+                            <div class="sc-title">"Kazakhstan, Kyrgyzstan, and Uzbekistan Sign Trilateral Deal on Water and Energy Cooperation"</div>
+                            <div class="sc-outlet">Times of Central Asia · 2025</div>
+                            <a href="https://timesca.com/kazakhstan-kyrgyzstan-and-uzbekistan-sign-trilateral-deal-on-water-and-energy-cooperation/" target="_blank" rel="noopener">Read article on timesca.com ↗</a>
+                            <p style="font-size:.78rem;color:var(--muted);margin-top:4px">Celebrates the 2025 Syr Darya protocol as a breakthrough in regional cooperation. Frames automated hydro monitoring as trust-building. Notes Aral Sea restoration progress with 30%+ water supply increase.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-highlight" style="margin-top:0">
+                    <div class="stat-num" style="color:var(--teal)">4.2B m³</div>
+                    <div class="stat-desc">Total Syr Darya water allocation for the 2025-26 non-growing season — negotiated through the ICWC. Uzbekistan receives 3.347B m³; Kazakhstan receives 460M m³.</div>
+                </div>
+                <div class="cs-section" style="margin-top:24px">
+                    <div class="cs-section-title">👥 Key Actors</div>
+                    <div class="cs-grid">
+                        <div class="cs-box"><h4>States</h4><ul><li><strong>Kyrgyzstan</strong> — Upstream; controls headwaters + Kambarata dam</li><li><strong>Uzbekistan</strong> — Midstream; largest water consumer for agriculture</li><li><strong>Kazakhstan</strong> — Downstream; vulnerable to reduced flow</li></ul></div>
+                        <div class="cs-box"><h4>IGOs &amp; Partners</h4><ul><li><strong>ICWC</strong> — Interstate commission managing allocations since 1992</li><li><strong>GIZ (Germany)</strong> — Technical support for hydro monitoring</li><li><strong>EABR</strong> — Eurasian Development Bank funding infrastructure</li></ul></div>
+                    </div>
+                </div>
+                <div class="cs-section">
+                    <div class="cs-section-title">🔍 Theory Lenses</div>
+                    <div class="theory-row">
+                        <div class="theory-lens realism"><h4>🦁 Realism</h4><p>Upstream states (Kyrgyzstan) hold hydro-hegemonic power. Cooperation is strategic: Kyrgyzstan trades water for energy cooperation and dam funding. It's power balancing, not altruism.</p></div>
+                        <div class="theory-lens liberalism"><h4>🕊 Liberalism</h4><p>The ICWC represents institutional cooperation — pooling sovereignty over a shared resource. The joint hydro posts show how transparency mechanisms can build trust.</p></div>
+                        <div class="theory-lens constructivism"><h4>🧠 Constructivism</h4><p>Water is constructed as either a "shared river" or a "national resource" — the cooperative framing through the ICWC shapes state identity as partners rather than competitors.</p></div>
+                    </div>
+                </div>
+                <div class="cs-section">
+                    <div class="cs-section-title">📝 Exam Angle</div>
+                    <div class="exam-box">
+                        <h4>Paper 2 Prompt</h4>
+                        <p>"Evaluate the effectiveness of international institutions in managing transboundary environmental challenges." The ICWC shows both success (continued cooperation since 1992) and limitation (climate change outpacing allocation models).</p>
+                        <h4 style="margin-top:14px">Paper 3 Connection</h4>
+                        <p><strong>Q2b Policy:</strong> Recommend the ICWC adopt a climate-adjusted allocation model that accounts for glacial melt projections from IPCC data, with GIZ monitoring support. <strong>Q3 Essay:</strong> Link Environment + Security — how water scarcity can escalate from resource competition to security threat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>IB Global Politics HL · Development &amp; Sustainability Case Studies · Mr. Martinez · March 2026</p>
+    </footer>
+
+    <script>
+        function toggleCS(card) {
+            card.classList.toggle('open');
+        }
+
+        function filterCards(gpc, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.cs-card').forEach(card => {
+                if (gpc === 'all' || card.dataset.gpcs.includes(gpc)) {
+                    card.style.display = '';
+                    card.classList.add('open');
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

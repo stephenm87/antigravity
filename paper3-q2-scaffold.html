@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Paper 3 Q2: Bridge, Propose, Defend | IB Global Politics HL 2026</title>
+    <meta name="description" content="Interactive scaffold for IB Global Politics HL Paper 3 Questions 2a and 2b: case study bridge, policy recommendation, rubrics, strategy, and scored exemplars."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{--bg:#f5f6fa;--surface:#fff;--surface2:#eef0f7;--border:rgba(0,0,0,.1);--accent:#6438b0;--accent-alt:#0e7c86;--gold:#b07d10;--danger:#c0283e;--green:#1a8a5a;--blue:#2c5fc4;--teal:#0e7c86;--text:#1a1e2e;--muted:#4a5270;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.10)}
+
+        .formula-strip{background:linear-gradient(135deg,rgba(100,56,176,.06) 0%,rgba(14,124,134,.06) 100%);border-bottom:1px solid var(--border);padding:22px 24px;display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap}
+        .formula-card{display:flex;align-items:center;gap:16px;padding:18px 26px;border-radius:14px;border:1px solid var(--border);background:var(--surface);box-shadow:0 2px 12px rgba(0,0,0,.06);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+        .formula-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.10)}
+        .formula-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
+        .formula-card.fc-purple::before{background:linear-gradient(180deg,#5a30a0,#7c5cbf)}
+        .formula-card.fc-teal::before{background:linear-gradient(180deg,#0b6e78,#14a89a)}
+        .formula-card .fq-icon{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;font-size:1.2rem;flex-shrink:0}
+        .formula-card.fc-purple .fq-icon{background:rgba(100,56,176,.10)}
+        .formula-card.fc-teal .fq-icon{background:rgba(14,124,134,.10)}
+        .formula-card .fq-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+        .formula-card .fq-label.fq-purple{color:#6438b0}
+        .formula-card .fq-label.fq-teal{color:#0e7c86}
+        .formula-card .fq-formula{font-size:.9rem;font-weight:600;color:var(--text);letter-spacing:.01em}
+        .formula-card .fq-formula .arrow{color:var(--muted);font-weight:400;margin:0 2px}
+        .formula-card .fq-meta{font-size:.72rem;color:var(--muted);margin-top:3px;display:flex;gap:8px}
+        .formula-card .fq-meta span{display:inline-flex;align-items:center;gap:3px}
+        .formula-divider{font-size:1.4rem;color:var(--muted);opacity:.3;font-weight:300}
+
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh}
+
+        .hero{position:relative;overflow:hidden;padding:72px 24px 64px;text-align:center;background:radial-gradient(ellipse 120% 60% at 50% 0%,rgba(100,56,176,.10) 0%,transparent 70%),linear-gradient(180deg,#ede8fa 0%,var(--bg) 100%);border-bottom:1px solid var(--border)}
+        .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(0,0,0,0.025)'/%3E%3C/svg%3E");pointer-events:none}
+        .hero-badge{display:inline-block;background:rgba(100,56,176,.10);border:1px solid rgba(100,56,176,.30);color:#6438b0;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 18px;border-radius:50px;margin-bottom:22px}
+        .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.2;background:linear-gradient(135deg,#2a1860 0%,#6438b0 55%,#0e7c86 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:900px;margin:0 auto 18px}
+        .hero-sub{font-size:1.05rem;color:var(--muted);max-width:680px;margin:0 auto 36px}
+        .meta-pills{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+        .pill{display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-radius:50px;font-size:.78rem;font-weight:600;border:1px solid}
+        .pill-purple{background:rgba(100,56,176,.10);border-color:rgba(100,56,176,.30);color:#4a1fa0}
+        .pill-teal{background:rgba(14,124,134,.10);border-color:rgba(14,124,134,.30);color:#086068}
+        .pill-gold{background:rgba(176,125,16,.10);border-color:rgba(176,125,16,.30);color:#7a5800}
+        .pill-green{background:rgba(26,138,90,.10);border-color:rgba(26,138,90,.30);color:#0f5e3a}
+
+        .progress-nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;display:flex;overflow-x:auto;scrollbar-width:none;gap:0;position:sticky;top:0;z-index:100}
+        .progress-nav::-webkit-scrollbar{display:none}
+        .nav-tab{flex-shrink:0;padding:16px 22px;font-size:.82rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;text-decoration:none;white-space:nowrap}
+        .nav-tab:hover{color:var(--text);border-color:rgba(100,56,176,.4)}
+        .nav-tab.active{color:var(--accent);border-color:var(--accent)}
+
+        .container{max-width:1100px;margin:0 auto;padding:0 24px 80px}
+        .section{margin-top:64px;scroll-margin-top:65px}
+        .section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+        .section-num{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;font-size:.9rem;font-weight:800;flex-shrink:0;color:#fff}
+        .sn-purple{background:linear-gradient(135deg,#5a30a0,#7c5cbf)}
+        .sn-teal{background:linear-gradient(135deg,#0b6e78,#14a89a)}
+        .sn-gold{background:linear-gradient(135deg,#bf9020,#e8b84b);color:#1a1200}
+        .sn-green{background:linear-gradient(135deg,#0e7c86,#2ab5a0)}
+        .sn-blue{background:linear-gradient(135deg,#3a6dd9,#5b8dee)}
+        .sn-danger{background:linear-gradient(135deg,#b03050,#e05a6d)}
+        .section-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--text)}
+        .section-title span{font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;display:block;color:var(--muted);margin-bottom:3px}
+
+        .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;margin-bottom:18px;transition:border-color .2s,transform .2s}
+        .card:hover{border-color:rgba(100,56,176,.3);transform:translateY(-1px)}
+        .card-title{font-size:1rem;font-weight:700;margin-bottom:10px}
+        .card p{color:var(--muted);font-size:.93rem}
+
+        .rubric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px}
+        @media(max-width:720px){.rubric-grid{grid-template-columns:1fr}}
+        .rubric-cell{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;position:relative;overflow:hidden;border-top:4px solid var(--accent)}
+        .rubric-cell .mark-num{position:absolute;top:10px;right:16px;font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:800;opacity:.06}
+        .rubric-cell h3{font-size:.9rem;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+        .rubric-cell h3 .mark-badge{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;color:#fff;font-size:.72rem;font-weight:800;flex-shrink:0}
+        .rubric-cell p{font-size:.84rem;color:var(--muted)}
+        .rubric-cell.c1{border-top-color:#6438b0} .rubric-cell.c1 h3 .mark-badge{background:#6438b0}
+        .rubric-cell.c2{border-top-color:#3a6dd9} .rubric-cell.c2 h3 .mark-badge{background:#3a6dd9}
+        .rubric-cell.c3{border-top-color:#0e7c86} .rubric-cell.c3 h3 .mark-badge{background:#0e7c86}
+        .rubric-cell.c4{border-top-color:#1a8a5a} .rubric-cell.c4 h3 .mark-badge{background:#1a8a5a}
+
+        .band-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:24px}
+        @media(max-width:720px){.band-grid{grid-template-columns:1fr}}
+        .band-cell{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;border-left:4px solid}
+        .band-cell h3{font-size:.88rem;font-weight:700;margin-bottom:6px}
+        .band-cell p{font-size:.82rem;color:var(--muted)}
+        .band-cell.b12{border-left-color:#c0283e} .band-cell.b34{border-left-color:#bf9020} .band-cell.b56{border-left-color:#3a6dd9} .band-cell.b7{border-left-color:#1a8a5a}
+
+        .strat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+        @media(max-width:800px){.strat-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:480px){.strat-grid{grid-template-columns:1fr}}
+        .strat-step{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;text-align:center;position:relative}
+        .strat-step .step-num{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;color:#fff;font-size:.85rem;font-weight:800;margin:0 auto 14px}
+        .strat-step .step-num.sn-p{background:linear-gradient(135deg,#5a30a0,#7c5cbf)}
+        .strat-step .step-num.sn-t{background:linear-gradient(135deg,#0b6e78,#14a89a)}
+        .strat-step h3{font-size:.88rem;font-weight:700;margin-bottom:6px}
+        .strat-step p{font-size:.8rem;color:var(--muted)}
+        .strat-step .step-time{display:inline-block;margin-top:10px;font-size:.72rem;font-weight:700;color:var(--accent);background:rgba(100,56,176,.08);padding:3px 12px;border-radius:50px}
+        @media(min-width:801px){.strat-step::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);font-size:1.2rem;color:var(--muted);opacity:.5;font-weight:700;z-index:1}.strat-step:last-child::after{display:none}}
+
+        .stimulus{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin:24px 0;position:relative;box-shadow:var(--shadow)}
+        .stimulus::before{content:'PRACTICE STIMULUS';position:absolute;top:-12px;left:24px;background:var(--accent);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.12em;padding:4px 14px;border-radius:50px}
+        .stimulus .source-badge{display:inline-block;background:rgba(100,56,176,.08);border:1px solid rgba(100,56,176,.25);color:var(--accent);font-size:.7rem;font-weight:600;padding:4px 12px;border-radius:50px;margin-bottom:16px}
+        .stimulus h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:14px;line-height:1.4}
+        .stimulus p{font-size:.9rem;color:var(--text);margin-bottom:14px}
+        .stimulus .quote{border-left:3px solid var(--accent);padding:12px 20px;background:rgba(100,56,176,.04);border-radius:0 10px 10px 0;margin:16px 0;font-style:italic;font-size:.88rem;color:var(--muted)}
+        .stimulus .quote cite{display:block;margin-top:8px;font-style:normal;font-weight:600;font-size:.78rem;color:var(--accent)}
+        .stimulus .data-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+        @media(max-width:600px){.stimulus .data-row{grid-template-columns:1fr}}
+        .stimulus .data-cell{text-align:center;background:var(--surface2);border-radius:10px;padding:14px 12px}
+        .stimulus .data-cell .d-num{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--accent)}
+        .stimulus .data-cell .d-label{font-size:.72rem;color:var(--muted);font-weight:500;margin-top:2px}
+
+        .pq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+        @media(max-width:680px){.pq-grid{grid-template-columns:1fr}}
+        .pq-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px}
+        .pq-card .pq-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+        .pq-card .pq-label.lbl-purple{color:#6438b0}
+        .pq-card .pq-label.lbl-teal{color:#0e7c86}
+        .pq-card p{font-size:.88rem;font-weight:500;color:var(--text);line-height:1.6}
+        .pq-card .pq-marks{font-size:.78rem;font-weight:700;color:var(--muted);margin-top:10px}
+
+        .exemplar-container{margin-top:32px}
+        .exemplar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:24px;overflow:hidden}
+        .exemplar-header{padding:22px 28px;cursor:pointer;display:flex;align-items:center;gap:16px;transition:background .2s}
+        .exemplar-header:hover{background:rgba(0,0,0,.015)}
+        .exemplar-header::after{content:'▾';margin-left:auto;font-size:1.1rem;color:var(--muted);transition:transform .3s;flex-shrink:0}
+        .exemplar.open .exemplar-header::after{transform:rotate(180deg)}
+        .exemplar-badge{display:inline-flex;align-items:center;justify-content:center;min-width:48px;height:48px;border-radius:50%;font-size:1rem;font-weight:800;color:#fff;flex-shrink:0}
+        .exemplar-badge.medium{background:linear-gradient(135deg,#bf9020,#daa520)}
+        .exemplar-badge.high{background:linear-gradient(135deg,#1a8a5a,#2ab5a0)}
+        .exemplar-info h3{font-size:1rem;font-weight:700}
+        .exemplar-info .score{font-size:.78rem;font-weight:600;color:var(--muted)}
+        .exemplar-body{display:none;padding:0 28px 28px;border-top:1px solid var(--border)}
+        .exemplar.open .exemplar-body{display:block;animation:fadeIn .3s ease}
+        .response-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin-top:18px}
+        .response-box .rl{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+        .response-box p{font-size:.88rem;color:var(--text);line-height:1.8;margin-bottom:10px}
+        .response-box p:last-child{margin-bottom:0}
+        .mark-tag{display:inline;font-size:.68rem;font-weight:700;padding:1px 8px;border-radius:50px;margin-left:4px;vertical-align:middle;white-space:nowrap}
+        .mark-earned{background:rgba(26,138,90,.12);border:1px solid rgba(26,138,90,.25);color:#0f5e3a}
+        .mark-missed{background:rgba(192,40,62,.10);border:1px solid rgba(192,40,62,.25);color:#a01a30}
+        .skill-tag{display:inline;background:rgba(100,56,176,.10);border:1px solid rgba(100,56,176,.25);color:#6438b0;font-size:.68rem;font-weight:700;padding:1px 8px;border-radius:50px;margin-left:4px;vertical-align:middle;white-space:nowrap}
+        .verdict{margin-top:18px;padding:18px 22px;border-radius:12px;border:1px solid}
+        .verdict.medium-v{background:rgba(176,125,16,.06);border-color:rgba(176,125,16,.25)}
+        .verdict.high-v{background:rgba(26,138,90,.06);border-color:rgba(26,138,90,.25)}
+        .verdict h4{font-size:.88rem;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+        .verdict p,.verdict li{font-size:.84rem;color:var(--muted)}
+        .verdict ul{list-style:disc;padding-left:18px;margin-top:6px}
+        .verdict ul li{margin-bottom:4px}
+
+        .alert{display:flex;gap:14px;padding:20px 24px;border-radius:var(--radius);margin:24px 0;border:1px solid}
+        .alert-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px}
+        .alert-purple{background:rgba(100,56,176,.08);border-color:rgba(100,56,176,.3)}
+        .alert-gold{background:rgba(232,184,75,.08);border-color:rgba(232,184,75,.3)}
+        .alert-green{background:rgba(62,207,142,.08);border-color:rgba(62,207,142,.3)}
+        .alert-danger{background:rgba(224,90,109,.08);border-color:rgba(224,90,109,.3)}
+        .alert-teal{background:rgba(14,124,134,.08);border-color:rgba(14,124,134,.3)}
+        .alert h4{font-size:.9rem;font-weight:700;margin-bottom:6px}
+        .alert p,.alert li{font-size:.86rem;color:var(--muted)}
+        .alert ul{list-style:disc;padding-left:18px;margin-top:6px}
+        .alert ul li{margin-bottom:4px}
+
+        .dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+        @media(max-width:680px){.dd-grid{grid-template-columns:1fr}}
+        .dd-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+        .dd-col.do{border-top:3px solid var(--green)}
+        .dd-col.dont{border-top:3px solid var(--danger)}
+        .dd-col h3{font-size:.9rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+        .dd-col.do h3{color:var(--green)}
+        .dd-col.dont h3{color:var(--danger)}
+        .dd-col ul{list-style:none;padding:0}
+        .dd-col ul li{font-size:.84rem;color:var(--muted);padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;align-items:flex-start;gap:8px}
+        .dd-col ul li:last-child{border-bottom:none}
+        .dd-col ul li::before{content:'';flex-shrink:0;margin-top:5px}
+        .dd-col.do ul li::before{content:'✓';color:var(--green);font-weight:700}
+        .dd-col.dont ul li::before{content:'✗';color:var(--danger);font-weight:700}
+
+        .back-link{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--accent);text-decoration:none;padding:10px 0}
+        .back-link:hover{text-decoration:underline}
+        .footer{text-align:center;padding:40px 24px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border);margin-top:60px}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+        @media print{
+            body{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:var(--bg) !important}
+            .progress-nav{position:static}
+            .exemplar-body{display:block!important}
+            .exemplar-header::after{display:none}
+
+            /* Preserve hero gradient */
+            .hero{background:radial-gradient(ellipse 120% 60% at 50% 0%,rgba(100,56,176,.10) 0%,transparent 70%),linear-gradient(180deg,#ede8fa 0%,var(--bg) 100%) !important}
+            .hero h1{background:none !important;-webkit-background-clip:unset !important;-webkit-text-fill-color:#2a1860 !important;background-clip:unset !important;color:#2a1860 !important}
+
+            /* Preserve formula strip */
+            .formula-strip{background:linear-gradient(135deg,rgba(100,56,176,.08) 0%,rgba(14,124,134,.08) 100%) !important}
+            .formula-card{box-shadow:0 1px 6px rgba(0,0,0,.08) !important}
+            .formula-card::before{display:block !important}
+            .formula-card.fc-purple::before{background:linear-gradient(180deg,#5a30a0,#7c5cbf) !important}
+            .formula-card.fc-teal::before{background:linear-gradient(180deg,#0b6e78,#14a89a) !important}
+            .formula-card .fq-icon{background:rgba(100,56,176,.10) !important}
+            .formula-card.fc-teal .fq-icon{background:rgba(14,124,134,.10) !important}
+
+            /* Preserve all badges and colored elements */
+            .hero-badge{background:rgba(100,56,176,.10) !important;border:1px solid rgba(100,56,176,.30) !important}
+            .pill{border:1px solid !important}
+            .pill-purple{background:rgba(100,56,176,.10) !important}
+            .pill-teal{background:rgba(14,124,134,.10) !important}
+            .pill-gold{background:rgba(176,125,16,.10) !important}
+            .pill-green{background:rgba(26,138,90,.10) !important}
+
+            /* Section number badges */
+            .section-num{color:#fff !important}
+            .sn-purple{background:linear-gradient(135deg,#5a30a0,#7c5cbf) !important}
+            .sn-teal{background:linear-gradient(135deg,#0b6e78,#14a89a) !important}
+            .sn-gold{background:linear-gradient(135deg,#bf9020,#e8b84b) !important}
+            .sn-green{background:linear-gradient(135deg,#0e7c86,#2ab5a0) !important}
+            .sn-blue{background:linear-gradient(135deg,#3a6dd9,#5b8dee) !important}
+            .sn-danger{background:linear-gradient(135deg,#b03050,#e05a6d) !important}
+
+            /* Band cells */
+            .band-cell{border-left:4px solid !important}
+            .band-cell.b12{border-left-color:#c0283e !important}
+            .band-cell.b34{border-left-color:#bf9020 !important}
+            .band-cell.b56{border-left-color:#3a6dd9 !important}
+            .band-cell.b7{border-left-color:#1a8a5a !important}
+
+            /* Rubric cells */
+            .rubric-cell{border-top:4px solid !important}
+            .rubric-cell.c1{border-top-color:#6438b0 !important}
+            .rubric-cell.c2{border-top-color:#3a6dd9 !important}
+            .rubric-cell.c3{border-top-color:#0e7c86 !important}
+            .rubric-cell.c4{border-top-color:#1a8a5a !important}
+            .rubric-cell h3 .mark-badge{color:#fff !important}
+            .rubric-cell.c1 h3 .mark-badge{background:#6438b0 !important}
+            .rubric-cell.c2 h3 .mark-badge{background:#3a6dd9 !important}
+            .rubric-cell.c3 h3 .mark-badge{background:#0e7c86 !important}
+            .rubric-cell.c4 h3 .mark-badge{background:#1a8a5a !important}
+
+            /* Strategy step circles */
+            .strat-step .step-num{color:#fff !important}
+            .strat-step .step-num.sn-p{background:linear-gradient(135deg,#5a30a0,#7c5cbf) !important}
+            .strat-step .step-num.sn-t{background:linear-gradient(135deg,#0b6e78,#14a89a) !important}
+            .strat-step .step-time{background:rgba(100,56,176,.08) !important}
+
+            /* Stimulus box */
+            .stimulus{box-shadow:none !important;border:1px solid var(--border)}
+            .stimulus::before{background:var(--accent) !important;color:#fff !important}
+            .stimulus .source-badge{background:rgba(100,56,176,.08) !important;border:1px solid rgba(100,56,176,.25) !important}
+            .stimulus .data-cell{background:var(--surface2) !important}
+            .stimulus .quote{border-left:3px solid var(--accent) !important;background:rgba(100,56,176,.04) !important}
+
+            /* Exemplar badges */
+            .exemplar-badge.medium{background:linear-gradient(135deg,#bf9020,#daa520) !important;color:#fff !important}
+            .exemplar-badge.high{background:linear-gradient(135deg,#1a8a5a,#2ab5a0) !important;color:#fff !important}
+
+            /* Response boxes and verdicts */
+            .response-box{background:var(--surface2) !important}
+            .verdict.medium-v{background:rgba(176,125,16,.06) !important;border:1px solid rgba(176,125,16,.25) !important}
+            .verdict.high-v{background:rgba(26,138,90,.06) !important;border:1px solid rgba(26,138,90,.25) !important}
+
+            /* Mark tags */
+            .mark-earned{background:rgba(26,138,90,.12) !important;border:1px solid rgba(26,138,90,.25) !important}
+            .mark-missed{background:rgba(192,40,62,.10) !important;border:1px solid rgba(192,40,62,.25) !important}
+            .skill-tag{background:rgba(100,56,176,.10) !important;border:1px solid rgba(100,56,176,.25) !important}
+
+            /* Alert boxes */
+            .alert-purple{background:rgba(100,56,176,.08) !important;border:1px solid rgba(100,56,176,.3) !important}
+            .alert-gold{background:rgba(232,184,75,.08) !important;border:1px solid rgba(232,184,75,.3) !important}
+            .alert-green{background:rgba(62,207,142,.08) !important;border:1px solid rgba(62,207,142,.3) !important}
+            .alert-danger{background:rgba(224,90,109,.08) !important;border:1px solid rgba(224,90,109,.3) !important}
+            .alert-teal{background:rgba(14,124,134,.08) !important;border:1px solid rgba(14,124,134,.3) !important}
+
+            /* Do / Don't columns */
+            .dd-col.do{border-top:3px solid var(--green) !important}
+            .dd-col.dont{border-top:3px solid var(--danger) !important}
+
+            /* PQ cards */
+            .pq-card{border:1px solid var(--border) !important}
+
+            /* Page breaks */
+            .section{page-break-inside:avoid}
+            .card,.alert,.band-cell,.strat-step,.stimulus,.pq-card{page-break-inside:avoid}
+            .strategy-block{page-break-inside:avoid}
+            .practice-block{page-break-inside:avoid}
+            .exemplar{page-break-before:always;page-break-inside:avoid}
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-badge">Paper 3 · Questions 2a + 2b</div>
+        <h1>Bridge, Propose, Defend</h1>
+        <p class="hero-sub">Q2a tests your knowledge and analysis of a political issue from the stimulus using your researched case studies. Q2b builds on your Q2a response with a policy recommendation. Together they are worth 10 marks and require both knowledge recall and analytical synthesis.</p>
+        <div class="meta-pills">
+            <span class="pill pill-purple">📊 10 Marks Total</span>
+            <span class="pill pill-teal">⏱ ~32 Minutes</span>
+            <span class="pill pill-gold">🔍 Case Study + Policy</span>
+            <span class="pill pill-green">📈 AO2 Knowledge · AO3 Synthesis</span>
+        </div>
+    </header>
+
+    <div class="formula-strip">
+        <div class="formula-card fc-purple">
+            <div class="fq-icon">📋</div>
+            <div>
+                <div class="fq-label fq-purple">Q2a — The Bridge</div>
+                <div class="fq-formula">Context <span class="arrow">→</span> Evidence <span class="arrow">→</span> Bridge</div>
+                <div class="fq-meta"><span>⏱ 12 min</span><span>📊 4 marks</span><span>📝 ~150–200 words</span></div>
+            </div>
+        </div>
+        <div class="formula-divider">+</div>
+        <div class="formula-card fc-teal">
+            <div class="fq-icon">🏛</div>
+            <div>
+                <div class="fq-label fq-teal">Q2b — The Policy</div>
+                <div class="fq-formula">Actor <span class="arrow">→</span> Mechanism <span class="arrow">→</span> Rationale <span class="arrow">→</span> Risk + Mitigation</div>
+                <div class="fq-meta"><span>⏱ 20 min</span><span>📊 6 marks</span><span>📝 ~250–350 words</span></div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="progress-nav" id="navBar">
+        <a class="nav-tab active" href="#rubric-q2a">Q2a Rubric</a>
+        <a class="nav-tab" href="#rubric-q2b">Q2b Rubric</a>
+        <a class="nav-tab" href="#strategy">Strategy</a>
+        <a class="nav-tab" href="#practice">Practice</a>
+        <a class="nav-tab" href="#exemplars">Exemplars</a>
+        <a class="nav-tab" href="#pitfalls">Pitfalls</a>
+    </nav>
+
+    <main class="container">
+
+        <!-- SECTION 1: Q2a RUBRIC -->
+        <section class="section" id="rubric-q2a">
+            <div class="section-header">
+                <div class="section-num sn-purple">1</div>
+                <div class="section-title"><span>Q2a: Case Study Analysis</span>What the Examiner Wants</div>
+            </div>
+            <div class="card">
+                <p>Q2a is worth <strong>4 marks</strong> and uses <strong>band descriptors</strong> (not point-marking). It tests your <strong>demonstration of knowledge, understanding, and analysis</strong> of an identified political issue referred to in the stimulus. You demonstrate this by using your <strong>researched case studies</strong> to explain the issue. You might:</p>
+                <ul style="margin-top:12px;padding-left:20px;font-size:.9rem;color:var(--muted)">
+                    <li>Use a case study to explain <strong>tensions or gaps between national decision-making and global solutions</strong></li>
+                    <li>Explain a <strong>term</strong> used in the stimulus through your case study</li>
+                    <li>Explain a <strong>claim</strong> expressed by the stimulus using your own research</li>
+                    <li>Consider the role of <strong>stakeholders or actors</strong> relevant to the political issue</li>
+                </ul>
+            </div>
+            <div class="band-grid">
+                <div class="band-cell b12">
+                    <h3>Band 1–2 · 1–2 marks</h3>
+                    <p>Demands partially addressed. Response is <strong>mostly descriptive</strong>. Some knowledge of the political issue is demonstrated, but it is not all relevant or accurate.</p>
+                </div>
+                <div class="band-cell b56">
+                    <h3>Band 3–4 · 3–4 marks</h3>
+                    <p>Demands of the question are addressed. Response provides a <strong>clear analysis</strong> of a political issue. <strong>Relevant and accurate knowledge</strong> of the context is demonstrated.</p>
+                </div>
+            </div>
+            <div class="alert alert-purple">
+                <div class="alert-icon">📋</div>
+                <div>
+                    <h4>Key Exam Structure: The Framing Statement</h4>
+                    <p>Before Q2a and Q2b are posed, there will be a <strong>statement about the stimulus material</strong> that highlights a specific idea. Read this carefully because it tells you <strong>what lens to apply</strong> to your case study. Both parts (a) and (b) require you to refer to a relevant case study. Choose one that enables you to respond to <strong>both parts</strong> using convincing detail.</p>
+                </div>
+            </div>
+            <div class="alert alert-gold">
+                <div class="alert-icon">⚠️</div>
+                <div>
+                    <h4>Do Not Assume the Examiner Knows Your Case Study</h4>
+                    <p>Make sure you give <strong>clear factual details</strong> in your response. The question specifies a certain number of links that need to be explained. Name your case study precisely, provide dates, actors, and outcomes. The examiner knows nothing about your specific research.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Q2b RUBRIC -->
+        <section class="section" id="rubric-q2b">
+            <div class="section-header">
+                <div class="section-num sn-teal">2</div>
+                <div class="section-title"><span>Q2b: Policy Recommendation</span>What the Examiner Wants</div>
+            </div>
+            <div class="card">
+                <p>Q2b is worth <strong>6 marks</strong> and is <strong>band-marked</strong>. It tests your ability to develop a <strong>coherent and relevant policy, course of action, or solution</strong> to the identified political issue. Your response must <strong>build on your Q2a response</strong>. You can do this by:</p>
+                <ul style="margin-top:12px;padding-left:20px;font-size:.9rem;color:var(--muted)">
+                    <li>Recommending how a <strong>government could work with other stakeholders</strong> to address the challenge</li>
+                    <li>Recommending a course of action that would <strong>increase the influence of a specific state or non-state actor</strong></li>
+                    <li>Making a recommendation for how <strong>global governance could be improved</strong> to address political challenges more effectively</li>
+                </ul>
+            </div>
+            <div class="band-grid">
+                <div class="band-cell b12">
+                    <h3>Band 1–2 · 1–2 marks</h3>
+                    <p>A recommendation is presented, but it is <strong>vague or unclear</strong>. The recommendation does not clearly address the identified political issue.</p>
+                </div>
+                <div class="band-cell b34">
+                    <h3>Band 3–4 · 3–4 marks</h3>
+                    <p>An adequate recommendation is presented. The recommendation <strong>addresses the identified political issue</strong>. Possible challenges or implications are <strong>not considered</strong>.</p>
+                </div>
+                <div class="band-cell b56">
+                    <h3>Band 5–6 · 5–6 marks</h3>
+                    <p>A clear and <strong>well-supported</strong> recommendation is presented. The recommendation addresses the identified political issue <strong>effectively</strong>. Possible challenges, implications, or unintended consequences <strong>are considered</strong>.</p>
+                </div>
+            </div>
+            <div class="alert alert-teal">
+                <div class="alert-icon">🏛</div>
+                <div>
+                    <h4>Evidence Over Hypothetical Thinking</h4>
+                    <p>Your policy recommendation will be considered <strong>well-supported if you provide specific evidence of similar policies from your case studies</strong>. The textbook is explicit: reasoning must be <strong>based on evidence, rather than hypothetical thinking</strong>. Reference:</p>
+                    <ul>
+                        <li><strong>Previous actions</strong> taken in your chosen case or other relevant cases you have studied</li>
+                        <li><strong>Theoretical approaches or models</strong> that favour certain approaches for certain issues</li>
+                        <li><strong>Frameworks, mechanisms, or agreements</strong> already in place that should facilitate implementation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert alert-purple">
+                <div class="alert-icon">🔗</div>
+                <div>
+                    <h4>Q2b Builds on Q2a</h4>
+                    <p>Your Q2b policy must directly address the challenge you identified in Q2a. This is why <strong>choosing one case study that works for both parts</strong> is critical. Your Q2b reasoning should cite evidence from your Q2a case study (and other cases you have studied) rather than introducing a completely new context.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: STRATEGY -->
+        <section class="section" id="strategy">
+            <div class="section-header">
+                <div class="section-num sn-gold">3</div>
+                <div class="section-title"><span>Time Management</span>Strategy for Q2a + Q2b</div>
+            </div>
+            <div class="card">
+                <p>The textbook recommends <strong>12 minutes for Q2a</strong> and <strong>20 minutes for Q2b</strong> (32 minutes combined). Q2a is shorter and more factual. Q2b demands more development because it requires a well-supported policy with evidence and consideration of challenges. Do not spend more than 15 minutes on Q2a or you will run out of time for Q2b and Q3.</p>
+            </div>
+
+            <div class="alert alert-green">
+                <div class="alert-icon">📏</div>
+                <div>
+                    <h4>Target Word Counts</h4>
+                    <p>Q2a should be approximately <strong>150–200 words</strong> — enough for context, one piece of specific evidence, and a bridge sentence. Q2b should be approximately <strong>250–350 words</strong> — enough for a named actor, detailed mechanism, evidence-backed rationale, and risk/mitigation. Going significantly over these targets usually means you're spending too long and will run out of time for Q3.</p>
+                </div>
+            </div>
+
+            <div class="strategy-block">
+            <h3 style="font-size:1rem;font-weight:700;margin-top:28px;margin-bottom:12px">Q2a: The Bridge Method (~12 min)</h3>
+            <div class="strat-grid">
+                <div class="strat-step"><div class="step-num sn-p">1</div><h3>Choose</h3><p>Pick the case study that best maps onto the stimulus theme</p><span class="step-time">1 min</span></div>
+                <div class="strat-step"><div class="step-num sn-p">2</div><h3>Context</h3><p>Write the who, what, where, when in 2-3 sentences</p><span class="step-time">4 min</span></div>
+                <div class="strat-step"><div class="step-num sn-p">3</div><h3>Evidence</h3><p>Drop in one specific statistic or event outcome</p><span class="step-time">4 min</span></div>
+                <div class="strat-step"><div class="step-num sn-p">4</div><h3>Bridge</h3><p>Write one sentence linking your case study back to the stimulus</p><span class="step-time">3 min</span></div>
+            </div>
+            </div>
+
+            <div class="strategy-block">
+            <h3 style="font-size:1rem;font-weight:700;margin-top:40px;margin-bottom:12px">Q2b: The AMR² Method (~20 min)</h3>
+            <div class="strat-grid">
+                <div class="strat-step"><div class="step-num sn-t">1</div><h3>Actor</h3><p>Name the specific institution or body that will implement your policy</p><span class="step-time">2 min</span></div>
+                <div class="strat-step"><div class="step-num sn-t">2</div><h3>Mechanism</h3><p>Describe the precise action: treaty, fund, regulation, sanction</p><span class="step-time">6 min</span></div>
+                <div class="strat-step"><div class="step-num sn-t">3</div><h3>Rationale</h3><p>Justify with evidence, precedent, or theory</p><span class="step-time">6 min</span></div>
+                <div class="strat-step"><div class="step-num sn-t">4</div><h3>Risk + Mitigate</h3><p>Name what could go wrong, then propose a concrete counter-measure</p><span class="step-time">6 min</span></div>
+            </div>
+            </div>
+
+            <div class="alert alert-gold">
+                <div class="alert-icon">⏱</div>
+                <div>
+                    <h4>The 32-Minute Budget</h4>
+                    <p>Q2a and Q2b together are worth 10 marks. Q3 alone is worth 15. Students who spend 45 minutes perfecting Q2 often write rushed, underdeveloped Q3 essays. Set a hard stop at 32 minutes for Q2a + Q2b combined, then move on.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PRACTICE STIMULUS -->
+        <section class="section" id="practice">
+            <div class="section-header">
+                <div class="section-num sn-green">4</div>
+                <div class="section-title"><span>Apply Your Skills</span>Practice Stimulus</div>
+            </div>
+            <div class="card">
+                <p>This is the same stimulus used in the Q1 scaffold. For Q2, you shift from analyzing the stimulus to <strong>connecting it to your own case study</strong> (Q2a) and <strong>proposing a policy</strong> (Q2b).</p>
+            </div>
+
+            <div class="practice-block">
+            <div class="stimulus">
+                <div class="source-badge">Source A: Adapted from UNFCCC Reports, Reuters, and The Guardian (2024–2025)</div>
+                <h2>The Loss and Damage Fund: Climate Finance at a Crossroads</h2>
+                <p>At COP28 in December 2023, 198 nations formally launched the Loss and Damage Fund to compensate developing nations for climate-related destruction. Within hours, pledges totaled approximately $700 million. Analysts noted that this figure represents less than 0.2% of the estimated $400 billion in annual climate-related damages suffered by developing nations.</p>
+                <div class="data-row">
+                    <div class="data-cell"><div class="d-num">$700M</div><div class="d-label">Total pledged at launch</div></div>
+                    <div class="data-cell"><div class="d-num">$400B</div><div class="d-label">Estimated annual damages</div></div>
+                    <div class="data-cell"><div class="d-num">0.18%</div><div class="d-label">Pledge-to-need ratio</div></div>
+                </div>
+                <p>The United States, the world's largest historical emitter, pledged $17.5 million. China, currently the world's largest annual emitter, classified itself as a developing nation under the UNFCCC framework and contributed a voluntary $10 million. The fund was placed under the interim trusteeship of the World Bank, where voting power is weighted by financial contribution. Small Island Developing States (SIDS) and Least Developed Countries (LDCs), which bear the greatest climate impacts, hold minimal governance influence.</p>
+                <div class="quote">
+                    "This fund was supposed to be a lifeline. Instead, it is a betrayal in practice. The nations drowning are being asked to be grateful for pennies from the nations that caused the flood."
+                    <cite>Tina Stege, Climate Envoy, Republic of the Marshall Islands (2024)</cite>
+                </div>
+                <p>At COP29 in November 2024, developing nations demanded a new collective target of $1.3 trillion per year by 2035 to address loss and damage, adaptation, and mitigation. Developed nations offered $300 billion. The compromise collapsed when the African Group walked out, calling the offer "an insult to our continent." The final agreement set a $300 billion annual target, which many observers described as a diplomatic failure for climate justice.</p>
+            </div>
+
+            <div class="pq-grid">
+                <div class="pq-card">
+                    <div class="pq-label lbl-purple">Q2a Prompt</div>
+                    <p>Using your own knowledge and the stimulus, describe a political issue from a case study you have researched that illustrates similar tensions to those presented in the stimulus. Identify the key actors, causes, and impacts.</p>
+                    <div class="pq-marks">[4 marks] · ~12 minutes</div>
+                </div>
+                <div class="pq-card">
+                    <div class="pq-label lbl-teal">Q2b Prompt</div>
+                    <p>Propose one detailed policy recommendation to address the challenge identified in Q2a. Include a specific actor, mechanism, rationale, and consideration of risks with mitigation.</p>
+                    <div class="pq-marks">[6 marks] · ~20 minutes</div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: EXEMPLARS -->
+        <section class="section" id="exemplars">
+            <div class="section-header">
+                <div class="section-num sn-blue">5</div>
+                <div class="section-title"><span>Learn from Examples</span>Scored Exemplars</div>
+            </div>
+            <div class="card">
+                <p>Exemplars for both Q2a and Q2b are provided below. Compare the medium and high responses for each to see what separates partial credit from full marks.</p>
+            </div>
+
+            <h3 style="font-size:1rem;font-weight:700;margin-top:28px;margin-bottom:4px">Q2a: Case Study Bridge</h3>
+            <p style="font-size:.84rem;color:var(--muted);margin-bottom:12px">"Describe a political issue from a case study you have researched that illustrates similar tensions."</p>
+
+            <div class="exemplar-container">
+                <!-- Q2a MEDIUM -->
+                <div class="exemplar open" onclick="toggleExemplar(this)">
+                    <div class="exemplar-header">
+                        <div class="exemplar-badge medium">2/4</div>
+                        <div class="exemplar-info">
+                            <h3>Medium Response</h3>
+                            <div class="score">2 out of 4 marks · Band 1–2: mostly descriptive</div>
+                        </div>
+                    </div>
+                    <div class="exemplar-body">
+                        <div class="response-box">
+                            <div class="rl">📝 Student Response</div>
+                            <p>Drawing from the <strong>Environment</strong> GPC, with connections to <strong>Poverty</strong>, a similar issue can be seen in the Amazon rainforest, where deforestation is a major political challenge. Many countries in South America are cutting down trees for farming and industry. <span class="mark-tag mark-earned">✓ Mark 1: identifies a political issue (deforestation)</span></p>
+                            <p>The Brazilian government under Bolsonaro reduced environmental protections, allowing ranchers and mining companies to clear large areas of the Amazon. This caused international criticism from NGOs like Greenpeace and from European leaders. <span class="mark-tag mark-earned">✓ Mark 2: provides some context with actors</span></p>
+                            <p>Deforestation is bad for the environment because the Amazon produces a lot of the world's oxygen and stores carbon. This means it affects everyone, not just Brazil. <span class="mark-tag mark-missed">✗ Mark 3: no specific evidence (statistic, date, or outcome)</span> <span class="mark-tag mark-missed">✗ Mark 4: no bridge back to the stimulus</span></p>
+                        </div>
+                        <div class="verdict medium-v">
+                            <h4>⚖️ Examiner Verdict: 2/4 (Band 1–2)</h4>
+                            <p><strong>What worked:</strong></p>
+                            <ul>
+                                <li>The case study is relevant and the student names specific actors (Bolsonaro, ranchers, Greenpeace)</li>
+                                <li>There is some descriptive context about what happened</li>
+                            </ul>
+                            <p style="margin-top:10px"><strong>Why it scored Band 1–2:</strong></p>
+                            <ul>
+                                <li><strong>Mostly descriptive.</strong> The response describes what happened but does not provide clear <em>analysis</em> of the political issue. It lists facts without explaining the underlying tension</li>
+                                <li><strong>Knowledge is not all relevant or accurate.</strong> "Large areas" and "a lot of oxygen" are vague. Specific, accurate evidence (e.g., 13,235 km² deforested in 2021) would demonstrate stronger knowledge</li>
+                                <li><strong>No link back to the stimulus.</strong> The framing statement before Q2 highlights a specific idea from the stimulus. This response never connects the case study to that theme</li>
+                            </ul>
+                            <p style="margin-top:10px"><strong>Elevation move:</strong> Move beyond description. Analyze <em>why</em> the issue matters politically (tension between sovereignty and global environmental governance). Add specific, accurate evidence. Connect back to the stimulus theme.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2a HIGH -->
+                <div class="exemplar open" onclick="toggleExemplar(this)">
+                    <div class="exemplar-header">
+                        <div class="exemplar-badge high">4/4</div>
+                        <div class="exemplar-info">
+                            <h3>High Response</h3>
+                            <div class="score">4 out of 4 marks · Band 3–4: clear analysis</div>
+                        </div>
+                    </div>
+                    <div class="exemplar-body">
+                        <div class="response-box">
+                            <div class="rl">📝 Student Response</div>
+                            <p>Drawing from the <strong>Environment</strong> GPC, with clear intersections to <strong>Poverty</strong> and <strong>Equality</strong>, the tensions in the stimulus mirror those seen in the Cochabamba Water War in Bolivia (1999–2000), where the privatization of Cochabamba's municipal water system created a direct conflict between economic development and community consent. <span class="mark-tag mark-earned">✓ Mark 1: specific political issue identified with date and location</span></p>
+                            <p>Under pressure from the World Bank, the Bolivian government granted a 40-year concession to Aguas del Tunari, a subsidiary of the US-based multinational Bechtel Corporation. Water prices rose by up to 200% within weeks, making basic water access unaffordable for many of the city's poorest residents. Protests led by the Coordinadora de Defensa del Agua brought tens of thousands to the streets, resulting in a state of emergency, several deaths, and the eventual cancellation of the contract in April 2000. <span class="mark-tag mark-earned">✓ Mark 2: detailed context with actors (World Bank, Bechtel, Coordinadora)</span> <span class="mark-tag mark-earned">✓ Mark 3: specific evidence (200% price increase, 40-year concession, April 2000 cancellation)</span></p>
+                            <p>Like the climate finance dispute in the stimulus, the Cochabamba case illustrates how decisions made by powerful external actors (in this case the World Bank and Bechtel, in the stimulus case the UNFCCC and donor states) can exclude the communities most affected from meaningful participation in governance. In both cases, the fundamental tension is between economic or institutional efficiency and the right of affected populations to shape the policies that determine their survival. <span class="mark-tag mark-earned">✓ Mark 4: explicit bridge linking case study to stimulus theme</span></p>
+                        </div>
+                        <div class="verdict high-v">
+                            <h4>✅ Examiner Verdict: 4/4 (Band 3–4)</h4>
+                            <p><strong>Why this earns full marks:</strong></p>
+                            <ul>
+                                <li><strong>Clear analysis, not just description.</strong> The response doesn't just say what happened; it explains <em>why</em> it matters (exclusion from governance, efficiency vs. participation rights)</li>
+                                <li><strong>Relevant and accurate knowledge</strong>: specific actors (World Bank, Bechtel, Coordinadora), precise evidence (200% price increase, 40-year concession, April 2000 cancellation)</li>
+                                <li><strong>Does not assume examiner knowledge.</strong> The case study is fully explained: who, what, where, when, and why, with clear factual details</li>
+                                <li><strong>Links back to stimulus theme</strong>: the final paragraph draws a direct, analytical parallel to the stimulus, naming equivalent actors and the shared structural tension</li>
+                            </ul>
+                            <p style="margin-top:10px"><strong>What makes this Band 3–4 rather than Band 1–2:</strong> The student goes beyond description to provide <strong>clear analysis</strong> of the political issue. They identify the structural parallel (external actors excluding affected communities from governance) and explain <em>why</em> this case study is relevant to the stimulus theme, demonstrating genuine understanding rather than surface-level recall.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2a HIGH — SECOND CASE STUDY (DRC Cobalt) -->
+                <div class="exemplar" onclick="toggleExemplar(this)">
+                    <div class="exemplar-header">
+                        <div class="exemplar-badge high">4/4</div>
+                        <div class="exemplar-info">
+                            <h3>High Response — Alt. Case Study</h3>
+                            <div class="score">4 out of 4 marks · Band 3–4 · Different GPC</div>
+                        </div>
+                    </div>
+                    <div class="exemplar-body">
+                        <div class="response-box">
+                            <div class="rl">📝 Student Response</div>
+                            <p>Drawing from the <strong>Poverty</strong> GPC, with intersections to <strong>Health</strong> and <strong>Environment</strong>, the tensions in the stimulus are mirrored by the cobalt mining crisis in the Democratic Republic of Congo (DRC), where the extraction of a critical resource for the global green energy transition is built on conditions that contradict the very sustainability goals it claims to serve. <span class="mark-tag mark-earned">✓ Mark 1: specific political issue with analytical framing</span></p>
+                            <p>The DRC holds approximately 70% of global cobalt reserves, essential for lithium-ion batteries in electric vehicles and smartphones. Multinational corporations such as Glencore and China Molybdenum operate large-scale industrial mines, while an estimated 40,000 children work in artisanal cobalt mines according to a 2019 Amnesty International report. Despite cobalt exports worth over $24 billion, the DRC's HDI remains 0.479 (2023), ranking 179th out of 191 countries. <span class="mark-tag mark-earned">✓ Mark 2: detailed context with specific actors</span> <span class="mark-tag mark-earned">✓ Mark 3: precise evidence (70%, 40,000 children, $24B, HDI 0.479)</span></p>
+                            <p>Like the climate finance dispute in the stimulus, where SIDS and LDCs bear the greatest climate impacts but hold minimal governance influence over the fund, the DRC bears the greatest human and environmental costs of cobalt extraction while receiving a fraction of the value chain's profits. In both cases, the structural inequality is identical: those who suffer most have the least power to shape the rules of engagement. <span class="mark-tag mark-earned">✓ Mark 4: explicit bridge linking case study to stimulus theme</span></p>
+                        </div>
+                        <div class="verdict high-v">
+                            <h4>✅ Examiner Verdict: 4/4 (Band 3–4)</h4>
+                            <p><strong>Why this works with a different GPC:</strong></p>
+                            <ul>
+                                <li>Uses the <strong>Poverty</strong> GPC rather than Environment, showing students that multiple case studies can map onto the same stimulus</li>
+                                <li>Provides even more <strong>quantitative evidence</strong> than the Cochabamba exemplar — four distinct data points in one paragraph</li>
+                                <li>The bridge sentence mirrors the stimulus structure precisely (those who suffer most → least governance power)</li>
+                                <li>Demonstrates that a <strong>development/sustainability case study</strong> can connect to a climate finance stimulus through the shared theme of structural inequality</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-size:1rem;font-weight:700;margin-top:40px;margin-bottom:4px">Q2b: Policy Recommendation</h3>
+            <p style="font-size:.84rem;color:var(--muted);margin-bottom:12px">"Propose one detailed policy recommendation to address the challenge identified in Q2a."</p>
+
+            <div class="exemplar-container">
+                <!-- Q2b MEDIUM -->
+                <div class="exemplar open" onclick="toggleExemplar(this)">
+                    <div class="exemplar-header">
+                        <div class="exemplar-badge medium">3/6</div>
+                        <div class="exemplar-info">
+                            <h3>Medium Response</h3>
+                            <div class="score">3 out of 6 marks · Band 3–4</div>
+                        </div>
+                    </div>
+                    <div class="exemplar-body">
+                        <div class="response-box">
+                            <div class="rl">📝 Student Response</div>
+                            <p><span class="skill-tag">ACTOR</span> Building on my Q2a analysis of the Cochabamba Water War (<strong>Environment / Poverty</strong> GPCs), the United Nations should take action to prevent future cases like this. <span class="mark-tag mark-earned">✓ Actor identified, but vague</span></p>
+                            <p><span class="skill-tag">MECHANISM</span> Specifically, the UN should create rules that require governments to consult with local communities before privatizing public services. This would make sure people have a voice in decisions that affect them. <span class="mark-tag mark-earned">✓ Mechanism present but generic</span></p>
+                            <p><span class="skill-tag">RATIONALE</span> This policy would work because the Cochabamba protests showed that people will resist privatization when they are not consulted. If governments are required to consult, they are more likely to create fair policies. <span class="mark-tag mark-earned">✓ Basic rationale with case study reference</span></p>
+                            <p>Overall, the UN needs to protect the rights of communities in developing countries from exploitation by multinational corporations. <span class="mark-tag mark-missed">✗ No risk analysis or mitigation</span></p>
+                        </div>
+                        <div class="verdict medium-v">
+                            <h4>⚖️ Examiner Verdict: 3/6 (Band 3–4)</h4>
+                            <p><strong>What worked:</strong></p>
+                            <ul>
+                                <li>An adequate recommendation is presented that addresses the identified political issue</li>
+                                <li>There is an attempt at justification using case study evidence ("protests showed that people will resist")</li>
+                            </ul>
+                            <p style="margin-top:10px"><strong>Why it scored Band 3–4:</strong></p>
+                            <ul>
+                                <li><strong>Possible challenges or implications are not considered.</strong> This is the key Band 3–4 marker from the rubric. The student never addresses what could go wrong</li>
+                                <li><strong>The recommendation is adequate but not well-supported.</strong> "The UN should create rules" is vague. A well-supported recommendation would name the specific body, instrument, and cite evidence of similar policies</li>
+                                <li><strong>Reasoning is partially hypothetical.</strong> "If governments are required to consult, they are more likely to create fair policies" is speculative. The textbook requires reasoning based on evidence, not hypothetical thinking</li>
+                            </ul>
+                            <p style="margin-top:10px"><strong>Elevation move:</strong> To reach Band 5–6, add consideration of <strong>challenges and implications</strong>. Support your rationale with evidence from your case study or other cases (not hypothetical reasoning). Name the specific body and instrument.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2b HIGH -->
+                <div class="exemplar open" onclick="toggleExemplar(this)">
+                    <div class="exemplar-header">
+                        <div class="exemplar-badge high">6/6</div>
+                        <div class="exemplar-info">
+                            <h3>High Response</h3>
+                            <div class="score">6 out of 6 marks · Band 5–6</div>
+                        </div>
+                    </div>
+                    <div class="exemplar-body">
+                        <div class="response-box">
+                            <div class="rl">📝 Student Response</div>
+                            <p><span class="skill-tag">ACTOR</span> Building on my Q2a case study within the <strong>Environment / Poverty / Equality</strong> GPCs, the <strong>UN Human Rights Council (UNHRC)</strong>, acting through its Special Rapporteur on the Human Right to Safe Drinking Water and Sanitation, should develop a <em>Binding Protocol on Prior Community Consent for Essential Service Privatization</em>. <span class="mark-tag mark-earned">✓ Specific actor with institutional detail</span></p>
+                            <p><span class="skill-tag">MECHANISM</span> The protocol would require any state seeking World Bank or IMF structural adjustment lending to first conduct an independent, UNHRC-verified community impact assessment for any proposed privatization of water, energy, or healthcare services. States that fail to demonstrate meaningful community consent, defined as informed consultation with affected populations and a formal public comment period of at least 90 days, would be ineligible for concessional lending terms. The protocol would build on the existing framework of Free, Prior, and Informed Consent (FPIC) established in the UN Declaration on the Rights of Indigenous Peoples. <span class="mark-tag mark-earned">✓ Detailed, actionable mechanism with legal precedent</span></p>
+                            <p><span class="skill-tag">RATIONALE</span> This policy is feasible because it uses an existing enforcement lever: conditionality on lending. The World Bank already attaches governance conditions to its loans. In Cochabamba, the privatization was itself a World Bank condition, meaning the institution has the infrastructure to reverse this dynamic. The FPIC framework provides legal precedent, and the UNHRC Special Rapporteur has already issued reports (2010, 2014) identifying water privatization without consent as a human rights violation. <span class="mark-tag mark-earned">✓ Evidence-backed rationale with precedent</span></p>
+                            <p><span class="skill-tag">RISK</span> However, this policy risks resistance from states that view lending conditionality as an infringement on sovereignty, particularly in the Global South where structural adjustment has a colonial legacy. Developing nations may see UNHRC-mandated assessments as another layer of Western institutional control over their domestic policy decisions. <span class="mark-tag mark-earned">✓ Identifies a specific, credible risk</span></p>
+                            <p><span class="skill-tag">MITIGATION</span> To mitigate this, the protocol should be co-designed with the G77 bloc and regional development banks (AfDB, ADB) rather than imposed top-down. Assessment teams should be drawn from regional experts, not Geneva-based staff. This localizes the oversight mechanism and reduces the perception of neocolonial conditionality, making compliance politically viable for borrowing states. <span class="mark-tag mark-earned">✓ Concrete mitigation addressing the specific risk</span></p>
+                        </div>
+                        <div class="verdict high-v">
+                            <h4>✅ Examiner Verdict: 6/6 (Band 5–6)</h4>
+                            <p><strong>Why this earns top band:</strong></p>
+                            <ul>
+                                <li><strong>Clear and well-supported recommendation</strong> that addresses the identified political issue effectively</li>
+                                <li><strong>Evidence-based reasoning throughout</strong>: cites World Bank conditionality infrastructure, FPIC legal precedent, existing Special Rapporteur reports (2010, 2014). No hypothetical thinking</li>
+                                <li><strong>Builds directly on Q2a</strong>: the policy addresses the exact challenge (water privatization without consent) identified in the case study</li>
+                                <li><strong>References frameworks already in place</strong>: FPIC, World Bank lending conditions, UNHRC Special Rapporteur mandate</li>
+                                <li><strong>Possible challenges, implications, and unintended consequences ARE considered</strong>: sovereignty concerns, neocolonial perception, and a concrete mitigation (G77 co-design, regional assessment teams)</li>
+                            </ul>
+                            <p style="margin-top:10px"><strong>What makes this Band 5–6:</strong> The consideration of challenges and unintended consequences is what separates Band 5–6 from Band 3–4. This student doesn't just propose a policy; they think about why it could fail (sovereignty objections, neocolonial perception) and how to address that (co-design with G77, localized oversight). All reasoning is based on evidence from the case study and existing frameworks, not hypothetical thinking.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-purple">
+                <div class="alert-icon">🔑</div>
+                <div>
+                    <h4>The Difference Between Band 3–4 and Band 5–6</h4>
+                    <p>Both students propose a UN-led policy to prevent exploitative privatization. The <strong>textbook rubric</strong> makes the distinction clear: Band 3–4 does not consider possible challenges or implications. Band 5–6 <strong>does</strong>. Additionally, the high response uses <strong>evidence-based reasoning</strong> throughout (citing existing frameworks, precedent, and case study evidence) rather than hypothetical thinking. Band 5–6 students think about why their policy could fail, not just why it should succeed.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: PITFALLS -->
+        <section class="section" id="pitfalls">
+            <div class="section-header">
+                <div class="section-num sn-danger">6</div>
+                <div class="section-title"><span>Common Traps</span>Pitfalls for Q2a + Q2b</div>
+            </div>
+
+            <h3 style="font-size:.9rem;font-weight:700;margin-bottom:8px">Q2a: Case Study</h3>
+            <div class="dd-grid">
+                <div class="dd-col do">
+                    <h3>✅ Do This</h3>
+                    <ul>
+                        <li>Name your case study in the <strong>first sentence</strong> with location and date</li>
+                        <li>Include at least one specific statistic, date, or outcome</li>
+                        <li>End with a <strong>bridge sentence</strong> connecting your case study to the stimulus theme</li>
+                        <li>Name specific actors (state, IGO, NGO, MNC) and their roles</li>
+                        <li>Choose the case study that <strong>best fits</strong> the stimulus, not your favorite one</li>
+                    </ul>
+                </div>
+                <div class="dd-col dont">
+                    <h3>❌ Don't Do This</h3>
+                    <ul>
+                        <li>Write about a topic so broad it could apply to anything ("inequality in Africa")</li>
+                        <li>Describe the case study at length without ever linking it to the stimulus</li>
+                        <li>Rely on general knowledge instead of specific evidence from your research</li>
+                        <li>Spend 20+ minutes on Q2a, leaving too little time for Q2b and Q3</li>
+                        <li>Choose a case study from a GPC that has no connection to the stimulus theme</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="font-size:.9rem;font-weight:700;margin-top:32px;margin-bottom:8px">Q2b: Policy Recommendation</h3>
+            <div class="dd-grid">
+                <div class="dd-col do">
+                    <h3>✅ Do This</h3>
+                    <ul>
+                        <li>Name a <strong>specific actor</strong>: a named institution, body, or mechanism (not "the international community")</li>
+                        <li>Describe a <strong>concrete action</strong>: treaty clause, fund, regulatory amendment, or deployment</li>
+                        <li>Justify using <strong>evidence, not hypothetical thinking</strong>: cite similar policies from your case studies, existing frameworks, or theoretical models</li>
+                        <li>Consider <strong>challenges, implications, or unintended consequences</strong> to reach Band 5–6</li>
+                        <li>Connect your policy back to the issue identified in Q2a</li>
+                    </ul>
+                </div>
+                <div class="dd-col dont">
+                    <h3>❌ Don't Do This</h3>
+                    <ul>
+                        <li>Propose a policy so vague it could apply to any issue ("countries should cooperate more")</li>
+                        <li>Forget to name who implements the policy (Band 1–2 territory)</li>
+                        <li>Write three separate mini-policies instead of one detailed recommendation</li>
+                        <li>Treat challenges/implications as optional (considering them is what separates Band 3–4 from Band 5–6)</li>
+                        <li>Use hypothetical reasoning ("if they did X, then Y would happen") instead of evidence-based reasoning from your case studies</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert alert-danger">
+                <div class="alert-icon">🚨</div>
+                <div>
+                    <h4>The #1 Q2b Mistake</h4>
+                    <p><strong>"The UN should do more."</strong> This is the most common Band 1–2 response. The examiner cannot award marks for a vague wish. Replace "the UN" with a specific body, and replace "do more" with a specific mechanism. One concrete policy proposal will always outscore three vague suggestions.</p>
+                </div>
+            </div>
+
+            <div class="alert alert-purple">
+                <div class="alert-icon">📚</div>
+                <div>
+                    <h4>Theory Toolbox for Q2b Rationale</h4>
+                    <p>The rubric rewards reasoning based on <strong>theoretical approaches or models</strong>. When writing your Q2b rationale, consider grounding your policy in one of the core development theories: <strong>Modernization Theory</strong> (free markets, trade integration), <strong>Dependency Theory</strong> (structural disadvantage, unequal exchange), <strong>Core-Periphery Model</strong> (systemic inequality), or <strong>Sustainable Development</strong> (balancing economic, social, and environmental goals). For a full review of these theories and their supporting indices, see the <a href="development-theory-study-sheet.html" style="color:var(--accent);font-weight:600">Development &amp; Sustainability Study Sheet</a>.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>IB Global Politics HL · Paper 3 Q2 Scaffold · Mr. Martinez · March 2026</p>
+        <p style="margin-top:6px;font-size:.72rem">Designed to complement the <a href="paper3-q1-scaffold.html" style="color:var(--accent);font-weight:600">Q1 Scaffold</a>, the <a href="paper3-explainer.html" style="color:var(--accent);font-weight:600">Paper 3 Complete Guide</a>, and the <a href="paper3-practice-exam.html" style="color:var(--accent);font-weight:600">Practice Exam</a>.</p>
+    </footer>
+
+    <script>
+        function toggleExemplar(el){el.classList.toggle('open')}
+
+        const tabs=document.querySelectorAll('.nav-tab');
+        const sections=document.querySelectorAll('.section');
+        const observer=new IntersectionObserver(entries=>{
+            entries.forEach(e=>{
+                if(e.isIntersecting){
+                    tabs.forEach(t=>t.classList.remove('active'));
+                    const t=document.querySelector(`.nav-tab[href="#${e.target.id}"]`);
+                    if(t)t.classList.add('active');
+                }
+            });
+        },{rootMargin:'-50% 0px -50% 0px'});
+        sections.forEach(s=>observer.observe(s));
+    </script>
+</body>
+</html>

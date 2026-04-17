@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Filing U.S. Taxes from China Without Your PIN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --navy: #1B2A4A;
+            --navy-light: #243656;
+            --teal: #1a6b7a;
+            --teal-light: #e0f4f8;
+            --gold: #c49000;
+            --gold-light: #fef3d0;
+            --green: #1a8a50;
+            --green-light: #e8fdf0;
+            --red: #cc3355;
+            --red-light: #fde8ed;
+            --purple: #6b4c9a;
+            --purple-light: #f3e8fd;
+            --text: #1a1e2e;
+            --muted: #5a6578;
+            --border: #d1d9e6;
+            --surface: #ffffff;
+            --bg: #f5f7fa;
+            --radius: 12px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.75;
+            min-height: 100vh;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 56px 24px 48px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            border-bottom: 3px solid var(--gold);
+            color: #fff;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .25);
+            color: rgba(255, 255, 255, .9);
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: 5px 16px;
+            border-radius: 50px;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1.25;
+            color: #fff;
+            max-width: 760px;
+            margin: 0 auto 14px;
+        }
+
+        .hero-sub {
+            font-size: .95rem;
+            color: rgba(255, 255, 255, .75);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ── Container ── */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        /* ── Sections ── */
+        .section {
+            margin-top: 48px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            font-size: .82rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            color: #fff;
+        }
+
+        .num-teal {
+            background: var(--teal)
+        }
+
+        .num-gold {
+            background: var(--gold)
+        }
+
+        .num-green {
+            background: var(--green)
+        }
+
+        .num-red {
+            background: var(--red)
+        }
+
+        .num-purple {
+            background: var(--purple)
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .section-title span {
+            font-family: 'Inter', sans-serif;
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            display: block;
+            color: var(--muted);
+            margin-bottom: 2px;
+        }
+
+        /* ── Cards ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            font-size: .95rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+
+        .card p,
+        .card li {
+            font-size: .9rem;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .card ol,
+        .card ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .card li {
+            margin-bottom: 6px;
+        }
+
+        .card ul.sub {
+            margin-top: 4px;
+            margin-bottom: 4px;
+            list-style: disc;
+        }
+
+        .card strong {
+            color: var(--text);
+        }
+
+        /* ── Callout ── */
+        .callout {
+            display: flex;
+            gap: 14px;
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin: 16px 0;
+            border-left: 4px solid;
+            font-size: .86rem;
+            line-height: 1.7;
+        }
+
+        .callout-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .callout-teal {
+            background: var(--teal-light);
+            border-color: var(--teal);
+            color: #14505c;
+        }
+
+        .callout-gold {
+            background: var(--gold-light);
+            border-color: var(--gold);
+            color: #6b4f0a;
+        }
+
+        .callout-green {
+            background: var(--green-light);
+            border-color: var(--green);
+            color: #155e35;
+        }
+
+        .callout-red {
+            background: var(--red-light);
+            border-color: var(--red);
+            color: #7a2038;
+        }
+
+        .callout p {
+            margin: 0;
+        }
+
+        .callout strong {
+            font-weight: 700;
+        }
+
+        /* ── Tables ── */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .86rem;
+            background: var(--surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        thead {
+            background: var(--navy);
+            color: #fff;
+        }
+
+        th {
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 700;
+            font-size: .78rem;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        td strong {
+            color: var(--text);
+        }
+
+        tr:nth-child(even) {
+            background: #fafbfc;
+        }
+
+        /* ── Flowchart ── */
+        .flowchart {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            margin-top: 16px;
+        }
+
+        .flow-title {
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 20px;
+        }
+
+        .flow-step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .flow-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .flow-connector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            width: 28px;
+        }
+
+        .flow-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--teal);
+            color: #fff;
+            font-size: .72rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .flow-line {
+            flex: 1;
+            width: 2px;
+            background: var(--border);
+            margin-top: 4px;
+        }
+
+        .flow-content {
+            flex: 1;
+            padding-top: 3px;
+        }
+
+        .flow-question {
+            font-size: .88rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .flow-answers {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .flow-yes,
+        .flow-no {
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-size: .78rem;
+            font-weight: 600;
+        }
+
+        .flow-yes {
+            background: var(--green-light);
+            color: var(--green);
+            border: 1px solid #a8ddb8;
+        }
+
+        .flow-no {
+            background: #f0f2f5;
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+
+        /* ── Divider ── */
+        hr.divider {
+            border: none;
+            height: 1px;
+            background: var(--border);
+            margin-top: 48px;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--navy);
+            border-top: 3px solid var(--gold);
+            text-align: center;
+            padding: 24px;
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .65);
+        }
+
+        footer strong {
+            color: var(--gold);
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, .8);
+            text-decoration: underline;
+        }
+
+        /* ── Bottom line box ── */
+        .bottom-line {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            margin-top: 32px;
+            color: #fff;
+        }
+
+        .bottom-line h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .bottom-line p {
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .8);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .bottom-line strong {
+            color: #fff;
+        }
+
+        /* ── Links ── */
+        a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 40px 20px 36px
+            }
+
+            .card {
+                padding: 18px 20px
+            }
+
+            .flowchart {
+                padding: 20px
+            }
+
+            .bottom-line {
+                padding: 22px 24px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-badge">Expat Tax Guide</div>
+        <h1>Filing U.S. Taxes from China Without Your PIN</h1>
+        <p class="hero-sub">Electronic solutions when you can't reach the IRS by phone and mailing paper returns isn't
+            an option.</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Option 1 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-teal">1</div>
+                <div class="section-title">
+                    <span>Fastest Self-File Fix</span>
+                    Use Prior-Year AGI Instead of PIN
+                </div>
+            </div>
+
+            <div class="card">
+                <p>The IRS allows you to authenticate your e-file using your <strong>prior-year Adjusted Gross Income
+                        (AGI)</strong> instead of remembering your old Self-Select PIN.</p>
+
+                <h3>Steps</h3>
+                <ol>
+                    <li>Open your tax software (TurboTax, TaxAct, Free File, etc.)</li>
+                    <li>When prompted for your PIN, select <strong>"I don't remember my PIN"</strong> or <strong>"Use
+                            AGI instead"</strong></li>
+                    <li>Enter your <strong>prior-year AGI</strong> from <strong>Line 11 of your last Form 1040</strong>
+                    </li>
+                    <li>If you don't have your return:
+                        <ul class="sub">
+                            <li>Try <strong>IRS Get Transcript Online</strong> (may require identity verification)</li>
+                            <li>Or ask your preparer if they have a copy from last year</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="callout callout-teal">
+                <div class="callout-icon">&#9432;</div>
+                <p><strong>First-time filers or no prior return?</strong> Enter <strong>$0</strong> for AGI &mdash; the
+                    IRS system accepts this.</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Option 2 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-gold">2</div>
+                <div class="section-title">
+                    <span>Best If Working With a Preparer</span>
+                    Use the Practitioner PIN Method
+                </div>
+            </div>
+
+            <div class="card">
+                <p>If you're using a tax professional, they can bypass your forgotten PIN entirely.</p>
+
+                <h3>How It Works</h3>
+                <ul>
+                    <li>Your preparer uses the <strong>Practitioner PIN method</strong>, which does <strong>not
+                            require</strong> your prior-year AGI or old PIN</li>
+                    <li>You sign <strong>Form 8879</strong> (IRS e-file Signature Authorization) to authorize them to
+                        enter a PIN on your behalf</li>
+                    <li>The 5-digit PIN is <strong>chosen at that moment</strong> &mdash; you don't need to recall an
+                        old one</li>
+                </ul>
+
+                <h3>Remote Signing from China</h3>
+                <ul>
+                    <li>Your preparer can email or fax Form 8879 to you</li>
+                    <li>You can print, hand-sign, scan, and return it via email &mdash; or use Adobe Acrobat / other
+                        e-sign tools (IRS permits electronic signatures for Form 8879)</li>
+                    <li>No international mailing required</li>
+                </ul>
+            </div>
+
+            <div class="callout callout-gold">
+                <div class="callout-icon">&#10148;</div>
+                <p><strong>Tip:</strong> Use WeChat or WhatsApp to coordinate with your preparer for faster document
+                    exchange.</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Option 3 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-green">3</div>
+                <div class="section-title">
+                    <span>Available in English</span>
+                    Use IRS Live Chat Instead of Phone
+                </div>
+            </div>
+
+            <div class="card">
+                <p>If you need IRS help but phone lines are unreachable from China:</p>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Contact Method</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>IRS Live Chat</strong></td>
+                            <td>Available Mon&ndash;Fri, 6 AM&ndash;11 PM ET &mdash; via <a
+                                    href="https://www.irs.gov/help" target="_blank">IRS.gov/help</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>International Taxpayer Service</strong></td>
+                            <td>Call <strong>+1-267-941-1000</strong> (direct line for overseas taxpayers)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>E-File Help Desk</strong> (for preparers)</td>
+                            <td>Austin office: <strong>+1-512-416-7750</strong> (Mon&ndash;Fri, 7 AM&ndash;6 PM CT)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Option 4 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-purple">4</div>
+                <div class="section-title">
+                    <span>Buy Yourself More Time</span>
+                    File an Extension Electronically
+                </div>
+            </div>
+
+            <div class="card">
+                <p>If you're stuck and the deadline is near:</p>
+                <ol>
+                    <li>File <strong>Form 4868</strong> (extension) electronically using AGI or a new PIN</li>
+                    <li>This extends your filing deadline to <strong>October 15</strong> (automatic for overseas
+                        taxpayers; payment still due April 15)</li>
+                    <li>Use the extra time to retrieve transcripts or resolve PIN issues</li>
+                </ol>
+            </div>
+
+            <div class="callout callout-green">
+                <div class="callout-icon">&#9670;</div>
+                <p><strong>Note:</strong> U.S. citizens and residents abroad automatically receive a <strong>2-month
+                        extension to June 16</strong> to file and pay, but interest accrues on unpaid balances after
+                    April 15.</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- What Won't Work -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-red">!</div>
+                <div class="section-title">
+                    <span>Save Yourself the Trouble</span>
+                    What Won't Work
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Why It Fails</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Trying to "reset" your old Self-Select PIN</strong></td>
+                            <td>The IRS does not store or reset prior-year PINs &mdash; you must use AGI or file on
+                                paper</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Guessing your old PIN</strong></td>
+                            <td>3 incorrect attempts may temporarily block your e-file access</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Waiting for IRS callback from China</strong></td>
+                            <td>International call volumes cause extreme delays; use Live Chat or a preparer instead
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Decision Flowchart -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-teal">&darr;</div>
+                <div class="section-title">
+                    <span>Quick Reference</span>
+                    Decision Flowchart
+                </div>
+            </div>
+
+            <div class="flowchart">
+                <div class="flow-title">Forgot PIN &bull; IRS unreachable &bull; Located in China</div>
+
+                <div class="flow-step">
+                    <div class="flow-connector">
+                        <div class="flow-dot">1</div>
+                        <div class="flow-line"></div>
+                    </div>
+                    <div class="flow-content">
+                        <div class="flow-question">Do you have last year's tax return (or AGI)?</div>
+                        <div class="flow-answers">
+                            <div class="flow-yes">Yes &rarr; Use AGI to e-file now</div>
+                            <div class="flow-no">No &rarr; Continue below</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="flow-connector">
+                        <div class="flow-dot">2</div>
+                        <div class="flow-line"></div>
+                    </div>
+                    <div class="flow-content">
+                        <div class="flow-question">Working with a tax preparer?</div>
+                        <div class="flow-answers">
+                            <div class="flow-yes">Yes &rarr; Practitioner PIN + Form 8879</div>
+                            <div class="flow-no">No &rarr; Continue below</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="flow-connector">
+                        <div class="flow-dot">3</div>
+                        <div class="flow-line"></div>
+                    </div>
+                    <div class="flow-content">
+                        <div class="flow-question">Can you access IRS Live Chat?</div>
+                        <div class="flow-answers">
+                            <div class="flow-yes">Yes &rarr; Request transcript or guidance</div>
+                            <div class="flow-no">No &rarr; Continue below</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="flow-connector">
+                        <div class="flow-dot">4</div>
+                    </div>
+                    <div class="flow-content">
+                        <div class="flow-question">Deadline imminent?</div>
+                        <div class="flow-answers">
+                            <div class="flow-yes">Yes &rarr; File Form 4868 extension</div>
+                            <div class="flow-no">No &rarr; Wait for chat availability</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- If All Else Fails -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-gold">&#9993;</div>
+                <div class="section-title">
+                    <span>Last Resort</span>
+                    If All Else Fails: Ship It
+                </div>
+            </div>
+
+            <div class="card">
+                <p>If electronic options truly fail and you must paper-file:</p>
+                <ul>
+                    <li>Use <strong>DHL, FedEx, or UPS</strong> (not China Post) &mdash; these are recognized as "timely
+                        mailing" by the IRS</li>
+                    <li>Include a note: <strong>"Filed from abroad &mdash; e-file authentication unavailable"</strong>
+                    </li>
+                    <li>Keep tracking info and proof of mailing date</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Line -->
+        <div class="bottom-line">
+            <h3>Bottom Line</h3>
+            <p>You likely don't need your old PIN at all. Use your <strong>prior-year AGI</strong> to e-file now, or
+                have your preparer use the <strong>Practitioner PIN method</strong> with a remotely signed Form 8879.
+                Both are fully electronic and work from anywhere in the world.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        Sources: <strong>IRS.gov</strong> guidance as of March 2026. Verify current procedures at <a
+            href="https://www.irs.gov" target="_blank">IRS.gov</a> or consult your tax professional.
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 8 – Fall of the Nationalists & Founding the PRC (1946–49)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ===================== RESET & BASE ===================== */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-dark: #1a1a1e;
+    --bg-slide: #222228;
+    --text-primary: #f0ebe3;
+    --text-secondary: #c0bbb2;
+    --accent-red: #c0392b;
+    --accent-red-light: #e74c3c;
+    --accent-gold: #d4a853;
+    --accent-gold-light: #f0d68a;
+    --accent-cream: #f5f0e8;
+    --border-subtle: rgba(212, 168, 83, 0.2);
+    --font-serif: 'Noto Serif', Georgia, serif;
+    --font-sans: 'Inter', 'Helvetica Neue', sans-serif;
+    --font-cn: 'Noto Sans SC', sans-serif;
+
+    /* Connections colors */
+    --conn-yellow: #f1c40f;
+    --conn-yellow-text: #1a1a1e;
+    --conn-green: #7dcea0;
+    --conn-green-text: #1a1a1e;
+    --conn-blue: #6fa8dc;
+    --conn-blue-text: #1a1a1e;
+    --conn-purple: #bb8fce;
+    --conn-purple-text: #1a1a1e;
+    --conn-unsolved: rgba(255,255,255,0.06);
+    --conn-unsolved-text: #f0ebe3;
+  }
+
+  html { font-size: 16px; }
+  body {
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  /* ===================== SLIDE SYSTEM ===================== */
+  .slide {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    padding: 3.5rem 4.5rem;
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
+  }
+  .slide.active { display: flex; }
+
+  /* Slide counter */
+  .slide::after {
+    content: attr(data-slide);
+    position: absolute;
+    bottom: 1.2rem;
+    right: 2rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    opacity: 0.5;
+    font-family: var(--font-sans);
+  }
+
+  /* Decorative top accent line */
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-red), var(--accent-gold), var(--accent-red));
+  }
+
+  /* ===================== NAVIGATION HUD ===================== */
+  .nav-hud {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.8rem;
+    z-index: 100;
+    align-items: center;
+    background: rgba(26,26,30,0.85);
+    backdrop-filter: blur(8px);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    border: 1px solid var(--border-subtle);
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid var(--border-subtle);
+    color: var(--accent-gold);
+    width: 2.2rem; height: 2.2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { background: var(--accent-gold); color: var(--bg-dark); }
+  .nav-counter {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    min-width: 4rem;
+    text-align: center;
+  }
+
+  /* ===================== TYPOGRAPHY ===================== */
+  h1 {
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+  }
+  h2 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.8rem;
+  }
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 4rem;
+    height: 3px;
+    background: var(--accent-gold);
+    border-radius: 2px;
+  }
+  h3 {
+    font-family: var(--font-sans);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--accent-gold);
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ===================== CONTENT ELEMENTS ===================== */
+  .content-list {
+    list-style: none;
+    margin-top: 0.5rem;
+  }
+  .content-list > li {
+    padding: 0.4rem 0 0.4rem 1.5rem;
+    position: relative;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+  .content-list > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.85rem;
+    width: 8px; height: 8px;
+    background: var(--accent-red);
+    border-radius: 50%;
+  }
+  .content-list .sub-list {
+    list-style: none;
+    margin-top: 0.3rem;
+  }
+  .content-list .sub-list > li {
+    padding: 0.25rem 0 0.25rem 1.5rem;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+  .content-list .sub-list > li::before {
+    content: '–';
+    position: absolute;
+    left: 0.3rem;
+    color: var(--accent-gold);
+    font-weight: 700;
+  }
+  .content-list .sub-list .sub-list > li {
+    font-size: 0.95rem;
+    padding-left: 1.5rem;
+  }
+  .content-list .sub-list .sub-list > li::before {
+    content: '·';
+    left: 0.3rem;
+    font-size: 1.2rem;
+    color: var(--accent-red-light);
+  }
+
+  .highlight {
+    background: linear-gradient(120deg, rgba(212,168,83,0.25) 0%, rgba(212,168,83,0.1) 100%);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    color: var(--accent-gold-light);
+    font-weight: 600;
+  }
+  .highlight-red {
+    background: linear-gradient(120deg, rgba(192,57,43,0.3) 0%, rgba(192,57,43,0.15) 100%);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    color: var(--accent-red-light);
+    font-weight: 700;
+  }
+  .highlight-cyan {
+    background: rgba(0, 255, 255, 0.15);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    color: #66ffff;
+    font-weight: 600;
+  }
+
+  /* ===================== SLIDE 1: TITLE ===================== */
+  .slide-title {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background:
+      linear-gradient(180deg, rgba(26,26,30,0.3) 0%, rgba(26,26,30,0.85) 50%, rgba(26,26,30,0.97) 100%),
+      url('https://upload.wikimedia.org/wikipedia/commons/8/85/Mao_Proclaiming_New_China.JPG') center/cover no-repeat;
+  }
+  .slide-title .title-badge {
+    display: inline-block;
+    background: var(--accent-red);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.5rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+  .slide-title h1 {
+    font-size: 3.2rem;
+    max-width: 900px;
+    margin-bottom: 0.3rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+  .slide-title .title-date-range {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--accent-gold);
+    font-weight: 700;
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  .slide-title .subtitle {
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+  }
+
+  /* ===================== SLIDE 2: AGENDA ===================== */
+  .slide-agenda {
+    background: var(--bg-slide);
+  }
+  .agenda-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    flex: 1;
+    margin-top: 1rem;
+  }
+  .agenda-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .agenda-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    border-radius: 2px 0 0 2px;
+  }
+  .agenda-card.objective::before { background: var(--accent-red); }
+  .agenda-card.agenda::before { background: var(--accent-gold); }
+  .agenda-card.homework::before { background: var(--accent-gold-light); }
+  .agenda-card.homework {
+    grid-column: 1 / -1;
+  }
+
+  /* ===================== CONNECTIONS GRID ===================== */
+  .slide-connections {
+    background: var(--bg-slide);
+  }
+  .conn-layout {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex: 1;
+  }
+  .conn-left h2 {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+  }
+  .conn-left h2::after { display: none; }
+  .conn-left p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+  .conn-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.7rem;
+    flex: 1;
+  }
+  .conn-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem 0.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    min-height: 4.2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .conn-cell.unsolved {
+    background: var(--conn-unsolved);
+    color: var(--conn-unsolved-text);
+    border-color: rgba(255,255,255,0.1);
+  }
+  .conn-cell.yellow { background: var(--conn-yellow); color: var(--conn-yellow-text); border-color: var(--conn-yellow); }
+  .conn-cell.green { background: var(--conn-green); color: var(--conn-green-text); border-color: var(--conn-green); }
+  .conn-cell.blue { background: var(--conn-blue); color: var(--conn-blue-text); border-color: var(--conn-blue); }
+  .conn-cell.purple { background: var(--conn-purple); color: var(--conn-purple-text); border-color: var(--conn-purple); }
+
+  /* ===================== SLIDE 8: FOCUS QUESTION ===================== */
+  .slide-focus {
+    background: var(--bg-slide);
+  }
+  .focus-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    flex: 1;
+    align-items: start;
+    margin-top: 1rem;
+  }
+  .focus-question-box {
+    background: rgba(192,57,43,0.08);
+    border-left: 4px solid var(--accent-red);
+    border-radius: 0 8px 8px 0;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .focus-question-box h3 {
+    color: var(--accent-red-light);
+    margin-bottom: 0.6rem;
+    font-size: 1rem;
+  }
+  .focus-question-box p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+  .focus-image {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .focus-image-caption {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+
+  /* ===================== SLIDE 9: WWII IMPACT ===================== */
+  .slide-wwii {
+    background: var(--bg-slide);
+  }
+  .wwii-layout {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr;
+    gap: 3rem;
+    flex: 1;
+    align-items: center;
+  }
+  .wwii-title-panel {
+    background: linear-gradient(135deg, var(--accent-red) 0%, #8e1c1c 100%);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+  }
+  .wwii-title-panel h2 {
+    font-size: 2rem;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 0;
+  }
+  .wwii-title-panel h2::after { display: none; }
+  .wwii-content .content-list > li {
+    font-size: 1.2rem;
+    padding: 0.8rem 0 0.8rem 1.8rem;
+  }
+
+  /* ===================== SLIDE 10: CIVIL WAR RESUMED ===================== */
+  .slide-resumed {
+    background: var(--bg-slide);
+  }
+  .resumed-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    flex: 1;
+    align-items: start;
+    margin-top: 0.5rem;
+  }
+  .resumed-map {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .resumed-map-caption {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+
+  /* ===================== SLIDE 11: THESIS ===================== */
+  .slide-thesis {
+    background: var(--bg-slide);
+  }
+  .thesis-content { flex: 1; margin-top: 0.5rem; }
+  .thesis-content > .content-list > li {
+    margin-bottom: 0.6rem;
+  }
+
+  /* ===================== SLIDE 12: ACTIVITY ===================== */
+  .slide-activity {
+    background: var(--bg-slide);
+    justify-content: center;
+  }
+  .activity-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 2.5rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .activity-box h2::after { width: 100%; background: var(--accent-red); }
+  .activity-box .content-list > li {
+    font-size: 1.15rem;
+    padding: 0.6rem 0 0.6rem 1.8rem;
+  }
+
+  /* ===================== SLIDE 13: WORK TIME ===================== */
+  .slide-worktime {
+    background: var(--bg-slide);
+  }
+  .worktime-layout {
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+    gap: 2.5rem;
+    flex: 1;
+    align-items: center;
+  }
+  .worktime-label {
+    background: linear-gradient(135deg, #2c2c34 0%, #1a1a1e 100%);
+    border-radius: 12px;
+    border: 2px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 360px;
+  }
+  .worktime-label h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  .worktime-label h2::after { display: none; }
+  .worktime-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .wt-card {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .wt-card .wt-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  .wt-card.orange { background: linear-gradient(135deg, #e67e22, #d35400); }
+  .wt-card.gray { background: linear-gradient(135deg, #7f8c8d, #636e72); }
+  .wt-card.gold { background: linear-gradient(135deg, #f1c40f, #d4a017); color: var(--bg-dark); }
+  .wt-card.lightblue { background: linear-gradient(135deg, #5dade2, #2e86c1); }
+  .wt-card.green-card { background: linear-gradient(135deg, #27ae60, #1e8449); }
+
+  /* ===================== ANIMATIONS ===================== */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .slide.active > * {
+    animation: fadeSlideUp 0.5s ease-out both;
+  }
+  .slide.active > *:nth-child(1) { animation-delay: 0.05s; }
+  .slide.active > *:nth-child(2) { animation-delay: 0.15s; }
+  .slide.active > *:nth-child(3) { animation-delay: 0.25s; }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 1024px) {
+    .slide { padding: 2rem 2.5rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    .agenda-grid { grid-template-columns: 1fr; }
+    .focus-layout, .resumed-layout, .wwii-layout, .worktime-layout { grid-template-columns: 1fr; }
+    .conn-cell { font-size: 0.8rem; padding: 0.6rem 0.3rem; min-height: 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<div class="slide slide-title active" data-slide="1 / 13">
+  <div class="title-badge">Day 8</div>
+  <h1>Fall of the Nationalists and Founding the People's Republic of China</h1>
+  <div class="title-date-range">1946 – 49</div>
+  <div class="subtitle">March 17/A &nbsp;–&nbsp; March 18/B</div>
+</div>
+
+<!-- ==================== SLIDE 2: AGENDA ==================== -->
+<div class="slide slide-agenda" data-slide="2 / 13">
+  <h2>Day 8 – Fall of Nationalists and Founding of the People's Republic of China</h2>
+  <div class="agenda-grid">
+    <div class="agenda-card objective">
+      <h3>Objective</h3>
+      <ul class="content-list">
+        <li>I can analyze multiple and complex causes of the success of the CCP in the Chinese Civil War.</li>
+        <li>I can develop a precise and knowledgeable thesis statement</li>
+      </ul>
+    </div>
+    <div class="agenda-card agenda">
+      <h3>Agenda</h3>
+      <ul class="content-list">
+        <li>Warm-up: CCW Connections</li>
+        <li>Notes: The impact of WWII on the CCW</li>
+        <li>Developing a Complex Thesis statement Review</li>
+        <li>What Caused the Success of the CCP Document Set</li>
+      </ul>
+    </div>
+    <div class="agenda-card homework">
+      <h3>Homework</h3>
+      <ul class="content-list">
+        <li>Have your source for Entry 5 ready for next class (Reassessment)</li>
+        <li>Next two classes will workdays</li>
+        <li>Final Project due at the start of class <u>on</u> April 9/10</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 3: CONNECTIONS – UNSOLVED ==================== -->
+<div class="slide slide-connections" data-slide="3 / 13">
+  <div class="conn-layout">
+    <div class="conn-left">
+      <h2>Warm-up:<br>Connections!</h2>
+      <p>Group the 16 terms into 4 rows of 4</p>
+    </div>
+    <div class="conn-grid">
+      <div class="conn-cell unsolved">Gangsters</div>
+      <div class="conn-cell unsolved">Foreigners</div>
+      <div class="conn-cell unsolved">Comintern</div>
+      <div class="conn-cell unsolved">Kuomintang</div>
+      <div class="conn-cell unsolved">Capitalists</div>
+      <div class="conn-cell unsolved">GMD</div>
+      <div class="conn-cell unsolved">Peasants</div>
+      <div class="conn-cell unsolved">Land-owners</div>
+      <div class="conn-cell unsolved">Gongchandang</div>
+      <div class="conn-cell unsolved">Workers</div>
+      <div class="conn-cell unsolved">Communists</div>
+      <div class="conn-cell unsolved">Guomindang</div>
+      <div class="conn-cell unsolved">Nationalists</div>
+      <div class="conn-cell unsolved">The Chinese Communist Party</div>
+      <div class="conn-cell unsolved">CCP</div>
+      <div class="conn-cell unsolved">Soviet Union</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 4: CONNECTIONS – YELLOW SOLVED ==================== -->
+<div class="slide slide-connections" data-slide="4 / 13">
+  <div class="conn-layout">
+    <div class="conn-left">
+      <h2>Warm-up:<br>Connections!</h2>
+    </div>
+    <div class="conn-grid">
+      <div class="conn-cell yellow">CCP</div>
+      <div class="conn-cell yellow">Communists</div>
+      <div class="conn-cell yellow">Gongchandang</div>
+      <div class="conn-cell yellow">The Chinese Communist Party</div>
+      <div class="conn-cell unsolved">Capitalists</div>
+      <div class="conn-cell unsolved">GMD</div>
+      <div class="conn-cell unsolved">Peasants</div>
+      <div class="conn-cell unsolved">Land-owners</div>
+      <div class="conn-cell unsolved">Comintern</div>
+      <div class="conn-cell unsolved">Workers</div>
+      <div class="conn-cell unsolved">Foreigners</div>
+      <div class="conn-cell unsolved">Guomindang</div>
+      <div class="conn-cell unsolved">Nationalists</div>
+      <div class="conn-cell unsolved">Kuomintang</div>
+      <div class="conn-cell unsolved">Gangsters</div>
+      <div class="conn-cell unsolved">Soviet Union</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 5: CONNECTIONS – YELLOW + GREEN ==================== -->
+<div class="slide slide-connections" data-slide="5 / 13">
+  <div class="conn-layout">
+    <div class="conn-left">
+      <h2>Warm-up:<br>Connections!</h2>
+    </div>
+    <div class="conn-grid">
+      <div class="conn-cell yellow">CCP</div>
+      <div class="conn-cell yellow">Communists</div>
+      <div class="conn-cell yellow">Gongchandang</div>
+      <div class="conn-cell yellow">The Chinese Communist Party</div>
+      <div class="conn-cell green">Nationalists</div>
+      <div class="conn-cell green">GMD</div>
+      <div class="conn-cell green">Kuomintang</div>
+      <div class="conn-cell green">Guomindang</div>
+      <div class="conn-cell unsolved">Peasants</div>
+      <div class="conn-cell unsolved">Foreigners</div>
+      <div class="conn-cell unsolved">Comintern</div>
+      <div class="conn-cell unsolved">Capitalists</div>
+      <div class="conn-cell unsolved">Gangsters</div>
+      <div class="conn-cell unsolved">Workers</div>
+      <div class="conn-cell unsolved">Land-owners</div>
+      <div class="conn-cell unsolved">Soviet Union</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 6: CONNECTIONS – YELLOW + GREEN + BLUE ==================== -->
+<div class="slide slide-connections" data-slide="6 / 13">
+  <div class="conn-layout">
+    <div class="conn-left">
+      <h2>Warm-up:<br>Connections!</h2>
+    </div>
+    <div class="conn-grid">
+      <div class="conn-cell yellow">CCP</div>
+      <div class="conn-cell yellow">Communists</div>
+      <div class="conn-cell yellow">Gongchandang</div>
+      <div class="conn-cell yellow">The Chinese Communist Party</div>
+      <div class="conn-cell green">Nationalists</div>
+      <div class="conn-cell green">GMD</div>
+      <div class="conn-cell green">Kuomintang</div>
+      <div class="conn-cell green">Guomindang</div>
+      <div class="conn-cell blue">Land-owners</div>
+      <div class="conn-cell blue">Capitalists</div>
+      <div class="conn-cell blue">Foreigners</div>
+      <div class="conn-cell blue">Gangsters</div>
+      <div class="conn-cell unsolved">Comintern</div>
+      <div class="conn-cell unsolved">Peasants</div>
+      <div class="conn-cell unsolved">Workers</div>
+      <div class="conn-cell unsolved">Soviet Union</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 7: CONNECTIONS – ALL SOLVED ==================== -->
+<div class="slide slide-connections" data-slide="7 / 13">
+  <div class="conn-layout">
+    <div class="conn-left">
+      <h2>Warm-up:<br>Connections!</h2>
+    </div>
+    <div class="conn-grid">
+      <div class="conn-cell yellow">CCP</div>
+      <div class="conn-cell yellow">Communists</div>
+      <div class="conn-cell yellow">Gongchandang</div>
+      <div class="conn-cell yellow">The Chinese Communist Party</div>
+      <div class="conn-cell green">Nationalists</div>
+      <div class="conn-cell green">GMD</div>
+      <div class="conn-cell green">Kuomintang</div>
+      <div class="conn-cell green">Guomindang</div>
+      <div class="conn-cell blue">Land-owners</div>
+      <div class="conn-cell blue">Capitalists</div>
+      <div class="conn-cell blue">Foreigners</div>
+      <div class="conn-cell blue">Gangsters</div>
+      <div class="conn-cell purple">Peasants</div>
+      <div class="conn-cell purple">Workers</div>
+      <div class="conn-cell purple">Comintern</div>
+      <div class="conn-cell purple">Soviet Union</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 8: FOCUS QUESTION / FOUNDING OF PRC ==================== -->
+<div class="slide slide-focus" data-slide="8 / 13">
+  <h2>Founding of the People's Republic of China</h2>
+  <div class="focus-layout">
+    <div class="focus-left">
+      <div class="focus-question-box">
+        <h3>Focus Question</h3>
+        <p>What factors contributed to the success of the CCP and the downfall of the GMD?</p>
+      </div>
+      <div>
+        <img class="focus-image" src="https://upload.wikimedia.org/wikipedia/commons/8/85/Mao_Proclaiming_New_China.JPG" alt="Mao Zedong proclaiming the People's Republic of China, October 1, 1949">
+        <p class="focus-image-caption">Mao Zedong proclaiming the PRC, Tiananmen, Oct. 1 1949 — Wikimedia Commons (Public Domain)</p>
+      </div>
+    </div>
+    <div class="focus-right">
+      <ul class="content-list">
+        <li><span class="highlight-red">October 1st 1949:</span> Founding of People's Republic of China (PRC)
+          <ul class="sub-list">
+            <li><span class="highlight">"Liberation" (解放)</span> – Mao Zedong gave a triumphant victory speech in Beijing while crowds cheered and watched a procession of the PLA and other party members.</li>
+          </ul>
+        </li>
+        <li>Chiang fled with remaining GMD army to Taiwan to found the <span class="highlight-red">Republic of China (ROC)</span>
+          <ul class="sub-list">
+            <li>Claimed to be the legitimate Chinese government</li>
+            <li>Until 1971, Taiwan was recognized as the only legitimate government of China by the United Nations</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 9: IMPACT OF WWII ==================== -->
+<div class="slide slide-wwii" data-slide="9 / 13">
+  <div class="wwii-layout">
+    <div class="wwii-title-panel">
+      <h2>The impact of WWII on the Chinese Civil War</h2>
+    </div>
+    <div class="wwii-content">
+      <ul class="content-list">
+        <li>CCP claimed they more effectively defended China from Japan, while the KMT efforts were described as "half-hearted"</li>
+        <li>KMT received financial/military support from USA and Great Britain, which gave Chiang legitimacy, but also made him look like a sell out to the West</li>
+        <li>Chiang expected a long land war with US troops to buy him time to solidify his position against the CCP, which didn't happen after the atomic bomb.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 10: CIVIL WAR RESUMED ==================== -->
+<div class="slide slide-resumed" data-slide="10 / 13">
+  <h2>The Chinese Civil War Resumed</h2>
+  <div class="resumed-layout">
+    <div class="resumed-text">
+      <ul class="content-list">
+        <li>Between 1946-47, the Nationalists made gains in cities and the north and pushed the Communists out of Yan'an.</li>
+        <li>In 1946, Mao reorganized communist forces in a single army <span class="highlight-red">People's Liberation Army (PLA)</span>
+          <ul class="sub-list">
+            <li>Developed successful guerrilla tactics and took control of Manchuria</li>
+          </ul>
+        </li>
+        <li>By mid-1947, the PLA turned to conventional warfare and pushed into Nationalist strongholds in the center and west.</li>
+      </ul>
+    </div>
+    <div>
+      <img class="resumed-map" src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Chinese_civil_war_map_02.jpg" alt="Map of the Chinese Civil War showing Communist base areas and Japanese occupation">
+      <p class="resumed-map-caption">Chinese Civil War map — Wikimedia Commons (U.S. Government, Public Domain)</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 11: DEVELOPING A COMPLEX THESIS ==================== -->
+<div class="slide slide-thesis" data-slide="11 / 13">
+  <h2>Developing a Complex Thesis</h2>
+  <div class="thesis-content">
+    <ul class="content-list">
+      <li>A thesis statement is a specific <span class="highlight">roadmap</span> to a historical argument, not a short-answer response
+        <ul class="sub-list">
+          <li>An <em>evaluation</em> or overall answer to the question</li>
+          <li>A <em>line of reasoning</em> that shows the moves you will make in your essay
+            <ul class="sub-list">
+              <li>Each point in your line of reasoning should be a <u>category</u> of evidence, not a single piece of evidence (<span class="highlight-cyan">think broad buckets that contain pieces of evidence INSIDE</span>)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Thesis statements are created by first analyzing and organizing evidence into buckets
+        <ul class="sub-list">
+          <li>Group your evidence into groups, then <em>name</em> the category and develop a claim about that group</li>
+          <li>Once you develop your specific groups, you can see if you have complexity
+            <ul class="sub-list">
+              <li>Multiple groups about a <u>PIECES</u> category, positive or negative categories, continuities or changes, similarities or differences, or some other division that fits your question</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 12: ACTIVITY ==================== -->
+<div class="slide slide-activity" data-slide="12 / 13">
+  <div class="activity-box">
+    <h2>What factors contributed to the success of the CCP and downfall of the KMT in Mainland China?</h2>
+    <ul class="content-list" style="margin-top: 1.5rem;">
+      <li>Work with your table to organize the evidence into three or four groups.</li>
+      <li>Once you organize the evidence, paraphrase the evidence on the handout and create a claim for each group. Be sure your claim includes a name for that group.
+        <ul class="sub-list">
+          <li>The [GMD/CCP] [won/lost] because…</li>
+          <li>As you write your claims, think about next-level organization — are your claims political (including military), economic, social?</li>
+        </ul>
+      </li>
+      <li>When you're finished, I will give you a specific prompt that you can respond to with a thesis statement.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 13: WORK TIME ==================== -->
+<div class="slide slide-worktime" data-slide="13 / 13">
+  <div class="worktime-layout">
+    <div class="worktime-label">
+      <h2>Work<br>Time</h2>
+    </div>
+    <div class="worktime-cards">
+      <div class="wt-card orange">
+        <span class="wt-icon">📄</span>
+        <span>You have the rest of class to work on your historical fiction project.</span>
+      </div>
+      <div class="wt-card gray">
+        <span class="wt-icon">📋</span>
+        <span>Use the <strong>Rough Draft Templates</strong> for planning and to get teacher feedback.</span>
+      </div>
+      <div class="wt-card gold">
+        <span class="wt-icon">💡</span>
+        <span>Take a look at some sample scrapbooks or storybooks if you need some ideas.</span>
+      </div>
+      <div class="wt-card lightblue">
+        <span class="wt-icon">📅</span>
+        <span>Make sure you have your source for Entry 5 at the start of next class for the reassessment.</span>
+      </div>
+      <div class="wt-card green-card">
+        <span class="wt-icon">🏫</span>
+        <span>If you do not submit a draft, I will assign you to the Second Chance room for the following day. Plan ahead!</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== NAVIGATION HUD ==================== -->
+<div class="nav-hud">
+  <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" title="Previous (← or ↑)">‹</button>
+  <span class="nav-counter" id="navCounter">1 / 13</span>
+  <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)" title="Next (→ or ↓)">›</button>
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+
+  function showSlide(index) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[index].classList.add('active');
+    document.getElementById('navCounter').textContent = `${index + 1} / ${total}`;
+  }
+
+  function changeSlide(dir) {
+    currentSlide = Math.max(0, Math.min(total - 1, currentSlide + dir));
+    showSlide(currentSlide);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      changeSlide(1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      changeSlide(-1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      currentSlide = 0;
+      showSlide(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      currentSlide = total - 1;
+      showSlide(total - 1);
+    }
+  });
+</script>
+</body>
+</html>

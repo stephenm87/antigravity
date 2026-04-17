@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IB Global Politics — Development &amp; Sustainability: Core Theories</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f8fc;
+      --surface: #ffffff;
+      --surface-2: #f0f1f7;
+      --border: #d8dce8;
+      --text: #1a1d2e;
+      --text-muted: #5c6178;
+      --accent-1: #3b5fe0;
+      --accent-2: #d9365e;
+      --accent-3: #6b4fc9;
+      --accent-4: #0e8a6d;
+      --accent-1-bg: rgba(59,95,224,.07);
+      --accent-2-bg: rgba(217,54,94,.07);
+      --accent-3-bg: rgba(107,79,201,.07);
+      --accent-4-bg: rgba(14,138,109,.07);
+      --radius: 12px;
+    }
+
+    @page {
+      size: Letter;
+      margin: 0.35in 0.4in;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      font-size: 15px;
+    }
+
+    /* ——— HEADER (page 1 top) ——— */
+    header {
+      text-align: center;
+      padding: 32px 16px 24px;
+    }
+    header .tag {
+      display: inline-block;
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--accent-1);
+      border: 1px solid rgba(59,95,224,.25);
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    header p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* ——— LAYOUT ——— */
+    .container { max-width: 100%; margin: 0 auto; padding: 0 8px 20px; }
+
+    .section-title {
+      font-size: .82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ——— THEORY TEXT BLOCKS ——— */
+    .theory-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 30px 24px;
+      position: relative;
+      overflow: hidden;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .theory-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .theory-block.mod::before  { background: var(--accent-1); }
+    .theory-block.dep::before  { background: var(--accent-2); }
+    .theory-block.core::before { background: var(--accent-3); }
+    .theory-block.sust::before { background: var(--accent-4); }
+
+    .theory-block .card-number {
+      font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+    }
+    .theory-block.mod  .card-number { color: var(--accent-1); }
+    .theory-block.dep  .card-number { color: var(--accent-2); }
+    .theory-block.core .card-number { color: var(--accent-3); }
+    .theory-block.sust .card-number { color: var(--accent-4); }
+
+    .theory-block h3 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin: 6px 0 4px;
+    }
+    .theory-block .thinker {
+      font-size: .95rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .theory-block .core-idea {
+      font-size: 1rem;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+    .theory-block.mod  .core-idea { background: var(--accent-1-bg); border-left: 4px solid var(--accent-1); }
+    .theory-block.dep  .core-idea { background: var(--accent-2-bg); border-left: 4px solid var(--accent-2); }
+    .theory-block.core .core-idea { background: var(--accent-3-bg); border-left: 4px solid var(--accent-3); }
+    .theory-block.sust .core-idea { background: var(--accent-4-bg); border-left: 4px solid var(--accent-4); }
+
+    .theory-block .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .theory-block h4 {
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin: 0 0 8px;
+    }
+    .theory-block ul {
+      list-style: none;
+      padding: 0;
+    }
+    .theory-block li {
+      font-size: .95rem;
+      padding: 4px 0 4px 20px;
+      position: relative;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .theory-block li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+      font-size: .85rem;
+    }
+    .theory-block .case-tag {
+      display: inline-block;
+      font-size: .82rem;
+      font-weight: 600;
+      padding: 3px 12px;
+      border-radius: 6px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+    .theory-block.mod  .case-tag { background: var(--accent-1-bg); color: var(--accent-1); }
+    .theory-block.dep  .case-tag { background: var(--accent-2-bg); color: var(--accent-2); }
+    .theory-block.core .case-tag { background: var(--accent-3-bg); color: var(--accent-3); }
+    .theory-block.sust .case-tag { background: var(--accent-4-bg); color: var(--accent-4); }
+
+    /* ——— FULL-PAGE IMAGE ——— */
+    .full-page-img {
+      page-break-before: always;
+      break-before: always;
+      page-break-after: always;
+      break-after: always;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 92vh;
+      padding: 20px;
+    }
+    .full-page-img .img-label {
+      font-size: .82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .full-page-img.mod .img-label { color: var(--accent-1); }
+    .full-page-img.dep .img-label { color: var(--accent-2); }
+    .full-page-img.core .img-label { color: var(--accent-3); }
+    .full-page-img.sust .img-label { color: var(--accent-4); }
+
+    .full-page-img img {
+      max-width: 88%;
+      max-height: 78vh;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    }
+    .full-page-img .img-caption {
+      margin-top: 14px;
+      font-size: .92rem;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 560px;
+      line-height: 1.5;
+    }
+
+    /* ——— INDICES TABLE ——— */
+    .indices-section {
+      page-break-before: always;
+      break-before: always;
+    }
+    .indices-table-wrap {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      overflow: hidden;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .95rem;
+    }
+    thead th {
+      background: var(--surface-2);
+      text-align: left;
+      padding: 13px 18px;
+      font-size: .76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    td .index-name { font-weight: 600; color: var(--text); font-size: 1rem; }
+    td .index-desc { color: var(--text-muted); font-size: .85rem; margin-top: 1px; }
+
+    /* ——— MAPPING CHART ——— */
+    .mapping-section {
+      page-break-before: always;
+      break-before: always;
+    }
+    .mapping-grid {
+      display: grid;
+      grid-template-columns: 180px repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      font-size: .95rem;
+    }
+    .mapping-grid .cell {
+      background: var(--surface);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+    }
+    .mapping-grid .cell.header {
+      background: var(--surface-2);
+      font-weight: 700;
+      font-size: .76rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      justify-content: center;
+      text-align: center;
+    }
+    .mapping-grid .cell.row-label {
+      font-weight: 600;
+      color: var(--text);
+      font-size: .92rem;
+    }
+    .mapping-grid .cell .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+    .mapping-grid .cell .dot.supports   { background: var(--accent-4); box-shadow: 0 0 6px rgba(14,138,109,.35); }
+    .mapping-grid .cell .dot.challenges { background: var(--accent-2); box-shadow: 0 0 6px rgba(217,54,94,.35); }
+    .mapping-grid .cell .dot.neutral    { background: var(--text-muted); opacity:.25; }
+
+    .legend {
+      display: flex;
+      gap: 28px;
+      margin-top: 14px;
+      font-size: .88rem;
+      color: var(--text-muted);
+    }
+    .legend span { display: flex; align-items: center; gap: 7px; }
+    .legend .ldot {
+      width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+    }
+    .legend .ldot.s { background: var(--accent-4); }
+    .legend .ldot.c { background: var(--accent-2); }
+    .legend .ldot.n { background: var(--text-muted); opacity:.25; }
+
+    /* ——— CASE STUDIES — full page ——— */
+    .cases-page {
+      page-break-before: always;
+      break-before: always;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .case-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .case-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .case-card .region {
+      font-size: .76rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+    .case-card p {
+      font-size: .88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .case-card .theory-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .case-card .ttag {
+      font-size: .72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+    .ttag.t-mod  { background: var(--accent-1-bg); color: var(--accent-1); }
+    .ttag.t-dep  { background: var(--accent-2-bg); color: var(--accent-2); }
+    .ttag.t-core { background: var(--accent-3-bg); color: var(--accent-3); }
+    .ttag.t-sust { background: var(--accent-4-bg); color: var(--accent-4); }
+
+    /* ——— EXAM STRATEGY ——— */
+    .strategy-section {
+      page-break-before: always;
+      break-before: always;
+    }
+    .strategy-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .strategy-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+    .step {
+      padding: 22px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+    }
+    .step .step-num {
+      font-size: .78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+    .step:nth-child(1) .step-num { color: var(--accent-4); }
+    .step:nth-child(2) .step-num { color: var(--accent-3); }
+    .step:nth-child(3) .step-num { color: var(--accent-1); }
+    .step:nth-child(4) .step-num { color: var(--accent-2); }
+    .step .step-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+    .step p {
+      font-size: .92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ——— FOOTER ——— */
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      font-size: .78rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ——— PRINT / PDF ——— */
+    @media print {
+      body { background: #fff; }
+      .theory-block,
+      .case-card,
+      .strategy-box,
+      .step,
+      .indices-table-wrap,
+      table tr { 
+        page-break-inside: avoid; 
+        break-inside: avoid; 
+      }
+      .section-title {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .theory-block .details-grid { grid-template-columns: 1fr; }
+      .case-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .mapping-grid { font-size: .78rem; grid-template-columns: 120px repeat(4,1fr); }
+      header h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ PAGE 1: TITLE + THEORIES 1 & 2 ══════════════ -->
+<header>
+  <div class="tag">IB Global Politics — Study Sheet</div>
+  <h1>Development &amp; Sustainability:<br>Core Theories for Exam Analysis</h1>
+  <p>Four analytical lenses, the key indices that support them, and how to deploy them in timed exam responses.</p>
+</header>
+
+<div class="container">
+
+  <div class="section-title">01 — The Four Core Theories</div>
+
+  <!-- THEORY 1: Modernization -->
+  <div class="theory-block mod">
+    <div class="card-number">Theory 01</div>
+    <h3>Modernization Theory</h3>
+    <div class="thinker">W.W. Rostow · 1960</div>
+    <div class="core-idea">
+      Development is <strong>linear</strong>: all societies progress through five stages from "traditional" to "high mass consumption." The Western path is the universal model; development = industrialization + free markets + democratic governance.
+    </div>
+    <div class="details-grid">
+      <div>
+        <h4>Key Claims</h4>
+        <ul>
+          <li>Underdevelopment is an <em>internal</em> condition, not externally imposed</li>
+          <li>Foreign investment and trade integration accelerate progress</li>
+          <li>Traditional cultures and institutions are barriers to growth</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Strengths &amp; Limits</h4>
+        <ul>
+          <li><strong>Useful for:</strong> Explaining rapid growth in East Asian economies</li>
+          <li><strong>Criticized for:</strong> Ethnocentrism, ignoring colonialism, conflating GDP with well-being</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Quick Case Examples</h4>
+        <div>
+          <span class="case-tag">South Korea</span>
+          <span class="case-tag">Singapore</span>
+          <span class="case-tag">Post-WWII Japan</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL-PAGE IMAGE: Modernization -->
+  <div class="full-page-img mod">
+    <div class="img-label">Theory 01 — Modernization Theory</div>
+    <img src="img-modernization.png" alt="Rostow's Stages of Growth diagram">
+    <div class="img-caption">Rostow's five stages of economic growth — a linear model where all societies follow the same path from traditional agriculture to high mass consumption.</div>
+  </div>
+
+  <!-- THEORY 2: Dependency -->
+  <div class="theory-block dep">
+    <div class="card-number">Theory 02</div>
+    <h3>Dependency Theory</h3>
+    <div class="thinker">A.G. Frank · R. Prebisch · 1960s–70s</div>
+    <div class="core-idea">
+      Underdevelopment is not a "starting point" — it is <strong>actively produced</strong> by integration into the global capitalist system. Wealthy states develop <em>at the expense of</em> poorer states through unequal exchange, debt, and structural adjustment.
+    </div>
+    <div class="details-grid">
+      <div>
+        <h4>Key Claims</h4>
+        <ul>
+          <li>The global economy structurally disadvantages the Global South</li>
+          <li>Aid and FDI can entrench dependency rather than alleviate poverty</li>
+          <li>Commodity-dependent economies face declining terms of trade</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Strengths &amp; Limits</h4>
+        <ul>
+          <li><strong>Useful for:</strong> Explaining persistent poverty despite decades of aid</li>
+          <li><strong>Criticized for:</strong> Overly deterministic; struggles to explain cases like China's rise</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Quick Case Examples</h4>
+        <div>
+          <span class="case-tag">Haiti</span>
+          <span class="case-tag">DRC (Cobalt)</span>
+          <span class="case-tag">Zambia (Copper)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL-PAGE IMAGE: Dependency -->
+  <div class="full-page-img dep">
+    <div class="img-label">Theory 02 — Dependency Theory</div>
+    <img src="img-dependency.png" alt="Dependency Theory diagram of unequal exchange">
+    <div class="img-caption">The cycle of unequal exchange — raw materials, cheap labor, and profits flow upward to core states, while debt, structural adjustment, and low-value goods flow downward to the periphery.</div>
+  </div>
+
+  <!-- THEORY 3: Core-Periphery -->
+  <div class="theory-block core">
+    <div class="card-number">Theory 03</div>
+    <h3>Core-Periphery Model</h3>
+    <div class="thinker">I. Wallerstein · World-Systems Theory · 1974</div>
+    <div class="core-idea">
+      The world economy is a single system divided into <strong>core</strong> (wealthy, industrialized), <strong>semi-periphery</strong> (emerging), and <strong>periphery</strong> (resource-exporting, dependent) states. Wealth flows upward; position in the system — not internal policy — determines development outcomes.
+    </div>
+    <div class="details-grid">
+      <div>
+        <h4>Key Claims</h4>
+        <ul>
+          <li>Global inequality is <em>structural</em>, not a temporary phase</li>
+          <li>Core states set the rules of trade, finance, and governance</li>
+          <li>Semi-peripheral states can shift position — but the hierarchy persists</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Strengths &amp; Limits</h4>
+        <ul>
+          <li><strong>Useful for:</strong> Mapping global power asymmetries; environmental injustice</li>
+          <li><strong>Criticized for:</strong> Underestimating state agency; static categories</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Quick Case Examples</h4>
+        <div>
+          <span class="case-tag">Core: USA, EU</span>
+          <span class="case-tag">Semi-P: China, India</span>
+          <span class="case-tag">Periphery: Chad, Myanmar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL-PAGE IMAGE: Core-Periphery -->
+  <div class="full-page-img core">
+    <div class="img-label">Theory 03 — Core-Periphery Model</div>
+    <img src="img-core-periphery.png" alt="Wallerstein's Core-Periphery concentric rings">
+    <div class="img-caption">Wallerstein's three-zone world system — wealth and resources flow inward from the periphery through the semi-periphery to the core, maintaining structural global inequality.</div>
+  </div>
+
+  <!-- THEORY 4: Sustainable Development -->
+  <div class="theory-block sust">
+    <div class="card-number">Theory 04</div>
+    <h3>Sustainable Development</h3>
+    <div class="thinker">Brundtland Commission · 1987 / UN SDGs · 2015</div>
+    <div class="core-idea">
+      Development that <strong>"meets the needs of the present without compromising the ability of future generations to meet their own needs."</strong> The UN's 17 SDGs operationalize this into measurable targets across social, economic, and environmental dimensions.
+    </div>
+    <div class="details-grid">
+      <div>
+        <h4>Key Claims</h4>
+        <ul>
+          <li>Economic growth, social equity, and environmental protection must be balanced</li>
+          <li>Environmental limits are real — infinite growth on a finite planet is impossible</li>
+          <li>Development must be inclusive and intergenerational</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Strengths &amp; Limits</h4>
+        <ul>
+          <li><strong>Useful for:</strong> Normative evaluation; framing any question with a values lens</li>
+          <li><strong>Criticized for:</strong> Can be vague; states can "SDG-wash" without real change</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Quick Case Examples</h4>
+        <div>
+          <span class="case-tag">Costa Rica (renewables)</span>
+          <span class="case-tag">Bhutan (GNH)</span>
+          <span class="case-tag">Paris Agreement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL-PAGE IMAGE: Sustainable Development -->
+  <div class="full-page-img sust">
+    <div class="img-label">Theory 04 — Sustainable Development</div>
+    <img src="img-sustainable-dev.png" alt="Sustainable Development three pillars Venn diagram">
+    <div class="img-caption">The three pillars of sustainable development — economic growth, social equity, and environmental protection must overlap to achieve truly sustainable outcomes.</div>
+  </div>
+
+  <!-- ══════════════ INDICES TABLE ══════════════ -->
+  <div class="indices-section">
+    <div class="section-title">02 — Development Indices at a Glance</div>
+    <div class="indices-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:22%">Index</th>
+            <th style="width:38%">What It Measures</th>
+            <th style="width:40%">Why It Matters for Exams</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="index-name">GDP per capita</div></td>
+            <td>Average economic output per person — the most common (and most limited) measure of wealth.</td>
+            <td>Modernization Theory's preferred metric. Useful <em>but</em> hides inequality and non-monetary well-being. Pair with HDI or Gini to critique.</td>
+          </tr>
+          <tr>
+            <td><div class="index-name">HDI</div><div class="index-desc">Human Development Index</div></td>
+            <td>Composite of life expectancy, education (mean/expected years of schooling), and GNI per capita.</td>
+            <td>Shows that wealth ≠ well-being. Cuba has a higher HDI than many wealthier states. Strong for challenging Modernization Theory.</td>
+          </tr>
+          <tr>
+            <td><div class="index-name">IHDI</div><div class="index-desc">Inequality-adjusted HDI</div></td>
+            <td>The HDI discounted for inequality within each dimension (health, education, income).</td>
+            <td>Reveals how much development is "lost" to inequality. Powerful alongside Dependency Theory and Core-Periphery.</td>
+          </tr>
+          <tr>
+            <td><div class="index-name">Gini Coefficient</div></td>
+            <td>Income/wealth inequality within a country (0 = perfect equality, 1 = total inequality).</td>
+            <td>Directly challenges the assumption that GDP growth benefits everyone. Key for Dependency Theory critiques.</td>
+          </tr>
+          <tr>
+            <td><div class="index-name">MPI</div><div class="index-desc">Multidimensional Poverty Index</div></td>
+            <td>Measures overlapping deprivations in health, education, and living standards at household level.</td>
+            <td>Captures lived poverty that GDP misses. Useful for showing periphery-state conditions and SDG progress.</td>
+          </tr>
+          <tr>
+            <td><div class="index-name">EPI</div><div class="index-desc">Environmental Performance Index</div></td>
+            <td>Ranks countries on environmental health (air quality, sanitation) and ecosystem vitality (biodiversity, climate).</td>
+            <td>Directly supports Sustainable Development analysis. Shows that high GDP doesn't guarantee environmental quality.</td>
+          </tr>
+          <tr>
+            <td><div class="index-name">Ecological Footprint</div></td>
+            <td>How much biologically productive land/water a population uses vs. what is available.</td>
+            <td>Core states have footprints far exceeding their biocapacity — powerful for Core-Periphery + sustainability arguments.</td>
+          </tr>
+          <tr>
+            <td><div class="index-name">SDG Index</div></td>
+            <td>Tracks progress toward all 17 UN Sustainable Development Goals by country.</td>
+            <td>The most direct measure for Sustainable Development analysis. Use it to evaluate whether rhetoric matches results.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════ MAPPING CHART ══════════════ -->
+  <div class="mapping-section">
+    <div class="section-title">03 — Theory ↔ Index Mapping</div>
+    <p style="font-size:.95rem; color:var(--text-muted); margin-bottom:18px;">
+      Which indices <strong style="color:var(--accent-4)">support</strong> or <strong style="color:var(--accent-2)">challenge</strong> each theory? Use this to select the right evidence for your argument.
+    </p>
+    <div class="mapping-grid">
+      <div class="cell header"></div>
+      <div class="cell header" style="color:var(--accent-1)">Modern&shy;ization</div>
+      <div class="cell header" style="color:var(--accent-2)">Dependency</div>
+      <div class="cell header" style="color:var(--accent-3)">Core-Periphery</div>
+      <div class="cell header" style="color:var(--accent-4)">Sustainable Dev.</div>
+
+      <div class="cell row-label">GDP per capita</div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot challenges"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot challenges"></div></div>
+
+      <div class="cell row-label">HDI</div>
+      <div class="cell"><div class="dot challenges"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+
+      <div class="cell row-label">IHDI</div>
+      <div class="cell"><div class="dot challenges"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+
+      <div class="cell row-label">Gini Coefficient</div>
+      <div class="cell"><div class="dot challenges"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot neutral"></div></div>
+
+      <div class="cell row-label">MPI</div>
+      <div class="cell"><div class="dot challenges"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+
+      <div class="cell row-label">EPI</div>
+      <div class="cell"><div class="dot neutral"></div></div>
+      <div class="cell"><div class="dot neutral"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+
+      <div class="cell row-label">Eco. Footprint</div>
+      <div class="cell"><div class="dot challenges"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+
+      <div class="cell row-label">SDG Index</div>
+      <div class="cell"><div class="dot neutral"></div></div>
+      <div class="cell"><div class="dot neutral"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+      <div class="cell"><div class="dot supports"></div></div>
+    </div>
+    <div class="legend">
+      <span><span class="ldot s"></span> Supports the theory</span>
+      <span><span class="ldot c"></span> Challenges the theory</span>
+      <span><span class="ldot n"></span> Neutral / limited relevance</span>
+    </div>
+  </div>
+
+  <!-- ══════════════ CASE STUDIES — own page ══════════════ -->
+  <div class="cases-page">
+    <div class="section-title">04 — Case Studies: Multi-Theory Application</div>
+    <p style="font-size:.95rem; color:var(--text-muted); margin-bottom:18px;">
+      Each case can be analyzed through <em>multiple</em> theories. Practice choosing the lens that best fits the question.
+    </p>
+    <div class="case-grid">
+
+      <div class="case-card">
+        <h4>🇨🇩 DRC &amp; Cobalt Mining</h4>
+        <div class="region">Sub-Saharan Africa</div>
+        <p>The DRC holds ~70% of global cobalt reserves, essential for EV batteries, yet ranks among the lowest on HDI (0.479). Multinational extraction benefits core-state tech industries while local communities face environmental destruction and child labor.</p>
+        <div class="theory-tags">
+          <span class="ttag t-dep">Dependency</span>
+          <span class="ttag t-core">Core-Periphery</span>
+          <span class="ttag t-sust">Sustainability</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <h4>🇰🇷 South Korea's Transformation</h4>
+        <div class="region">East Asia</div>
+        <p>From one of the poorest nations in 1960 to an OECD high-income economy by 1996. State-led industrialization, heavy investment in education, and strategic integration into global trade. HDI rose from 0.52 to 0.93.</p>
+        <div class="theory-tags">
+          <span class="ttag t-mod">Modernization</span>
+          <span class="ttag t-core">Core-Periphery</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <h4>🇨🇷 Costa Rica's Green Model</h4>
+        <div class="region">Central America</div>
+        <p>Abolished its military in 1949 and redirected spending to health and education. Now generates &gt;98% of electricity from renewables. HDI of 0.81 despite modest GDP — a direct challenge to the "growth first" model.</p>
+        <div class="theory-tags">
+          <span class="ttag t-sust">Sustainability</span>
+          <span class="ttag t-mod">Modernization ✗</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <h4>🇧🇹 Bhutan &amp; Gross National Happiness</h4>
+        <div class="region">South Asia</div>
+        <p>Replaced GDP with GNH as its primary development metric, measuring psychological well-being, cultural preservation, ecological diversity, and good governance. A living critique of Western development metrics.</p>
+        <div class="theory-tags">
+          <span class="ttag t-sust">Sustainability</span>
+          <span class="ttag t-mod">Modernization ✗</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <h4>🇭🇹 Haiti's Structural Dependency</h4>
+        <div class="region">Caribbean</div>
+        <p>Forced to pay France for its own independence until 1947. Decades of structural adjustment policies from IMF/World Bank weakened local agriculture. Despite billions in aid after the 2010 earthquake, HDI remains 0.535.</p>
+        <div class="theory-tags">
+          <span class="ttag t-dep">Dependency</span>
+          <span class="ttag t-core">Core-Periphery</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <h4>🇨🇳 China's Rise</h4>
+        <div class="region">East Asia</div>
+        <p>Moved from periphery to semi-periphery/near-core in 40 years. Lifted 800 million from poverty (MPI), but at significant environmental cost (high Eco Footprint, poor EPI). Complicates every theory.</p>
+        <div class="theory-tags">
+          <span class="ttag t-mod">Modernization</span>
+          <span class="ttag t-core">Core-Periphery</span>
+          <span class="ttag t-sust">Sustainability ✗</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════ EXAM STRATEGY ══════════════ -->
+  <div class="strategy-section">
+    <div class="section-title">05 — Exam Strategy: The 4-Move Framework</div>
+    <div class="strategy-box">
+      <h3>How to Deploy These Theories in a Timed Response</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">Move 1 — Frame</div>
+          <div class="step-title">Set the Normative Lens</div>
+          <p>Open with the <strong>Sustainable Development</strong> framework. Define what "development" means in context and signal you're evaluating outcomes, not just growth.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">Move 2 — Analyze</div>
+          <div class="step-title">Explain the Structure</div>
+          <p>Use <strong>Core-Periphery</strong> or <strong>Dependency Theory</strong> to explain <em>why</em> the situation exists. Who benefits? Who is marginalized? What structures maintain inequality?</p>
+        </div>
+        <div class="step">
+          <div class="step-num">Move 3 — Critique</div>
+          <div class="step-title">Challenge the Dominant View</div>
+          <p>Introduce <strong>Modernization Theory</strong> as the counter-argument, then use indices (HDI vs. GDP, Gini, MPI) to show its limitations. This demonstrates balanced evaluation.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">Move 4 — Evidence</div>
+          <div class="step-title">Deploy Indices &amp; Cases</div>
+          <p>Ground every claim in <strong>specific data</strong>. Name the index, cite the figure, and link it to the theory. "The DRC's HDI of 0.479 despite $24B in cobalt exports illustrates Dependency Theory's core claim…"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  IB Global Politics — Development &amp; Sustainability Study Sheet &nbsp;·&nbsp; For exam preparation purposes
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Politics Review Stations — Exam & Content Day</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap');
+
+    :root {
+      --ink: #1a1a2e;
+      --muted: #555;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --border: #d1d5db;
+      --bg-card: #f9fafb;
+      --warn: #dc2626;
+      --warn-bg: #fef2f2;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      line-height: 1.55;
+      font-size: 11pt;
+      background: #fff;
+    }
+
+    @media print {
+      body { font-size: 10pt; }
+      .page { page-break-after: always; break-after: page; }
+      .page:last-child { page-break-after: avoid; }
+      .no-print { display: none !important; }
+      @page { margin: 1.5cm 1.8cm; size: A4; }
+    }
+
+    @media screen {
+      .page {
+        max-width: 210mm;
+        min-height: 280mm;
+        margin: 20px auto;
+        padding: 28px 32px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      }
+    }
+
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 18pt;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    h1 .sub {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 10pt;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: .3px;
+      margin-top: 2px;
+    }
+    h2 { font-size: 14pt; font-weight: 700; margin: 16px 0 6px; padding-bottom: 4px; border-bottom: 2px solid var(--accent); color: var(--ink); }
+    h3 { font-size: 11pt; font-weight: 700; margin: 12px 0 4px; }
+    p, li { margin-bottom: 4px; }
+    ul { padding-left: 18px; }
+    ol { padding-left: 18px; }
+    strong { font-weight: 700; }
+
+    .station-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+    .station-badge.green { background: var(--success); }
+    .station-badge.red { background: var(--warn); }
+
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 10pt; }
+    th, td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: var(--accent-light); font-weight: 700; font-size: 9pt; text-transform: uppercase; letter-spacing: .4px; }
+    .fill-page-table td { height: 95px; }
+
+    .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .concept-card {
+      border: 2px dashed var(--border);
+      padding: 12px 14px;
+      min-height: 110px;
+    }
+    .concept-card h4 { font-size: 10pt; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
+    .concept-card ul { list-style: disc; padding-left: 16px; }
+    .concept-card li { font-size: 10pt; margin-bottom: 2px; }
+
+    .stimulus-box {
+      background: #fefce8;
+      border-left: 4px solid #ca8a04;
+      padding: 10px 14px;
+      margin: 10px 0;
+      font-family: 'Merriweather', serif;
+      font-size: 10pt;
+      font-style: italic;
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+    }
+    .stimulus-label {
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 9pt;
+      color: #92400e;
+      letter-spacing: .3px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .prompt-box {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      padding: 8px 14px;
+      margin: 10px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .prompt-box .label { font-weight: 700; font-size: 9pt; color: var(--accent); text-transform: uppercase; letter-spacing: .4px; }
+
+    .ai-answer {
+      background: var(--warn-bg);
+      border: 1px solid #fca5a5;
+      border-left: 4px solid var(--warn);
+      padding: 10px 14px;
+      margin: 8px 0;
+      border-radius: 0 4px 4px 0;
+      font-size: 10pt;
+    }
+    .ai-answer .label { font-weight: 700; font-size: 9pt; color: var(--warn); text-transform: uppercase; letter-spacing: .4px; display: block; margin-bottom: 4px; }
+
+    .examiner-box {
+      background: #f5f3ff;
+      border-left: 4px solid #7c3aed;
+      padding: 8px 14px;
+      margin: 8px 0;
+      border-radius: 0 4px 4px 0;
+      font-size: 9.5pt;
+    }
+    .examiner-box .label { font-weight: 700; font-size: 9pt; color: #7c3aed; text-transform: uppercase; letter-spacing: .4px; display: block; margin-bottom: 4px; }
+    .examiner-box ul { padding-left: 16px; }
+
+    .task-box {
+      background: var(--success-bg);
+      border: 2px solid var(--success);
+      padding: 10px 14px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+    .task-box .label { font-weight: 800; font-size: 10pt; color: var(--success); text-transform: uppercase; letter-spacing: .4px; display: block; margin-bottom: 4px; }
+
+    .write-lines { margin-top: 8px; }
+    .write-line { border-bottom: 1px solid #d1d5db; height: 26px; width: 100%; }
+
+    .paletot-reminder {
+      background: #fefce8;
+      border: 1px solid #fbbf24;
+      padding: 10px 14px;
+      margin: 10px 0;
+      border-radius: 6px;
+      columns: 2;
+      column-gap: 20px;
+      font-size: 10pt;
+    }
+    .paletot-reminder li { break-inside: avoid; }
+
+    .scissors { text-align: center; font-size: 8pt; color: #999; letter-spacing: 2px; margin: 2px 0; }
+
+    .print-bar {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--accent); color: #fff;
+      padding: 10px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 999;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    }
+    .print-bar span { font-weight: 600; font-size: 11pt; }
+    .print-bar button { background: #fff; color: var(--accent); border: none; padding: 8px 20px; border-radius: 4px; font-weight: 700; font-size: 10pt; cursor: pointer; }
+    .print-bar button:hover { background: #e0e7ff; }
+    @media screen { body { padding-top: 52px; } }
+
+    .q-section { margin-top: 12px; padding-top: 8px; border-top: 1px dashed #e5e7eb; }
+    .q-section:first-of-type { border-top: none; margin-top: 6px; padding-top: 0; }
+  </style>
+</head>
+<body>
+
+<div class="print-bar no-print">
+  <span>Global Politics Review Stations — Print Preview</span>
+  <button onclick="window.print()">🖨️ Print / Save as PDF</button>
+</div>
+
+<!-- ═══════════════════════ PAGE 1: STATION 1 — PALETOT ═══════════════════════ -->
+<div class="page">
+  <span class="station-badge">Station 1</span>
+  <h1>Paper 1, Question 3: Compare & Contrast <span class="sub">Source Analysis using the PALETOT Method</span></h1>
+
+  <h3>Instructions</h3>
+  <ol>
+    <li>Read <strong>Source A</strong> and <strong>Source B</strong> below carefully.</li>
+    <li>In your pairs, find at least <strong>TWO similarities</strong> and <strong>TWO differences</strong> between the sources.</li>
+    <li>Use the <strong>PALETOT</strong> framework to systematically compare the sources. Don't just look at the content—examine the nature of the sources themselves.</li>
+    <li>Fill out the T-Chart on the next page, then draft a 1-paragraph compare/contrast response.</li>
+  </ol>
+
+  <div class="stimulus-box">
+    <span class="stimulus-label">Source A — Excerpt from a UN High Commissioner for Refugees (UNHCR) Report, 2024</span>
+    "The global displacement crisis has reached unprecedented levels, with over 117 million people forcibly displaced worldwide. Jordan remains one of the most generous host nations in the world on a per-capita basis, sheltering approximately 1.3 million Syrian refugees since the outbreak of the civil war in 2011. The Za'atari refugee camp, originally built as a temporary facility, has become Jordan's fourth-largest city. The UNHCR commends Jordan's continued adherence to the principle of non-refoulement and urges the international donor community to increase financial support through the Jordan Response Plan, which remains critically underfunded at only 38% of its target. Sustainable integration—through access to education, healthcare, and labor markets—is the most effective long-term strategy for both refugee welfare and host-community stability."
+  </div>
+
+  <div class="stimulus-box">
+    <span class="stimulus-label">Source B — Excerpt from a Jordanian Government Policy Statement, Ministry of Interior, 2024</span>
+    "The Kingdom of Jordan has borne a disproportionate burden in sheltering those displaced by the Syrian conflict for over a decade. Municipal infrastructure in host communities such as Mafraq and Irbid is under severe strain: water resources are being consumed at four times their natural replenishment rate, and unemployment among Jordanian nationals in border governorates has risen to 24%. While we remain committed to our humanitarian obligations, it is unrealistic for a middle-income nation of 11 million to absorb a displaced population equal to 13% of its own citizenry without commensurate burden-sharing from the international community. We call on the European Union, the Gulf States, and the United States to honor their pledged contributions. Jordan's national security and economic stability cannot be sacrificed indefinitely on the altar of international inaction."
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2: STATION 1 WORKSHEET ═══════════════════════ -->
+<div class="page">
+  <span class="station-badge">Station 1 (continued)</span>
+  <h1>PALETOT T-Chart Worksheet</h1>
+
+  <div class="paletot-reminder">
+    <ul>
+      <li><strong>P</strong>urpose of the source</li>
+      <li><strong>A</strong>ctors (individuals, organizations, countries named)</li>
+      <li><strong>L</strong>evel of analysis (global, int'l, regional, national, local, community)</li>
+      <li><strong>E</strong>vents</li>
+      <li><strong>T</strong>one (optimistic / pessimistic)</li>
+      <li><strong>O</strong>rigin of the source (where does it come from?)</li>
+      <li><strong>T</strong>hemes (economic, political, social, cultural)</li>
+    </ul>
+  </div>
+
+  <table class="fill-page-table">
+    <thead>
+      <tr>
+        <th style="width:14%">PALETOT</th>
+        <th style="width:28%">Source A Evidence</th>
+        <th style="width:28%">Source B Evidence</th>
+        <th style="width:30%">Similarity or Difference?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>P</strong>urpose</td><td></td><td></td><td></td></tr>
+      <tr><td><strong>A</strong>ctors</td><td></td><td></td><td></td></tr>
+      <tr><td><strong>L</strong>evel</td><td></td><td></td><td></td></tr>
+      <tr><td><strong>E</strong>vents</td><td></td><td></td><td></td></tr>
+      <tr><td><strong>T</strong>one</td><td></td><td></td><td></td></tr>
+      <tr><td><strong>O</strong>rigin</td><td></td><td></td><td></td></tr>
+      <tr><td><strong>T</strong>hemes</td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════ PAGE 3: STATION 2 — SPEED DATING ═══════════════════════ -->
+<div class="page">
+  <span class="station-badge green">Station 2</span>
+  <h1>"Speed Dating" Concept & Actor Review <span class="sub">Cut out the cards. 2 minutes per rotation. Find where your items intersect in a real-world event.</span></h1>
+
+  <p class="scissors">✂ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ cut along dashed lines ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ‒ ✂</p>
+
+  <div class="card-grid">
+    <div class="concept-card"><h4>Card 1</h4><ul><li>Realism</li><li>Amnesty International (NGO)</li><li>Structural Violence</li><li>The UN Security Council</li></ul></div>
+    <div class="concept-card"><h4>Card 2</h4><ul><li>Liberalism</li><li>Human Rights Watch</li><li>Soft Power</li><li>BRICS</li></ul></div>
+    <div class="concept-card"><h4>Card 3</h4><ul><li>Constructivism</li><li>The World Bank (IGO)</li><li>State Sovereignty</li><li>Sustainable Development</li></ul></div>
+    <div class="concept-card"><h4>Card 4</h4><ul><li>Capitalism</li><li>Multi-National Corporations (MNCs)</li><li>Responsibility to Protect (R2P)</li><li>Positive Peace</li></ul></div>
+    <div class="concept-card"><h4>Card 5</h4><ul><li>Post-Colonialism</li><li>International Criminal Court (ICC)</li><li>Hard Power</li><li>Negative Peace</li></ul></div>
+    <div class="concept-card"><h4>Card 6</h4><ul><li>Feminism / Gender Theory</li><li>World Health Organization (WHO)</li><li>Hegemony</li><li>Humanitarian Intervention</li></ul></div>
+    <div class="concept-card"><h4>Card 7</h4><ul><li>Marxism</li><li>NATO</li><li>Interdependence</li><li>Universal Human Rights</li></ul></div>
+    <div class="concept-card"><h4>Card 8</h4><ul><li>Green Theory / Environmentalism</li><li>The European Union (EU)</li><li>Smart Power</li><li>Asymmetric Warfare</li></ul></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 4: CHALLENGE 1 (Q1) ═══════════════════════ -->
+<div class="page">
+  <span class="station-badge red">Station 3 — Challenge 1</span>
+  <h1>"Fix the AI" — Paper 3, Question 1 <span class="sub">3 marks · AO2: Understanding and Analysis of Stimulus</span></h1>
+
+  <h3>Political Issue: Forced Migration and State Capacity</h3>
+
+  <div class="stimulus-box">
+    <span class="stimulus-label">Stimulus Material — Excerpt from a Jordanian Government Address to the UN General Assembly, 2024</span>
+    "The Kingdom of Jordan has generously opened its borders to over 1.3 million Syrian refugees fleeing the civil war since 2011. However, this influx has placed unprecedented strain on our national infrastructure. Municipalities in Mafraq and Irbid report that public health clinics are operating at 200% capacity, water resources are consumed at four times their natural replenishment rate, and unemployment among Jordanian nationals in border governorates has risen to 24%. Furthermore, international human rights NGOs have criticized our recent restrictions on border crossings, citing our legal obligations under the principle of non-refoulement. Yet, while these NGOs advocate for universal human rights, wealthy donor states are failing to honor their pledged contributions to the Jordan Response Plan, which remains funded at only 38% of its target. Jordan is a sovereign nation with a primary duty to its own citizens; the international community must increase its financial burden-sharing immediately. A middle-income nation of 11 million cannot be expected to permanently absorb a displaced population equal to 13% of its citizenry without commensurate support."
+  </div>
+
+  <div class="prompt-box">
+    <span class="label">Prompt — Paper 3, Question 1 (3 marks)</span><br>
+    Analyze one way the global political challenge of forced migration impacts Jordan as a host state, according to the stimulus.
+  </div>
+
+  <div class="ai-answer">
+    <span class="label">🤖 AI Generated Answer — Score: 1/3</span>
+    The global political challenge of forced migration impacts Jordan by making it too crowded. For example, the stimulus says the health clinics are at 200% capacity and unemployment went up to 24%.
+  </div>
+
+  <div class="examiner-box">
+    <span class="label">Examiner Justification — Why it scored a 1</span>
+    <ul>
+      <li>The AI correctly identifies an impact (infrastructure strain), satisfying basic <em>understanding</em>.</li>
+      <li>However, it fails the <em>analysis</em> (AO2) component. It merely quotes the text without analyzing the political or economic depth—e.g., how a middle-income state's resource depletion (water at 4x replenishment) creates a structural threat to national stability, not just "crowding."</li>
+    </ul>
+  </div>
+
+  <div class="task-box">
+    <span class="label">✏️ Your Task</span>
+    Rewrite this 1/3 response below to make it a flawless <strong>3/3 analysis</strong>.
+  </div>
+  <div class="write-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+    <div class="write-line"></div><div class="write-line"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 5: CHALLENGE 2 (Q2a) ═══════════════════════ -->
+<div class="page">
+  <span class="station-badge red">Station 3 — Challenge 2</span>
+  <h1>"Fix the AI" — Paper 3, Question 2 <span class="sub">Q2a: 4 marks (AO2) · Q2b: 6 marks (AO3)</span></h1>
+
+  <h3>Political Issue: Forced Migration and State Capacity</h3>
+  <div class="stimulus-box">
+    <span class="stimulus-label">Stimulus Material — (See full text on Challenge 1)</span>
+    "...international human rights NGOs have criticized our recent restrictions on border crossings, citing our legal obligations under the principle of non-refoulement. Yet, while these NGOs advocate for universal human rights, wealthy donor states are failing to honor their pledged contributions... Jordan is a sovereign nation with a primary duty to its own citizens..."
+  </div>
+
+  <!-- Q2a -->
+  <div class="q-section">
+    <div class="prompt-box">
+      <span class="label">Prompt — Q2a (4 marks)</span><br>
+      Analyze the political issue of state sovereignty versus universal human rights as presented in the stimulus.
+    </div>
+
+    <div class="ai-answer">
+      <span class="label">🤖 AI Answer for Q2a — Score: 2/4</span>
+      The political issue is that Jordan wants sovereignty and the NGOs want universal human rights. Sovereignty means the state has the duty to protect its own citizens from unemployment and full clinics, so they restricted border crossings. Universal human rights mean they have to let the refugees in anyway because of the law of non-refoulement. They are fighting over which is more important.
+    </div>
+
+    <div class="examiner-box">
+      <span class="label">Examiner Justification for Q2a — Why it scored a 2</span>
+      <ul>
+        <li>It shows basic knowledge but lacks deep <em>analysis</em> (AO2). It describes the two sides sequentially but doesn't analyze the inherent structural tension: that enforcing borders for domestic stability directly conflicts with international legal obligations, creating a political and moral paralysis for a state that depends on the same international system for economic aid.</li>
+      </ul>
+    </div>
+
+    <div class="task-box">
+      <span class="label">✏️ Your Task — Rewrite Q2a</span>
+      Rewrite this 2/4 response into a flawless <strong>4/4</strong>.
+    </div>
+    <div class="write-lines">
+      <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+      <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+    </div>
+  </div>
+
+  <!-- Q2b -->
+  <div class="q-section">
+    <div class="prompt-box">
+      <span class="label">Prompt — Q2b (6 marks)</span><br>
+      Recommend a possible course of action or solution to the identified political issue, justifying your recommendation.
+    </div>
+
+    <div class="ai-answer">
+      <span class="label">🤖 AI Answer for Q2b — Score: 2/6</span>
+      I recommend that the UN should just give Jordan more money. If the wealthy donor states keep their promises and fully fund the Jordan Response Plan, Jordan can build more clinics and create jobs. Then they won't have to restrict the borders, and the NGOs will be happy. This is the best solution because it fixes the money problem.
+    </div>
+
+    <div class="examiner-box">
+      <span class="label">Examiner Justification for Q2b — Why it scored a 2</span>
+      <ul>
+        <li>Overly simplistic. It fails to provide sophisticated justification (AO3). A 6-mark answer requires evaluating <em>why</em> this recommendation is viable, the hurdles it faces (e.g., no enforcement mechanism to compel sovereign donor states to pay), and how it addresses <em>both</em> sides of the sovereignty-vs-human-rights tension simultaneously.</li>
+      </ul>
+    </div>
+
+    <div class="task-box">
+      <span class="label">✏️ Your Task — Rewrite Q2b</span>
+      Rewrite this 2/6 response into a strong <strong>6/6</strong>.
+    </div>
+    <div class="write-lines">
+      <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+      <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+      <div class="write-line"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 6–7: CHALLENGE 3 (Q3) ═══════════════════════ -->
+<div class="page">
+  <span class="station-badge red">Station 3 — Challenge 3</span>
+  <h1>"Fix the AI" — Paper 3, Question 3 <span class="sub">15 marks · AO3: Synthesis and Evaluation of Researched Case Studies</span></h1>
+
+  <h3>Political Issue: Forced Migration and State Capacity</h3>
+  <div class="stimulus-box">
+    <span class="stimulus-label">Stimulus Material — (See full text on Challenge 1)</span>
+    "The Kingdom of Jordan has generously opened its borders to over 1.3 million Syrian refugees... the international community must increase its financial burden-sharing immediately. A middle-income nation of 11 million cannot be expected to permanently absorb a displaced population equal to 13% of its citizenry without commensurate support."
+  </div>
+
+  <div class="prompt-box">
+    <span class="label">Prompt — Paper 3, Question 3 (15 marks)</span><br>
+    <strong>Choose ONE of the following prompts:</strong><br><br>
+    <strong>Option A:</strong> "The international community, rather than individual host states, should be ultimately responsible for resolving forced migration crises." Using the stimulus and your own researched case studies, to what extent do you agree with this claim?<br><br>
+    <strong>Option B:</strong> "State sovereignty will always take priority over universal human rights when a host state faces a forced migration crisis." Using the stimulus and your own researched case studies, to what extent do you agree with this claim?
+  </div>
+
+  <div class="ai-answer">
+    <span class="label">🤖 AI Generated Answer — Score: 6/15</span>
+    <p style="margin-bottom:8px">Forced migration is one of the most important global political challenges of the 21st century. According to the UNHCR, over 117 million people are currently forcibly displaced worldwide. This essay will examine whether the international community or individual host states should be primarily responsible for resolving these crises. The stimulus shows that Jordan is a country that has taken in many refugees from Syria, but is struggling with the economic and social consequences. I will argue that the international community should be responsible, but that it is complicated.</p>
+
+    <p style="margin-bottom:8px">Firstly, the stimulus demonstrates that Jordan is under a lot of pressure from the Syrian refugee crisis. Their health clinics are at 200% capacity, water resources are being consumed at four times the natural replenishment rate, and unemployment among Jordanian nationals in border towns has reached 24%. This shows that the host state is suffering economically, which means they cannot handle the refugee crisis alone. The Jordan Response Plan is only funded at 38%, which proves that the international community is not helping enough. If the UN and wealthy countries like the US and EU members gave more money, Jordan would not be struggling so much. This is clearly unfair because Jordan did not cause the Syrian civil war, but it is paying the price for it.</p>
+
+    <p style="margin-bottom:8px">Secondly, the home country is also responsible for causing the crisis. In Syria, the civil war started in 2011 because of President Assad's government, and millions of people had to flee. If Syria had not had a war, there would be no refugee crisis. Similarly, in Ukraine, Russia's invasion in 2022 caused millions of Ukrainians to flee to Poland and other European countries. This shows that wars cause refugee crises and the countries that start wars should be held responsible. However, it is hard to make countries like Syria or Russia take responsibility because they are powerful or have their own problems.</p>
+
+    <p>Thirdly, NGOs play a role in the refugee crisis. Organizations like the UNHCR and Amnesty International try to help refugees by providing food, shelter, and legal assistance. The stimulus says that NGOs criticized Jordan for restricting border crossings because of non-refoulement. Non-refoulement means you cannot send refugees back to a country where they face danger. This is an important international law. However, NGOs do not have armies or money like states do, so their impact is limited. They can raise awareness but they cannot actually force countries to do anything.</p>
+  </div>
+</div>
+
+<div class="page">
+  <span class="station-badge red">Station 3 — Challenge 3 (continued)</span>
+  <h1 style="font-size:14pt;">"Fix the AI" — Q3 Response (continued) & Your Task</h1>
+
+  <div class="examiner-box">
+    <span class="label">Examiner Justification — Why it scored a 6/15</span>
+    <ul>
+      <li><strong>Knowledge (Weak):</strong> Relies almost entirely on the stimulus for its evidence. The references to Syria and Ukraine are purely narrative ("a war started," "Russia invaded") without engagement with the political <em>mechanisms</em> of international responsibility (e.g., international law, UNHCR mandate, the 1951 Refugee Convention, the Global Compact on Refugees).</li>
+      <li><strong>Analysis (Weak):</strong> Each paragraph reads as a descriptive summary rather than an analytical argument. The student tells the story of what happened instead of analyzing <em>why</em> these events demonstrate the strengths or failures of international responsibility. There is no theoretical framework (e.g., liberal internationalism vs. realist state-centrism) to anchor the analysis.</li>
+      <li><strong>Synthesis & Evaluation (Missing):</strong> The essay has no conclusion and therefore makes no evaluative judgment on the "to what extent" prompt. The body paragraphs are structured as a list ("firstly, secondly, thirdly") rather than as a developing argument. The student never weighs competing claims against each other.</li>
+    </ul>
+  </div>
+
+  <div class="task-box">
+    <span class="label">✏️ Your Task</span>
+    This essay has <strong>no conclusion</strong> and its case study paragraphs are weak. Your job:<br>
+    <strong>(1)</strong> Rewrite ONE of the body paragraphs (paragraph 2 or 3) to include a <em>specific, bounded</em> case study with proper political analysis and theoretical framing.<br>
+    <strong>(2)</strong> Write a proper <em>evaluative conclusion</em> that directly answers "to what extent."
+  </div>
+
+  <p style="font-weight:700; font-size:10pt; margin-top:10px;">Rewritten Body Paragraph:</p>
+  <div class="write-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+    <div class="write-line"></div><div class="write-line"></div>
+  </div>
+
+  <p style="font-weight:700; font-size:10pt; margin-top:14px;">Evaluative Conclusion:</p>
+  <div class="write-lines">
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+    <div class="write-line"></div><div class="write-line"></div><div class="write-line"></div>
+  </div>
+</div>
+
+</body>
+</html>

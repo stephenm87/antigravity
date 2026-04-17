@@ -1,0 +1,912 @@
+[
+  {
+    "slug": "anderson_lazarus",
+    "original": "Anderson, Lazarus.pdf",
+    "name": "Lazarus Anderson",
+    "file": "anderson_lazarus.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "henri_chainet",
+    "original": "Henri Chainet.png",
+    "name": "Henri Chainet",
+    "file": "henri_chainet.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "chloe_chan_pc",
+    "original": "Chloe Chan PC.png",
+    "name": "Chloe Chan",
+    "file": "chloe_chan_pc.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "charoenthitiwong_boontanig",
+    "original": "Charoenthitiwong, Boontanig.png",
+    "name": "Boontanig Charoenthitiwong",
+    "file": "charoenthitiwong_boontanig.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "chen_charlene",
+    "original": "Chen, Charlene.jpg",
+    "name": "Charlene Chen",
+    "file": "chen_charlene.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "chen_edison",
+    "original": "Chen, Edison.pdf",
+    "name": "Edison Chen",
+    "file": "chen_edison.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "chen_eric",
+    "original": "Chen, Eric.png",
+    "name": "Eric Chen",
+    "file": "chen_eric.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "chen_michelle",
+    "original": "Chen, Michelle.pdf",
+    "name": "Michelle Chen",
+    "file": "chen_michelle.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "chen_stella",
+    "original": "Chen, Stella.pdf",
+    "name": "Stella Chen",
+    "file": "chen_stella.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "keren_chen_pc",
+    "original": "Keren Chen PC.png",
+    "name": "Keren Chen",
+    "file": "keren_chen_pc.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "choi_james",
+    "original": "Choi,  James.pdf",
+    "name": "James Choi",
+    "file": "choi_james.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "choi_alex",
+    "original": "Choi, Alex.jpg",
+    "name": "Alex Choi",
+    "file": "choi_alex.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "stanisaw_czaplicki",
+    "original": "Stanisław Czaplicki.pdf",
+    "name": "Stanisław Czaplicki",
+    "file": "stanisaw_czaplicki.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "dell_jacob",
+    "original": "Dell, Jacob.pdf",
+    "name": "Jacob Dell",
+    "file": "dell_jacob.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "ding_brian",
+    "original": "Ding, Brian.png",
+    "name": "Brian Ding",
+    "file": "ding_brian.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "lena_drew_pc",
+    "original": "Lena Drew PC.png",
+    "name": "Lena Drew",
+    "file": "lena_drew_pc.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "du_connie",
+    "original": "Du, Connie.pdf",
+    "name": "Connie Du",
+    "file": "du_connie.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "emily_3bd_political_cartoon",
+    "original": "EMILY_3BD_Political Cartoon.png",
+    "name": "Emily",
+    "file": "emily_3bd_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "roy_espeseth",
+    "original": "Roy Espeseth.pdf",
+    "name": "Roy Espeseth",
+    "file": "roy_espeseth.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "fondelli_leo",
+    "original": "Fondelli, Leo.heic",
+    "name": "Leo Fondelli",
+    "file": "fondelli_leo.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "golden_olivia",
+    "original": "Golden, Olivia.png",
+    "name": "Olivia Golden",
+    "file": "golden_olivia.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "gong_bruce",
+    "original": "Gong, Bruce.png",
+    "name": "Bruce Gong",
+    "file": "gong_bruce.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "gong_emily",
+    "original": "Gong, Emily.png",
+    "name": "Emily Gong",
+    "file": "gong_emily.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "caroline_gu_4b_political_cartoon",
+    "original": "Caroline Gu_4B_POlitical Cartoon.pdf",
+    "name": "Caroline Gu",
+    "file": "caroline_gu_4b_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "gu_francus",
+    "original": "Gu, Francus.pdf",
+    "name": "Francus Gu",
+    "file": "gu_francus.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "gu_jonathan",
+    "original": "Gu, Jonathan.pdf",
+    "name": "Jonathan Gu",
+    "file": "gu_jonathan.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "katelyn_he",
+    "original": "Katelyn He.pdf",
+    "name": "Katelyn He",
+    "file": "katelyn_he.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "linnea_heiberg_4bd_political_cartoon",
+    "original": "Linnea_Heiberg_4BD_Political Cartoon.pdf",
+    "name": "Linnea Heiberg",
+    "file": "linnea_heiberg_4bd_political_cartoon.jpg",
+    "pages": 3
+  },
+  {
+    "slug": "hua_annie",
+    "original": "Hua, Annie.png",
+    "name": "Annie Hua",
+    "file": "hua_annie.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "bella_huang_pc",
+    "original": "Bella Huang PC.jpeg",
+    "name": "Bella Huang",
+    "file": "bella_huang_pc.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "huang_fiona",
+    "original": "Huang, Fiona.HEIC",
+    "name": "Fiona Huang",
+    "file": "huang_fiona.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "huang_isabella",
+    "original": "Huang, Isabella.pdf",
+    "name": "Isabella Huang",
+    "file": "huang_isabella.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "marcus_huang_politcal_cartoon",
+    "original": "Marcus Huang politcal cartoon.pdf",
+    "name": "Marcus Huang",
+    "file": "marcus_huang_politcal_cartoon.jpg",
+    "pages": 3
+  },
+  {
+    "slug": "hui_jaden",
+    "original": "Hui, Jaden.png",
+    "name": "Jaden Hui",
+    "file": "hui_jaden.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "hung_kelly",
+    "original": "Hung, Kelly.pdf",
+    "name": "Kelly Hung",
+    "file": "hung_kelly.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "hung_william",
+    "original": "Hung, William.png",
+    "name": "William Hung",
+    "file": "hung_william.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "isabella_3bd_politicalcartoon",
+    "original": "ISABELLA_3BD_PoliticalCartoon.pdf",
+    "name": "Isabella",
+    "file": "isabella_3bd_politicalcartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "jin_patty",
+    "original": "Jin, Patty.pdf",
+    "name": "Patty Jin",
+    "file": "jin_patty.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "ying_jin",
+    "original": "Ying Jin.pdf",
+    "name": "Ying Jin",
+    "file": "ying_jin.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "adina_kang",
+    "original": "Adina Kang.avif",
+    "name": "Adina Kang",
+    "file": "adina_kang.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "david_kang_3bd_political_cartoon",
+    "original": "David Kang_3BD_Political Cartoon.pdf",
+    "name": "David Kang",
+    "file": "david_kang_3bd_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "kim_chloe",
+    "original": "Kim, Chloe.pdf",
+    "name": "Chloe Kim",
+    "file": "kim_chloe.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "kim_chris",
+    "original": "Kim, Chris.jpg",
+    "name": "Chris Kim",
+    "file": "kim_chris.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "kim_jiyu",
+    "original": "Kim, Jiyu.pdf",
+    "name": "Jiyu Kim",
+    "file": "kim_jiyu.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "kim_mingeon",
+    "original": "Kim, Mingeon.png",
+    "name": "Mingeon Kim",
+    "file": "kim_mingeon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "sarah_kim",
+    "original": "Sarah Kim.png",
+    "name": "Sarah Kim",
+    "file": "sarah_kim.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "kingston_3bd_political_cartoon",
+    "original": "Kingston_3BD_Political Cartoon.png",
+    "name": "Kingston",
+    "file": "kingston_3bd_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "jinny_ko",
+    "original": "Jinny Ko.pdf",
+    "name": "Jinny Ko",
+    "file": "jinny_ko.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "koo_jay",
+    "original": "Koo, Jay.pdf",
+    "name": "Jay Koo",
+    "file": "koo_jay.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "kuang_aiden",
+    "original": "Kuang, Aiden.pdf",
+    "name": "Aiden Kuang",
+    "file": "kuang_aiden.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "lam_jayden",
+    "original": "Lam, Jayden.pdf",
+    "name": "Jayden Lam",
+    "file": "lam_jayden.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "ethan_lee",
+    "original": "Ethan Lee.pdf",
+    "name": "Ethan Lee",
+    "file": "ethan_lee.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "lee_alex",
+    "original": "Lee, Alex.pdf",
+    "name": "Alex Lee",
+    "file": "lee_alex.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "lee_julia",
+    "original": "Lee, Julia.pdf",
+    "name": "Julia Lee",
+    "file": "lee_julia.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "sarah_lee_pc",
+    "original": "Sarah Lee PC.png",
+    "name": "Sarah Lee",
+    "file": "sarah_lee_pc.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "darren_li",
+    "original": "Darren Li.pdf",
+    "name": "Darren Li",
+    "file": "darren_li.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "katie_li_4b_political_cartoon",
+    "original": "Katie Li_4B_political cartoon.png",
+    "name": "Katie Li",
+    "file": "katie_li_4b_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "li_benjamin",
+    "original": "Li, Benjamin.png",
+    "name": "Benjamin Li",
+    "file": "li_benjamin.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "li_bryan",
+    "original": "Li, Bryan.jpeg",
+    "name": "Bryan Li",
+    "file": "li_bryan.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "li_david",
+    "original": "Li, David.PNG",
+    "name": "David Li",
+    "file": "li_david.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "li_haoran",
+    "original": "Li, Haoran.pdf",
+    "name": "Haoran Li",
+    "file": "li_haoran.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "li_haoxuan",
+    "original": "Li, Haoxuan.png",
+    "name": "Haoxuan Li",
+    "file": "li_haoxuan.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "li_lizzy",
+    "original": "Li, Lizzy.pdf",
+    "name": "Lizzy Li",
+    "file": "li_lizzy.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "li_nico",
+    "original": "Li, Nico.png",
+    "name": "Nico Li",
+    "file": "li_nico.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "shelley_li_inaccurate",
+    "original": "Shelley Li (inaccurate).pdf",
+    "name": "Shelley Li",
+    "file": "shelley_li_inaccurate.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "lin_yody",
+    "original": "Lin, Yody.pdf",
+    "name": "Yody Lin",
+    "file": "lin_yody.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "aaron_liu_pc",
+    "original": "Aaron Liu PC.png",
+    "name": "Aaron Liu",
+    "file": "aaron_liu_pc.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "liu_kenneth",
+    "original": "Liu, Kenneth.pdf",
+    "name": "Kenneth Liu",
+    "file": "liu_kenneth.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "liu_reesa",
+    "original": "Liu, Reesa.png",
+    "name": "Reesa Liu",
+    "file": "liu_reesa.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "liu_sophia",
+    "original": "Liu, Sophia.jpeg",
+    "name": "Sophia Liu",
+    "file": "liu_sophia.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "victor_lopin",
+    "original": "Victor Lopin.pdf",
+    "name": "Victor Lopin",
+    "file": "victor_lopin.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "lu_alex",
+    "original": "Lu, Alex.pdf",
+    "name": "Alex Lu",
+    "file": "lu_alex.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "lu_isaac",
+    "original": "Lu, Isaac.png",
+    "name": "Isaac Lu",
+    "file": "lu_isaac.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "lu_sophie",
+    "original": "Lu, Sophie.png",
+    "name": "Sophie Lu",
+    "file": "lu_sophie.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "yu_lucas_class_3b_political_cartoon",
+    "original": "Yu Lucas_Class 3B_Political Cartoon.jpg",
+    "name": "Yu Lucas",
+    "file": "yu_lucas_class_3b_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "macario_4b_political_cartoon",
+    "original": "Macario_4B_Political Cartoon.png",
+    "name": "Macario",
+    "file": "macario_4b_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "mi_taylor",
+    "original": "Mi, Taylor.jpg",
+    "name": "Taylor Mi",
+    "file": "mi_taylor.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "kunwoongmoon_3b_political_cartoon",
+    "original": "KunwoongMoon_3B_Political Cartoon.png",
+    "name": "Kunwoong Moon",
+    "file": "kunwoongmoon_3b_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "bomin_park_4bc_political_cartoon",
+    "original": "Bomin Park_4BC_Political Cartoon.png",
+    "name": "Bomin Park",
+    "file": "bomin_park_4bc_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "jio_park_4bd_political_cartoon",
+    "original": "Jio Park_4BD_Political Cartoon.pdf",
+    "name": "Jio Park",
+    "file": "jio_park_4bd_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "dominique_penaloza_pc",
+    "original": "Dominique Penaloza PC.jpg",
+    "name": "Dominique Penaloza",
+    "file": "dominique_penaloza_pc.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "peng_annabella",
+    "original": "Peng, Annabella.jpg",
+    "name": "Annabella Peng",
+    "file": "peng_annabella.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "humphreys_pestana_virginia",
+    "original": "Humphreys Pestana, Virginia.png",
+    "name": "Virginia Humphreys Pestana",
+    "file": "humphreys_pestana_virginia.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "qi_tiffany",
+    "original": "Qi, Tiffany.jpg",
+    "name": "Tiffany Qi",
+    "file": "qi_tiffany.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "rafaela_4bd_political_cartoon",
+    "original": "Rafaela_4BD_Political Cartoon.pdf",
+    "name": "Rafaela",
+    "file": "rafaela_4bd_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "kelly_ren_pc",
+    "original": "Kelly Ren PC.png",
+    "name": "Kelly Ren",
+    "file": "kelly_ren_pc.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "shao_jacqueline",
+    "original": "Shao, Jacqueline.pdf",
+    "name": "Jacqueline Shao",
+    "file": "shao_jacqueline.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "shen_luke",
+    "original": "Shen, Luke.png",
+    "name": "Luke Shen",
+    "file": "shen_luke.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "sheng_william",
+    "original": "Sheng, William.png",
+    "name": "William Sheng",
+    "file": "sheng_william.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "sherman_kaci",
+    "original": "Sherman, Kaci.JPG",
+    "name": "Kaci Sherman",
+    "file": "sherman_kaci.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "shih_mark",
+    "original": "Shih, Mark.pdf",
+    "name": "Mark Shih",
+    "file": "shih_mark.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "tan_vivienne",
+    "original": "Tan, Vivienne.pdf",
+    "name": "Vivienne Tan",
+    "file": "tan_vivienne.png",
+    "pages": 1
+  },
+  {
+    "slug": "tang_ethan",
+    "original": "Tang, Ethan.pdf",
+    "name": "Ethan Tang",
+    "file": "tang_ethan.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "kamado_tso_4b_political_cartoon",
+    "original": "Kamado Tso_4B_Political Cartoon.pdf",
+    "name": "Kamado Tso",
+    "file": "kamado_tso_4b_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "danny_wang",
+    "original": "Danny Wang.pdf",
+    "name": "Danny Wang",
+    "file": "danny_wang.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "julia_wang_4b_political_cartoon",
+    "original": "Julia Wang_4B_political cartoon.png",
+    "name": "Julia Wang",
+    "file": "julia_wang_4b_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "wang_caylen",
+    "original": "Wang, Caylen.png",
+    "name": "Caylen Wang",
+    "file": "wang_caylen.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "wang_helen",
+    "original": "Wang, Helen.jpg",
+    "name": "Helen Wang",
+    "file": "wang_helen.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "wang_tiger",
+    "original": "Wang, Tiger.jpg",
+    "name": "Tiger Wang",
+    "file": "wang_tiger.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "wang_xiuyuan_henry",
+    "original": "Wang, Xiuyuan (Henry).jpeg",
+    "name": "Xiuyuan Wang",
+    "file": "wang_xiuyuan_henry.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "wen_chuchu",
+    "original": "Wen, ChuChu.pdf",
+    "name": "Chu Chu Wen",
+    "file": "wen_chuchu.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "williams_aya",
+    "original": "Williams, Aya.png",
+    "name": "Aya Williams",
+    "file": "williams_aya.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "ouya_woelders_political_cartoon",
+    "original": "Ouya Woelders Political Cartoon.pdf",
+    "name": "Ouya Woelders",
+    "file": "ouya_woelders_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "wong_grace",
+    "original": "Wong, Grace.pdf",
+    "name": "Grace Wong",
+    "file": "wong_grace.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "evelina_wu_4bd_politicalcartoon",
+    "original": "Evelina Wu_4BD_PoliticalCartoon.pdf",
+    "name": "Evelina Wu",
+    "file": "evelina_wu_4bd_politicalcartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "sherlock_xian",
+    "original": "Sherlock Xian.png",
+    "name": "Sherlock Xian",
+    "file": "sherlock_xian.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "xiao_yuekai",
+    "original": "Xiao, Yuekai.pdf",
+    "name": "Yuekai Xiao",
+    "file": "xiao_yuekai.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "scarlett_xu_political_cartoon",
+    "original": "Scarlett Xu Political Cartoon.png",
+    "name": "Scarlett Xu",
+    "file": "scarlett_xu_political_cartoon.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "xu_annabelle",
+    "original": "Xu, Annabelle.png",
+    "name": "Annabelle Xu",
+    "file": "xu_annabelle.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "xu_daisy",
+    "original": "Xu, Daisy.jpg",
+    "name": "Daisy Xu",
+    "file": "xu_daisy.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "xue_sophia",
+    "original": "Xue, Sophia.png",
+    "name": "Sophia Xue",
+    "file": "xue_sophia.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "cece_yang",
+    "original": "Cece Yang.pdf",
+    "name": "Cece Yang",
+    "file": "cece_yang.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "yang_kai",
+    "original": "Yang, Kai.jpeg",
+    "name": "Kai Yang",
+    "file": "yang_kai.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "yang_leilani",
+    "original": "Yang, Leilani.pdf",
+    "name": "Leilani Yang",
+    "file": "yang_leilani.jpg",
+    "pages": 2
+  },
+  {
+    "slug": "yang_max",
+    "original": "Yang, Max.png",
+    "name": "Max Yang",
+    "file": "yang_max.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "yao_eliza",
+    "original": "Yao, Eliza.jpg",
+    "name": "Eliza Yao",
+    "file": "yao_eliza.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "ye_matthew",
+    "original": "Ye, Matthew.pdf",
+    "name": "Matthew Ye",
+    "file": "ye_matthew.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "ye_tiger",
+    "original": "Ye, Tiger.png",
+    "name": "Tiger Ye",
+    "file": "ye_tiger.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "yeoh_jacquelyn_pei_lyn",
+    "original": "Yeoh, Jacquelyn Pei Lyn.pdf",
+    "name": "Jacquelyn Pei Lyn Yeoh",
+    "file": "yeoh_jacquelyn_pei_lyn.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "you_yi_3bd_political_cartoon",
+    "original": "You yi_3BD_Political Cartoon.pdf",
+    "name": "You Yi",
+    "file": "you_yi_3bd_political_cartoon.jpg",
+    "pages": 3
+  },
+  {
+    "slug": "yu_ellany",
+    "original": "Yu, Ellany.pdf",
+    "name": "Ellany Yu",
+    "file": "yu_ellany.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "yu_yuki",
+    "original": "Yu, Yuki.pdf",
+    "name": "Yuki Yu",
+    "file": "yu_yuki.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "jayden_zhang",
+    "original": "Jayden Zhang.png",
+    "name": "Jayden Zhang",
+    "file": "jayden_zhang.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "zhang_arianne",
+    "original": "Zhang, Arianne.pdf",
+    "name": "Arianne Zhang",
+    "file": "zhang_arianne.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "zhang_zoe",
+    "original": "Zhang, Zoe.pdf",
+    "name": "Zoe Zhang",
+    "file": "zhang_zoe.jpg",
+    "pages": 6
+  },
+  {
+    "slug": "zhao_chloe",
+    "original": "Zhao, Chloe.png",
+    "name": "Chloe Zhao",
+    "file": "zhao_chloe.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "zhao_youzhe",
+    "original": "Zhao, Youzhe.jpg",
+    "name": "Youzhe Zhao",
+    "file": "zhao_youzhe.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "zhou_elizabeth",
+    "original": "Zhou, Elizabeth.jpg",
+    "name": "Elizabeth Zhou",
+    "file": "zhou_elizabeth.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "zhou_zhiyang",
+    "original": "Zhou, Zhiyang.png",
+    "name": "Zhiyang Zhou",
+    "file": "zhou_zhiyang.jpg",
+    "pages": 1
+  },
+  {
+    "slug": "julian_zhupng",
+    "original": "Julian Zhu.png.pdf",
+    "name": "Julian Zhu",
+    "file": "julian_zhupng.jpg",
+    "pages": 1
+  }
+]

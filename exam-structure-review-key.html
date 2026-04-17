@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ANSWER KEY — IB Global Politics 2026: Know Your Exam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{
+            --bg:#f5f6fa;--surface:#fff;--surface2:#eef0f7;--border:rgba(0,0,0,.10);
+            --accent:#6438b0;--teal:#0e7c86;--gold:#b07d10;--text:#1a1e2e;--muted:#4a5270;
+            --radius:14px;--p1:#6438b0;--p2:#0e7c86;--p3:#b07d10;
+            --key-green:#166534;--key-bg:#f0fdf4;--key-border:#bbf7d0;
+        }
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+
+        /* KEY BANNER */
+        .key-banner{
+            background:linear-gradient(135deg,#14532d 0%,#166534 50%,#15803d 100%);
+            padding:14px 28px;display:flex;align-items:center;gap:16px;
+        }
+        .key-stamp{
+            background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.4);
+            color:#fff;font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+            padding:6px 18px;border-radius:6px;flex-shrink:0;
+        }
+        .key-banner p{color:rgba(255,255,255,.85);font-size:.82rem}
+        .key-banner strong{color:#bbf7d0}
+
+        /* HERO */
+        .hero{
+            position:relative;overflow:hidden;padding:44px 24px 36px;text-align:center;
+            background:radial-gradient(ellipse 120% 60% at 50% 0%,rgba(100,56,176,.10) 0%,transparent 70%),
+                        linear-gradient(180deg,#ede8fa 0%,var(--bg) 100%);
+            border-bottom:1px solid var(--border);
+        }
+        .hero-badge{display:inline-block;background:rgba(22,101,52,.12);border:1px solid rgba(22,101,52,.30);color:#14532d;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 18px;border-radius:50px;margin-bottom:14px}
+        .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:#2a1860;margin:0 auto 10px}
+        .hero-sub{font-size:.9rem;color:var(--muted);max-width:640px;margin:0 auto 20px}
+        .meta-pills{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+        .pill{display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-radius:50px;font-size:.78rem;font-weight:600;border:1px solid}
+        .pill-p{background:rgba(100,56,176,.10);border-color:rgba(100,56,176,.30);color:#4a1fa0}
+        .pill-t{background:rgba(14,124,134,.10);border-color:rgba(14,124,134,.30);color:#086068}
+        .pill-g{background:rgba(176,125,16,.10);border-color:rgba(176,125,16,.30);color:#7a5800}
+
+        .container{max-width:980px;margin:0 auto;padding:32px 24px 80px}
+
+        /* PAPER BLOCK */
+        .paper-block{margin-bottom:44px}
+        .paper-header{display:flex;align-items:center;gap:16px;padding:18px 26px;border-radius:var(--radius) var(--radius) 0 0;color:#fff}
+        .paper-header.p1{background:linear-gradient(135deg,#5a30a0,#7c5cbf)}
+        .paper-header.p2{background:linear-gradient(135deg,#0b6e78,#14a89a)}
+        .paper-header.p3{background:linear-gradient(135deg,#9f6d08,#c9922a)}
+        .ph-badge{display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:13px;background:rgba(255,255,255,.20);font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;flex-shrink:0}
+        .ph-info h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;line-height:1.2}
+        .ph-info p{font-size:.8rem;opacity:.82;margin-top:3px}
+        .ph-totals{margin-left:auto;text-align:right;flex-shrink:0}
+        .ph-pts{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;line-height:1}
+        .ph-sub{font-size:.68rem;opacity:.72;letter-spacing:.05em;text-transform:uppercase;margin-top:2px}
+
+        /* TABLE */
+        .q-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-top:none}
+        .q-table thead tr{background:var(--surface2)}
+        .q-table th{padding:10px 16px;text-align:left;font-size:.70rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border)}
+        .q-table th.th-pts{text-align:center;width:110px}
+        .q-table tbody tr{border-bottom:1px solid var(--border)}
+        .q-table tbody tr:last-child{border-bottom:none}
+        .q-table td{padding:13px 16px;vertical-align:top}
+        .q-table td.td-pts{text-align:center;vertical-align:middle}
+
+        /* NOTE ROW */
+        .note-row td{background:rgba(0,0,0,.022);padding:10px 16px;font-size:.8rem;color:var(--muted)}
+
+        /* Q LABEL */
+        .q-label{display:flex;align-items:flex-start;gap:11px}
+        .q-num{display:flex;align-items:center;justify-content:center;min-width:34px;height:34px;border-radius:9px;font-size:.78rem;font-weight:800;color:#fff;flex-shrink:0;margin-top:2px}
+        .q-num.p1-c{background:#6438b0}.q-num.p2-c{background:#0e7c86}.q-num.p3-c{background:#b07d10}
+        .q-name{font-size:.9rem;font-weight:700;color:var(--text)}
+        .q-desc{font-size:.76rem;color:var(--muted);margin-top:2px}
+        .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+        .chip{display:inline-flex;align-items:center;font-size:.66rem;font-weight:700;padding:2px 9px;border-radius:50px}
+        .chip-p{background:rgba(100,56,176,.08);border:1px solid rgba(100,56,176,.20);color:#5a30a0}
+        .chip-t{background:rgba(14,124,134,.07);border:1px solid rgba(14,124,134,.20);color:#0b6e78}
+        .chip-g{background:rgba(176,125,16,.08);border:1px solid rgba(176,125,16,.25);color:#7a5800}
+        .chip-b{background:rgba(44,95,196,.08);border:1px solid rgba(44,95,196,.20);color:#1a3f9a}
+
+        /* ANSWER MARK CIRCLE */
+        .mark-circle{
+            display:inline-flex;align-items:center;justify-content:center;
+            width:52px;height:52px;border-radius:50%;
+            font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;color:#fff;
+        }
+        .mc-p{background:linear-gradient(135deg,#5a30a0,#7c5cbf)}
+        .mc-t{background:linear-gradient(135deg,#0b6e78,#14a89a)}
+        .mc-g{background:linear-gradient(135deg,#9f6d08,#c9922a)}
+
+        /* ANSWER FIELDS */
+        .ans-cell{padding:14px 16px}
+        .ans-label{font-size:.62rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px;display:block}
+        .ans-label.lbl-obj{color:var(--accent)}
+        .ans-label.lbl-fmt{color:var(--teal)}
+        .ans-divider{border:none;border-top:1px dashed rgba(0,0,0,.12);margin:9px 0}
+
+        /* KEY ANSWER BOX */
+        .ans-box{
+            background:var(--key-bg);border:1.5px solid var(--key-border);
+            border-radius:8px;padding:9px 13px;
+            font-size:.84rem;color:var(--key-green);
+            line-height:1.6;font-weight:500;
+        }
+        .ans-box.fmt{
+            background:#eff6ff;border-color:#bfdbfe;color:#1e3a8a;
+        }
+
+        /* TOTALS BAR */
+        .totals-bar{display:flex;align-items:center;justify-content:flex-end;padding:10px 20px;background:var(--surface2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);font-size:.8rem;color:var(--muted)}
+
+        /* CHECK ANSWER ROW */
+        .check-answer{background:#f0fdf4;border:1px solid var(--key-border);border-radius:10px;padding:12px 16px;margin-top:14px;display:flex;gap:16px;align-items:flex-start}
+        .check-answer .ca-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:var(--key-green);flex-shrink:0}
+        .check-answer p{font-size:.82rem;color:var(--key-green);line-height:1.5}
+        .check-answer strong{font-weight:700}
+
+        /* INSIGHT BOX */
+        .insight{background:#fef9ec;border:1px solid #fcd34d;border-left:4px solid var(--gold);border-radius:10px;padding:12px 16px;margin-top:10px;font-size:.82rem;color:#78350f;line-height:1.5}
+
+        /* SUMMARY */
+        .summary-section{margin-top:48px}
+        .section-head{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+        .section-head .sh-icon{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;font-size:.8rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#14532d,#166534)}
+
+        .summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+        .summary-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+        .sc-label{font-size:.68rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+        .sc-total{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;line-height:1;margin-bottom:10px}
+        .sc-total.c1{color:var(--p1)}.sc-total.c2{color:var(--p2)}.sc-total.c3{color:var(--p3)}
+        .sc-q{font-size:.73rem;font-weight:700;color:var(--muted);display:block;margin-bottom:6px}
+
+        .grand-total{background:linear-gradient(135deg,#2a1860,#6438b0 55%,#0e7c86);border-radius:var(--radius);padding:22px 28px;display:flex;align-items:center;justify-content:space-between;color:#fff;margin-top:16px}
+        .gt-left h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800}
+        .gt-left p{font-size:.8rem;opacity:.8;margin-top:3px}
+        .gt-right .gt-pts{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:800;line-height:1;text-align:right}
+        .gt-right .gt-sub{font-size:.68rem;opacity:.72;text-transform:uppercase;letter-spacing:.06em;margin-top:3px;text-align:right}
+        .weight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+        .weight-cell{background:rgba(255,255,255,.12);border-radius:10px;padding:10px 12px;text-align:center}
+        .weight-cell .wc-pct{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800}
+        .weight-cell .wc-label{font-size:.66rem;opacity:.78;margin-top:2px}
+
+        .footer{text-align:center;padding:28px 24px;color:var(--muted);font-size:.74rem;border-top:1px solid var(--border);margin-top:52px}
+        .footer .key-tag{display:inline-block;background:#dcfce7;color:#14532d;font-weight:700;font-size:.7rem;padding:3px 12px;border-radius:50px;margin-bottom:6px}
+
+        @media print{
+            body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+            .key-banner{background:linear-gradient(135deg,#14532d,#15803d) !important}
+            .paper-header.p1{background:linear-gradient(135deg,#5a30a0,#7c5cbf) !important;color:#fff !important}
+            .paper-header.p2{background:linear-gradient(135deg,#0b6e78,#14a89a) !important;color:#fff !important}
+            .paper-header.p3{background:linear-gradient(135deg,#9f6d08,#c9922a) !important;color:#fff !important}
+            .mc-p{background:linear-gradient(135deg,#5a30a0,#7c5cbf) !important;color:#fff !important}
+            .mc-t{background:linear-gradient(135deg,#0b6e78,#14a89a) !important;color:#fff !important}
+            .mc-g{background:linear-gradient(135deg,#9f6d08,#c9922a) !important;color:#fff !important}
+            .ans-box{background:#f0fdf4 !important;border-color:#bbf7d0 !important}
+            .ans-box.fmt{background:#eff6ff !important;border-color:#bfdbfe !important}
+            .grand-total{background:linear-gradient(135deg,#2a1860,#6438b0 55%,#0e7c86) !important;color:#fff !important}
+            .paper-block{page-break-inside:avoid}
+            .summary-section{page-break-before:always}
+        }
+    </style>
+</head>
+<body>
+
+<!-- KEY BANNER -->
+<div class="key-banner">
+    <div class="key-stamp">Answer Key</div>
+    <p><strong>For Teacher Use Only</strong> — Do not distribute to students before the activity is complete.</p>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-badge">Teacher Answer Key · IB Global Politics 2026</div>
+    <h1>Know Your Exam: Papers 1, 2 &amp; 3</h1>
+    <p class="hero-sub">Correct mark values, objectives, and optimal response formats for all questions across Paper 1, Paper 2, and Paper 3 HL.</p>
+    <div class="meta-pills">
+        <span class="pill pill-p">📄 Paper 1 — 25 marks</span>
+        <span class="pill pill-t">📄 Paper 2 — 30 marks (2 × 15)</span>
+        <span class="pill pill-g">📄 Paper 3 HL — 28 marks</span>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- ══════════════════════ PAPER 1 ══════════════════════ -->
+    <div class="paper-block">
+        <div class="paper-header p1">
+            <div class="ph-badge">P1</div>
+            <div class="ph-info">
+                <h2>Paper 1 — Stimulus-Based Questions</h2>
+                <p>SL &amp; HL · 1 hr 15 min · 4 compulsory questions · 4 provided sources</p>
+            </div>
+            <div class="ph-totals">
+                <div class="ph-pts">25</div>
+                <div class="ph-sub">Total Marks</div>
+            </div>
+        </div>
+
+        <table class="q-table">
+            <thead>
+                <tr>
+                    <th style="width:36%">Question</th>
+                    <th class="th-pts">Marks</th>
+                    <th>Objective &amp; Best Response Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="note-row">
+                    <td colspan="3"><strong style="color:var(--p1)">Context:</strong> 4 sources (text, image, data, infographic) from the common core unit <em>Understanding Power and Global Politics</em>. All questions compulsory.</td>
+                </tr>
+
+                <!-- Q1 -->
+                <tr>
+                    <td style="padding:14px 16px">
+                        <div class="q-label">
+                            <div class="q-num p1-c">Q1</div>
+                            <div>
+                                <div class="q-name">Question 1</div>
+                                <div class="q-desc">Knowledge &amp; understanding of a source</div>
+                                <div class="chips"><span class="chip chip-p">AO1</span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="td-pts"><div class="mark-circle mc-p">3</div></td>
+                    <td class="ans-cell">
+                        <span class="ans-label lbl-obj">Objective</span>
+                        <div class="ans-box">Identify and describe a specific feature, claim, or message from <strong>one named source</strong>. This is a comprehension question — close reading only, no argumentation required.</div>
+                        <hr class="ans-divider">
+                        <span class="ans-label lbl-fmt">Best Response Format</span>
+                        <div class="ans-box fmt">2–3 sentences only. <strong>Direct identification</strong> → quote or paraphrase from the source → one brief explanatory sentence. Do NOT add own knowledge. Do NOT write an introduction.</div>
+                    </td>
+                </tr>
+
+                <!-- Q2 -->
+                <tr>
+                    <td style="padding:14px 16px">
+                        <div class="q-label">
+                            <div class="q-num p1-c">Q2</div>
+                            <div>
+                                <div class="q-name">Question 2</div>
+                                <div class="q-desc">Application &amp; analysis of a source</div>
+                                <div class="chips"><span class="chip chip-p">AO2</span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="td-pts"><div class="mark-circle mc-p">4</div></td>
+                    <td class="ans-cell">
+                        <span class="ans-label lbl-obj">Objective</span>
+                        <div class="ans-box">Apply knowledge to <strong>explain</strong> how a concept, claim, or term from one source connects to a broader political context. You must go beyond simply describing the source — analysis and your own knowledge are expected.</div>
+                        <hr class="ans-divider">
+                        <span class="ans-label lbl-fmt">Best Response Format</span>
+                        <div class="ans-box fmt"><strong>PEE structure</strong> — one well-developed paragraph: Point (clear claim) → Evidence (quote or data from the source) → Explain (why it matters politically, with reference to own knowledge). Do not write multiple disconnected points.</div>
+                    </td>
+                </tr>
+
+                <!-- Q3 -->
+                <tr>
+                    <td style="padding:14px 16px">
+                        <div class="q-label">
+                            <div class="q-num p1-c">Q3</div>
+                            <div>
+                                <div class="q-name">Question 3</div>
+                                <div class="q-desc">Compare and/or contrast two sources</div>
+                                <div class="chips"><span class="chip chip-p">AO3</span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="td-pts"><div class="mark-circle mc-p">6</div></td>
+                    <td class="ans-cell">
+                        <span class="ans-label lbl-obj">Objective</span>
+                        <div class="ans-box">Compare AND/OR contrast the views, arguments, or information presented in <strong>two specific named sources</strong>. The focus is the <em>relationship between</em> sources — not their individual content in isolation.</div>
+                        <hr class="ans-divider">
+                        <span class="ans-label lbl-fmt">Best Response Format</span>
+                        <div class="ans-box fmt">2–3 distinct comparison points. For each: Similarity or difference → Evidence/quote from Source X → Evidence/quote from Source Y → Significance of the comparison. Use signal phrases: <em>"While Source A argues…, Source B contends…"</em> Do NOT summarise each source separately.</div>
+                    </td>
+                </tr>
+
+                <!-- Q4 -->
+                <tr>
+                    <td style="padding:14px 16px">
+                        <div class="q-label">
+                            <div class="q-num p1-c">Q4</div>
+                            <div>
+                                <div class="q-name">Question 4</div>
+                                <div class="q-desc">Evaluate &amp; synthesize all sources + own knowledge</div>
+                                <div class="chips"><span class="chip chip-p">AO3</span><span class="chip chip-b">AO4</span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="td-pts"><div class="mark-circle mc-p">12</div></td>
+                    <td class="ans-cell">
+                        <span class="ans-label lbl-obj">Objective</span>
+                        <div class="ans-box">Evaluate the extent of a stated claim by <strong>synthesizing all four sources with your own knowledge</strong> into a sustained, balanced argument. This is the highest-order question — you must argue, not describe. All four sources must appear.</div>
+                        <hr class="ans-divider">
+                        <span class="ans-label lbl-fmt">Best Response Format</span>
+                        <div class="ans-box fmt"><strong>Mini-essay:</strong> Thesis (clear position on "to what extent") → 2–3 body paragraphs (argument + source evidence + own knowledge + analysis) → Counterargument paragraph → Conclusion with a nuanced verdict. <strong>Do not sacrifice Q4 time to perfect Q1–Q3.</strong></div>
+                    </td>
+                </tr>
+
+                <!-- CHECK ROW -->
+                <tr class="note-row">
+                    <td colspan="3">
+                        <div class="check-answer">
+                            <div class="ca-num">25</div>
+                            <p><strong>Total: 3 + 4 + 6 + 12 = 25 marks</strong><br>Q4 is worth <strong>12 of the 25 marks — nearly half the paper</strong>. Students should budget approximately 35 minutes for Q4 alone. If running short on time, move to Q4 immediately — a well-argued incomplete Q4 outscores a polished Q3 every time.</p>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="totals-bar"><strong>Paper 1</strong> &nbsp;25 marks &nbsp;·&nbsp; 1 hr 15 min &nbsp;·&nbsp; SL &amp; HL</div>
+    </div>
+
+
+    <!-- ══════════════════════ PAPER 2 ══════════════════════ -->
+    <div class="paper-block">
+        <div class="paper-header p2">
+            <div class="ph-badge">P2</div>
+            <div class="ph-info">
+                <h2>Paper 2 — Extended Response Essays</h2>
+                <p>SL &amp; HL · 1 hr 45 min · 1 essay from Section A + 1 essay from Section B</p>
+            </div>
+            <div class="ph-totals">
+                <div class="ph-pts">30</div>
+                <div class="ph-sub">Total (2 × 15)</div>
+            </div>
+        </div>
+
+        <table class="q-table">
+            <thead>
+                <tr>
+                    <th style="width:36%">Section / Essay</th>
+                    <th class="th-pts">Marks each</th>
+                    <th>Objective &amp; Best Response Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="note-row">
+                    <td colspan="3"><strong style="color:var(--p2)">Structure:</strong> Two sections. Students choose <strong>one question from Section A</strong> and <strong>one from Section B</strong> — 2 essays total. Each essay is independently marked at 15 marks.</td>
+                </tr>
+
+                <!-- SECTION A -->
+                <tr>
+                    <td style="padding:14px 16px">
+                        <div class="q-label">
+                            <div class="q-num p2-c">A</div>
+                            <div>
+                                <div class="q-name">Section A — Thematic Essay</div>
+                                <div class="q-desc">Rights &amp; Justice / Development &amp; Sustainability / Peace &amp; Conflict</div>
+                                <div class="chips"><span class="chip chip-t">AO2</span><span class="chip chip-t">AO3</span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="td-pts"><div class="mark-circle mc-t">15</div></td>
+                    <td class="ans-cell">
+                        <span class="ans-label lbl-obj">Objective</span>
+                        <div class="ans-box">Write a focused analytical essay on <strong>one thematic study</strong>. Demonstrate knowledge, critical analysis, and evaluation through relevant case studies and conceptual arguments. A clear thesis and balanced evaluation are expected.</div>
+                        <hr class="ans-divider">
+                        <span class="ans-label lbl-fmt">Best Response Format</span>
+                        <div class="ans-box fmt"><strong>10 min plan</strong> → thesis + 3 arguments + evidence per argument. <strong>Essay:</strong> Introduction (define key concept + thesis with clear position) → 2–3 body paragraphs (PEEL: claim → case study evidence → analysis → link to thesis) → Conclusion (restate position, acknowledge nuance, broader significance).</div>
+                    </td>
+                </tr>
+
+                <!-- SECTION B -->
+                <tr>
+                    <td style="padding:14px 16px">
+                        <div class="q-label">
+                            <div class="q-num p2-c">B</div>
+                            <div>
+                                <div class="q-name">Section B — Integrating Essay</div>
+                                <div class="q-desc">Connections across thematic studies and the core unit required</div>
+                                <div class="chips"><span class="chip chip-t">AO2</span><span class="chip chip-t">AO3</span><span class="chip chip-t">AO4</span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="td-pts"><div class="mark-circle mc-t">15</div></td>
+                    <td class="ans-cell">
+                        <span class="ans-label lbl-obj">Objective</span>
+                        <div class="ans-box">Write an essay that <strong>explicitly integrates across thematic studies and the core unit</strong>. The argument itself must be integrating — it cannot stay within a single theme. Cross-theme connections are not optional, they are the assessment criterion.</div>
+                        <hr class="ans-divider">
+                        <span class="ans-label lbl-fmt">Best Response Format</span>
+                        <div class="ans-box fmt">Same structure as Section A, BUT: thesis and each body paragraph must <strong>draw connections across themes</strong> (e.g., how a Rights claim intersects with Development dynamics or Peace &amp; Conflict). Use one integrating concept as the spine of the argument. Mentioning multiple themes without connecting them does <em>not</em> earn integration marks.</div>
+                    </td>
+                </tr>
+
+                <!-- DEEPER THINKING -->
+                <tr class="note-row">
+                    <td style="padding:13px 16px;font-size:.82rem"><strong>Sec A vs Sec B — key difference:</strong></td>
+                    <td class="td-pts" style="color:var(--muted);font-size:.8rem;text-align:center">—</td>
+                    <td style="padding:13px 16px">
+                        <div class="ans-box">Section A goes <strong>deep on ONE theme</strong>; Section B requires you to <strong>weave multiple themes together</strong>. In Section B, the integration IS the argument — not just mentioning different themes in separate paragraphs, but showing how they interact and inform each other.</div>
+                    </td>
+                </tr>
+                <tr class="note-row">
+                    <td style="padding:13px 16px;font-size:.82rem"><strong>Common command terms:</strong></td>
+                    <td class="td-pts" style="color:var(--muted);font-size:.8rem;text-align:center">—</td>
+                    <td style="padding:13px 16px">
+                        <div class="ans-box"><strong>Evaluate</strong> — balanced judgment, evidence for AND against, clear conclusion on extent. <strong>To what extent</strong> — argue about degree/scope and defend it with evidence. <strong>Discuss</strong> — explore multiple perspectives, present and examine different views. <strong>Examine</strong> — analyze in detail from multiple angles; go beyond description.</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="totals-bar"><strong>Paper 2</strong> &nbsp;30 marks (2 × 15) &nbsp;·&nbsp; 1 hr 45 min &nbsp;·&nbsp; SL &amp; HL</div>
+    </div>
+
+
+    <!-- ══════════════════════ PAPER 3 ══════════════════════ -->
+    <div class="paper-block">
+        <div class="paper-header p3">
+            <div class="ph-badge">P3</div>
+            <div class="ph-info">
+                <h2>Paper 3 — HL Extension (Stimulus + Questions)</h2>
+                <p>HL Only · 1 hr 30 min · One stimulus source · 4 compulsory questions: Q1, Q2a, Q2b, Q3</p>
+            </div>
+            <div class="ph-totals">
+                <div class="ph-pts">28</div>
+                <div class="ph-sub">Total Marks</div>
+            </div>
+        </div>
+
+        <table class="q-table">
+            <thead>
+                <tr>
+                    <th style="width:36%">Question</th>
+                    <th class="th-pts">Marks</th>
+                    <th>Objective &amp; Best Response Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="note-row">
+                    <td colspan="3"><strong style="color:var(--p3)">Context:</strong> One stimulus source related to the 8 GPCs. Students apply their own researched case studies — the examiner knows nothing about their specific research.</td>
+                </tr>
+
+                <!-- Q1 -->
+                <tr>
+                    <td style="padding:14px 16px">
+                        <div class="q-label">
+                            <div class="q-num p3-c">Q1</div>
+                            <div>
+                                <div class="q-name">Question 1</div>
+                                <div class="q-desc">Stimulus comprehension — identify/describe from source</div>
+                                <div class="chips"><span class="chip chip-g">AO1</span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="td-pts"><div class="mark-circle mc-g">3</div></td>
+                    <td class="ans-cell">
+                        <span class="ans-label lbl-obj">Objective</span>
+                        <div class="ans-box">Identify or describe a specific feature, claim, or argument <strong>directly from the stimulus source</strong>. Comprehension only — no own knowledge, no argument-making.</div>
+                        <hr class="ans-divider">
+                        <span class="ans-label lbl-fmt">Best Response Format</span>
+                        <div class="ans-box fmt">2–3 sentences max. Direct identification → quote or paraphrase precisely from the source → one brief explanatory sentence. <strong>Stay entirely within the source.</strong> Do not introduce your case study here.</div>
+                    </td>
+                </tr>
+
+                <!-- Q2a -->
+                <tr>
+                    <td style="padding:14px 16px">
+                        <div class="q-label">
+                            <div class="q-num p3-c">2a</div>
+                            <div>
+                                <div class="q-name">Question 2a — Case Study Bridge</div>
+                                <div class="q-desc">Analyze a political issue from researched case study connected to the stimulus</div>
+                                <div class="chips"><span class="chip chip-g">AO2</span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="td-pts"><div class="mark-circle mc-g">4</div></td>
+                    <td class="ans-cell">
+                        <span class="ans-label lbl-obj">Objective</span>
+                        <div class="ans-box">Analyze a specific political issue from a <strong>case study the student has independently researched</strong> that connects to the GPC and theme raised by the stimulus. Bridge prior research to the exam context.</div>
+                        <hr class="ans-divider">
+                        <span class="ans-label lbl-fmt">Best Response Format</span>
+                        <div class="ans-box fmt"><strong>GPC identification</strong> (name it) → Case study context (who/what/where/when — 1 sentence) → Specific evidence or data point → Analytical explanation (why this is a political issue and how it connects to the GPC) → 1 linking sentence connecting back to the stimulus theme. Choose your case study now and keep it for Q2b.</div>
+                    </td>
+                </tr>
+
+                <!-- Q2b -->
+                <tr>
+                    <td style="padding:14px 16px">
+                        <div class="q-label">
+                            <div class="q-num p3-c">2b</div>
+                            <div>
+                                <div class="q-name">Question 2b — Policy Recommendation</div>
+                                <div class="q-desc">Propose a policy addressing the Q2a issue — actor, mechanism, rationale, risks</div>
+                                <div class="chips"><span class="chip chip-g">AO2</span><span class="chip chip-g">AO3</span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="td-pts"><div class="mark-circle mc-g">6</div></td>
+                    <td class="ans-cell">
+                        <span class="ans-label lbl-obj">Objective</span>
+                        <div class="ans-box">Propose and justify a <strong>specific, feasible policy recommendation</strong> to address the political issue identified in Q2a. Must include who acts, how, why it works, and what challenges or unintended consequences exist. Must build on the same case study as Q2a.</div>
+                        <hr class="ans-divider">
+                        <span class="ans-label lbl-fmt">Best Response Format</span>
+                        <div class="ans-box fmt"><strong>AMR² structure:</strong> <strong>A</strong>ctor (who implements it?) → <strong>M</strong>echanism (specific policy action) → <strong>R</strong>ationale (why it works — link to source + case study evidence) → <strong>R</strong>isks/unintended consequences (at least one, specifically articulated) → brief mitigation or concluding sentence. Do NOT switch case study from Q2a.</div>
+                    </td>
+                </tr>
+
+                <!-- Q3 -->
+                <tr>
+                    <td style="padding:14px 16px">
+                        <div class="q-label">
+                            <div class="q-num p3-c">Q3</div>
+                            <div>
+                                <div class="q-name">Question 3 — HL Extension Essay</div>
+                                <div class="q-desc">"To what extent…?" essay · 2+ GPCs · sustained argument required</div>
+                                <div class="chips"><span class="chip chip-g">AO2</span><span class="chip chip-g">AO3</span><span class="chip chip-b">AO4</span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="td-pts"><div class="mark-circle mc-g">15</div></td>
+                    <td class="ans-cell">
+                        <span class="ans-label lbl-obj">Objective</span>
+                        <div class="ans-box">Write a sustained "To what extent…?" evaluative essay drawing on independently researched case studies and <strong>explicitly referencing two or more named GPCs</strong>. Sustained argument, counterargument, and nuanced conclusion are all required. This is the highest-order HL question.</div>
+                        <hr class="ans-divider">
+                        <span class="ans-label lbl-fmt">Best Response Format</span>
+                        <div class="ans-box fmt"><strong>5 min plan:</strong> define key concept + thesis (your extent claim) + arguments + GPC links + counterargument.<br><strong>Essay:</strong> Introduction (define concept, state thesis with explicit extent) → 2–3 body paragraphs (GPC name + case study evidence + analysis + link to thesis) → Counterargument (different GPC or perspective) → Conclusion (nuanced "to what extent" verdict — never just "yes" or "no"). <strong>Every paragraph must argue, never merely describe.</strong></div>
+                    </td>
+                </tr>
+
+                <!-- CHECK ROW -->
+                <tr class="note-row">
+                    <td colspan="3">
+                        <div class="check-answer">
+                            <div class="ca-num">28</div>
+                            <p><strong>Total: 3 + 4 + 6 + 15 = 28 marks</strong><br>Q3 (15 marks) is worth <strong>more than Q1 + Q2a + Q2b combined</strong> (13 marks total). Students must budget approximately <strong>45 minutes for Q3</strong> and move to it on time even if Q2b isn't perfect. A complete Q3 with a genuine counterargument will always outscore a polished but unfinished one.</p>
+                        </div>
+                        <div class="insight" style="margin-top:10px"><strong>Q2a → Q2b link:</strong> Q2b must build on Q2a using the same case study. Students should lock in their case study choice before beginning Q2a. Switching contexts between Q2a and Q2b costs marks and time.</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="totals-bar"><strong>Paper 3</strong> &nbsp;28 marks &nbsp;·&nbsp; 1 hr 30 min &nbsp;·&nbsp; <strong>HL only</strong></div>
+    </div>
+
+
+    <!-- ══════════════════════ SUMMARY ══════════════════════ -->
+    <div class="summary-section">
+        <div class="section-head"><span class="sh-icon">Σ</span>Summary Answers — Marks &amp; Weighting</div>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="sc-label">Paper 1</div>
+                <div class="sc-total c1">25 marks</div>
+                <span class="sc-q">Which question is worth most, and how long?</span>
+                <div class="ans-box" style="font-size:.8rem">Q4 (12 marks) — budget ~35 min of 75. It is worth nearly half the paper. Q1–Q3 combined = only 13 marks. Prioritize Q4 ruthlessly.</div>
+            </div>
+            <div class="summary-card">
+                <div class="sc-label">Paper 2</div>
+                <div class="sc-total c2">30 marks</div>
+                <span class="sc-q">Key difference between Section A and Section B?</span>
+                <div class="ans-box" style="font-size:.8rem">Section A = deep focus on ONE theme. Section B = argument must integrate ACROSS multiple themes. Integration is not a bonus in Section B — it IS the criterion.</div>
+            </div>
+            <div class="summary-card">
+                <div class="sc-label">Paper 3 — HL Only</div>
+                <div class="sc-total c3">28 marks</div>
+                <span class="sc-q">Q3 vs Q1 — how do they differ?</span>
+                <div class="ans-box" style="font-size:.8rem">Q1 (3 marks): comprehension only — describe what you see in the source. Q3 (15 marks): sustained evaluative essay using own case studies + 2+ GPCs. Q3 requires synthesis, argument, counterargument, and a nuanced verdict.</div>
+            </div>
+        </div>
+
+        <div class="grand-total">
+            <div class="gt-left">
+                <h3>HL External Assessment Weighting</h3>
+                <p>Paper 1 + Paper 2 + Paper 3 (IA = 20%)</p>
+                <div class="weight-grid">
+                    <div class="weight-cell"><div class="wc-pct">20%</div><div class="wc-label">Paper 1</div></div>
+                    <div class="weight-cell"><div class="wc-pct">30%</div><div class="wc-label">Paper 2</div></div>
+                    <div class="weight-cell"><div class="wc-pct">30%</div><div class="wc-label">Paper 3</div></div>
+                </div>
+            </div>
+            <div class="gt-right">
+                <div class="gt-pts">80%</div>
+                <div class="gt-sub">External Assessment<br>IA = 20%</div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <div class="key-tag">Teacher Answer Key — Not for Student Distribution</div>
+    <p>IB Global Politics HL · Exam Structure Review · Mr. Martinez · 2026</p>
+    <p style="margin-top:5px;font-size:.68rem">First assessment 2026 syllabus. P1: 25 marks. P2: 2 × 15 marks (30 total). P3 HL: 28 marks. HL external assessment = 80%. Objectives and response formats reflect IB 2026 assessment criteria and command term guidance.</p>
+</footer>
+
+</body>
+</html>

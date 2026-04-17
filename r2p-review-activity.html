@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R2P Review Activity | IB Global Politics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #f5f6fa;
+            --surface: #ffffff;
+            --surface2: #eef0f7;
+            --border: rgba(0, 0, 0, 0.1);
+            --accent: #2c5fc4;
+            --accent2: #6438b0;
+            --gold: #b07d10;
+            --danger: #c0283e;
+            --green: #1a8a5a;
+            --text: #1a1e2e;
+            --muted: #4a5270;
+            --radius: 14px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.75;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            padding: 64px 24px 56px;
+            text-align: center;
+            background: radial-gradient(ellipse 120% 60% at 50% 0%, rgba(100, 56, 176, 0.10) 0%, transparent 70%),
+                linear-gradient(180deg, #ede9fa 0%, var(--bg) 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(100, 56, 176, .10);
+            border: 1px solid rgba(100, 56, 176, .30);
+            color: #4a1fa0;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.9rem, 4.5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #1a2560 0%, #2c5fc4 50%, #6438b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            max-width: 800px;
+            margin: 0 auto 16px;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--muted);
+            max-width: 640px;
+            margin: 0 auto 28px;
+        }
+
+        .meta-pills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            border: 1px solid;
+        }
+
+        .pill-blue {
+            background: rgba(44, 95, 196, .10);
+            border-color: rgba(44, 95, 196, .30);
+            color: #1e4ba8;
+        }
+
+        .pill-gold {
+            background: rgba(176, 125, 16, .10);
+            border-color: rgba(176, 125, 16, .30);
+            color: #7a5800;
+        }
+
+        .pill-purple {
+            background: rgba(100, 56, 176, .10);
+            border-color: rgba(100, 56, 176, .30);
+            color: #4a1fa0;
+        }
+
+        .pill-danger {
+            background: rgba(192, 40, 62, .10);
+            border-color: rgba(192, 40, 62, .30);
+            color: #c0283e;
+        }
+
+        /* ── LAYOUT ── */
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .section {
+            margin-top: 56px;
+            scroll-margin-top: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            color: #fff;
+        }
+
+        .num-blue {
+            background: linear-gradient(135deg, #3a6dd9, #5b8dee);
+        }
+
+        .num-gold {
+            background: linear-gradient(135deg, #bf9020, #e8b84b);
+            color: #1a1200;
+        }
+
+        .num-danger {
+            background: linear-gradient(135deg, #b03050, #e05a6d);
+        }
+
+        .num-purple {
+            background: linear-gradient(135deg, #5a30a0, #7c5cbf);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            display: block;
+            color: var(--muted);
+            margin-bottom: 2px;
+        }
+
+        hr.divider {
+            border: none;
+            height: 1px;
+            background: var(--border);
+            margin-top: 56px;
+        }
+
+        /* ── CARD ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* ── ALERT ── */
+        .alert {
+            display: flex;
+            gap: 14px;
+            padding: 18px 22px;
+            border-radius: var(--radius);
+            margin: 20px 0;
+            border: 1px solid;
+        }
+
+        .alert-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .alert-blue {
+            background: rgba(91, 141, 238, .08);
+            border-color: rgba(91, 141, 238, .3);
+        }
+
+        .alert-gold {
+            background: rgba(232, 184, 75, .08);
+            border-color: rgba(232, 184, 75, .3);
+        }
+
+        .alert-danger {
+            background: rgba(224, 90, 109, .08);
+            border-color: rgba(224, 90, 109, .3);
+        }
+
+        .alert-purple {
+            background: rgba(124, 92, 191, .08);
+            border-color: rgba(124, 92, 191, .3);
+        }
+
+        .alert-green {
+            background: rgba(62, 207, 142, .08);
+            border-color: rgba(62, 207, 142, .3);
+        }
+
+        .alert h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .alert p,
+        .alert ul {
+            font-size: 0.86rem;
+            color: var(--muted);
+        }
+
+        .alert ul {
+            padding-left: 18px;
+        }
+
+        .alert li {
+            margin-bottom: 4px;
+        }
+
+        /* ── QUIZ INTERACTIVE ── */
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .q-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px 24px;
+            transition: border-color .2s;
+        }
+
+        .q-card:hover {
+            border-color: rgba(91, 141, 238, .35);
+        }
+
+        .q-num {
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .q-card .question {
+            font-size: 0.93rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .choice-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 9px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface2);
+            font-size: 0.84rem;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            transition: background .18s, border-color .18s, color .18s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .choice-btn:hover:not(:disabled) {
+            background: rgba(91, 141, 238, .10);
+            border-color: rgba(91, 141, 238, .35);
+            color: var(--accent);
+        }
+
+        .choice-btn.correct {
+            background: rgba(26, 138, 90, .12);
+            border-color: rgba(26, 138, 90, .5);
+            color: #0f5e3a;
+            font-weight: 700;
+        }
+
+        .choice-btn.wrong {
+            background: rgba(192, 40, 62, .10);
+            border-color: rgba(192, 40, 62, .4);
+            color: #a01030;
+        }
+
+        .choice-btn:disabled {
+            cursor: default;
+        }
+
+        .q-feedback {
+            margin-top: 12px;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            padding: 10px 14px;
+            border-radius: 8px;
+            display: none;
+            border: 1px solid;
+        }
+
+        .q-feedback.show {
+            display: block;
+        }
+
+        .q-feedback.fb-correct {
+            background: rgba(26, 138, 90, .08);
+            border-color: rgba(26, 138, 90, .3);
+            color: #0f5e3a;
+        }
+
+        .q-feedback.fb-wrong {
+            background: rgba(192, 40, 62, .08);
+            border-color: rgba(192, 40, 62, .3);
+            color: #a01030;
+        }
+
+        /* quiz score bar */
+        .score-bar {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .score-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--muted);
+            flex-shrink: 0;
+        }
+
+        .score-track {
+            flex: 1;
+            height: 10px;
+            background: var(--surface2);
+            border-radius: 50px;
+            overflow: hidden;
+            min-width: 120px;
+        }
+
+        .score-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 50px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            transition: width .5s ease;
+        }
+
+        .score-count {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .reset-btn {
+            padding: 7px 18px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--muted);
+            font-family: 'Inter', sans-serif;
+            transition: background .2s;
+            flex-shrink: 0;
+        }
+
+        .reset-btn:hover {
+            background: rgba(91, 141, 238, .10);
+            color: var(--accent);
+        }
+
+        /* ── PILLAR SORT ── */
+        .sort-intro {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .scenario-pool {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .scenario-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--text);
+            cursor: grab;
+            user-select: none;
+            transition: border-color .2s, box-shadow .2s, opacity .2s;
+            line-height: 1.5;
+        }
+
+        .scenario-card:hover {
+            border-color: rgba(91, 141, 238, .5);
+            box-shadow: 0 4px 16px rgba(91, 141, 238, .12);
+        }
+
+        .scenario-card.dragging {
+            opacity: 0.45;
+        }
+
+        .scenario-card.placed {
+            border-color: rgba(26, 138, 90, .5);
+            background: rgba(26, 138, 90, .06);
+            cursor: default;
+        }
+
+        .scenario-card.wrong-drop {
+            border-color: rgba(192, 40, 62, .5);
+            background: rgba(192, 40, 62, .06);
+            animation: shake .35s ease;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-6px);
+            }
+
+            75% {
+                transform: translateX(6px);
+            }
+        }
+
+        .drop-zones {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        @media(max-width:680px) {
+            .drop-zones {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .drop-zone {
+            min-height: 130px;
+            border-radius: var(--radius);
+            border: 2px dashed var(--border);
+            padding: 14px;
+            transition: border-color .2s, background .2s;
+        }
+
+        .drop-zone.drag-over {
+            border-color: var(--accent);
+            background: rgba(91, 141, 238, .06);
+        }
+
+        .drop-zone-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .drop-zone[data-pillar="I"] .drop-zone-label {
+            color: #1e4ba8;
+        }
+
+        .drop-zone[data-pillar="II"] .drop-zone-label {
+            color: #0f5e3a;
+        }
+
+        .drop-zone[data-pillar="III"] .drop-zone-label {
+            color: #7a5800;
+        }
+
+        .drop-placeholder {
+            font-size: 0.8rem;
+            color: var(--border);
+            font-style: italic;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .sort-result-msg {
+            margin-top: 18px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            display: none;
+            border: 1px solid;
+        }
+
+        .sort-result-msg.show {
+            display: block;
+        }
+
+        .sort-result-msg.all-correct {
+            background: rgba(26, 138, 90, .08);
+            border-color: rgba(26, 138, 90, .3);
+            color: #0f5e3a;
+        }
+
+        .sort-result-msg.some-wrong {
+            background: rgba(192, 40, 62, .08);
+            border-color: rgba(192, 40, 62, .3);
+            color: #a01030;
+        }
+
+        /* ── DEBATE TABLE ── */
+        .debate-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.875rem;
+        }
+
+        .debate-table th {
+            padding: 12px 16px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            text-align: left;
+            background: var(--surface2);
+            border-bottom: 2px solid var(--border);
+            color: var(--muted);
+        }
+
+        .debate-table td {
+            padding: 13px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+            vertical-align: top;
+            line-height: 1.7;
+        }
+
+        .debate-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .debate-table td:first-child {
+            font-weight: 700;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .debate-table tr:hover td {
+            background: rgba(91, 141, 238, .04);
+        }
+
+        .theory-pill {
+            display: inline-block;
+            padding: 2px 9px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .t-r {
+            background: rgba(192, 40, 62, .10);
+            color: #a01030;
+        }
+
+        .t-l {
+            background: rgba(44, 95, 196, .10);
+            color: #1e4ba8;
+        }
+
+        .t-c {
+            background: rgba(100, 56, 176, .10);
+            color: #4a1fa0;
+        }
+
+        /* ── WRITING SCAFFOLD ── */
+        .scaffold-box {
+            background: linear-gradient(135deg, rgba(91, 141, 238, .10), rgba(124, 92, 191, .10));
+            border: 1px solid rgba(124, 92, 191, .32);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            margin: 22px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scaffold-box::before {
+            content: '"';
+            position: absolute;
+            top: -12px;
+            left: 18px;
+            font-size: 7rem;
+            font-family: 'Playfair Display', serif;
+            color: rgba(124, 92, 191, .10);
+            line-height: 1;
+        }
+
+        .scaffold-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--accent2);
+            margin-bottom: 12px;
+        }
+
+        .scaffold-box blockquote {
+            font-size: 1.05rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.65;
+            border: none;
+            padding: 0;
+            margin: 0 0 14px;
+        }
+
+        .scaffold-box p {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .sentence-starters {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        @media(max-width:620px) {
+            .sentence-starters {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .starter-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 18px;
+        }
+
+        .starter-category {
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .starter-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .starter-card ul li {
+            font-size: 0.83rem;
+            color: var(--muted);
+            padding: 4px 0;
+            border-bottom: 1px solid var(--surface2);
+            font-style: italic;
+        }
+
+        .starter-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .writing-input {
+            width: 100%;
+            min-height: 140px;
+            margin-top: 18px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            color: var(--text);
+            background: var(--surface);
+            resize: vertical;
+            line-height: 1.8;
+            transition: border-color .2s;
+        }
+
+        .writing-input:focus {
+            outline: none;
+            border-color: rgba(91, 141, 238, .5);
+        }
+
+        .writing-input::placeholder {
+            color: var(--border);
+        }
+
+        .word-count-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .wc-label {
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .wc-count {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* ── THEORY MATCHER ── */
+        .matcher-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .matcher-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 22px;
+            cursor: pointer;
+            transition: border-color .2s, background .2s;
+        }
+
+        .matcher-card:hover:not(.revealed) {
+            border-color: rgba(91, 141, 238, .4);
+            background: rgba(91, 141, 238, .04);
+        }
+
+        .matcher-card .mc-quote {
+            font-size: 0.87rem;
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.65;
+            margin-bottom: 14px;
+        }
+
+        .matcher-card .mc-source {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .mc-reveal {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            border: 1px dashed var(--border);
+            color: var(--muted);
+            transition: all .2s;
+        }
+
+        .matcher-card.revealed .mc-reveal {
+            border-style: solid;
+        }
+
+        .matcher-card.t-realism {
+            border-color: rgba(192, 40, 62, .4);
+        }
+
+        .matcher-card.t-realism .mc-reveal {
+            background: rgba(192, 40, 62, .10);
+            border-color: rgba(192, 40, 62, .35);
+            color: #a01030;
+        }
+
+        .matcher-card.t-liberalism {
+            border-color: rgba(44, 95, 196, .4);
+        }
+
+        .matcher-card.t-liberalism .mc-reveal {
+            background: rgba(44, 95, 196, .10);
+            border-color: rgba(44, 95, 196, .35);
+            color: #1e4ba8;
+        }
+
+        .matcher-card.t-constructivism {
+            border-color: rgba(100, 56, 176, .4);
+        }
+
+        .matcher-card.t-constructivism .mc-reveal {
+            background: rgba(100, 56, 176, .10);
+            border-color: rgba(100, 56, 176, .35);
+            color: #4a1fa0;
+        }
+
+        .matcher-card .mc-explanation {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 10px;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .matcher-card.revealed .mc-explanation {
+            display: block;
+        }
+
+        /* ── ANNOTATED PARAGRAPH ── */
+        .model-para-wrap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            margin-top: 22px;
+        }
+
+        .model-para-wrap .mp-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--accent2);
+            margin-bottom: 14px;
+        }
+
+        .model-para-wrap p {
+            font-size: 0.93rem;
+            line-height: 2.2;
+            color: var(--text);
+        }
+
+        .ann {
+            cursor: default;
+            border-radius: 3px;
+            padding: 1px 3px;
+            border-bottom: 2px solid;
+            position: relative;
+        }
+
+        .ann-claim {
+            border-color: #c0283e;
+            background: rgba(192, 40, 62, .07);
+        }
+
+        .ann-evidence {
+            border-color: #2c5fc4;
+            background: rgba(44, 95, 196, .07);
+        }
+
+        .ann-theory {
+            border-color: #6438b0;
+            background: rgba(100, 56, 176, .07);
+        }
+
+        .ann-eval {
+            border-color: #1a8a5a;
+            background: rgba(26, 138, 90, .07);
+        }
+
+        .ann-link {
+            border-color: #b07d10;
+            background: rgba(176, 125, 16, .07);
+        }
+
+        .ann-tooltip {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 7px;
+            padding: 7px 12px;
+            pointer-events: none;
+            z-index: 200;
+            width: 220px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .ann-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--text);
+        }
+
+        .ann:hover .ann-tooltip {
+            display: block;
+        }
+
+        .ann-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .ann-key {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .ann-swatch {
+            width: 18px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .ann-swatch.claim {
+            background: #c0283e;
+        }
+
+        .ann-swatch.evidence {
+            background: #2c5fc4;
+        }
+
+        .ann-swatch.theory {
+            background: #6438b0;
+        }
+
+        .ann-swatch.eval {
+            background: #1a8a5a;
+        }
+
+        .ann-swatch.link {
+            background: #b07d10;
+        }
+
+        .exam-grade-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+
+        .grade-chip {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 18px;
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .grade-chip .gc-score {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--green);
+            line-height: 1;
+        }
+
+        .grade-chip .gc-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        /* ── EXIT TICKET ── */
+        .ticket-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        @media(max-width:620px) {
+            .ticket-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ticket-box {
+            border-radius: 12px;
+            padding: 20px 22px;
+            border: 1px solid;
+        }
+
+        .ticket-box.tb-blue {
+            background: rgba(91, 141, 238, .06);
+            border-color: rgba(91, 141, 238, .25);
+        }
+
+        .ticket-box.tb-gold {
+            background: rgba(232, 184, 75, .07);
+            border-color: rgba(232, 184, 75, .25);
+        }
+
+        .ticket-box.tb-green {
+            background: rgba(26, 138, 90, .06);
+            border-color: rgba(26, 138, 90, .25);
+        }
+
+        .ticket-box.tb-danger {
+            background: rgba(192, 40, 62, .06);
+            border-color: rgba(192, 40, 62, .25);
+        }
+
+        .ticket-box .tb-label {
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .tb-blue .tb-label {
+            color: var(--accent);
+        }
+
+        .tb-gold .tb-label {
+            color: var(--gold);
+        }
+
+        .tb-green .tb-label {
+            color: var(--green);
+        }
+
+        .tb-danger .tb-label {
+            color: var(--danger);
+        }
+
+        .ticket-box .tb-prompt {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .ticket-input {
+            width: 100%;
+            min-height: 72px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            color: var(--text);
+            background: var(--surface);
+            resize: none;
+            line-height: 1.7;
+            transition: border-color .2s;
+        }
+
+        .ticket-input:focus {
+            outline: none;
+            border-color: rgba(91, 141, 238, .4);
+        }
+
+        /* ── UTILITY ── */
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mt-28 {
+            margin-top: 28px;
+        }
+
+        .text-muted {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 24px;
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        footer strong {
+            color: var(--text);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-badge">IB Global Politics · HL · Review Activity · March 2026</div>
+        <h1>R2P Review Station</h1>
+        <p class="hero-sub">Quick-fire knowledge checks, a sorting challenge, a comparison table, and a timed writing
+            prompt — all drawn from your video and HW readings.</p>
+        <div class="meta-pills">
+            <span class="pill pill-blue">🏳️ Three Pillars</span>
+            <span class="pill pill-gold">🌎 Venezuela</span>
+            <span class="pill pill-danger">💥 Iran</span>
+            <span class="pill pill-purple">⚖️ Realism · Liberalism · Constructivism</span>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ── SECTION 1: KNOWLEDGE CHECK ── -->
+        <section class="section" id="s1">
+            <div class="section-header">
+                <div class="section-num num-blue">1</div>
+                <div class="section-title">
+                    <span>Warm-Up · ~8 min</span>
+                    Knowledge Check — 10 Questions
+                </div>
+            </div>
+
+            <div class="alert alert-blue">
+                <span class="alert-icon">💡</span>
+                <div>
+                    <h4 style="color:var(--accent)">How it works</h4>
+                    <p>Select the best answer for each question. Instant feedback appears after you click. Track your
+                        score in the bar at the bottom.</p>
+                </div>
+            </div>
+
+            <div class="quiz-grid" id="quizContainer">
+                <!-- Q1 -->
+                <div class="q-card" data-q="1">
+                    <div class="q-num">Question 1</div>
+                    <div class="question">Which year and document formally established R2P as an international norm?
+                    </div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">The 1948 Genocide Convention</button>
+                        <button class="choice-btn" data-correct="true">The 2005 UN World Summit Outcome
+                            Document</button>
+                        <button class="choice-btn" data-correct="false">UN Security Council Resolution 1973
+                            (2011)</button>
+                        <button class="choice-btn" data-correct="false">The 1999 NATO Kosovo intervention</button>
+                    </div>
+                    <div class="q-feedback">R2P was unanimously endorsed by 150+ heads of state at the 2005 UN World
+                        Summit. It was a political commitment, not a binding treaty — a key reason enforcement remains
+                        contested.</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="q-card" data-q="2">
+                    <div class="q-num">Question 2</div>
+                    <div class="question">Pillar III of R2P allows the international community to take action — but only
+                        under what condition?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">When a humanitarian NGO requests it</button>
+                        <button class="choice-btn" data-correct="false">When the target state has a non-democratic
+                            government</button>
+                        <button class="choice-btn" data-correct="true">When a state manifestly fails and the UNSC
+                            authorises collective action</button>
+                        <button class="choice-btn" data-correct="false">When two permanent members of the UNSC jointly
+                            request it</button>
+                    </div>
+                    <div class="q-feedback">Pillar III requires a "manifest failure" by the state AND UN Security
+                        Council authorisation — making great-power vetoes a structural barrier to implementation.</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="q-card" data-q="3">
+                    <div class="q-num">Question 3</div>
+                    <div class="question">The Oxford Academic article argues R2P faces "false death, grave crisis." What
+                        does "false death" mean in this context?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">R2P was never alive — it was always a fictional
+                            norm</button>
+                        <button class="choice-btn" data-correct="true">R2P's institutional machinery may be paralysed,
+                            yet the norm retains moral and rhetorical power</button>
+                        <button class="choice-btn" data-correct="false">R2P has been formally repealed at the UN General
+                            Assembly</button>
+                        <button class="choice-btn" data-correct="false">Russia and China have successfully replaced R2P
+                            with a new framework</button>
+                    </div>
+                    <div class="q-feedback">"False death" suggests that while states bypass R2P's procedural rules, they
+                        still feel compelled to invoke humanitarian language — proof the norm hasn't truly died; it's
+                        evolving (a Constructivist reading).</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="q-card" data-q="4">
+                    <div class="q-num">Question 4</div>
+                    <div class="question">What was the official US justification for Operation Absolute Resolve in
+                        Venezuela?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">Invoking R2P Pillar III after Venezuelan
+                            genocide</button>
+                        <button class="choice-btn" data-correct="false">Collective defence under NATO Article 5</button>
+                        <button class="choice-btn" data-correct="true">Counter-narcotics and narco-terrorism charges
+                            under US federal indictments</button>
+                        <button class="choice-btn" data-correct="false">UNSC Resolution authorising regime
+                            change</button>
+                    </div>
+                    <div class="q-feedback">The US never formally invoked R2P. The framing was counter-narcotics and
+                        state security — blurring whether Venezuela was a humanitarian intervention or unilateral
+                        hegemonic action. This ambiguity is core to the analytical debate.</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="q-card" data-q="5">
+                    <div class="q-num">Question 5</div>
+                    <div class="question">Which UN Charter article do critics cite when arguing the Venezuela and Iran
+                        operations were illegal?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">Article 51 — the right to self-defence</button>
+                        <button class="choice-btn" data-correct="true">Article 2(4) — prohibition on the use of force
+                            against territorial integrity</button>
+                        <button class="choice-btn" data-correct="false">Article 1 — purposes and principles</button>
+                        <button class="choice-btn" data-correct="false">Article 7 — charter exceptions for humanitarian
+                            crises</button>
+                    </div>
+                    <div class="q-feedback">Article 2(4) prohibits the use or threat of force against another state's
+                        territorial integrity or political independence. Critics argue both operations violated this
+                        foundational principle of the post-WWII international order.</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="q-card" data-q="6">
+                    <div class="q-num">Question 6</div>
+                    <div class="question">Operation Epic Fury / Roaring Lion targeted Iran. What was the primary stated
+                        military objective?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">Halting ethnic cleansing of Iran's Kurdish
+                            minority</button>
+                        <button class="choice-btn" data-correct="false">Enforcing UNSC Resolution sanctions on Iranian
+                            oil exports</button>
+                        <button class="choice-btn" data-correct="true">Degrading Iran's nuclear programme and
+                            decapitating the Islamic Republic's leadership</button>
+                        <button class="choice-btn" data-correct="false">Retaliating for a direct Iranian attack on US
+                            soil</button>
+                    </div>
+                    <div class="q-feedback">The strikes were preemptive — aimed at Iran's nuclear infrastructure and its
+                        leadership chain including Supreme Leader Khamenei. This is why critics argue it cannot be
+                        described as R2P: R2P applies to genocide/war crimes, not nuclear proliferation.</div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="q-card" data-q="7">
+                    <div class="q-num">Question 7</div>
+                    <div class="question">A Constructivist would most likely focus on which aspect of the Iran strikes?
+                    </div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">The strategic balance of military power in the
+                            Middle East</button>
+                        <button class="choice-btn" data-correct="false">Whether Iran's GDP was sufficient to deter
+                            intervention</button>
+                        <button class="choice-btn" data-correct="true">How "liberation" rhetoric used R2P-style language
+                            to legitimise the strikes</button>
+                        <button class="choice-btn" data-correct="false">The number of sorties flown versus targets
+                            destroyed</button>
+                    </div>
+                    <div class="q-feedback">Constructivists study how norms, identity, and language constitute
+                        international politics. The framing of strikes as "liberating" the Iranian people borrows R2P
+                        logic — showing how normative language shapes the legitimacy of action even when legal
+                        requirements are ignored.</div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="q-card" data-q="8">
+                    <div class="q-num">Question 8</div>
+                    <div class="question">Which of the four R2P "trigger" situations was most plausibly argued in the
+                        Venezuela case?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">Genocide — systematic elimination of an ethnic
+                            group</button>
+                        <button class="choice-btn" data-correct="false">Ethnic cleansing — forced demographic
+                            removal</button>
+                        <button class="choice-btn" data-correct="true">Crimes against humanity — mass extrajudicial
+                            killings and starvation linked to state policy</button>
+                        <button class="choice-btn" data-correct="false">War crimes — systematic targeting of enemy
+                            combatants in armed conflict</button>
+                    </div>
+                    <div class="q-feedback">Venezuela's 2015–2026 crisis involved extrajudicial killings by the FAES
+                        security forces and humanitarian collapse — potentially constituting crimes against humanity.
+                        However, the US framed the operation as counter-narcotics, not humanitarian, making R2P
+                        applicability ambiguous.</div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="q-card" data-q="9">
+                    <div class="q-num">Question 9</div>
+                    <div class="question">A pure Realist explanation of both 2026 interventions would emphasise:</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">The success of multilateral institutions in
+                            coordinating collective action</button>
+                        <button class="choice-btn" data-correct="false">The role of international law in constraining
+                            great powers</button>
+                        <button class="choice-btn" data-correct="true">US national interest, regional hegemony, and
+                            self-help in an anarchic system</button>
+                        <button class="choice-btn" data-correct="false">The moral obligation all states share to protect
+                            civilian populations</button>
+                    </div>
+                    <div class="q-feedback">Realists argue states act in their self-interest in an anarchic world.
+                        Bypassing the UNSC, asserting hegemony in the Western Hemisphere, and eliminating nuclear rivals
+                        are all classically Realist behaviours — regardless of the humanitarian language used.</div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="q-card" data-q="10">
+                    <div class="q-num">Question 10</div>
+                    <div class="question">The tension at the heart of this unit is between two definitions of security.
+                        Identify the correct pairing:</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">State Security = protecting civilians / Human
+                            Security = protecting borders</button>
+                        <button class="choice-btn" data-correct="false">State Security = economic growth / Human
+                            Security = military defence</button>
+                        <button class="choice-btn" data-correct="true">State Security = protecting the nation from
+                            threats / Human Security = protecting individuals from violence and rights abuses</button>
+                        <button class="choice-btn" data-correct="false">State Security = enforcing international law /
+                            Human Security = maintaining sovereignty</button>
+                    </div>
+                    <div class="q-feedback">This is the core HL Security Challenge distinction. In both 2026 cases, the
+                        US invoked state security (counter-terror, nuclear threat) while critics pointed to the failure
+                        to advance human security — and in Iran, arguably making it worse.</div>
+                </div>
+            </div>
+
+            <!-- Score Bar -->
+            <div class="score-bar">
+                <span class="score-label">Score</span>
+                <div class="score-track">
+                    <div class="score-fill" id="scoreFill"></div>
+                </div>
+                <span class="score-count" id="scoreCount">0 / 10</span>
+                <button class="reset-btn" onclick="resetQuiz()">↩ Reset</button>
+            </div>
+        </section>
+
+        <hr class="divider" />
+
+        <!-- ── SECTION 2: PILLAR SORT ── -->
+        <section class="section" id="s2">
+            <div class="section-header">
+                <div class="section-num num-gold">2</div>
+                <div class="section-title">
+                    <span>Sorting Challenge · ~7 min</span>
+                    Which Pillar? — Drag &amp; Drop
+                </div>
+            </div>
+
+            <p class="sort-intro">Each scenario below relates to one of R2P's three pillars. Drag each card into the
+                correct drop zone. Cards will lock green when correct and shake red if placed in the wrong zone.</p>
+
+            <div class="scenario-pool" id="scenarioPool">
+                <div class="scenario-card" draggable="true" data-pillar="I" id="sc1">🇻🇪 Venezuela's government runs
+                    extrajudicial killings through its FAES units against its own people.</div>
+                <div class="scenario-card" draggable="true" data-pillar="III" id="sc2">The UNSC authorises a military
+                    coalition to halt an ongoing genocide — if states fail to stop it themselves.</div>
+                <div class="scenario-card" draggable="true" data-pillar="II" id="sc3">The UN Office for the Coordination
+                    of Humanitarian Affairs provides Venezuelan institutions with capacity-building support for civilian
+                    protection.</div>
+                <div class="scenario-card" draggable="true" data-pillar="I" id="sc4">Iran is expected, under
+                    international human rights law, to protect its own Kurdish and Baha'i minorities from persecution.
+                </div>
+                <div class="scenario-card" draggable="true" data-pillar="III" id="sc5">After a complete collapse of
+                    state authority, a multilateral force is deployed under UNSC resolution to protect civilians.</div>
+                <div class="scenario-card" draggable="true" data-pillar="II" id="sc6">An international donor conference
+                    funds early warning systems and peace-building networks before a crisis escalates.</div>
+            </div>
+
+            <div class="drop-zones">
+                <div class="drop-zone" data-pillar="I" id="zone-I">
+                    <div class="drop-zone-label">🏳️ Pillar I — State Responsibility</div>
+                    <div class="drop-placeholder">Drop here</div>
+                </div>
+                <div class="drop-zone" data-pillar="II" id="zone-II">
+                    <div class="drop-zone-label">🤝 Pillar II — International Assistance</div>
+                    <div class="drop-placeholder">Drop here</div>
+                </div>
+                <div class="drop-zone" data-pillar="III" id="zone-III">
+                    <div class="drop-zone-label">⚖️ Pillar III — Timely Collective Action</div>
+                    <div class="drop-placeholder">Drop here</div>
+                </div>
+            </div>
+
+            <div class="sort-result-msg" id="sortResultMsg"></div>
+        </section>
+
+        <hr class="divider" />
+
+        <!-- ── SECTION 3: COMPARISON TABLE ── -->
+        <section class="section" id="s3">
+            <div class="section-header">
+                <div class="section-num num-danger">3</div>
+                <div class="section-title">
+                    <span>Analytical Review · ~6 min</span>
+                    Case Study Comparison Table
+                </div>
+            </div>
+
+            <p class="text-muted" style="margin-bottom:6px;">Study the table. Use it to spot the patterns across both
+                cases — these are the argumentative building blocks for Paper 2.</p>
+
+            <div class="alert alert-gold" style="margin-top:16px;">
+                <span class="alert-icon">🔑</span>
+                <div>
+                    <h4 style="color:var(--gold)">What to notice</h4>
+                    <p>Both operations bypassed the UNSC. Both invoked partial humanitarian language. Both were
+                        justified by Realist self-interest. The difference lies in <strong
+                            style="color:var(--text)">what four criteria</strong> R2P required — and how far each case
+                        diverges from them.</p>
+                </div>
+            </div>
+
+            <div style="overflow-x:auto; margin-top:20px;">
+                <table class="debate-table">
+                    <thead>
+                        <tr>
+                            <th>Criterion</th>
+                            <th>🌎 Venezuela (Jan 2026)</th>
+                            <th>💥 Iran (Feb 2026)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>R2P trigger?</td>
+                            <td>Possible — crimes against humanity (extrajudicial killings, starvation). Not formally
+                                declared.</td>
+                            <td>No — nuclear proliferation is not one of R2P's four trigger crimes.</td>
+                        </tr>
+                        <tr>
+                            <td>UNSC authorisation?</td>
+                            <td>❌ None — entirely unilateral US operation.</td>
+                            <td>❌ None — bilateral US-Israel strike, bypassing UNSC entirely.</td>
+                        </tr>
+                        <tr>
+                            <td>Stated justification</td>
+                            <td>Counter-narcotics / narco-terrorism (US federal indictments). Not explicitly
+                                humanitarian.</td>
+                            <td>Preemptive defence + nuclear non-proliferation. "Liberation" framing added rhetorically.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Humanitarian language used?</td>
+                            <td>Partial — implicit: "restoring democracy," removing a criminal regime.</td>
+                            <td>Yes — explicit "liberation of the Iranian people" rhetoric tracks R2P language.</td>
+                        </tr>
+                        <tr>
+                            <td>Human security outcome?</td>
+                            <td>Contested — removal of Maduro may improve long-term prospects; short-term chaos
+                                possible.</td>
+                            <td>Negative — mass civilian casualties, regional retaliatory strikes, destabilisation.</td>
+                        </tr>
+                        <tr>
+                            <td>Best theory lens</td>
+                            <td><span class="theory-pill t-r">Realism</span> regional hegemony; <span
+                                    class="theory-pill t-c">Constructivism</span> "narco-terror" label strips
+                                sovereignty</td>
+                            <td><span class="theory-pill t-r">Realism</span> preemptive self-help; <span
+                                    class="theory-pill t-c">Constructivism</span> liberation framing borrows R2P
+                                discourse</td>
+                        </tr>
+                        <tr>
+                            <td>R2P verdict</td>
+                            <td>Ambiguous — humanitarian crisis existed but procedure ignored. Counter-R2P in practice.
+                            </td>
+                            <td>Not R2P — wrong trigger, no authorisation, human security arguably worsened.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="alert alert-purple mt-20">
+                <span class="alert-icon">💬</span>
+                <div>
+                    <h4 style="color:var(--accent2)">Table Talk (pair discussion — 2 min)</h4>
+                    <ul>
+                        <li>Which case comes <em>closer</em> to a legitimate R2P invocation, and why?</li>
+                        <li>If humanitarian language persists even when R2P rules are ignored, what does that tell us
+                            about the norm's power?</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider" />
+
+        <!-- ── SECTION 4: WRITING SCAFFOLD ── -->
+        <section class="section" id="s4">
+            <div class="section-header">
+                <div class="section-num num-purple">4</div>
+                <div class="section-title">
+                    <span>Writing Practice · ~12 min</span>
+                    Timed Introduction Paragraph
+                </div>
+            </div>
+
+            <div class="scaffold-box">
+                <div class="scaffold-label">Paper 2 Practice Prompt</div>
+                <blockquote>"The concept of the Responsibility to Protect has been rendered obsolete by the strategic
+                    security interests of powerful states." Evaluate this claim using two contemporary examples.
+                </blockquote>
+                <p>Write a <strong style="color:var(--text)">single introduction paragraph</strong> (~100–120 words)
+                    that: defines the key concept, signals your evaluative stance, previews your two case studies, and
+                    names the theory that best supports your argument.</p>
+            </div>
+
+            <div class="sentence-starters">
+                <div class="starter-card">
+                    <div class="starter-category" style="color:var(--accent)">🔑 Define the concept</div>
+                    <ul>
+                        <li>"R2P, established at the 2005 UN World Summit, holds that…"</li>
+                        <li>"The Responsibility to Protect is a three-pillared norm which…"</li>
+                        <li>"Central to R2P is the tension between state sovereignty and…"</li>
+                    </ul>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-category" style="color:var(--accent2)">⚖️ Signal your stance</div>
+                    <ul>
+                        <li>"This claim has significant merit: both 2026 cases demonstrate…"</li>
+                        <li>"While R2P's procedural requirements were bypassed, the persistent use of…"</li>
+                        <li>"Rather than obsolescence, these cases reveal R2P's evolution into…"</li>
+                    </ul>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-category" style="color:var(--gold)">🌎💥 Preview your cases</div>
+                    <ul>
+                        <li>"This will be evidenced through the January 2026 US capture of Maduro and…"</li>
+                        <li>"Operation Absolute Resolve and Operation Epic Fury both illustrate…"</li>
+                        <li>"Drawing on Venezuela (Jan 2026) and Iran (Feb 2026), I will argue…"</li>
+                    </ul>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-category" style="color:var(--green)">🔭 Name your theory lens</div>
+                    <ul>
+                        <li>"From a Realist perspective, both interventions confirm that…"</li>
+                        <li>"A Constructivist reading reveals that despite the absence of…"</li>
+                        <li>"A Liberal institutionalist would argue that R2P's failure lies not in the norm but in…"
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <textarea class="writing-input" id="writingInput" placeholder="Write your introduction paragraph here…"
+                oninput="updateWordCount()"></textarea>
+            <div class="word-count-bar">
+                <span class="wc-label">Word count:</span>
+                <span class="wc-count" id="wcCount">0</span>
+                <span class="wc-label">/ target: 100–120 words</span>
+            </div>
+
+            <div class="alert alert-green mt-20">
+                <span class="alert-icon">✅</span>
+                <div>
+                    <h4 style="color:var(--green)">Peer Check — 2 min</h4>
+                    <ul>
+                        <li>Does the intro define R2P clearly in 1–2 sentences?</li>
+                        <li>Is there a clear, arguable stance on the prompt (not just restatement)?</li>
+                        <li>Are both case studies explicitly named?</li>
+                        <li>Is at least one theory named and connected to the argument?</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider" />
+
+        <!-- ── SECTION 5: EXIT TICKET ── -->
+        <section class="section" id="s5">
+            <div class="section-header">
+                <div class="section-num num-blue">✓</div>
+                <div class="section-title">
+                    <span>Exit Ticket · ~4 min</span>
+                    Before You Leave
+                </div>
+            </div>
+
+            <p class="text-muted" style="margin-bottom:4px;">Answer each box in 1–2 sentences. Handwrite or type — your
+                teacher will collect these.</p>
+
+            <div class="ticket-grid">
+                <div class="ticket-box tb-blue">
+                    <div class="tb-label">📌 One thing I can explain</div>
+                    <div class="tb-prompt">What is R2P Pillar III and why is UNSC authorisation structurally difficult
+                        to obtain?</div>
+                    <textarea class="ticket-input" placeholder="Write here…"></textarea>
+                </div>
+                <div class="ticket-box tb-danger">
+                    <div class="tb-label">🔥 The hardest question</div>
+                    <div class="tb-prompt">Can "liberation" language ever legitimise a strike that didn't follow R2P's
+                        rules? Explain your position.</div>
+                    <textarea class="ticket-input" placeholder="Write here…"></textarea>
+                </div>
+                <div class="ticket-box tb-gold">
+                    <div class="tb-label">🌐 Theory I'd use in Paper 2</div>
+                    <div class="tb-prompt">Which theory — Realism, Liberalism, or Constructivism — best explains both
+                        2026 cases? Why?</div>
+                    <textarea class="ticket-input" placeholder="Write here…"></textarea>
+                </div>
+                <div class="ticket-box tb-green">
+                    <div class="tb-label">❓ My remaining question</div>
+                    <div class="tb-prompt">What is still unclear or unresolved for you about R2P after today's review?
+                    </div>
+                    <textarea class="ticket-input" placeholder="Write here…"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider" />
+
+        <!-- ── SECTION 6: THEORY LENS MATCHER ── -->
+        <section class="section" id="s6">
+            <div class="section-header">
+                <div class="section-num num-gold">6</div>
+                <div class="section-title">
+                    <span>Theory Practice · ~8 min</span>
+                    Theory Lens Matcher — Click to Reveal
+                </div>
+            </div>
+
+            <div class="alert alert-blue">
+                <span class="alert-icon">🔭</span>
+                <div>
+                    <h4 style="color:var(--accent)">How it works</h4>
+                    <p>Each card contains a real-style quote drawn from the case studies or scholarship. Decide which IR
+                        theory lens best explains it — then <strong style="color:var(--text)">click to reveal</strong>
+                        the answer and explanation. Think before you click.</p>
+                </div>
+            </div>
+
+            <div class="matcher-grid" id="matcherGrid">
+
+                <div class="matcher-card" data-theory="t-realism" data-label="🔴 Realism"
+                    data-explanation="Realists explain state behaviour through national interest and power — not moral obligation. The US bypassing the UNSC to assert hemispheric dominance is textbook structural Realism: states act to maximise security in an anarchic system.">
+                    <div class="mc-source">Venezuela case · Jan 2026</div>
+                    <div class="mc-quote">"The United States acted unilaterally to remove Maduro — not because
+                        international law permitted it, but because Washington calculated that a narco-state on its
+                        doorstep was a strategic threat it could no longer tolerate."</div>
+                    <span class="mc-reveal">Click to identify theory →</span>
+                    <div class="mc-explanation"></div>
+                </div>
+
+                <div class="matcher-card" data-theory="t-constructivism" data-label="🟣 Constructivism"
+                    data-explanation="Constructivists study how language shapes legitimacy. The 'liberation' framing borrows directly from R2P's humanitarian vocabulary — even though the legal conditions were never met. This shows norms exert power even when their rules are violated.">
+                    <div class="mc-source">Iran case · Feb 2026</div>
+                    <div class="mc-quote">"By invoking the 'liberation of the Iranian people,' the US and Israel
+                        anchored their operation in a humanitarian discourse that R2P helped normalise — even as they
+                        bypassed every procedural requirement of that norm."</div>
+                    <span class="mc-reveal">Click to identify theory →</span>
+                    <div class="mc-explanation"></div>
+                </div>
+
+                <div class="matcher-card" data-theory="t-liberalism" data-label="🔵 Liberalism"
+                    data-explanation="Liberal institutionalists argue that multilateral institutions constrain states and produce better outcomes. The UNSC's paralysis here is a structural failure of the liberal order — not proof the norm has died. The institution failed R2P, not the other way around.">
+                    <div class="mc-source">Oxford Academic · R2P Scholarship</div>
+                    <div class="mc-quote">"The tragedy of 2026 is not that R2P has been abandoned — it is that the
+                        Security Council mechanism designed to operationalise it remains paralysed by permanent member
+                        vetoes. The norm survives; the institution has failed it."</div>
+                    <span class="mc-reveal">Click to identify theory →</span>
+                    <div class="mc-explanation"></div>
+                </div>
+
+                <div class="matcher-card" data-theory="t-realism" data-label="🔴 Realism"
+                    data-explanation="In a Realist world, sovereignty is respected only when a state has the power to defend it. Venezuela and Iran lacked the military capacity to deter the US — making them vulnerable precisely because of the anarchic, self-help nature of the international system.">
+                    <div class="mc-source">General · IR Theory</div>
+                    <div class="mc-quote">"Sovereignty is not a legal guarantee — it is a function of power. States that
+                        cannot defend themselves invite the strategic calculations of stronger neighbours."</div>
+                    <span class="mc-reveal">Click to identify theory →</span>
+                    <div class="mc-explanation"></div>
+                </div>
+
+                <div class="matcher-card" data-theory="t-constructivism" data-label="🟣 Constructivism"
+                    data-explanation="'False death' is a Constructivist reading: R2P has not been erased from international consciousness — states still feel compelled to invoke or respond to humanitarian justifications. The norm shapes discourse even when its rules are broken.">
+                    <div class="mc-source">Oxford Academic · R2P Scholarship</div>
+                    <div class="mc-quote">"R2P's 'false death' reflects the paradox of a norm that cannot be ignored
+                        even by those who violate it. States that bypass R2P procedure still feel obliged to justify
+                        themselves in R2P's language."</div>
+                    <span class="mc-reveal">Click to identify theory →</span>
+                    <div class="mc-explanation"></div>
+                </div>
+
+                <div class="matcher-card" data-theory="t-liberalism" data-label="🔵 Liberalism"
+                    data-explanation="Liberals argue that international cooperation through norms and institutions produces shared benefits. A slower, multilateral Venezuelan operation would have built legitimacy for a durable democratic transition — the hallmark of a Liberal institutionalist argument.">
+                    <div class="mc-source">Venezuela case · counterfactual</div>
+                    <div class="mc-quote">"Had the US brought the Venezuela operation to the Security Council, the
+                        outcome may have been slower — but it would have built the international legitimacy needed for a
+                        durable democratic transition rather than a contested regime change."</div>
+                    <span class="mc-reveal">Click to identify theory →</span>
+                    <div class="mc-explanation"></div>
+                </div>
+
+            </div>
+
+            <div class="alert alert-purple" style="margin-top:24px;">
+                <span class="alert-icon">💬</span>
+                <div>
+                    <h4 style="color:var(--accent2)">Class Discussion Prompt</h4>
+                    <p>Is it possible to apply <em>two</em> theory lenses simultaneously to the same event? Pick one of
+                        the quotes above and argue that it supports both <strong style="color:var(--text)">Realism and
+                            Constructivism</strong> at once.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider" />
+
+        <!-- ── SECTION 7: MODEL PARAGRAPH ANNOTATOR ── -->
+        <section class="section" id="s7">
+            <div class="section-header">
+                <div class="section-num num-purple">7</div>
+                <div class="section-title">
+                    <span>Exam Skills · ~6 min</span>
+                    Model Body Paragraph — Annotated
+                </div>
+            </div>
+
+            <p class="text-muted" style="margin-bottom:6px;">Read the model body paragraph below. <strong
+                    style="color:var(--text)">Hover over the highlighted phrases</strong> to see what each element is
+                doing — then use this structure for your own Iran paragraph.</p>
+
+            <div class="alert alert-gold" style="margin-top:16px;">
+                <span class="alert-icon">🎯</span>
+                <div>
+                    <h4 style="color:var(--gold)">Paper 2 Prompt</h4>
+                    <p>"The concept of the Responsibility to Protect has been rendered obsolete by the strategic
+                        security interests of powerful states." Evaluate this claim using two contemporary examples.</p>
+                </div>
+            </div>
+
+            <div class="model-para-wrap">
+                <div class="mp-label">📄 Model Body Paragraph — Venezuela (Jan 2026)</div>
+                <p>
+                    <span class="ann ann-claim">R2P's procedural requirements were systematically bypassed in the 2026
+                        US intervention in Venezuela, supporting the claim that strategic interests have marginalised
+                        the norm.<span class="ann-tooltip">CLAIM — directly answers the prompt and signals argument
+                            direction</span></span>
+                    &nbsp;
+                    <span class="ann ann-evidence">Operation Absolute Resolve, launched in January 2026, resulted in the
+                        capture of Nicolás Maduro without any UN Security Council authorisation — the sine qua non of a
+                        legitimate Pillar III action.<span class="ann-tooltip">EVIDENCE — specific named operation + key
+                            legal criterion (UNSC auth)</span></span>
+                    &nbsp;Instead, the US justified the operation on counter-narcotics grounds under federal
+                    indictments, deliberately sidestepping humanitarian framing.
+                    &nbsp;
+                    <span class="ann ann-theory">From a Realist perspective, this reflects the fundamental logic of an
+                        anarchic system: great powers act on self-interest, and Westphalian sovereignty extends only as
+                        far as a state's power to enforce it.<span class="ann-tooltip">THEORY — Realism named and
+                            explicitly applied, not just described</span></span>
+                    &nbsp;
+                    <span class="ann ann-eval">However, a Constructivist counter-reading complicates the verdict: the
+                        implicit framing of the operation as "restoring democracy" borrowed from R2P's normative
+                        vocabulary, revealing that even norm-violating actors feel compelled to perform humanitarian
+                        legitimacy.<span class="ann-tooltip">EVALUATION — introduces nuance with a second theory lens;
+                            this is what earns top-band marks</span></span>
+                    &nbsp;
+                    <span class="ann ann-link">This suggests R2P is not obsolete but rather weaponised — its language
+                        appropriated while its legal restraints are discarded, making Venezuela an ambiguous rather than
+                        a clear-cut counter-example to the norm's relevance.<span class="ann-tooltip">LINK — ties back
+                            precisely to the prompt's key claim with an evaluative conclusion</span></span>
+                </p>
+
+                <div class="ann-legend">
+                    <div class="ann-key">
+                        <div class="ann-swatch claim"></div> Claim
+                    </div>
+                    <div class="ann-key">
+                        <div class="ann-swatch evidence"></div> Evidence
+                    </div>
+                    <div class="ann-key">
+                        <div class="ann-swatch theory"></div> Theory Applied
+                    </div>
+                    <div class="ann-key">
+                        <div class="ann-swatch eval"></div> Evaluation / Nuance
+                    </div>
+                    <div class="ann-key">
+                        <div class="ann-swatch link"></div> Link to Prompt
+                    </div>
+                </div>
+            </div>
+
+            <div class="exam-grade-row">
+                <div class="grade-chip">
+                    <div class="gc-score">✓</div>
+                    <div class="gc-label">Prompt addressed directly</div>
+                </div>
+                <div class="grade-chip">
+                    <div class="gc-score">✓</div>
+                    <div class="gc-label">Named operation cited</div>
+                </div>
+                <div class="grade-chip">
+                    <div class="gc-score">✓</div>
+                    <div class="gc-label">Two theory lenses used</div>
+                </div>
+                <div class="grade-chip">
+                    <div class="gc-score">✓</div>
+                    <div class="gc-label">Counterclaim present</div>
+                </div>
+                <div class="grade-chip">
+                    <div class="gc-score">✓</div>
+                    <div class="gc-label">Clear link to prompt</div>
+                </div>
+            </div>
+
+            <div class="alert alert-green" style="margin-top:24px;">
+                <span class="alert-icon">✍️</span>
+                <div>
+                    <h4 style="color:var(--green)">Your Turn — Iran Body Paragraph</h4>
+                    <p>Using the colour-coded structure above as your template, write your own body paragraph for the
+                        <strong style="color:var(--text)">Iran (Feb 2026)</strong> case study in the Section 4 writing
+                        box. Aim to include: one named operation, one clear theory application, one evaluative
+                        counter-move, and a crisp link back to "rendered obsolete."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <strong>IB Global Politics HL</strong> · R2P Review Activity · March 2026 · Korczyk's Class
+    </footer>
+
+    <script>
+        /* ========================================================
+           QUIZ LOGIC
+           ======================================================== */
+        let answered = 0;
+        let correct = 0;
+        const TOTAL = 10;
+
+        document.querySelectorAll('.q-card').forEach(card => {
+            const buttons = card.querySelectorAll('.choice-btn');
+            const feedback = card.querySelector('.q-feedback');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Already answered
+                    if (card.dataset.answered) return;
+                    card.dataset.answered = 'true';
+                    answered++;
+
+                    const isCorrect = btn.dataset.correct === 'true';
+
+                    // Mark all buttons
+                    buttons.forEach(b => {
+                        b.disabled = true;
+                        if (b.dataset.correct === 'true') b.classList.add('correct');
+                    });
+
+                    if (!isCorrect) {
+                        btn.classList.add('wrong');
+                    }
+
+                    // Feedback
+                    feedback.classList.add('show');
+                    if (isCorrect) {
+                        correct++;
+                        feedback.classList.add('fb-correct');
+                        feedback.textContent = '✓ Correct! ' + feedback.textContent;
+                    } else {
+                        feedback.classList.add('fb-wrong');
+                        feedback.textContent = '✗ Not quite. ' + feedback.textContent;
+                    }
+
+                    updateScore();
+                });
+            });
+        });
+
+        function updateScore() {
+            const pct = (correct / TOTAL) * 100;
+            document.getElementById('scoreFill').style.width = pct + '%';
+            document.getElementById('scoreCount').textContent = correct + ' / ' + TOTAL;
+        }
+
+        function resetQuiz() {
+            answered = 0;
+            correct = 0;
+            updateScore();
+
+            document.querySelectorAll('.q-card').forEach(card => {
+                delete card.dataset.answered;
+                card.querySelectorAll('.choice-btn').forEach(btn => {
+                    btn.disabled = false;
+                    btn.classList.remove('correct', 'wrong');
+                });
+                const fb = card.querySelector('.q-feedback');
+                fb.classList.remove('show', 'fb-correct', 'fb-wrong');
+                // Restore original feedback text
+                const original = fb.dataset.original || fb.textContent.replace(/^[✓✗].+?\. /, '');
+                if (!fb.dataset.original) fb.dataset.original = original;
+                fb.textContent = original;
+            });
+        }
+
+        // Cache original feedback texts after load
+        document.querySelectorAll('.q-feedback').forEach(fb => {
+            fb.dataset.original = fb.textContent;
+        });
+
+        /* ========================================================
+           DRAG & DROP SORT
+           ======================================================== */
+        let draggedCard = null;
+
+        document.querySelectorAll('.scenario-card').forEach(card => {
+            card.addEventListener('dragstart', e => {
+                draggedCard = card;
+                setTimeout(() => card.classList.add('dragging'), 0);
+            });
+            card.addEventListener('dragend', () => {
+                card.classList.remove('dragging');
+                draggedCard = null;
+            });
+        });
+
+        document.querySelectorAll('.drop-zone').forEach(zone => {
+            zone.addEventListener('dragover', e => {
+                e.preventDefault();
+                zone.classList.add('drag-over');
+            });
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('drag-over');
+            });
+            zone.addEventListener('drop', e => {
+                e.preventDefault();
+                zone.classList.remove('drag-over');
+
+                if (!draggedCard || draggedCard.classList.contains('placed')) return;
+
+                const cardPillar = draggedCard.dataset.pillar;
+                const zonePillar = zone.dataset.pillar;
+
+                if (cardPillar === zonePillar) {
+                    // Correct — move card into zone
+                    draggedCard.classList.add('placed');
+                    draggedCard.setAttribute('draggable', 'false');
+                    const placeholder = zone.querySelector('.drop-placeholder');
+                    if (placeholder) placeholder.remove();
+                    zone.appendChild(draggedCard);
+                    checkAllPlaced();
+                } else {
+                    // Wrong — shake
+                    draggedCard.classList.add('wrong-drop');
+                    setTimeout(() => draggedCard.classList.remove('wrong-drop'), 400);
+                }
+            });
+        });
+
+        function checkAllPlaced() {
+            const allCards = document.querySelectorAll('.scenario-card');
+            const allPlaced = [...allCards].every(c => c.classList.contains('placed'));
+            const msg = document.getElementById('sortResultMsg');
+            if (allPlaced) {
+                msg.textContent = '🎉 All six scenarios correctly sorted! Notice: Pillar I = state\u2019s own duty; Pillar II = international support before failure; Pillar III = collective action after manifest failure + UNSC authorisation.';
+                msg.classList.add('show', 'all-correct');
+            }
+        }
+
+        /* ========================================================
+           WORD COUNT
+           ======================================================== */
+        function updateWordCount() {
+            const text = document.getElementById('writingInput').value.trim();
+            const count = text ? text.split(/\s+/).length : 0;
+            const el = document.getElementById('wcCount');
+            el.textContent = count;
+            if (count >= 100 && count <= 120) {
+                el.style.color = 'var(--green)';
+            } else if (count > 120) {
+                el.style.color = 'var(--danger)';
+            } else {
+                el.style.color = 'var(--accent)';
+            }
+        }
+
+        /* ========================================================
+           THEORY MATCHER
+           ======================================================== */
+        document.querySelectorAll('.matcher-card').forEach(card => {
+            card.addEventListener('click', () => {
+                if (card.classList.contains('revealed')) return;
+
+                const theory = card.dataset.theory;
+                const label = card.dataset.label;
+                const expl = card.dataset.explanation;
+
+                card.classList.add('revealed', theory);
+                card.querySelector('.mc-reveal').textContent = label;
+                card.querySelector('.mc-explanation').textContent = expl;
+            });
+        });
+    </script>
+
+</body>
+
+</html>

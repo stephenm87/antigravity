@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>IB Global Politics — Exam Day Time Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --p1:#5a30a0; --p1lt:#f0ebfc;
+    --p2:#0b6e78; --p2lt:#e6f7f8;
+    --p3:#9f6d08; --p3lt:#fef3c7;
+    --text:#1a1e2e; --muted:#5a6180;
+    --border:#e0e3ed; --bg:#f5f6fb;
+  }
+  html,body{width:100%;height:100%}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:20px;
+  }
+
+  .card{
+    width:760px;
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 40px rgba(0,0,0,.12);
+  }
+
+  /* TOP BANNER */
+  .banner{
+    background:linear-gradient(135deg,#1a0d3d 0%,#3d1d8a 50%,#0b5a62 100%);
+    padding:18px 28px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .banner-left h1{
+    font-family:'Playfair Display',serif;
+    font-size:1.35rem;
+    font-weight:800;
+    color:#fff;
+    line-height:1.2;
+  }
+  .banner-left p{
+    font-size:.72rem;
+    color:rgba(255,255,255,.65);
+    margin-top:3px;
+    letter-spacing:.04em;
+  }
+  .banner-rule{
+    font-size:.72rem;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.20);
+    color:rgba(255,255,255,.90);
+    padding:7px 14px;
+    border-radius:50px;
+    text-align:center;
+    max-width:220px;
+    line-height:1.4;
+  }
+  .banner-rule strong{color:#fcd34d}
+
+  /* PAPERS GRID */
+  .papers{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    border-top:3px solid var(--border);
+  }
+  .paper{border-right:1px solid var(--border)}
+  .paper:last-child{border-right:none}
+
+  /* Paper header */
+  .p-head{
+    padding:12px 16px 10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .p-head.c1{background:var(--p1lt);border-bottom:3px solid var(--p1)}
+  .p-head.c2{background:var(--p2lt);border-bottom:3px solid var(--p2)}
+  .p-head.c3{background:var(--p3lt);border-bottom:3px solid var(--p3)}
+
+  .p-badge{
+    display:flex;align-items:center;justify-content:center;
+    width:36px;height:36px;border-radius:10px;
+    font-family:'Playfair Display',serif;font-size:.95rem;font-weight:800;color:#fff;
+    flex-shrink:0;
+  }
+  .p-badge.c1{background:var(--p1)}
+  .p-badge.c2{background:var(--p2)}
+  .p-badge.c3{background:var(--p3)}
+
+  .p-title h2{font-size:.82rem;font-weight:800;line-height:1.2}
+  .p-title h2.c1{color:var(--p1)}
+  .p-title h2.c2{color:var(--p2)}
+  .p-title h2.c3{color:var(--p3)}
+  .p-title p{font-size:.65rem;color:var(--muted);margin-top:1px}
+
+  /* Time entries */
+  .p-body{padding:10px 14px 14px}
+
+  /* Visual time bar */
+  .timebar{
+    display:flex;height:10px;border-radius:6px;overflow:hidden;
+    margin-bottom:10px;gap:2px;
+  }
+  .tb-seg{border-radius:3px;transition:flex .3s}
+
+  /* Q rows */
+  .q-row{
+    display:flex;align-items:center;gap:8px;
+    padding:6px 0;
+    border-bottom:1px solid var(--border);
+  }
+  .q-row:last-child{border-bottom:none}
+  .q-tag{
+    font-size:.65rem;font-weight:800;color:#fff;
+    padding:2px 7px;border-radius:5px;flex-shrink:0;
+    min-width:30px;text-align:center;
+  }
+  .q-tag.c1{background:var(--p1)}
+  .q-tag.c2{background:var(--p2)}
+  .q-tag.c3{background:var(--p3)}
+  .q-tag.grey{background:#94a3b8}
+
+  .q-info{flex:1}
+  .q-name{font-size:.72rem;font-weight:700;color:var(--text)}
+  .q-pts{font-size:.62rem;color:var(--muted)}
+
+  .q-time{
+    font-size:.88rem;font-weight:800;
+    min-width:44px;text-align:right;white-space:nowrap;
+  }
+  .q-time.c1{color:var(--p1)}
+  .q-time.c2{color:var(--p2)}
+  .q-time.c3{color:var(--p3)}
+  .q-time.grey{color:#94a3b8}
+
+  .q-bar{
+    width:52px;height:5px;border-radius:3px;flex-shrink:0;
+  }
+
+  /* TOTAL ROW */
+  .total-row{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-top:10px;padding:6px 8px;border-radius:8px;
+  }
+  .total-row.c1{background:var(--p1lt)}
+  .total-row.c2{background:var(--p2lt)}
+  .total-row.c3{background:var(--p3lt)}
+  .total-label{font-size:.65rem;font-weight:700;color:var(--muted)}
+  .total-val{font-size:.95rem;font-weight:900}
+  .total-val.c1{color:var(--p1)}
+  .total-val.c2{color:var(--p2)}
+  .total-val.c3{color:var(--p3)}
+
+  /* RULES STRIP */
+  .rules{
+    background:#1e1b4b;
+    padding:14px 20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    border-top:1px solid #312e81;
+  }
+  .rule-card{
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:10px;
+    padding:10px 12px;
+  }
+  .rule-num{
+    font-size:.6rem;font-weight:800;letter-spacing:.10em;text-transform:uppercase;
+    color:#a5b4fc;margin-bottom:4px;
+  }
+  .rule-text{font-size:.72rem;color:rgba(255,255,255,.88);line-height:1.5}
+  .rule-text strong{color:#fcd34d}
+
+  /* FOOTER */
+  .card-footer{
+    background:#f8f9fc;border-top:1px solid var(--border);
+    padding:8px 20px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .card-footer p{font-size:.63rem;color:#94a3b8}
+  .hl-badge{
+    font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    background:#e8e3f8;color:var(--p1);padding:3px 10px;border-radius:50px;
+  }
+
+  /* PRINT */
+  @media print{
+    body{background:#fff;padding:0}
+    .card{border-radius:0;box-shadow:none;width:100%}
+    .banner{background:linear-gradient(135deg,#1a0d3d,#3d1d8a 50%,#0b5a62) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .p-head.c1{background:var(--p1lt) !important}
+    .p-head.c2{background:var(--p2lt) !important}
+    .p-head.c3{background:var(--p3lt) !important}
+    .p-badge.c1{background:var(--p1) !important;color:#fff !important}
+    .p-badge.c2{background:var(--p2) !important;color:#fff !important}
+    .p-badge.c3{background:var(--p3) !important;color:#fff !important}
+    .q-tag.c1{background:var(--p1) !important;color:#fff !important}
+    .q-tag.c2{background:var(--p2) !important;color:#fff !important}
+    .q-tag.c3{background:var(--p3) !important;color:#fff !important}
+    .q-tag.grey{background:#94a3b8 !important;color:#fff !important}
+    .rules{background:#1e1b4b !important}
+    .rule-card{background:rgba(255,255,255,.07) !important;border-color:rgba(255,255,255,.10) !important}
+    .total-row.c1{background:var(--p1lt) !important}
+    .total-row.c2{background:var(--p2lt) !important}
+    .total-row.c3{background:var(--p3lt) !important}
+    .card-footer{background:#f8f9fc !important}
+    .hl-badge{background:#e8e3f8 !important}
+    .timebar,.tb-seg,.q-bar{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- BANNER -->
+  <div class="banner">
+    <div class="banner-left">
+      <h1>Exam Day Time Card</h1>
+      <p>IB GLOBAL POLITICS  ·  2026 FIRST ASSESSMENT  ·  MR. MARTINEZ</p>
+    </div>
+    <div class="banner-rule">
+      <strong>Golden Rule:</strong> Get your content down first on Q4 &amp; P3/Q3.<br>Done beats perfect on big questions.
+    </div>
+  </div>
+
+  <!-- PAPERS -->
+  <div class="papers">
+
+    <!-- PAPER 1 -->
+    <div class="paper">
+      <div class="p-head c1">
+        <div class="p-badge c1">P1</div>
+        <div class="p-title">
+          <h2 class="c1">Paper 1</h2>
+          <p>75 min · 25 marks · 4 questions</p>
+        </div>
+      </div>
+      <div class="p-body">
+        <!-- Timebar: 5+5+10+15+35+5 = 75 -->
+        <div class="timebar">
+          <div class="tb-seg" style="flex:5;background:#c4b5fd"></div>
+          <div class="tb-seg" style="flex:5;background:#9b71e8"></div>
+          <div class="tb-seg" style="flex:10;background:#7c5cbf"></div>
+          <div class="tb-seg" style="flex:15;background:#6438b0"></div>
+          <div class="tb-seg" style="flex:35;background:#3d1d8a"></div>
+          <div class="tb-seg" style="flex:5;background:#e2d9f8"></div>
+        </div>
+
+        <div class="q-row">
+          <div class="q-tag grey">Read</div>
+          <div class="q-info">
+            <div class="q-name">Sources + skim all Qs</div>
+          </div>
+          <div class="q-bar" style="background:#e2e8f0;width:calc(5/75*100%)"></div>
+          <div class="q-time grey">5 min</div>
+        </div>
+        <div class="q-row">
+          <div class="q-tag c1">Q1</div>
+          <div class="q-info">
+            <div class="q-name">Identify / describe source</div>
+            <div class="q-pts">3 marks · AO1</div>
+          </div>
+          <div class="q-bar" style="background:#c4b5fd;width:calc(5/75*100%)"></div>
+          <div class="q-time c1">~5 min</div>
+        </div>
+        <div class="q-row">
+          <div class="q-tag c1">Q2</div>
+          <div class="q-info">
+            <div class="q-name">Apply &amp; explain source</div>
+            <div class="q-pts">4 marks · AO2</div>
+          </div>
+          <div class="q-bar" style="background:#a98be0;width:calc(10/75*100%)"></div>
+          <div class="q-time c1">~10 min</div>
+        </div>
+        <div class="q-row">
+          <div class="q-tag c1">Q3</div>
+          <div class="q-info">
+            <div class="q-name">Compare two sources</div>
+            <div class="q-pts">6 marks · AO3</div>
+          </div>
+          <div class="q-bar" style="background:#7c5cbf;width:calc(15/75*100%)"></div>
+          <div class="q-time c1">~15 min</div>
+        </div>
+        <div class="q-row">
+          <div class="q-tag c1">Q4</div>
+          <div class="q-info">
+            <div class="q-name">Evaluate all sources + own knowledge</div>
+            <div class="q-pts">12 marks · AO3/4 — <strong style="color:#3d1d8a">START HERE if stuck</strong></div>
+          </div>
+          <div class="q-bar" style="background:#3d1d8a;width:calc(35/75*100%)"></div>
+          <div class="q-time c1">~35 min</div>
+        </div>
+        <div class="q-row">
+          <div class="q-tag grey">Rev.</div>
+          <div class="q-info">
+            <div class="q-name">Check + add evidence</div>
+          </div>
+          <div class="q-bar" style="background:#e2e8f0;width:calc(5/75*100%)"></div>
+          <div class="q-time grey">5 min</div>
+        </div>
+
+        <div class="total-row c1">
+          <span class="total-label">TOTAL</span>
+          <span class="total-val c1">75 min · 25 marks</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAPER 2 -->
+    <div class="paper">
+      <div class="p-head c2">
+        <div class="p-badge c2">P2</div>
+        <div class="p-title">
+          <h2 class="c2">Paper 2</h2>
+          <p>105 min · 30 marks · 2 essays</p>
+        </div>
+      </div>
+      <div class="p-body">
+        <!-- Timebar: 5 + 10+40 + 10+40 = 105 -->
+        <div class="timebar">
+          <div class="tb-seg" style="flex:5;background:#a7f3d0"></div>
+          <div class="tb-seg" style="flex:10;background:#6ee7b7"></div>
+          <div class="tb-seg" style="flex:40;background:#0b9e8a"></div>
+          <div class="tb-seg" style="flex:10;background:#6ee7b7"></div>
+          <div class="tb-seg" style="flex:40;background:#065f55"></div>
+        </div>
+
+        <div class="q-row">
+          <div class="q-tag grey">Read</div>
+          <div class="q-info">
+            <div class="q-name">Read all prompts, choose your two</div>
+          </div>
+          <div class="q-bar" style="background:#e2e8f0;width:calc(5/105*100%)"></div>
+          <div class="q-time grey">5 min</div>
+        </div>
+
+        <div class="q-row">
+          <div class="q-tag c2">Plan</div>
+          <div class="q-info">
+            <div class="q-name">Thesis, structure, key evidence</div>
+            <div class="q-pts">Section A — Thematic essay · 15 marks</div>
+          </div>
+          <div class="q-bar" style="background:#6ee7b7;width:calc(10/105*100%)"></div>
+          <div class="q-time c2">10 min</div>
+        </div>
+        <div class="q-row">
+          <div class="q-tag c2">Write</div>
+          <div class="q-info">
+            <div class="q-name">Intro → 2–3 developed body ¶s → Conclusion</div>
+            <div class="q-pts">Section A essay · AO2/AO3</div>
+          </div>
+          <div class="q-bar" style="background:#0b9e8a;width:calc(40/105*100%)"></div>
+          <div class="q-time c2">40 min</div>
+        </div>
+
+        <div class="q-row" style="border-top:2px dashed var(--border)">
+          <div class="q-tag c2">Plan</div>
+          <div class="q-info">
+            <div class="q-name">Integrating thesis, cross-theme links</div>
+            <div class="q-pts">Section B — Integrating essay · 15 marks</div>
+          </div>
+          <div class="q-bar" style="background:#6ee7b7;width:calc(10/105*100%)"></div>
+          <div class="q-time c2">10 min</div>
+        </div>
+        <div class="q-row">
+          <div class="q-tag c2">Write</div>
+          <div class="q-info">
+            <div class="q-name">Intro → 2–3 body ¶s (cross-theme) → Conclusion</div>
+            <div class="q-pts">Section B essay · AO2/AO3/AO4</div>
+          </div>
+          <div class="q-bar" style="background:#065f55;width:calc(40/105*100%)"></div>
+          <div class="q-time c2">40 min</div>
+        </div>
+
+        <div class="total-row c2">
+          <span class="total-label">TOTAL</span>
+          <span class="total-val c2">105 min · 30 marks</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAPER 3 (HL) -->
+    <div class="paper">
+      <div class="p-head c3">
+        <div class="p-badge c3">P3</div>
+        <div class="p-title">
+          <h2 class="c3">Paper 3 — HL Only</h2>
+          <p>90 min · 28 marks · 4 questions</p>
+        </div>
+      </div>
+      <div class="p-body">
+        <!-- Timebar: 5+8+12+18+45+2 = 90 -->
+        <div class="timebar">
+          <div class="tb-seg" style="flex:5;background:#fde68a"></div>
+          <div class="tb-seg" style="flex:8;background:#fbbf24"></div>
+          <div class="tb-seg" style="flex:12;background:#d97706"></div>
+          <div class="tb-seg" style="flex:18;background:#b45309"></div>
+          <div class="tb-seg" style="flex:45;background:#78350f"></div>
+          <div class="tb-seg" style="flex:2;background:#fde68a"></div>
+        </div>
+
+        <div class="q-row">
+          <div class="q-tag grey">📖</div>
+          <div class="q-info">
+            <div class="q-name">Read stimulus — DO NOT WRITE YET</div>
+            <div class="q-pts">Mandatory reading time</div>
+          </div>
+          <div class="q-bar" style="background:#fde68a;width:calc(5/90*100%)"></div>
+          <div class="q-time grey">5 min</div>
+        </div>
+        <div class="q-row">
+          <div class="q-tag c3">Q1</div>
+          <div class="q-info">
+            <div class="q-name">Identify from stimulus</div>
+            <div class="q-pts">3 marks · AO1</div>
+          </div>
+          <div class="q-bar" style="background:#fbbf24;width:calc(8/90*100%)"></div>
+          <div class="q-time c3">~8 min</div>
+        </div>
+        <div class="q-row">
+          <div class="q-tag c3">Q2a</div>
+          <div class="q-info">
+            <div class="q-name">Case study bridge — explain issue</div>
+            <div class="q-pts">4 marks · AO2</div>
+          </div>
+          <div class="q-bar" style="background:#d97706;width:calc(12/90*100%)"></div>
+          <div class="q-time c3">~12 min</div>
+        </div>
+        <div class="q-row">
+          <div class="q-tag c3">Q2b</div>
+          <div class="q-info">
+            <div class="q-name">Policy recommendation with justification</div>
+            <div class="q-pts">6 marks · AO2/3 — same case study as Q2a</div>
+          </div>
+          <div class="q-bar" style="background:#b45309;width:calc(18/90*100%)"></div>
+          <div class="q-time c3">~18 min</div>
+        </div>
+        <div class="q-row">
+          <div class="q-tag c3">Q3</div>
+          <div class="q-info">
+            <div class="q-name">"To what extent…?" essay · 2+ GPCs</div>
+            <div class="q-pts">15 marks · AO2/3/4 — <strong style="color:#78350f">budget this firmly</strong></div>
+          </div>
+          <div class="q-bar" style="background:#78350f;width:calc(45/90*100%)"></div>
+          <div class="q-time c3">~45 min</div>
+        </div>
+
+        <div class="total-row c3">
+          <span class="total-label">TOTAL</span>
+          <span class="total-val c3">90 min · 28 marks</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /papers -->
+
+  <!-- RULES STRIP -->
+  <div class="rules">
+    <div class="rule-card">
+      <div class="rule-num">⏱ Rule 1 — Time</div>
+      <div class="rule-text">Stick to the budgets. <strong>Do not let Q1–Q3 steal Q4's time</strong> in Paper 1. Set a mental alarm.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">✍️ Rule 2 — Big questions</div>
+      <div class="rule-text"><strong>Content over polish</strong> on Q4 &amp; P3/Q3. Get the argument, evidence, and counter down first. Refine after.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">🔗 Rule 3 — Paper 3</div>
+      <div class="rule-text">Q2a and Q2b <strong>must use the same case study</strong>. Lock it in before you write Q2a. Switching loses marks.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rule-num">💡 Rule 4 — Essays</div>
+      <div class="rule-text"><strong>Plan before you write</strong> — 10 min for a clear thesis and structure saves you from a wandering essay. Always.</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="card-footer">
+    <p>IB Global Politics 2026 · First Assessment · Mr. Martinez · Times are recommendations, not IB official allocations.</p>
+    <span class="hl-badge">HL · SL</span>
+  </div>
+
+</div>
+</body>
+</html>

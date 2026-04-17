@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grade 9 Living History Museum — SAS Puxi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --red: #C41E3A;
+      --red-dark: #9E1830;
+      --cream: #FAF6F0;
+      --gold: #D4A853;
+      --warm-gray: #8B7D6B;
+      --text-dark: #2C2C2C;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: 8.5in 8.5in;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .poster {
+      width: 8.5in;
+      height: 8.5in;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+    }
+
+    /* Corner accent shapes */
+    .poster::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--red) 0%, var(--red) 50%, transparent 50%);
+      z-index: 2;
+    }
+
+    .poster::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(225deg, var(--navy) 0%, var(--navy) 50%, transparent 50%);
+      z-index: 2;
+    }
+
+    /* Top stripe */
+    .top-stripe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--red) 0%, var(--red) 33%, white 33%, white 66%, var(--navy) 66%);
+      z-index: 3;
+    }
+
+    /* Header section */
+    .header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 32px 40px 12px;
+    }
+
+    .event-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 42px;
+      color: var(--navy);
+      line-height: 1.05;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .school-name {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-dark);
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-style: italic;
+      font-size: 20px;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+
+    .date-time {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text-dark);
+      letter-spacing: 0.5px;
+    }
+
+    /* Hero image section */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-section img {
+      width: 420px;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 0;
+      filter: drop-shadow(0 4px 20px rgba(0,0,0,0.1));
+    }
+
+    /* Decorative side elements */
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 80px;
+      height: 200px;
+      background: linear-gradient(to right, rgba(27, 42, 74, 0.06), transparent);
+      z-index: 1;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 80px;
+      height: 200px;
+      background: linear-gradient(to left, rgba(196, 30, 58, 0.06), transparent);
+      z-index: 1;
+    }
+
+    /* Bottom section */
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+    }
+
+    .cta-banner {
+      background: var(--red);
+      padding: 14px 40px;
+      text-align: center;
+    }
+
+    .cta-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: white;
+      line-height: 1.4;
+    }
+
+    .themes-bar {
+      background: var(--navy);
+      padding: 10px 40px;
+      text-align: center;
+    }
+
+    .themes-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.8px;
+    }
+
+    .theme-dot {
+      display: inline-block;
+      margin: 0 6px;
+      color: var(--gold);
+      font-size: 8px;
+      vertical-align: middle;
+    }
+
+    /* Gold divider line above footer */
+    .gold-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: none;
+      }
+      .poster {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="poster">
+    <div class="top-stripe"></div>
+
+    <div class="header">
+      <h1 class="event-title">Grade 9 Living<br>History Museum</h1>
+      <p class="school-name">Shanghai American School — Puxi Campus</p>
+      <p class="tagline">Experience the history of our SAS community!</p>
+      <p class="date-time">Thursday, March 12 &nbsp;|&nbsp; 10:30 AM – 12:00 PM</p>
+    </div>
+
+    <div class="hero-section">
+      <img src="hero_illustration.png" alt="An elderly storyteller shares stories with a group of diverse students, surrounded by floating vintage photographs and the Shanghai Bund skyline">
+    </div>
+
+    <div class="footer">
+      <div class="gold-divider"></div>
+      <div class="cta-banner">
+        <p class="cta-text">Community members will share short, personal stories<br>connected to historical moments.</p>
+      </div>
+      <div class="themes-bar">
+        <p class="themes-text">
+          Migration <span class="theme-dot">●</span>
+          War <span class="theme-dot">●</span>
+          Education <span class="theme-dot">●</span>
+          Technology <span class="theme-dot">●</span>
+          Economic Change <span class="theme-dot">●</span>
+          Health <span class="theme-dot">●</span>
+          Occupation <span class="theme-dot">●</span>
+          Adventure
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

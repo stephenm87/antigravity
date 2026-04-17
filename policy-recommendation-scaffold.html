@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Policy Recommendation Scaffold | Paper 3 Q2b</title>
+    <meta name="description" content="Interactive tool teaching the Actor + Mechanism + Rationale + Risk framework for IB Global Politics Paper 3 Question 2b."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{--bg:#f5f6fa;--surface:#fff;--surface2:#eef0f7;--border:rgba(0,0,0,.1);--accent:#6438b0;--accent-bg:rgba(100,56,176,.08);--green:#1a8a5a;--gold:#b07d10;--danger:#c0283e;--text:#1a1e2e;--muted:#4a5270;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.10)}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh}
+
+        /* HERO */
+        .hero{position:relative;overflow:hidden;padding:64px 24px 56px;text-align:center;background:radial-gradient(ellipse 120% 60% at 50% 0%,rgba(100,56,176,.10) 0%,transparent 70%),linear-gradient(180deg,#ece7f5 0%,var(--bg) 100%);border-bottom:1px solid var(--border)}
+        .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(0,0,0,0.025)'/%3E%3C/svg%3E");pointer-events:none}
+        .hero-badge{display:inline-block;background:rgba(100,56,176,.10);border:1px solid rgba(100,56,176,.30);color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 18px;border-radius:50px;margin-bottom:22px}
+        .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);font-weight:800;line-height:1.2;background:linear-gradient(135deg,#4a2080 0%,#6438b0 55%,#2c5fc4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:800px;margin:0 auto 18px}
+        .hero-sub{font-size:1.02rem;color:var(--muted);max-width:680px;margin:0 auto}
+
+        /* NAV */
+        .nav{background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:4px;padding:10px 20px;justify-content:center;position:sticky;top:0;z-index:100;flex-wrap:wrap}
+        .nav a{padding:8px 16px;font-size:.78rem;font-weight:600;color:var(--muted);text-decoration:none;border-radius:50px;transition:all .2s}
+        .nav a:hover{color:var(--accent);background:rgba(100,56,176,.06)}
+        .nav a.active{color:var(--accent);background:rgba(100,56,176,.10);border-bottom:none}
+
+        .container{max-width:960px;margin:0 auto;padding:32px 24px 80px}
+
+        /* SECTIONS */
+        .section{margin-bottom:48px;scroll-margin-top:70px}
+        .section-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+        .section h2{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.9rem);font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+        .section-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:800;flex-shrink:0}
+        .section-intro{font-size:.95rem;color:var(--muted);margin-bottom:24px;max-width:700px}
+
+        /* FORMULA */
+        .formula-container{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:28px 20px;background: linear-gradient(135deg,rgba(100,56,176,.06),rgba(44,95,196,.06));border:1px solid rgba(100,56,176,.18);border-radius:var(--radius);margin-bottom:16px}
+        .formula-block{text-align:center;padding:14px 20px;border-radius:12px;min-width:120px}
+        .formula-block .f-icon{font-size:1.4rem;margin-bottom:4px}
+        .formula-block .f-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+        .formula-block .f-desc{font-size:.78rem;color:var(--muted);font-style:italic}
+        .f-actor{background:rgba(44,95,196,.10);border:1px solid rgba(44,95,196,.25)}
+        .f-mech{background:rgba(26,138,90,.10);border:1px solid rgba(26,138,90,.25)}
+        .f-rat{background:rgba(176,125,16,.10);border:1px solid rgba(176,125,16,.25)}
+        .f-risk{background:rgba(192,40,62,.10);border:1px solid rgba(192,40,62,.25)}
+        .formula-plus{font-size:1.3rem;font-weight:800;color:var(--muted)}
+
+        /* TIER LADDER */
+        .tier-ladder{display:grid;gap:16px;margin-bottom:20px}
+        .tier-card{border-radius:var(--radius);padding:22px 24px;border:1px solid var(--border);position:relative;overflow:hidden}
+        .tier-card::before{content:'';position:absolute;top:0;left:0;width:5px;height:100%}
+        .tier-card h3{font-size:1rem;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+        .tier-card .tier-level{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:50px}
+        .tier-card .example{background:var(--surface2);border-radius:10px;padding:14px 18px;margin-top:12px;font-size:.84rem;color:var(--muted);font-style:italic;border-left:3px solid}
+        .tier-card .elevation{margin-top:12px;font-size:.82rem;font-weight:600;display:flex;align-items:center;gap:6px}
+
+        .t1{background:linear-gradient(135deg,rgba(192,40,62,.04),transparent)}
+        .t1::before{background:var(--danger)} .t1 .tier-level{background:rgba(192,40,62,.10);color:var(--danger)} .t1 .example{border-color:var(--danger)}
+        .t2{background:linear-gradient(135deg,rgba(176,125,16,.04),transparent)}
+        .t2::before{background:var(--gold)} .t2 .tier-level{background:rgba(176,125,16,.10);color:#7a5800} .t2 .example{border-color:var(--gold)}
+        .t3{background:linear-gradient(135deg,rgba(26,138,90,.04),transparent)}
+        .t3::before{background:var(--green)} .t3 .tier-level{background:rgba(26,138,90,.10);color:var(--green)} .t3 .example{border-color:var(--green)}
+
+        /* BUILDER */
+        .builder{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+        .builder-intro{font-size:.88rem;color:var(--muted);margin-bottom:20px}
+        .field-group{margin-bottom:18px}
+        .field-label{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;margin-bottom:6px}
+        .field-label .fl-icon{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff;flex-shrink:0}
+        .fl-actor{background:#2c5fc4} .fl-mech{background:#1a8a5a} .fl-rat{background:#b07d10} .fl-risk{background:#c0283e}
+        .field-hint{font-size:.75rem;color:var(--muted);font-weight:400;margin-left:4px}
+        textarea{width:100%;border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-family:'Inter',sans-serif;font-size:.88rem;line-height:1.6;resize:vertical;transition:border-color .2s;background:var(--surface2)}
+        textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(100,56,176,.1)}
+        .char-count{font-size:.7rem;color:var(--muted);text-align:right;margin-top:4px}
+        .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+        .btn{padding:12px 28px;border:none;border-radius:50px;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .25s}
+        .btn-primary{background:var(--accent);color:#fff}
+        .btn-primary:hover{background:#4a2080;transform:translateY(-1px);box-shadow:0 4px 16px rgba(100,56,176,.3)}
+        .btn-secondary{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+        .btn-secondary:hover{color:var(--text);background:#e0e3ee}
+
+        /* FEEDBACK */
+        .feedback{display:none;margin-top:24px;border-radius:var(--radius);padding:24px;animation:fadeIn .3s ease}
+        .feedback.show{display:block}
+        .feedback-tier{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 14px;border-radius:50px;display:inline-block;margin-bottom:12px}
+        .feedback h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+        .feedback p{font-size:.86rem;color:var(--muted);margin-bottom:6px}
+        .feedback .elevation-box{background:rgba(100,56,176,.06);border:1px solid rgba(100,56,176,.2);border-radius:10px;padding:14px 18px;margin-top:14px}
+        .feedback .elevation-box h4{font-size:.82rem;font-weight:700;color:var(--accent);margin-bottom:6px}
+        .feedback .elevation-box p{font-size:.82rem}
+        .fb-t1{background:rgba(192,40,62,.06);border:1px solid rgba(192,40,62,.2)} .fb-t1 .feedback-tier{background:rgba(192,40,62,.10);color:var(--danger)}
+        .fb-t2{background:rgba(176,125,16,.06);border:1px solid rgba(176,125,16,.2)} .fb-t2 .feedback-tier{background:rgba(176,125,16,.10);color:#7a5800}
+        .fb-t3{background:rgba(26,138,90,.06);border:1px solid rgba(26,138,90,.2)} .fb-t3 .feedback-tier{background:rgba(26,138,90,.10);color:var(--green)}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+        /* OUTPUT */
+        .assembled{display:none;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-top:20px}
+        .assembled.show{display:block;animation:fadeIn .3s}
+        .assembled h4{font-size:.85rem;font-weight:700;margin-bottom:10px;color:var(--accent)}
+        .assembled-text{font-size:.9rem;line-height:1.8;color:var(--text)}
+        .assembled-text .hl-actor{background:rgba(44,95,196,.15);padding:1px 4px;border-radius:4px}
+        .assembled-text .hl-mech{background:rgba(26,138,90,.15);padding:1px 4px;border-radius:4px}
+        .assembled-text .hl-rat{background:rgba(176,125,16,.15);padding:1px 4px;border-radius:4px}
+        .assembled-text .hl-risk{background:rgba(192,40,62,.15);padding:1px 4px;border-radius:4px}
+
+        /* EXAMPLES */
+        .example-grid{display:grid;grid-template-columns:1fr;gap:24px}
+        .ex-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;transition:box-shadow .3s}
+        .ex-card:hover{box-shadow:var(--shadow)}
+        .ex-card h4{font-size:.9rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+        .ex-card .ex-tag{font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:50px}
+        .ex-card p{font-size:.82rem;color:var(--muted);margin-bottom:4px}
+        .ex-card .ex-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-top:8px}
+        .ex-paragraph{font-size:.84rem;color:var(--text);line-height:1.7;margin-bottom:4px}
+        .ex-wordcount{font-size:.72rem;color:var(--muted);margin-top:8px;text-align:right}
+        .deconstruct-toggle{background:none;border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-size:.76rem;font-weight:600;color:var(--accent);cursor:pointer;margin-top:10px;transition:background .2s}
+        .deconstruct-toggle:hover{background:rgba(100,56,176,.06)}
+        .deconstruct{display:none;margin-top:12px;padding:16px;background:rgba(100,56,176,.03);border:1px solid rgba(100,56,176,.12);border-radius:8px}
+        .deconstruct.open{display:block}
+        .decon-row{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+        .decon-row:last-child{margin-bottom:0}
+        .decon-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;padding:3px 8px;border-radius:4px;flex-shrink:0;margin-top:1px}
+        .decon-actor{background:rgba(44,95,196,.1);color:#2c5fc4}
+        .decon-mech{background:rgba(26,138,90,.1);color:#1a8a5a}
+        .decon-rat{background:rgba(176,125,16,.1);color:#b07d10}
+        .decon-risk{background:rgba(192,40,62,.1);color:#c0283e}
+        .decon-mit{background:rgba(100,56,176,.1);color:#6438b0}
+        .decon-text{font-size:.78rem;color:var(--text);line-height:1.55}
+
+        /* TOOLKIT */
+        .toolkit-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:16px}
+        .toolkit-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px}
+        .toolkit-card h4{font-size:.88rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+        .toolkit-table{width:100%;border-collapse:collapse;font-size:.8rem}
+        .toolkit-table th{text-align:left;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:8px 10px;border-bottom:2px solid var(--border)}
+        .toolkit-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text);line-height:1.5}
+        .toolkit-table tr:last-child td{border-bottom:none}
+        .gpc-badge{font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:50px;display:inline-block;margin-bottom:2px}
+        .mech-template{background:rgba(26,138,90,.04);border:1px solid rgba(26,138,90,.15);border-radius:8px;padding:14px 18px;margin-bottom:12px}
+        .mech-template:last-child{margin-bottom:0}
+        .mech-template .mech-label{font-size:.72rem;font-weight:700;color:#1a8a5a;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+        .mech-template p{font-size:.82rem;color:var(--text);line-height:1.6;margin:0}
+        .mech-template .mech-blank{color:var(--accent);font-weight:600;font-style:italic}
+        .risk-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+        .risk-pair:last-child{margin-bottom:0}
+        .risk-side{padding:12px 16px;border-radius:8px;font-size:.8rem;line-height:1.55}
+        .risk-side.risk{background:rgba(192,40,62,.05);border:1px solid rgba(192,40,62,.15)}
+        .risk-side.mit{background:rgba(100,56,176,.05);border:1px solid rgba(100,56,176,.15)}
+        .risk-side .rs-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+        .risk-side.risk .rs-label{color:#c0283e}
+        .risk-side.mit .rs-label{color:#6438b0}
+        .strategy-steps{counter-reset:strat;margin-top:12px}
+        .strategy-step{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start}
+        .strategy-step:last-child{margin-bottom:0}
+        .step-time{flex-shrink:0;background:var(--accent);color:white;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:50px;min-width:52px;text-align:center}
+        .step-body{font-size:.82rem;color:var(--text);line-height:1.55}
+        .step-body strong{color:var(--heading)}
+        @media(max-width:600px){.risk-pair{grid-template-columns:1fr}}
+
+        .callout{background:rgba(100,56,176,.06);border:1px solid rgba(100,56,176,.18);border-radius:var(--radius);padding:20px 24px;margin:24px 0}
+        .callout h4{font-size:.88rem;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+        .callout p{font-size:.86rem;color:var(--muted)}
+
+        .footer{text-align:center;padding:40px 24px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border);margin-top:40px}
+        @media print{.nav{position:static}.builder{box-shadow:none}}
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-badge">Paper 3 · Question 2b · 6 marks</div>
+        <h1>The Policy Recommendation Scaffold</h1>
+        <p class="hero-sub">Master the most challenging question on Paper 3 — from generic guesses to scholar-level policy proposals using the Actor + Mechanism + Rationale + Risk formula.</p>
+    </header>
+
+    <nav class="nav" id="nav">
+        <a href="#formula" class="active" onclick="setActive(this)">The Formula</a>
+        <a href="#tiers" onclick="setActive(this)">3-Tier Ladder</a>
+        <a href="#builder" onclick="setActive(this)">Build Your Policy</a>
+        <a href="#examples" onclick="setActive(this)">Model Answers</a>
+        <a href="#toolkit" onclick="setActive(this)">Exam Prep Toolkit</a>
+    </nav>
+
+    <main class="container">
+
+        <!-- SECTION 1: THE FORMULA -->
+        <div class="section" id="formula">
+            <div class="section-label">The Core Framework</div>
+            <h2><span class="section-num">1</span> The AMR² Formula</h2>
+            <p class="section-intro">Every strong policy recommendation answers four questions. Think of it as writing a prescription, not giving general advice.</p>
+
+            <div class="formula-container">
+                <div class="formula-block f-actor">
+                    <div class="f-icon">🏛</div>
+                    <div class="f-label">Actor</div>
+                    <div class="f-desc">Who does it?</div>
+                </div>
+                <div class="formula-plus">+</div>
+                <div class="formula-block f-mech">
+                    <div class="f-icon">⚙️</div>
+                    <div class="f-label">Mechanism</div>
+                    <div class="f-desc">What do they do?</div>
+                </div>
+                <div class="formula-plus">+</div>
+                <div class="formula-block f-rat">
+                    <div class="f-icon">💡</div>
+                    <div class="f-label">Rationale</div>
+                    <div class="f-desc">Why will it work?</div>
+                </div>
+                <div class="formula-plus">+</div>
+                <div class="formula-block f-risk">
+                    <div class="f-icon">⚠️</div>
+                    <div class="f-label">Risk</div>
+                    <div class="f-desc">What could go wrong?</div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <h4>💡 Why AMR²?</h4>
+                <p>Q2b asks you to <strong>"propose a solution"</strong> — but generic solutions ("the UN should help") score 1-2 marks. The AMR² formula ensures your recommendation is <strong>specific, grounded, and self-critical</strong>. Examiners reward students who think like policymakers, not commentators.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 2: 3-TIER LADDER -->
+        <div class="section" id="tiers">
+            <div class="section-label">Understanding the Mark Scheme</div>
+            <h2><span class="section-num">2</span> The 3-Tier Ladder</h2>
+            <p class="section-intro">Your policy recommendation gets graded on a 3-level heuristic. Here's exactly what separates a 2-mark generic answer from a 6-mark scholar response.</p>
+
+            <div class="tier-ladder">
+                <div class="tier-card t1">
+                    <h3>
+                        <span class="tier-level">Level 1 · Generic</span>
+                        ❌ 1-2 Marks
+                    </h3>
+                    <p style="font-size:.86rem;color:var(--muted)">Vague, short, no specific actor or mechanism. Could apply to any issue anywhere. Examiners call this "tourist analysis."</p>
+                    <div class="example">"The international community should help Haiti by sending support and resources to improve the situation."</div>
+                    <div class="elevation">🔼 <strong>Elevation Move:</strong> Replace "the international community" with a specific actor; replace "help" with a concrete mechanism.</div>
+                </div>
+                <div class="tier-card t2">
+                    <h3>
+                        <span class="tier-level">Level 2 · Surgical</span>
+                        ✅ 3-4 Marks
+                    </h3>
+                    <p style="font-size:.86rem;color:var(--muted)">Contains a specific actor, a concrete mechanism, and a clear rationale. This is a solid 4-mark answer, but it doesn't acknowledge complexity.</p>
+                    <div class="example">"The UNSC should mandate the Gang Suppression Force to embed Haitian National Police officers in all operational units, in order to build local capacity and ensure the mission transitions to Haitian-led security within 18 months."</div>
+                    <div class="elevation">🔼 <strong>Elevation Move:</strong> Add a risk acknowledgment — what happens if Kenya or other contributors refuse? What's the plan if it doesn't work?</div>
+                </div>
+                <div class="tier-card t3">
+                    <h3>
+                        <span class="tier-level">Level 3 · Scholar</span>
+                        🎉 5-6 Marks
+                    </h3>
+                    <p style="font-size:.86rem;color:var(--muted)">Includes a specific actor, a concrete mechanism, a clear rationale, <strong>and</strong> acknowledges a risk or limitation with a mitigation strategy. This is the 7-band answer.</p>
+                    <div class="example">"The UNSC should mandate the GSF to embed Haitian National Police in all operational units to build local capacity and transition to Haitian-led security within 18 months. However, this risks being undermined if the transitional government lacks the fiscal capacity to sustain enlarged police forces — which could be mitigated by the EABRD pairing the mandate with a 5-year policing infrastructure fund."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: BUILDER -->
+        <div class="section" id="builder">
+            <div class="section-label">Practice Tool</div>
+            <h2><span class="section-num">3</span> Build Your Policy</h2>
+            <p class="section-intro">Fill in each component below. Click "Grade My Policy" to see which tier your recommendation reaches — and how to elevate it.</p>
+
+            <div class="builder">
+                <div class="builder-intro">Choose a scenario from your case studies (Western Sahara, Nicaragua, Haiti, or Syr Darya) and craft a policy recommendation using the AMR² formula.</div>
+
+                <div class="field-group">
+                    <label class="field-label"><span class="fl-icon fl-actor">A</span> Actor <span class="field-hint">— Who will implement this policy? (e.g., a specific UN body, ministry, IGO, NGO)</span></label>
+                    <textarea id="f-actor" rows="2" placeholder='e.g., "The ICWC (Interstate Coordination Water Commission)"'></textarea>
+                    <div class="char-count"><span id="cc-actor">0</span> chars</div>
+                </div>
+                <div class="field-group">
+                    <label class="field-label"><span class="fl-icon fl-mech">M</span> Mechanism <span class="field-hint">— What specific action, treaty, sanction, fund, or deployment?</span></label>
+                    <textarea id="f-mech" rows="2" placeholder='e.g., "adopt a climate-adjusted allocation model based on IPCC glacial melt projections"'></textarea>
+                    <div class="char-count"><span id="cc-mech">0</span> chars</div>
+                </div>
+                <div class="field-group">
+                    <label class="field-label"><span class="fl-icon fl-rat">R</span> Rationale <span class="field-hint">— Why will this work? What evidence or logic supports it?</span></label>
+                    <textarea id="f-rat" rows="2" placeholder='e.g., "because current allocations rely on Soviet-era baselines that don't account for 30% glacial retreat since 1990"'></textarea>
+                    <div class="char-count"><span id="cc-rat">0</span> chars</div>
+                </div>
+                <div class="field-group">
+                    <label class="field-label"><span class="fl-icon fl-risk">R²</span> Risk &amp; Mitigation <span class="field-hint">— What could go wrong? How would you address it?</span></label>
+                    <textarea id="f-risk" rows="2" placeholder='e.g., "However, Uzbekistan may resist reduced allocations — this could be mitigated by..."'></textarea>
+                    <div class="char-count"><span id="cc-risk">0</span> chars</div>
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn btn-primary" onclick="gradePolicy()">📊 Grade My Policy</button>
+                    <button class="btn btn-secondary" onclick="assemblePolicy()">📝 Assemble Full Answer</button>
+                    <button class="btn btn-secondary" onclick="resetBuilder()">🔄 Reset</button>
+                </div>
+
+                <div class="feedback" id="feedback"></div>
+                <div class="assembled" id="assembled"></div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: MODEL ANSWERS -->
+        <div class="section" id="examples">
+            <div class="section-label">Reference Models</div>
+            <h2><span class="section-num">4</span> Model Answers</h2>
+            <p class="section-intro">Each card below is a realistic exam-length Scholar-level (5-6 mark) policy recommendation, the kind a strong student could handwrite in about 15 minutes. Click "Show AMR² Deconstruction" beneath each one to see how the paragraph maps to every element of the formula.</p>
+
+            <div class="example-grid">
+                <div class="ex-card">
+                    <h4>🌱 Western Sahara <span class="ex-tag" style="background:rgba(26,138,90,.1);color:#0f5e3a">Technology + Equality</span></h4>
+                    <p class="ex-paragraph">The European Commission, through its Directorate-General for Energy (DG ENER), should amend the Delegated Act on Renewable Hydrogen (2023) to require all imported hydrogen to carry a certificate of geographic origin verified by an independent auditor, making hydrogen produced on UN-classified non-self-governing territory ineligible for the EU's green taxonomy. This directly enforces the EU Court of Justice's 2024 ruling that trade agreements cannot legally extend to Western Sahara without Sahrawi consent, and is technically feasible since the EU already operates origin-tracing for agricultural products under Protected Designation of Origin (PDO) regulations. Without such a mechanism, European energy companies will continue signing agreements, like the $12 billion in preliminary contracts already announced, that effectively finance Morocco's territorial claims while denying Sahrawi communities revenue-sharing or employment. Independent monitors have confirmed that local populations received minimal benefit from existing solar installations in the southern provinces, meaning green energy development is replicating the extractive dynamics it claims to replace. However, blocking Western Sahara-origin hydrogen risks removing up to 8 GW of planned capacity from EU supply projections, potentially delaying the Green Deal's 2030 climate targets. To mitigate this, the Commission should fast-track alternative hydrogen partnerships with Namibia's Hyphen project, Chile's HyEx initiative, and Algeria's Sonatrach programme, diversifying supply away from politically contested sourcing while maintaining decarbonization timelines.</p>
+                    <p class="ex-wordcount">~200 words · ≈18 min handwritten</p>
+                    <button class="deconstruct-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▾ Hide AMR² Deconstruction':'▸ Show AMR² Deconstruction'">▸ Show AMR² Deconstruction</button>
+                    <div class="deconstruct">
+                        <div class="decon-row"><span class="decon-label decon-actor">🏛 ACTOR</span><span class="decon-text">"The European Commission, through its Directorate-General for Energy (DG ENER)" → names both the institution and the specific sub-unit responsible</span></div>
+                        <div class="decon-row"><span class="decon-label decon-mech">⚙️ MECHANISM</span><span class="decon-text">"amend the Delegated Act on Renewable Hydrogen (2023) to require all imported hydrogen to carry a certificate of geographic origin verified by an independent auditor" → cites specific legislation and describes an actionable, verifiable policy step</span></div>
+                        <div class="decon-row"><span class="decon-label decon-rat">💡 RATIONALE</span><span class="decon-text">"This directly enforces the EU Court of Justice's 2024 ruling… is technically feasible since the EU already operates origin-tracing… Independent monitors have confirmed that local populations received minimal benefit" → justifies with legal precedent, operational feasibility, and on-the-ground evidence</span></div>
+                        <div class="decon-row"><span class="decon-label decon-risk">⚠️ RISK</span><span class="decon-text">"blocking Western Sahara-origin hydrogen risks removing up to 8 GW of planned capacity from EU supply projections, potentially delaying the Green Deal's 2030 climate targets" → quantifies the downside with a specific consequence</span></div>
+                        <div class="decon-row"><span class="decon-label decon-mit">🛡 MITIGATION</span><span class="decon-text">"fast-track alternative hydrogen partnerships with Namibia's Hyphen project, Chile's HyEx initiative, and Algeria's Sonatrach programme" → names three specific alternative projects to offset supply risk</span></div>
+                    </div>
+                </div>
+                <div class="ex-card">
+                    <h4>⛏ Nicaragua <span class="ex-tag" style="background:rgba(176,125,16,.1);color:#7a5800">Poverty + Environment</span></h4>
+                    <p class="ex-paragraph">The International Council on Mining and Metals (ICMM) should amend its Mining Principles (2020) to require all member companies holding concessions overlapping indigenous territories to complete an independent Free, Prior and Informed Consent (FPIC) audit under ILO Convention 169 before commencing operations, with non-compliant firms facing suspension from membership and exclusion from ESG-rated investment portfolios. This is urgent because 13 Chinese-owned concessions covering over 6,600 km² of Miskito and Mayangna territory were granted in just 190 days without any documented community consultation, and Mongabay's 2025 investigation confirmed that displacement is already occurring as mining operations encroach on protected biosphere reserves and UNESCO-recognised indigenous homelands. The concessions overlap areas where communities depend on subsistence agriculture and artisanal fishing, meaning extraction does not simply inconvenience residents but eliminates their economic livelihood entirely. However, the Ortega-Murillo regime may block independent auditors from entering the country, as it demonstrated when expelling over 3,000 civil society organisations between 2018 and 2024 and withdrawing Nicaragua from the OAS in 2023. To mitigate this, the ICMM should coordinate with the US SEC and the EU's Corporate Sustainability Due Diligence Directive to embed FPIC verification into supply-chain reporting requirements for companies importing Nicaraguan gold, effectively shifting enforcement from domestic courts to import-jurisdiction regulators who can impose financial penalties on non-compliant refiners in Dubai and Switzerland.</p>
+                    <p class="ex-wordcount">~200 words · ≈18 min handwritten</p>
+                    <button class="deconstruct-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▾ Hide AMR² Deconstruction':'▸ Show AMR² Deconstruction'">▸ Show AMR² Deconstruction</button>
+                    <div class="deconstruct">
+                        <div class="decon-row"><span class="decon-label decon-actor">🏛 ACTOR</span><span class="decon-text">"The International Council on Mining and Metals (ICMM)" → names a specific international industry body with regulatory power over member companies</span></div>
+                        <div class="decon-row"><span class="decon-label decon-mech">⚙️ MECHANISM</span><span class="decon-text">"amend its Mining Principles (2020) to require… an independent FPIC audit under ILO Convention 169… with non-compliant firms facing suspension from membership" → cites the framework, the legal standard, and the enforcement consequence</span></div>
+                        <div class="decon-row"><span class="decon-label decon-rat">💡 RATIONALE</span><span class="decon-text">"13 Chinese-owned concessions covering over 6,600 km² were granted in just 190 days without any documented community consultation… extraction does not simply inconvenience residents but eliminates their economic livelihood entirely" → uses specific data and explains real-world impact</span></div>
+                        <div class="decon-row"><span class="decon-label decon-risk">⚠️ RISK</span><span class="decon-text">"the Ortega-Murillo regime may block independent auditors… as it demonstrated when expelling over 3,000 civil society organisations and withdrawing from the OAS" → names the specific obstacle with multiple pieces of historical evidence</span></div>
+                        <div class="decon-row"><span class="decon-label decon-mit">🛡 MITIGATION</span><span class="decon-text">"coordinate with the US SEC and the EU's CSDDD to embed FPIC verification into supply-chain reporting… shifting enforcement from domestic courts to import-jurisdiction regulators" → explains the enforcement workaround mechanism</span></div>
+                    </div>
+                </div>
+                <div class="ex-card">
+                    <h4>🏴 Haiti <span class="ex-tag" style="background:rgba(192,40,62,.1);color:#8a1830">Security + Equality</span></h4>
+                    <p class="ex-paragraph">The UN Security Council, under Chapter VII authority, should mandate the Multinational Security Support mission to embed Haitian National Police officers in all operational units at a minimum 1:3 ratio, overseen by a Haitian Community Oversight Board (HCOB) holding quarterly public hearings broadcast on national radio, with an independent ombudsman reporting directly to the Security Council's Haiti sanctions committee. This accountability mechanism is essential because MINUSTAH (2004 to 2017) demonstrates that military effectiveness without local legitimacy collapses; its cholera epidemic killed over 10,000 Haitians, and sexual exploitation scandals destroyed public trust so thoroughly that communities now view external forces with deep suspicion despite 5,600 people being killed in gang violence in 2024 alone. The current MSS mission operates without a formal Chapter VII mandate, relying on bilateral agreements that lack the accountability mechanisms of traditional peacekeeping, which means there is currently no institutional path for Haitian civilians to report misconduct or demand operational changes. However, armed gangs controlling approximately 80% of Port-au-Prince, including the national port and main highway corridors, may exploit consultation timelines to consolidate territorial control during the oversight transition. To mitigate this, the Security Council should authorize a phased approach: immediate security operations for 90 days, followed by the HCOB assuming oversight of all subsequent operations. The Peacebuilding Commission should pair this with a 5-year policing infrastructure fund to build the institutional capacity that external interventions consistently fail to create.</p>
+                    <p class="ex-wordcount">~200 words · ≈18 min handwritten</p>
+                    <button class="deconstruct-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▾ Hide AMR² Deconstruction':'▸ Show AMR² Deconstruction'">▸ Show AMR² Deconstruction</button>
+                    <div class="deconstruct">
+                        <div class="decon-row"><span class="decon-label decon-actor">🏛 ACTOR</span><span class="decon-text">"The UN Security Council, under Chapter VII authority" → specifies both the institution and the legal basis for its authority to act</span></div>
+                        <div class="decon-row"><span class="decon-label decon-mech">⚙️ MECHANISM</span><span class="decon-text">"mandate the MSS to embed Haitian National Police officers at a minimum 1:3 ratio, overseen by a HCOB holding quarterly public hearings, with an independent ombudsman reporting to the sanctions committee" → describes a concrete, multi-layered accountability structure</span></div>
+                        <div class="decon-row"><span class="decon-label decon-rat">💡 RATIONALE</span><span class="decon-text">"MINUSTAH demonstrates that military effectiveness without local legitimacy collapses… the current MSS operates without a formal Chapter VII mandate… there is currently no institutional path for civilians to report misconduct" → uses historical precedent and identifies the specific governance gap</span></div>
+                        <div class="decon-row"><span class="decon-label decon-risk">⚠️ RISK</span><span class="decon-text">"armed gangs controlling approximately 80% of Port-au-Prince, including the national port and main highway corridors, may exploit consultation timelines" → identifies a specific, quantified operational threat</span></div>
+                        <div class="decon-row"><span class="decon-label decon-mit">🛡 MITIGATION</span><span class="decon-text">"a phased approach: immediate security operations for 90 days, followed by the HCOB assuming oversight… The Peacebuilding Commission should pair this with a 5-year policing infrastructure fund" → separates short-term security from long-term institution-building, naming a second actor</span></div>
+                    </div>
+                </div>
+                <div class="ex-card">
+                    <h4>💧 Syr Darya <span class="ex-tag" style="background:rgba(14,124,134,.1);color:#0b6e78">Environment + Security</span></h4>
+                    <p class="ex-paragraph">The Interstate Coordination Water Commission (ICWC), partnering with GIZ and the Eurasian Development Bank, should replace Soviet-era allocation baselines with a dynamic formula calibrated to IPCC glacial melt projections, monitored by 137 automated hydro-stations providing real-time flow data to all three riparian states through a shared digital dashboard. This reform is urgent because Central Asian glaciers have retreated by approximately 30% since 1990, meaning current allocations systematically overpromise water that no longer exists. Downstream Kazakhstan's share increasingly fails to reach the Northern Aral Sea, threatening the $85 million World Bank-funded Kok-Aral Dam restoration that represents the region's most significant environmental recovery effort. Climate projections suggest that by 2050, glacial meltwater contribution to the Syr Darya will decline by an additional 40%, meaning the timeline for achieving a binding scientific mechanism is compressing rapidly. The 2025 Trilateral Protocol signed in Astana provides political will, but without an enforceable allocation formula, goodwill alone cannot prevent future crises. However, Uzbekistan, the basin's largest water consumer at 3.347 billion m³ annually, may resist reduced allocations as a sovereignty threat, particularly given its historical resistance to external monitoring of irrigation practices. To mitigate this, the EADB should fund drip-irrigation technology transfers to Uzbekistan's Fergana Valley, where pilot programs show 40 to 60% water savings with increased crop yields, transforming a zero-sum dispute into a modernization partnership.</p>
+                    <p class="ex-wordcount">~200 words · ≈18 min handwritten</p>
+                    <button class="deconstruct-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▾ Hide AMR² Deconstruction':'▸ Show AMR² Deconstruction'">▸ Show AMR² Deconstruction</button>
+                    <div class="deconstruct">
+                        <div class="decon-row"><span class="decon-label decon-actor">🏛 ACTOR</span><span class="decon-text">"The Interstate Coordination Water Commission (ICWC), partnering with GIZ and the Eurasian Development Bank" → names the primary actor and two supporting institutions</span></div>
+                        <div class="decon-row"><span class="decon-label decon-mech">⚙️ MECHANISM</span><span class="decon-text">"replace Soviet-era allocation baselines with a dynamic formula calibrated to IPCC glacial melt projections, monitored by 137 automated hydro-stations providing real-time flow data through a shared digital dashboard" → describes a specific, data-driven system with a transparency component</span></div>
+                        <div class="decon-row"><span class="decon-label decon-rat">💡 RATIONALE</span><span class="decon-text">"glaciers have retreated by approximately 30% since 1990… by 2050, glacial meltwater contribution will decline by an additional 40%" → uses both current empirical data and forward projections to demonstrate urgency</span></div>
+                        <div class="decon-row"><span class="decon-label decon-risk">⚠️ RISK</span><span class="decon-text">"Uzbekistan, the basin's largest water consumer at 3.347 billion m³ annually, may resist reduced allocations as a sovereignty threat, particularly given its historical resistance to external monitoring" → identifies the state actor most likely to obstruct and explains why</span></div>
+                        <div class="decon-row"><span class="decon-label decon-mit">🛡 MITIGATION</span><span class="decon-text">"the EADB should fund drip-irrigation technology transfers to Uzbekistan's Fergana Valley, where pilot programs show 40 to 60% water savings with increased crop yields" → proposes a positive-sum solution through a named institution</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: EXAM PREP TOOLKIT -->
+        <div class="section" id="toolkit">
+            <div class="section-label">Preparation Strategy</div>
+            <h2><span class="section-num">5</span> Exam Prep Toolkit</h2>
+            <p class="section-intro">You cannot memorize a policy recommendation because the stimulus is unseen. But you also cannot improvise one from scratch in 15 minutes. The solution: prepare transferable building blocks you can remix on exam day.</p>
+
+            <div class="toolkit-grid">
+
+                <!-- ACTOR BANK -->
+                <div class="toolkit-card">
+                    <h4>🏛 Actor Bank</h4>
+                    <p style="font-size:.82rem;color:var(--muted);margin-bottom:14px">For each GPC, keep 2 to 3 actors ready with the specific sub-unit and one real mechanism they control. On exam day, match the stimulus topic to your strongest actor.</p>
+                    <table class="toolkit-table">
+                        <thead>
+                            <tr><th>GPC</th><th>Actor + Sub-unit</th><th>Tool They Control</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="gpc-badge" style="background:rgba(44,95,196,.1);color:#2c5fc4">Security</span></td>
+                                <td>UN Security Council (Chapter VII)</td>
+                                <td>Binding resolutions, peacekeeping mandates, sanctions</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>AU Peace and Security Council</td>
+                                <td>Continental early warning systems, African Standby Force deployment</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>ICC Office of the Prosecutor</td>
+                                <td>Investigations, arrest warrants, referrals from UNSC</td>
+                            </tr>
+                            <tr>
+                                <td><span class="gpc-badge" style="background:rgba(26,138,90,.1);color:#1a8a5a">Environment</span></td>
+                                <td>UNFCCC COP Presidency</td>
+                                <td>Binding emissions targets, climate finance pledges, loss-and-damage fund</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>World Bank Climate Investment Funds</td>
+                                <td>Concessional loans, Clean Technology Fund, adaptation grants</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>UNEP Regional Seas Programme</td>
+                                <td>Marine protection conventions, pollution monitoring</td>
+                            </tr>
+                            <tr>
+                                <td><span class="gpc-badge" style="background:rgba(176,125,16,.1);color:#7a5800">Poverty</span></td>
+                                <td>World Bank IDA (International Development Association)</td>
+                                <td>Zero-interest loans, debt relief, structural adjustment conditions</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>UNDP Human Development Report Office</td>
+                                <td>HDI benchmarking, Multidimensional Poverty Index</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>WTO Dispute Settlement Body</td>
+                                <td>Trade dispute rulings, tariff adjustment, special and differential treatment</td>
+                            </tr>
+                            <tr>
+                                <td><span class="gpc-badge" style="background:rgba(192,40,62,.1);color:#c0283e">Health</span></td>
+                                <td>WHO Director-General (IHR Emergency Committee)</td>
+                                <td>PHEIC declarations, International Health Regulations enforcement</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Gavi, the Vaccine Alliance</td>
+                                <td>Advance Market Commitments, COVAX-style pooled procurement</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Global Fund to Fight AIDS, TB and Malaria</td>
+                                <td>Performance-based grants, country coordinating mechanisms</td>
+                            </tr>
+                            <tr>
+                                <td><span class="gpc-badge" style="background:rgba(14,124,134,.1);color:#0e7c86">Technology</span></td>
+                                <td>EU Commission DG CONNECT</td>
+                                <td>Digital Services Act, AI Act, data governance regulations</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>ITU Radiocommunication Sector</td>
+                                <td>Spectrum allocation, global connectivity standards</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>WTO TRIPS Council</td>
+                                <td>Intellectual property waivers, compulsory licensing rules</td>
+                            </tr>
+                            <tr>
+                                <td><span class="gpc-badge" style="background:rgba(100,56,176,.1);color:#6438b0">Equality</span></td>
+                                <td>UN Human Rights Council (Universal Periodic Review)</td>
+                                <td>Country reviews, Special Rapporteur mandates, fact-finding missions</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>ILO Governing Body</td>
+                                <td>Convention enforcement, labour standards, FPIC frameworks</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>ICJ (International Court of Justice)</td>
+                                <td>Advisory opinions, binding judgments between states</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- MECHANISM TEMPLATES -->
+                <div class="toolkit-card">
+                    <h4>⚙️ Mechanism Templates</h4>
+                    <p style="font-size:.82rem;color:var(--muted);margin-bottom:14px">These are the policy "verbs" that work across any topic. On exam day, slot in the actor from your bank and the issue from the stimulus.</p>
+                    <div class="mech-template">
+                        <div class="mech-label">Amend an existing framework</div>
+                        <p><span class="mech-blank">[Actor]</span> should amend <span class="mech-blank">[existing treaty/regulation/resolution]</span> to require <span class="mech-blank">[specific new obligation]</span> verified by <span class="mech-blank">[enforcement body or audit mechanism]</span>.</p>
+                    </div>
+                    <div class="mech-template">
+                        <div class="mech-label">Create certification or conditionality</div>
+                        <p><span class="mech-blank">[Actor]</span> should require all <span class="mech-blank">[companies/states/organizations]</span> to obtain a <span class="mech-blank">[certificate/audit/compliance report]</span> before accessing <span class="mech-blank">[market/funding/membership]</span>.</p>
+                    </div>
+                    <div class="mech-template">
+                        <div class="mech-label">Link market access to compliance</div>
+                        <p><span class="mech-blank">[Actor]</span> should condition <span class="mech-blank">[trade access/development funding/investment eligibility]</span> on demonstrated compliance with <span class="mech-blank">[standard/convention/protocol]</span>, with non-compliant parties facing <span class="mech-blank">[specific consequence]</span>.</p>
+                    </div>
+                    <div class="mech-template">
+                        <div class="mech-label">Establish an oversight body</div>
+                        <p><span class="mech-blank">[Actor]</span> should create a <span class="mech-blank">[board/commission/monitoring unit]</span> comprising <span class="mech-blank">[specific stakeholders]</span>, with the authority to <span class="mech-blank">[review/approve/veto specific actions]</span>.</p>
+                    </div>
+                </div>
+
+                <!-- RISK-MITIGATION PAIRS -->
+                <div class="toolkit-card">
+                    <h4>⚠️ Risk-Mitigation Pairs</h4>
+                    <p style="font-size:.82rem;color:var(--muted);margin-bottom:14px">The "However..." pivot is the hardest part. Most exam risks fall into one of four categories. Prepare a mitigation pattern for each.</p>
+                    <div class="risk-pair">
+                        <div class="risk-side risk">
+                            <div class="rs-label">⚠️ Sovereignty resistance</div>
+                            "State Y may frame this as external interference, undermining domestic support for cooperation."
+                        </div>
+                        <div class="risk-side mit">
+                            <div class="rs-label">🛡 Mitigation: embed local actors</div>
+                            Pair the policy with a local oversight body, joint committee, or phased transition to national leadership so the reform is owned, not imposed.
+                        </div>
+                    </div>
+                    <div class="risk-pair">
+                        <div class="risk-side risk">
+                            <div class="rs-label">⚠️ Economic disruption</div>
+                            "This risks disrupting supply chains, raising commodity prices, or threatening jobs in the affected sector."
+                        </div>
+                        <div class="risk-side mit">
+                            <div class="rs-label">🛡 Mitigation: diversify or compensate</div>
+                            Name alternative suppliers, transition funds, or technology transfers that make the reform economically viable rather than punitive.
+                        </div>
+                    </div>
+                    <div class="risk-pair">
+                        <div class="risk-side risk">
+                            <div class="rs-label">⚠️ Enforcement gap</div>
+                            "The target state may block auditors, expel NGOs, or refuse to comply, rendering the policy unverifiable on the ground."
+                        </div>
+                        <div class="risk-side mit">
+                            <div class="rs-label">🛡 Mitigation: shift jurisdiction</div>
+                            Embed compliance into import-side regulations (e.g., SEC reporting, EU due diligence directives) so enforcement happens in home markets, not the target state.
+                        </div>
+                    </div>
+                    <div class="risk-pair">
+                        <div class="risk-side risk">
+                            <div class="rs-label">⚠️ Timeline conflict</div>
+                            "Consultation processes may delay urgent action, allowing the crisis to escalate during the implementation window."
+                        </div>
+                        <div class="risk-side mit">
+                            <div class="rs-label">🛡 Mitigation: phased approach</div>
+                            Separate immediate stabilization (first 90 days under existing authority) from longer-term governance reform, so neither track blocks the other.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXAM DAY STRATEGY -->
+                <div class="toolkit-card">
+                    <h4>🎯 Exam Day Strategy</h4>
+                    <p style="font-size:.82rem;color:var(--muted);margin-bottom:14px">You have approximately 15 minutes for Q2b. Here is how to allocate that time.</p>
+                    <div class="strategy-steps">
+                        <div class="strategy-step">
+                            <span class="step-time">3 min</span>
+                            <div class="step-body"><strong>Read and decide.</strong> Scan the stimulus. Identify which GPC it connects to most strongly. Select the actor from your bank that fits best. Do not overthink this; your first instinct is usually correct.</div>
+                        </div>
+                        <div class="strategy-step">
+                            <span class="step-time">3 min</span>
+                            <div class="step-body"><strong>Write Actor + Mechanism.</strong> Draft the opening sentence using one of your mechanism templates. This is the core of your answer and what earns the most marks. Name the actor with sub-unit and describe one concrete, verifiable policy step.</div>
+                        </div>
+                        <div class="strategy-step">
+                            <span class="step-time">3 min</span>
+                            <div class="step-body"><strong>Write the Rationale.</strong> Connect the stimulus evidence to your own knowledge. Why is this policy feasible? Cite a precedent, an existing system that proves it can work, or data from the stimulus that justifies urgency.</div>
+                        </div>
+                        <div class="strategy-step">
+                            <span class="step-time">3 min</span>
+                            <div class="step-body"><strong>Write Risk + Mitigation.</strong> Start with "However" and name one credible risk from your prepared pairs. Then propose a specific mitigation that names a secondary actor or alternative mechanism.</div>
+                        </div>
+                        <div class="strategy-step">
+                            <span class="step-time">3 min</span>
+                            <div class="step-body"><strong>Review and tighten.</strong> Reread your paragraph. Check that you named a specific actor (not "the UN"), cited a real mechanism, gave evidence, and addressed risk. Cut any filler sentences that do not add marks.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRACTICE DRILL -->
+                <div class="callout">
+                    <h4>🔥 Recommended Drill</h4>
+                    <p>Take three different stimulus extracts and write only the opening sentence (Actor + Mechanism) for each, using a different GPC each time. Time yourself to 2 minutes per sentence. This trains the pivot skill. Once the opening sentence is automatic, the rest of the paragraph follows naturally.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>IB Global Politics HL · Paper 3 Q2b Policy Scaffold · Mr. Martinez · March 2026</p>
+    </footer>
+
+    <script>
+        // Nav active state
+        function setActive(el){
+            document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        // Character counts
+        ['actor','mech','rat','risk'].forEach(id=>{
+            const ta = document.getElementById('f-'+id);
+            const cc = document.getElementById('cc-'+id);
+            if(ta && cc){
+                ta.addEventListener('input',()=>{cc.textContent=ta.value.length});
+            }
+        });
+
+        // Grading logic (mirrors PolicyLogic.py 3-tier heuristic)
+        function gradePolicy(){
+            const actor = document.getElementById('f-actor').value.trim();
+            const mech = document.getElementById('f-mech').value.trim();
+            const rat = document.getElementById('f-rat').value.trim();
+            const risk = document.getElementById('f-risk').value.trim();
+            const fb = document.getElementById('feedback');
+
+            const hasActor = actor.length > 5;
+            const hasMech = mech.length > 10;
+            const hasRat = rat.length > 10;
+            const hasRisk = risk.length > 10;
+
+            // Check specificity
+            const genericWords = ['help','try','fix','support','do something','send money','assist','general'];
+            const combined = (actor+' '+mech+' '+rat+' '+risk).toLowerCase();
+            const isVague = genericWords.some(w => combined.includes(w)) && combined.split(' ').length < 20;
+
+            let tier, title, desc, color, elev;
+
+            if(hasActor && hasMech && hasRat && hasRisk && !isVague){
+                tier = 3; title = '🎉 Scholar Level (5-6 Marks)';
+                desc = 'Your recommendation includes a <strong>specific actor</strong>, a <strong>concrete mechanism</strong>, a <strong>clear rationale</strong>, and acknowledges <strong>risk with mitigation</strong>. This is a top-band answer.';
+                color = 'fb-t3';
+                elev = '<strong>Polish it:</strong> Ensure your risk mitigation names a second actor (not the same as your main actor). This shows "systemic thinking" — the examiner\'s gold standard.';
+            } else if(hasActor && hasMech && hasRat && !isVague){
+                tier = 2; title = '✅ Surgical Level (3-4 Marks)';
+                desc = 'You have a <strong>specific actor</strong> and <strong>mechanism</strong> with <strong>rationale</strong> — but you\'re missing the risk acknowledgment that pushes you to a 5-6.';
+                color = 'fb-t2';
+                elev = '<strong>Elevation Move:</strong> Add "However, this risks..." followed by a specific obstacle, then "which could be mitigated by..." with a concrete solution. This single addition could earn 2 more marks.';
+            } else {
+                tier = 1; title = '❌ Generic Level (1-2 Marks)';
+                desc = 'Your recommendation is too vague. ';
+                if(!hasActor) desc += 'You need a <strong>specific actor</strong> (not "the international community"). ';
+                if(!hasMech) desc += 'You need a <strong>concrete mechanism</strong> (e.g., sanction, fund, treaty). ';
+                if(!hasRat) desc += 'You need a <strong>rationale</strong> explaining why this will work. ';
+                color = 'fb-t1';
+                elev = '<strong>Elevation Move:</strong> Start by naming a specific organization (UN body, NGO, ministry) and one concrete action they would take. Build from there.';
+            }
+
+            fb.className = 'feedback show ' + color;
+            fb.innerHTML = `
+                <span class="feedback-tier">${title}</span>
+                <h3>Feedback</h3>
+                <p>${desc}</p>
+                <div class="elevation-box">
+                    <h4>🔼 Next Step</h4>
+                    <p>${elev}</p>
+                </div>
+            `;
+            fb.scrollIntoView({behavior:'smooth', block:'center'});
+        }
+
+        function assemblePolicy(){
+            const actor = document.getElementById('f-actor').value.trim();
+            const mech = document.getElementById('f-mech').value.trim();
+            const rat = document.getElementById('f-rat').value.trim();
+            const risk = document.getElementById('f-risk').value.trim();
+            const box = document.getElementById('assembled');
+
+            if(!actor && !mech && !rat){
+                box.className = 'assembled show';
+                box.innerHTML = '<h4>📝 Assembled Q2b Answer</h4><p style="color:var(--muted)">Fill in at least Actor, Mechanism, and Rationale above first.</p>';
+                return;
+            }
+
+            let text = '';
+            if(actor) text += `<span class="hl-actor">${actor}</span> `;
+            if(mech) text += `should ${mech}`;
+            if(rat) text += `, ${rat}`;
+            text += '. ';
+            if(risk) text += `${risk}`;
+
+            box.className = 'assembled show';
+            box.innerHTML = `<h4>📝 Your Assembled Q2b Answer</h4><div class="assembled-text">${text}</div>`;
+            box.scrollIntoView({behavior:'smooth', block:'center'});
+        }
+
+        function resetBuilder(){
+            ['f-actor','f-mech','f-rat','f-risk'].forEach(id=>{
+                document.getElementById(id).value = '';
+            });
+            ['cc-actor','cc-mech','cc-rat','cc-risk'].forEach(id=>{
+                document.getElementById(id).textContent = '0';
+            });
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('assembled').className = 'assembled';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Paper 3 Practice Exam — Western Sahara | IB Global Politics HL</title>
+    <meta name="description" content="Stimulus-based practice exam on development and sustainability through the Western Sahara green energy dispute."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{--bg:#f5f6fa;--surface:#fff;--surface2:#eef0f7;--border:rgba(0,0,0,.1);--accent:#1a5a3a;--accent-light:rgba(26,90,58,.08);--gold:#b07d10;--danger:#c0283e;--blue:#2c5fc4;--purple:#6438b0;--text:#1a1e2e;--muted:#4a5270;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.10)}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh}
+
+        /* EXAM HEADER */
+        .exam-header{background:linear-gradient(180deg,#e8ede9 0%,var(--bg) 100%);border-bottom:1px solid var(--border);padding:48px 24px 40px;text-align:center}
+        .exam-header .org{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+        .exam-header h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;color:var(--text);margin-bottom:6px}
+        .exam-header .meta{font-size:.88rem;color:var(--muted);margin-bottom:20px}
+        .exam-header .exam-info{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
+        .exam-header .info-pill{background:var(--surface);border:1px solid var(--border);border-radius:50px;padding:8px 20px;font-size:.78rem;font-weight:600;color:var(--text)}
+        .exam-header .info-pill span{color:var(--muted);font-weight:400}
+
+        /* TIMER BAR */
+        .timer-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;justify-content:center;gap:16px;position:sticky;top:0;z-index:100}
+        .timer-display{font-family:'Courier Prime',monospace;font-size:1.3rem;font-weight:700;color:var(--accent);min-width:100px;text-align:center}
+        .timer-btn{padding:8px 18px;border-radius:50px;font-size:.78rem;font-weight:700;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;transition:all .2s}
+        .timer-btn:hover{border-color:rgba(26,90,58,.4);background:rgba(26,90,58,.06)}
+        .timer-btn.running{background:rgba(192,40,62,.08);border-color:rgba(192,40,62,.3);color:var(--danger)}
+        .timer-progress{flex:1;max-width:400px;height:6px;background:var(--surface2);border-radius:3px;overflow:hidden}
+        .timer-fill{height:100%;background:linear-gradient(90deg,#1a8a5a,#0e7c86);border-radius:3px;width:0%;transition:width 1s linear}
+
+        .container{max-width:820px;margin:0 auto;padding:32px 24px 80px}
+
+        /* STIMULUS */
+        .stimulus{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin-bottom:40px;position:relative;box-shadow:var(--shadow)}
+        .stimulus::before{content:'STIMULUS MATERIAL';position:absolute;top:-12px;left:24px;background:var(--accent);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.12em;padding:4px 14px;border-radius:50px}
+        .stimulus .source-badge{display:inline-block;background:rgba(26,90,58,.08);border:1px solid rgba(26,90,58,.25);color:var(--accent);font-size:.7rem;font-weight:600;padding:4px 12px;border-radius:50px;margin-bottom:16px}
+        .stimulus h2{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin-bottom:14px;line-height:1.4}
+        .stimulus p{font-size:.9rem;color:var(--text);margin-bottom:14px}
+        .stimulus .quote{border-left:3px solid var(--accent);padding:12px 20px;background:rgba(26,90,58,.04);border-radius:0 10px 10px 0;margin:16px 0;font-style:italic;font-size:.88rem;color:var(--muted)}
+        .stimulus .quote cite{display:block;margin-top:8px;font-style:normal;font-weight:600;font-size:.78rem;color:var(--accent)}
+        .stimulus .data-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+        @media(max-width:600px){.stimulus .data-row{grid-template-columns:1fr}}
+        .stimulus .data-cell{text-align:center;background:var(--surface2);border-radius:10px;padding:14px 12px}
+        .stimulus .data-cell .d-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;color:var(--accent)}
+        .stimulus .data-cell .d-label{font-size:.72rem;color:var(--muted);font-weight:500;margin-top:2px}
+
+        /* QUESTIONS */
+        .question{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:24px;overflow:hidden;transition:box-shadow .3s}
+        .question:hover{box-shadow:var(--shadow)}
+        .q-header{padding:22px 28px;display:flex;align-items:flex-start;gap:16px;cursor:pointer}
+        .q-num{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;border-radius:50%;font-size:.85rem;font-weight:800;color:#fff;flex-shrink:0}
+        .q1 .q-num{background:var(--blue)} .q2a .q-num{background:var(--gold)} .q2b .q-num{background:var(--purple)} .q3 .q-num{background:var(--danger)}
+        .q-content h3{font-size:1rem;font-weight:700;margin-bottom:4px}
+        .q-content .q-marks{font-size:.75rem;font-weight:700;color:var(--muted);letter-spacing:.06em}
+        .q-timing{margin-left:auto;font-size:.72rem;font-weight:600;color:var(--muted);padding:4px 12px;border-radius:50px;background:var(--surface2);flex-shrink:0;white-space:nowrap}
+
+        .q-body{display:none;padding:0 28px 24px;border-top:1px solid var(--border)}
+        .question.open .q-body{display:block;animation:fadeIn .3s ease}
+        .q-header::after{content:'▾';margin-left:auto;font-size:1.1rem;color:var(--muted);transition:transform .3s;flex-shrink:0}
+        .question.open .q-header::after{transform:rotate(180deg)}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+        .q-prompt{font-size:.92rem;font-weight:500;margin:18px 0 16px;padding:16px 20px;background:linear-gradient(135deg,rgba(44,95,196,.05),rgba(100,56,176,.05));border:1px solid rgba(44,95,196,.15);border-radius:12px;line-height:1.7}
+
+        .write-area{margin-top:14px}
+        .write-area label{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block}
+        textarea{width:100%;border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-family:'Inter',sans-serif;font-size:.88rem;line-height:1.7;resize:vertical;transition:border-color .2s;background:var(--surface2);min-height:120px}
+        textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,90,58,.1)}
+        .word-count{font-size:.7rem;color:var(--muted);text-align:right;margin-top:4px}
+
+        /* SCAFFOLDS */
+        .scaffold{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-top:16px}
+        .scaffold h4{font-size:.82rem;font-weight:700;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+        .scaffold p,.scaffold li{font-size:.82rem;color:var(--muted)}
+        .scaffold ul{list-style:disc;padding-left:18px;margin-top:6px}
+        .scaffold ul li{margin-bottom:4px}
+
+        .hint-toggle{font-size:.78rem;font-weight:600;color:var(--blue);cursor:pointer;border:none;background:none;padding:6px 0;margin-top:10px;display:flex;align-items:center;gap:4px}
+        .hint-toggle:hover{text-decoration:underline}
+        .hint-content{display:none;margin-top:8px}
+        .hint-content.show{display:block;animation:fadeIn .3s}
+
+        /* GPC SELECTOR */
+        .gpc-selector{margin:16px 0}
+        .gpc-selector label{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;display:block}
+        .gpc-grid{display:flex;flex-wrap:wrap;gap:8px}
+        .gpc-option{padding:8px 16px;border-radius:50px;font-size:.78rem;font-weight:600;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .2s}
+        .gpc-option:hover{border-color:rgba(26,90,58,.3)}
+        .gpc-option.selected{background:rgba(26,90,58,.12);border-color:rgba(26,90,58,.4);color:#0f5e3a}
+
+        /* MODEL ANSWERS */
+        .model-toggle{font-size:.82rem;font-weight:700;cursor:pointer;border:none;padding:10px 18px;border-radius:50px;margin-top:16px;display:inline-flex;align-items:center;gap:6px;transition:all .2s;background:linear-gradient(135deg,rgba(26,90,58,.10),rgba(14,124,134,.10));border:1px solid rgba(26,90,58,.25);color:#0f5e3a}
+        .model-toggle:hover{background:linear-gradient(135deg,rgba(26,90,58,.18),rgba(14,124,134,.18))}
+        .model-content{display:none;margin-top:14px;animation:fadeIn .3s ease}
+        .model-content.show{display:block}
+        .model-box{background:linear-gradient(135deg,rgba(26,90,58,.04),rgba(14,124,134,.04));border:1px solid rgba(26,90,58,.20);border-radius:12px;padding:24px 28px}
+        .model-box .model-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0f5e3a;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+        .model-box p{font-size:.88rem;color:var(--text);line-height:1.8;margin-bottom:10px}
+        .model-box p:last-child{margin-bottom:0}
+        .mark-tag{display:inline;background:rgba(26,90,58,.12);border:1px solid rgba(26,90,58,.25);color:#0f5e3a;font-size:.68rem;font-weight:700;padding:1px 8px;border-radius:50px;margin-left:4px;vertical-align:middle;white-space:nowrap}
+        .band-tag{display:inline;background:rgba(100,56,176,.10);border:1px solid rgba(100,56,176,.25);color:#6438b0;font-size:.68rem;font-weight:700;padding:1px 8px;border-radius:50px;margin-left:4px;vertical-align:middle;white-space:nowrap}
+        .criteria-key{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid rgba(26,90,58,.15)}
+        .criteria-key .ck-item{font-size:.72rem;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:4px}
+
+        .footer{text-align:center;padding:40px 24px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border);margin-top:40px}
+        @media print{.timer-bar{position:static}.q-body{display:block!important}.q-header::after{display:none}textarea{border:1px solid #999}}
+    </style>
+</head>
+<body>
+    <header class="exam-header">
+        <div class="org">International Baccalaureate · Global Politics HL</div>
+        <h1>Paper 3 — Practice Exam</h1>
+        <div class="meta">Development &amp; Sustainability · Green Colonization in Western Sahara</div>
+        <div class="exam-info">
+            <div class="info-pill">⏱ <span>Time:</span> 1 hour 15 min</div>
+            <div class="info-pill">📝 <span>Marks:</span> 28 total</div>
+            <div class="info-pill">📄 <span>Questions:</span> Q1 + Q2a + Q2b + Q3</div>
+        </div>
+    </header>
+
+    <div class="timer-bar">
+        <button class="timer-btn" id="timerToggle" onclick="toggleTimer()">▶ Start Timer</button>
+        <div class="timer-display" id="timerDisplay">75:00</div>
+        <div class="timer-progress"><div class="timer-fill" id="timerFill"></div></div>
+        <button class="timer-btn" onclick="resetTimer()">↺ Reset</button>
+    </div>
+
+    <main class="container">
+
+        <!-- STIMULUS MATERIAL -->
+        <div class="stimulus">
+            <div class="source-badge">Source A — Adapted from WSRW, Al Jazeera, &amp; Africa is a Country (2024-2025)</div>
+            <h2>"Green Colonization": Renewable Energy and Self-Determination in Western Sahara</h2>
+
+            <p>Morocco has accelerated plans to build Africa's largest green hydrogen facility — the "White Dunes" project — in occupied Western Sahara. The $11.6 billion development near Dakhla would generate 8 GW of combined solar and wind capacity for electrolysis-based hydrogen production. A 1,400 km high-voltage transmission line connecting the territory to Casablanca is under construction, scheduled for completion in 2027.</p>
+
+            <p>The expansion occurs in a territory the UN classifies as non-self-governing. Since Morocco's 1975 annexation, the International Court of Justice has found no sovereign ties between Morocco and Western Sahara. Yet by 2025, at least <strong>81% of land designated for new renewable concessions</strong> fell within the occupied territory, according to Western Sahara Resource Watch (WSRW).</p>
+
+            <div class="data-row">
+                <div class="data-cell">
+                    <div class="d-num">$11.6B</div>
+                    <div class="d-label">White Dunes investment</div>
+                </div>
+                <div class="data-cell">
+                    <div class="d-num">8 GW</div>
+                    <div class="d-label">Planned capacity</div>
+                </div>
+                <div class="data-cell">
+                    <div class="d-num">81%</div>
+                    <div class="d-label">Concessions in occupied territory</div>
+                </div>
+            </div>
+
+            <div class="quote">
+                "We are witnessing the birth of a new form of colonialism. The occupier tells the world it is saving the planet while extracting the resources of a people who never consented. Green energy should not be built on stolen land."
+                <cite>— Mohamed Dihani, Sahrawi human rights activist, 2025</cite>
+            </div>
+            <div class="quote">
+                "Morocco's renewable energy strategy positions the Kingdom as a global leader in the green transition. The projects in our southern provinces create jobs, attract investment, and contribute to the UN Sustainable Development Goals."
+                <cite>— Leila Benali, Moroccan Minister of Energy Transition, 2024</cite>
+            </div>
+
+            <p>In 2024, the EU's Court of Justice annulled trade and fishing agreements between the EU and Morocco insofar as they applied to Western Sahara, ruling that Sahrawi consent was required. Despite this, European energy firms including AMEA Power continue to negotiate offtake agreements for green hydrogen produced in the territory. The Polisario Front has called for an international boycott of all products derived from Sahrawi resources.</p>
+        </div>
+
+        <!-- QUESTION 1 -->
+        <div class="question q1 open" id="q1">
+            <div class="q-header" onclick="toggleQ(this.parentElement)">
+                <div class="q-num">Q1</div>
+                <div class="q-content">
+                    <h3>Stimulus Analysis &amp; GPC Identification</h3>
+                    <div class="q-marks">3 marks · ~8 min</div>
+                </div>
+                <div class="q-timing">⏱ 8 min</div>
+            </div>
+            <div class="q-body">
+                <div class="q-prompt">
+                    <strong>With reference to the stimulus material, identify <em>one</em> global political challenge (GPC) and explain how the issue in Western Sahara illustrates it.</strong> [3 marks]
+                </div>
+
+                <div class="gpc-selector">
+                    <label>Select your GPC:</label>
+                    <div class="gpc-grid">
+                        <span class="gpc-option" onclick="selectGPC(this)">💻 Technology</span>
+                        <span class="gpc-option" onclick="selectGPC(this)">🏚 Poverty</span>
+                        <span class="gpc-option" onclick="selectGPC(this)">🛡 Security</span>
+                        <span class="gpc-option" onclick="selectGPC(this)">⚖️ Equality</span>
+                        <span class="gpc-option" onclick="selectGPC(this)">🌍 Environment</span>
+                        <span class="gpc-option" onclick="selectGPC(this)">🏥 Health</span>
+                    </div>
+                </div>
+
+                <div class="write-area">
+                    <label>Your Answer</label>
+                    <textarea id="a1" rows="5" placeholder="Identify the GPC, then explain using specific evidence from the stimulus..."></textarea>
+                    <div class="word-count"><span id="wc1">0</span> words</div>
+                </div>
+
+                <button class="hint-toggle" onclick="toggleHint('h1')">💡 Show Scaffold Hints</button>
+                <div class="hint-content" id="h1">
+                    <div class="scaffold">
+                        <h4>📋 What examiners want:</h4>
+                        <ul>
+                            <li><strong>1 mark:</strong> Name the GPC (e.g., "Equality" or "Technology")</li>
+                            <li><strong>1 mark:</strong> Link it to the stimulus with a specific detail (e.g., the 81% figure)</li>
+                            <li><strong>1 mark:</strong> Explain why this constitutes a political challenge (not just a description)</li>
+                        </ul>
+                        <p style="margin-top:10px"><strong>Example opener:</strong> "The stimulus illustrates the global political challenge of <em>equality</em>, specifically the tension between economic development and self-determination…"</p>
+                    </div>
+                </div>
+
+                <button class="model-toggle" onclick="toggleModel('m1')">📝 Show Model Answer</button>
+                <div class="model-content" id="m1">
+                    <div class="model-box">
+                        <div class="model-label">✅ Model Answer — Q1 (3/3 marks)</div>
+                        <div class="criteria-key">
+                            <span class="ck-item"><span class="mark-tag">MARK</span> = criteria met</span>
+                            <span class="ck-item"><span class="band-tag">SKILL</span> = examiner skill demonstrated</span>
+                        </div>
+                        <p>The stimulus illustrates the global political challenge of <strong>Equality</strong> <span class="mark-tag">1/3 — GPC named</span>, specifically the tension between economic development and self-determination for the Sahrawi people. Morocco's renewable energy expansion allocates 81% of new concession land within occupied Western Sahara <span class="mark-tag">2/3 — stimulus evidence</span>, a territory the ICJ has ruled Morocco has no sovereign ties to. This constitutes a political challenge because it demonstrates how powerful states can use green technology to deepen structural inequality — the benefits of $11.6 billion in investment flow to Rabat and European energy markets, while the occupied population whose land and resources are being used has no political mechanism to consent, object, or receive benefit. <span class="mark-tag">3/3 — explains why it's a challenge</span> <span class="band-tag">Uses specific data</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUESTION 2a -->
+        <div class="question q2a" id="q2a">
+            <div class="q-header" onclick="toggleQ(this.parentElement)">
+                <div class="q-num">Q2a</div>
+                <div class="q-content">
+                    <h3>Case Study Details</h3>
+                    <div class="q-marks">4 marks · ~10 min</div>
+                </div>
+                <div class="q-timing">⏱ 10 min</div>
+            </div>
+            <div class="q-body">
+                <div class="q-prompt">
+                    <strong>Using evidence from the stimulus and your own knowledge, explain <em>two</em> ways in which development and sustainability are in tension in Western Sahara.</strong> [4 marks]
+                </div>
+
+                <div class="write-area">
+                    <label>Your Answer</label>
+                    <textarea id="a2a" rows="8" placeholder="Point 1: ... (identify a tension + evidence)&#10;Point 2: ... (identify a second tension + evidence from your own knowledge)"></textarea>
+                    <div class="word-count"><span id="wc2a">0</span> words</div>
+                </div>
+
+                <button class="hint-toggle" onclick="toggleHint('h2a')">💡 Show Scaffold Hints</button>
+                <div class="hint-content" id="h2a">
+                    <div class="scaffold">
+                        <h4>📋 What examiners want:</h4>
+                        <ul>
+                            <li><strong>2 marks per point</strong> (1 for identification, 1 for explanation/evidence)</li>
+                            <li><strong>Point 1 (from stimulus):</strong> e.g., Green hydrogen attracts $11.6B investment (development) but occurs on land without Sahrawi consent (sustainability/rights)</li>
+                            <li><strong>Point 2 (own knowledge):</strong> e.g., Morocco's Noor-Ouarzazate solar complex shows renewable success IN Morocco — but replicating this model in occupied territory crosses from sustainability to resource exploitation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button class="model-toggle" onclick="toggleModel('m2a')">📝 Show Model Answer</button>
+                <div class="model-content" id="m2a">
+                    <div class="model-box">
+                        <div class="model-label">✅ Model Answer — Q2a (4/4 marks)</div>
+                        <div class="criteria-key">
+                            <span class="ck-item"><span class="mark-tag">MARK</span> = criteria met</span>
+                            <span class="ck-item"><span class="band-tag">SKILL</span> = examiner skill demonstrated</span>
+                        </div>
+                        <p><strong>Tension 1 — Economic growth vs. political consent (from stimulus):</strong> <span class="mark-tag">1/4 — tension identified</span> Morocco's "White Dunes" project represents $11.6 billion in green hydrogen investment, demonstrating massive development in renewable infrastructure. However, this development occurs in a non-self-governing territory where 81% of concession land falls outside Morocco's recognized borders. The EU Court of Justice annulled trade agreements in 2024 precisely because Sahrawi consent was absent, establishing a legal precedent that development without the consent of the occupied population undermines the sustainability principle of intergenerational justice — current extraction without self-governance means future Sahrawis inherit depleted resources with no political power. <span class="mark-tag">2/4 — explained with evidence</span> <span class="band-tag">Stimulus + legal knowledge combined</span></p>
+                        <p><strong>Tension 2 — Environmental sustainability vs. resource sovereignty (own knowledge):</strong> <span class="mark-tag">3/4 — second tension identified</span> While the projects are nominally "green," the sustainability of renewable energy production depends on whose definition of sustainability is applied. Morocco's Noor-Ouarzazate solar complex — built within Morocco proper — demonstrates that the Kingdom has capacity to pursue renewables on its own sovereign territory. The choice to expand instead into Western Sahara reveals that the environmental framing masks a resource-extraction logic: Western Sahara's Atlantic coastline offers superior wind conditions and Dakhla's geography is ideal for hydrogen electrolysis. The environmental "sustainability" of the energy produced is instrumentalized to justify unsustainable political arrangements — occupation. <span class="mark-tag">4/4 — explained with own knowledge</span> <span class="band-tag">Goes beyond stimulus</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUESTION 2b -->
+        <div class="question q2b" id="q2b">
+            <div class="q-header" onclick="toggleQ(this.parentElement)">
+                <div class="q-num">Q2b</div>
+                <div class="q-content">
+                    <h3>Policy Recommendation</h3>
+                    <div class="q-marks">6 marks · ~15 min</div>
+                </div>
+                <div class="q-timing">⏱ 15 min</div>
+            </div>
+            <div class="q-body">
+                <div class="q-prompt">
+                    <strong>Propose <em>one</em> detailed policy recommendation that could address the challenge you identified in Question 1. Your recommendation should include a specific actor, mechanism, rationale, and consideration of potential risks.</strong> [6 marks]
+                </div>
+
+                <div class="write-area">
+                    <label>Your Answer — Use the AMR² Formula</label>
+                    <textarea id="a2b" rows="10" placeholder="Actor: Who will implement this?&#10;Mechanism: What specific action will they take?&#10;Rationale: Why will this work?&#10;Risk: What could go wrong, and how could that be mitigated?"></textarea>
+                    <div class="word-count"><span id="wc2b">0</span> words</div>
+                </div>
+
+                <button class="hint-toggle" onclick="toggleHint('h2b')">💡 Show Scaffold Hints</button>
+                <div class="hint-content" id="h2b">
+                    <div class="scaffold">
+                        <h4>📋 AMR² Scaffold for Q2b:</h4>
+                        <ul>
+                            <li><strong>🏛 Actor:</strong> The European Commission (or: UNSC, ICJ, AU, specific ministry)</li>
+                            <li><strong>⚙️ Mechanism:</strong> Enforce the 2016/2024 EU Court of Justice rulings by implementing mandatory origin-of-energy tracing for all green hydrogen imports from Morocco</li>
+                            <li><strong>💡 Rationale:</strong> Because the EU's own court found that trade agreements cannot legally cover Western Sahara without Sahrawi consent — yet green hydrogen flows freely</li>
+                            <li><strong>⚠️ Risk:</strong> However, this risks disrupting the EU's Green Deal supply chain — which could be mitigated by fast-tracking alternative hydrogen partnerships with Algeria, Namibia, and Chile</li>
+                        </ul>
+                        <p style="margin-top:10px"><strong>Remember:</strong> Level 1 (Generic) = vague verbs, no actor. Level 2 (Surgical) = Actor + Mechanism + Rationale. Level 3 (Scholar) = adds Risk + Mitigation. See the <a href="policy-recommendation-scaffold.html" style="color:var(--purple);font-weight:600">Policy Scaffold</a> for full guidance.</p>
+                    </div>
+                </div>
+
+                <button class="model-toggle" onclick="toggleModel('m2b')">📝 Show Model Answer</button>
+                <div class="model-content" id="m2b">
+                    <div class="model-box">
+                        <div class="model-label">✅ Model Answer — Q2b (6/6 marks · Scholar Tier)</div>
+                        <div class="criteria-key">
+                            <span class="ck-item"><span class="mark-tag">MARK</span> = criteria met</span>
+                            <span class="ck-item"><span class="band-tag">AMR²</span> = formula element</span>
+                        </div>
+                        <p><span class="band-tag">ACTOR</span> <span class="mark-tag">1/6 — specific actor</span> The <strong>European Commission</strong>, acting through its Directorate-General for Energy (DG ENER), should implement a mandatory <em>origin-of-energy tracing</em> requirement for all green hydrogen imports entering the EU single market.</p>
+                        <p><span class="band-tag">MECHANISM</span> <span class="mark-tag">2-3/6 — specific, actionable mechanism</span> Specifically, the Commission should amend the EU's Delegated Act on Renewable Hydrogen (2023) to require that all imported hydrogen carry a <strong>certificate of geographic origin</strong> verified by an independent third-party auditor. Any hydrogen produced on land classified by the UN as non-self-governing territory — including Western Sahara — would be ineligible for the EU's green taxonomy and thus blocked from carbon credit markets. This directly enforces the EU Court of Justice's 2024 ruling that trade agreements cannot extend to Western Sahara without Sahrawi consent.</p>
+                        <p><span class="band-tag">RATIONALE</span> <span class="mark-tag">4/6 — justified with evidence</span> This policy is feasible because the EU already operates a robust traceability system for agricultural products under Protected Designation of Origin (PDO) regulations — extending this to energy imports is a technical, not legal, challenge. The political rationale is that the EU's own court has established the legal basis; failure to enforce it exposes the EU to accusations of selective application of international law. Furthermore, the EU's Global Gateway strategy explicitly links energy partnerships to human rights conditionality — this policy aligns rhetoric with practice.</p>
+                        <p><span class="band-tag">RISK</span> <span class="mark-tag">5/6 — identifies risk</span> However, this policy risks disrupting the EU's Green Deal timeline, as Morocco is currently the EU's closest and cheapest potential hydrogen supplier. Blocking Western Sahara-origin hydrogen could remove up to 8 GW of planned capacity from the EU's supply projections, creating a short-term supply gap that would raise hydrogen prices and potentially delay industrial decarbonization targets.</p>
+                        <p><span class="band-tag">MITIGATION</span> <span class="mark-tag">6/6 — proposes mitigation</span> To mitigate this, the Commission should simultaneously fast-track Memoranda of Understanding with alternative hydrogen exporters — particularly <strong>Namibia</strong> (whose Hyphen project is already EU-supported), <strong>Chile</strong> (Southern Hemisphere wind advantage), and <strong>Algeria</strong> (existing gas pipeline infrastructure convertible to hydrogen). This diversification would reduce dependency on any single supplier and insulate the Green Deal from politically unstable sourcing. <span class="band-tag">SCHOLAR TIER</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUESTION 3 -->
+        <div class="question q3" id="q3">
+            <div class="q-header" onclick="toggleQ(this.parentElement)">
+                <div class="q-num">Q3</div>
+                <div class="q-content">
+                    <h3>Extended Essay</h3>
+                    <div class="q-marks">15 marks · ~40 min</div>
+                </div>
+                <div class="q-timing">⏱ 40 min</div>
+            </div>
+            <div class="q-body">
+                <div class="q-prompt">
+                    <strong>"Sustainable development is impossible without self-determination."</strong><br/><br/>
+                    With reference to the stimulus material and your knowledge of <em>one or more</em> Global Political Challenges you have studied, to what extent do you agree with this claim? [15 marks]
+                </div>
+
+                <div class="write-area">
+                    <label>Your Answer</label>
+                    <textarea id="a3" rows="20" placeholder="Introduction: Define key terms (sustainable development, self-determination). State your thesis.&#10;&#10;Body 1: Argument FOR the claim...&#10;Body 2: Argument AGAINST the claim (or nuance)...&#10;Body 3: Link to your chosen GPC(s)...&#10;&#10;Conclusion: Evaluate 'to what extent' — don't sit on the fence."></textarea>
+                    <div class="word-count"><span id="wc3">0</span> words</div>
+                </div>
+
+                <button class="hint-toggle" onclick="toggleHint('h3')">💡 Show Scaffold Hints</button>
+                <div class="hint-content" id="h3">
+                    <div class="scaffold">
+                        <h4>📋 Essay Structure Guide:</h4>
+                        <ul>
+                            <li><strong>Introduction (2 min):</strong> Define "sustainable development" (Brundtland) and "self-determination" (UN Charter Art. 1). State your thesis clearly — don't be vague.</li>
+                            <li><strong>Body ¶1 — FOR (12 min):</strong> Western Sahara shows that development without consent = exploitation. Use the 81% figure, the Dihani quote, the ICJ ruling. Link to Equality or Environment GPC.</li>
+                            <li><strong>Body ¶2 — AGAINST / Nuance (12 min):</strong> Some post-colonial states achieved formal self-determination but failed to develop (e.g., Haiti). Self-determination alone doesn't guarantee sustainability. Use your case study knowledge.</li>
+                            <li><strong>Body ¶3 — Synthesis (10 min):</strong> The real challenge is ensuring development AND consent simultaneously. Link to your second GPC (e.g., Technology — how green tech creates new power asymmetries).</li>
+                            <li><strong>Conclusion (4 min):</strong> "To a large extent" — argue that while self-determination is not sufficient for sustainable development, it is necessary. Without it, development reproduces colonial extraction under a green label.</li>
+                        </ul>
+                        <h4 style="margin-top:14px">⚡ Band 7 Moves:</h4>
+                        <ul>
+                            <li>Name at least <strong>two GPCs</strong> (e.g., Technology + Equality)</li>
+                            <li>Use evidence from the stimulus AND your own case studies</li>
+                            <li>Engage with the claim critically — don't just describe, <strong>evaluate</strong></li>
+                            <li>Use theory (Constructivism: how "green" framing legitimizes extraction)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button class="model-toggle" onclick="toggleModel('m3')">📝 Show Model Answer</button>
+                <div class="model-content" id="m3">
+                    <div class="model-box">
+                        <div class="model-label">✅ Model Answer — Q3 (Band 7 / 13-15 marks)</div>
+                        <div class="criteria-key">
+                            <span class="ck-item"><span class="mark-tag">MARK</span> = criteria met</span>
+                            <span class="ck-item"><span class="band-tag">BAND 7</span> = top-band skill demonstrated</span>
+                        </div>
+                        <p><strong>Introduction</strong> <span class="band-tag">Defines key terms</span></p>
+                        <p>"Sustainable development" — as defined by the 1987 Brundtland Commission — is development that "meets the needs of the present without compromising the ability of future generations to meet their own needs." "Self-determination" is the right of peoples to freely determine their political status and pursue their economic, social, and cultural development, enshrined in Article 1 of the UN Charter and the International Covenant on Civil and Political Rights. The central tension is this: can development truly be sustainable when the people most affected have no political mechanism to shape it? <span class="band-tag">Clear thesis</span> I argue that self-determination is a <em>necessary but not sufficient</em> condition for sustainable development — Western Sahara illustrates why its absence guarantees exploitation, while cases like Haiti show that formal sovereignty alone does not guarantee development.</p>
+
+                        <p><strong>Body 1 — FOR the claim: Western Sahara as evidence that development without self-determination is extraction</strong> <span class="band-tag">Uses stimulus evidence</span></p>
+                        <p>The stimulus demonstrates that Morocco's $11.6 billion "White Dunes" green hydrogen project exemplifies development that serves external interests while bypassing the political agency of the occupied Sahrawi population. The 81% statistic — showing that the vast majority of Morocco's new renewable concessions fall within non-self-governing territory — reveals a structural logic: the "development" Morocco claims to bring is located on land where political resistance is systematically suppressed. Sahrawi human rights activist Mohamed Dihani calls this "a new form of colonialism," and the framing is not hyperbolic. <span class="mark-tag">Engages critically with stimulus</span></p>
+                        <p>This connects directly to the GPC of <strong>Equality</strong>. The barrier to political, economic, and social equality here is not poverty or lack of resources — Western Sahara has abundant solar, wind, and phosphate wealth. The barrier is the absence of self-determination: without it, the Sahrawi people cannot control how their resources are used, who benefits, and under what terms. The EU Court of Justice's 2024 ruling confirms this — trade agreements cannot legally extend to Western Sahara without Sahrawi consent — yet enforcement remains absent, exposing the limits of the liberal international legal order. <span class="mark-tag">Links to GPC</span> <span class="band-tag">Uses theory implicitly</span></p>
+
+                        <p><strong>Body 2 — AGAINST the claim: Self-determination alone does not guarantee sustainable development</strong> <span class="band-tag">Nuance / counter-argument</span></p>
+                        <p>However, formal self-determination is not sufficient. Haiti achieved independence in 1804 — the first successful slave revolution in history — yet it is the poorest country in the Western Hemisphere. Haiti's sovereign status did not prevent 200 years of external interference: the French "independence debt," US occupations (1915-34), and ongoing foreign-led interventions culminating in the 2024-2025 Kenya-led Multinational Security Support Mission. Haiti's development challenges — where 5,600 people were killed in 2024 alone — demonstrate that self-determination without institutional capacity, equitable trade relationships, and freedom from neocolonial control remains hollow. <span class="mark-tag">Uses own case study knowledge</span></p>
+                        <p>This complicates the claim: self-determination is necessary but not sufficient. A state can be formally sovereign yet structurally dependent — what dependency theorists call "underdevelopment" — where unequal integration into the global economy ensures that the surplus value of a nation's resources flows outward. <span class="band-tag">Uses theory explicitly</span></p>
+
+                        <p><strong>Body 3 — Synthesis: Technology creates new forms of the self-determination problem</strong> <span class="band-tag">Links multiple GPCs</span></p>
+                        <p>The GPC of <strong>Technology</strong> adds a further dimension. Green technology — solar panels, wind turbines, hydrogen electrolysis — was supposed to democratize energy production and reduce reliance on fossil-fuel extractivism. Yet the Western Sahara case shows that the same power asymmetries persist: whoever controls the technology, the land, and the export infrastructure captures the value. From a constructivist perspective, the discursive framing of these projects as "green" and "sustainable" performs a legitimizing function — it makes colonial extraction appear progressive. The label "renewable energy" socially constructs the project as beyond political criticism, when in reality it reproduces the precise dynamic that fossil fuel extraction exhibited: powerful actors exploiting resources on land they do not legitimately control, for markets they exclusively access. <span class="mark-tag">Theory application</span> <span class="band-tag">Constructivist analysis</span></p>
+
+                        <p><strong>Conclusion</strong> <span class="band-tag">Evaluates 'to what extent'</span></p>
+                        <p>"To a large extent," the claim is valid. Self-determination is a necessary — though not independently sufficient — condition for sustainable development. Without it, as Western Sahara shows, development is structurally colonial: resources are extracted, value is exported, and the people whose land is used are excluded from both the process and the benefit. However, Haiti demonstrates that formal self-determination must be accompanied by structural conditions — equitable trade, institutional integrity, and freedom from external political interference — to produce genuinely sustainable outcomes. The most dangerous development model is the one that disguises extraction as sustainability, which is precisely what "green colonization" represents. Until the international community enforces the legal and moral right of peoples to control their own resources — whether through the UN, the ICJ, or trade conditionality — sustainable development will remain a privilege of the powerful, not a universal right. <span class="mark-tag">Reaches evaluative judgment</span> <span class="band-tag">Does not sit on the fence</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>IB Global Politics HL · Paper 3 Practice Exam · Mr. Martinez · March 2026</p>
+        <p style="margin-top:6px;font-size:.72rem">This is a practice exam. It is designed to mirror the format and difficulty of the official IB Paper 3 examination.</p>
+    </footer>
+
+    <script>
+        // TIMER
+        let totalSeconds = 75 * 60;
+        let remaining = totalSeconds;
+        let timerInterval = null;
+        let running = false;
+
+        function toggleTimer(){
+            const btn = document.getElementById('timerToggle');
+            if(running){
+                clearInterval(timerInterval);
+                btn.textContent = '▶ Resume';
+                btn.classList.remove('running');
+                running = false;
+            } else {
+                timerInterval = setInterval(tick, 1000);
+                btn.textContent = '⏸ Pause';
+                btn.classList.add('running');
+                running = true;
+            }
+        }
+
+        function tick(){
+            if(remaining <= 0){clearInterval(timerInterval); running = false; return;}
+            remaining--;
+            updateDisplay();
+        }
+
+        function updateDisplay(){
+            const m = Math.floor(remaining / 60);
+            const s = remaining % 60;
+            document.getElementById('timerDisplay').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+            const pct = ((totalSeconds - remaining) / totalSeconds) * 100;
+            document.getElementById('timerFill').style.width = pct + '%';
+            if(remaining <= 300) document.getElementById('timerDisplay').style.color = '#c0283e';
+        }
+
+        function resetTimer(){
+            clearInterval(timerInterval);
+            remaining = totalSeconds;
+            running = false;
+            document.getElementById('timerToggle').textContent = '▶ Start Timer';
+            document.getElementById('timerToggle').classList.remove('running');
+            document.getElementById('timerDisplay').style.color = '';
+            updateDisplay();
+        }
+
+        // QUESTIONS
+        function toggleQ(q){q.classList.toggle('open')}
+
+        // GPC SELECTOR
+        function selectGPC(el){
+            el.parentElement.querySelectorAll('.gpc-option').forEach(o=>o.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+
+        // HINTS & MODEL ANSWERS
+        function toggleHint(id){
+            const el = document.getElementById(id);
+            el.classList.toggle('show');
+        }
+        function toggleModel(id){
+            const el = document.getElementById(id);
+            el.classList.toggle('show');
+            const btn = el.previousElementSibling;
+            if(el.classList.contains('show')){
+                btn.textContent = '📝 Hide Model Answer';
+            } else {
+                btn.textContent = '📝 Show Model Answer';
+            }
+        }
+
+        // WORD COUNTS
+        document.querySelectorAll('textarea').forEach(ta=>{
+            const id = ta.id;
+            const wcEl = document.getElementById('wc'+id.replace('a',''));
+            if(!wcEl) return;
+            ta.addEventListener('input',()=>{
+                const words = ta.value.trim() ? ta.value.trim().split(/\s+/).length : 0;
+                wcEl.textContent = words;
+            });
+        });
+    </script>
+</body>
+</html>

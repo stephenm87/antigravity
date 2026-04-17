@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socratic Seminar — Class Guidelines Builder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f0f13;
+            --surface: #1a1a24;
+            --surface-alt: #22223a;
+            --border: #2e2e48;
+            --text: #e8e6f0;
+            --text-muted: #8a89a0;
+            --accent: #7c6aef;
+            --accent-glow: rgba(124, 106, 239, 0.25);
+            --green: #34d399;
+            --green-glow: rgba(52, 211, 153, 0.15);
+            --red: #f87171;
+            --red-glow: rgba(248, 113, 113, 0.15);
+            --gold: #fbbf24;
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(124,106,239,0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(52,211,153,0.06) 0%, transparent 50%);
+            pointer-events: none; z-index: 0;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            position: relative; z-index: 1;
+        }
+
+        /* ─── HEADER ─── */
+        .header { text-align: center; padding: 2.5rem 0 1.5rem; }
+
+        .header-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--surface); border: 1px solid var(--border);
+            padding: 0.4rem 1rem; border-radius: 999px;
+            font-size: 0.75rem; font-weight: 500; color: var(--accent);
+            letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem;
+        }
+
+        .header-badge .dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent); animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%,100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem; font-weight: 700; line-height: 1.2;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #e8e6f0, #7c6aef);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: var(--text-muted); font-size: 0.95rem;
+            max-width: 540px; margin: 0 auto; line-height: 1.6;
+        }
+
+        /* ─── TABS ─── */
+        .tabs {
+            display: flex; gap: 0.5rem; justify-content: center;
+            margin: 2rem 0 1.5rem; flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 0.65rem 1.25rem; border-radius: 10px;
+            font-size: 0.85rem; font-weight: 600; cursor: pointer;
+            border: 1px solid var(--border); background: var(--surface);
+            color: var(--text-muted); transition: all 0.25s;
+        }
+
+        .tab:hover { border-color: var(--accent); color: var(--text); }
+
+        .tab.active {
+            background: linear-gradient(135deg, #7c6aef, #5b4cc4);
+            border-color: var(--accent); color: #fff;
+        }
+
+        /* ─── PANELS ─── */
+        .panel { display: none; }
+        .panel.active { display: block; animation: fadeUp 0.4s ease; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── CARDS ─── */
+        .card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem;
+            transition: border-color 0.3s;
+        }
+
+        .card:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .card h2 {
+            font-size: 1.05rem; font-weight: 600;
+            margin-bottom: 1.25rem; display: flex;
+            align-items: center; gap: 0.5rem;
+        }
+
+        .card h2 .icon { font-size: 1.2rem; }
+
+        /* ─── FIELDS ─── */
+        .field-group { margin-bottom: 1.15rem; }
+
+        .field-group label {
+            display: block; font-size: 0.78rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--text-muted); margin-bottom: 0.4rem;
+        }
+
+        .field-group input,
+        .field-group textarea {
+            width: 100%; background: var(--bg);
+            border: 1px solid var(--border); border-radius: 10px;
+            padding: 0.8rem 1rem; color: var(--text);
+            font-family: 'Inter', sans-serif; font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+        }
+
+        .field-group input:focus,
+        .field-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .field-group textarea { min-height: 100px; resize: vertical; line-height: 1.6; }
+        .field-group .hint { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.3rem; font-style: italic; }
+        .do-section label { color: var(--green); }
+        .dont-section label { color: var(--red); }
+
+        /* ─── BUTTONS ─── */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.8rem 1.5rem; border: none; border-radius: 10px;
+            font-family: 'Inter', sans-serif; font-size: 0.88rem;
+            font-weight: 600; cursor: pointer; transition: all 0.25s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7c6aef, #5b4cc4);
+            color: #fff; width: 100%;
+        }
+
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px var(--accent-glow); }
+
+        .btn-synth {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1a1a24; width: 100%; font-size: 1rem; padding: 1rem;
+        }
+
+        .btn-synth:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(251,191,36,0.3); }
+
+        .btn-outline {
+            background: transparent; border: 1px solid var(--border);
+            color: var(--text-muted); padding: 0.6rem 1.1rem; font-size: 0.8rem;
+        }
+
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+        .btn-danger {
+            background: transparent; border: 1px solid rgba(248,113,113,0.3);
+            color: var(--red); padding: 0.6rem 1.1rem; font-size: 0.8rem;
+        }
+
+        .btn-danger:hover { background: var(--red-glow); }
+
+        .btn-row { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+
+        /* ─── COUNTER BAR ─── */
+        .counter-bar {
+            display: flex; justify-content: center; gap: 2rem;
+            margin: 1.5rem 0; padding: 1rem; background: var(--surface);
+            border: 1px solid var(--border); border-radius: var(--radius);
+        }
+
+        .counter-item { text-align: center; }
+        .counter-item .num { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+        .counter-item .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+
+        /* ─── TOAST ─── */
+        .toast {
+            position: fixed; bottom: 2rem; left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--surface-alt); border: 1px solid var(--green);
+            color: var(--green); padding: 0.85rem 1.5rem; border-radius: 12px;
+            font-weight: 500; font-size: 0.9rem; opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            z-index: 100; box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* ─── SUBMISSION CHIPS ─── */
+        .chips-wrap { margin-top: 1rem; }
+        .chips-wrap h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.5rem; }
+
+        .chip {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            background: var(--surface-alt); border: 1px solid var(--border);
+            padding: 0.35rem 0.75rem; border-radius: 999px;
+            font-size: 0.78rem; margin: 0.2rem; color: var(--text-muted);
+        }
+
+        .chip .cdot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+
+        /* ─── SETUP INSTRUCTIONS ─── */
+        .setup-steps { counter-reset: step; }
+
+        .setup-step {
+            position: relative; padding: 1.25rem 1.5rem 1.25rem 3.5rem;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 12px; margin-bottom: 0.75rem;
+        }
+
+        .setup-step::before {
+            counter-increment: step; content: counter(step);
+            position: absolute; left: 1.1rem; top: 1.25rem;
+            width: 28px; height: 28px; border-radius: 8px;
+            background: var(--accent-glow); border: 1px solid rgba(124,106,239,0.3);
+            color: var(--accent); display: flex; align-items: center;
+            justify-content: center; font-size: 0.8rem; font-weight: 700;
+        }
+
+        .setup-step strong { color: var(--text); }
+        .setup-step p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; margin-top: 0.25rem; }
+
+        .form-fields-box {
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 10px; padding: 1rem 1.25rem; margin-top: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .form-fields-box code {
+            background: var(--surface-alt); padding: 0.15rem 0.4rem;
+            border-radius: 4px; font-size: 0.82rem; color: var(--accent);
+        }
+
+        .form-fields-box ul { list-style: none; margin-top: 0.5rem; }
+        .form-fields-box li { padding: 0.3rem 0; color: var(--text-muted); }
+        .form-fields-box li::before { content: '→ '; color: var(--accent); }
+
+        /* ─── CSV PASTE AREA ─── */
+        .paste-zone {
+            border: 2px dashed var(--border); border-radius: 12px;
+            padding: 2rem; text-align: center; margin: 1.5rem 0;
+            transition: all 0.3s; cursor: pointer;
+            position: relative;
+        }
+
+        .paste-zone:hover, .paste-zone.drag-over {
+            border-color: var(--accent); background: var(--accent-glow);
+        }
+
+        .paste-zone .pz-icon { font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.5; }
+        .paste-zone .pz-title { font-weight: 600; font-size: 1rem; margin-bottom: 0.25rem; }
+        .paste-zone .pz-sub { font-size: 0.8rem; color: var(--text-muted); }
+
+        .paste-zone input[type="file"] {
+            position: absolute; inset: 0; opacity: 0; cursor: pointer;
+        }
+
+        .or-divider {
+            display: flex; align-items: center; gap: 1rem;
+            margin: 1.25rem 0; color: var(--text-muted); font-size: 0.8rem;
+        }
+
+        .or-divider::before, .or-divider::after {
+            content: ''; flex: 1; height: 1px; background: var(--border);
+        }
+
+        /* ─── SYNTHESIS RESULTS ─── */
+        .synth-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); overflow: hidden; margin-bottom: 1.25rem;
+        }
+
+        .synth-card-header {
+            padding: 1.15rem 1.4rem; display: flex;
+            align-items: center; gap: 0.7rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .synth-card-header .icon-circle {
+            width: 38px; height: 38px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.15rem;
+        }
+
+        .do-card .icon-circle { background: var(--green-glow); border: 1px solid rgba(52,211,153,0.3); }
+        .dont-card .icon-circle { background: var(--red-glow); border: 1px solid rgba(248,113,113,0.3); }
+
+        .synth-card-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem; font-weight: 700;
+        }
+
+        .do-card .synth-card-header h3 { color: var(--green); }
+        .dont-card .synth-card-header h3 { color: var(--red); }
+
+        .synth-list { list-style: none; padding: 0.85rem 1.4rem; }
+
+        .synth-list li {
+            padding: 0.8rem 0; border-bottom: 1px solid var(--border);
+            display: flex; align-items: flex-start; gap: 0.7rem;
+        }
+
+        .synth-list li:last-child { border-bottom: none; }
+
+        .synth-list .bullet {
+            flex-shrink: 0; width: 24px; height: 24px; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.7rem; font-weight: 700; margin-top: 0.1rem;
+        }
+
+        .do-card .bullet { background: var(--green-glow); color: var(--green); border: 1px solid rgba(52,211,153,0.3); }
+        .dont-card .bullet { background: var(--red-glow); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+
+        .synth-list .item-content { flex: 1; }
+        .synth-list .item-text { font-size: 0.93rem; line-height: 1.5; font-weight: 500; }
+
+        .synth-list .item-meta { font-size: 0.73rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+        .synth-list .freq {
+            background: var(--surface-alt); padding: 0.12rem 0.45rem;
+            border-radius: 999px; border: 1px solid var(--border); font-weight: 500;
+        }
+
+        /* ─── PRINT ─── */
+        .print-title { display: none; }
+
+        @media print {
+            body { background: #fff; color: #1a1a1a; }
+            body::before { display: none; }
+            .header, .tabs, #setupPanel, #importPanel, #directPanel, .btn-row, .counter-bar, .toast, .no-print { display: none !important; }
+            .print-title { display: block; text-align: center; margin-bottom: 1.5rem; }
+            .print-title h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #1a1a1a; background: none; -webkit-text-fill-color: #1a1a1a; }
+            .print-title p { color: #666; font-size: 0.85rem; }
+            .synth-card { border: 2px solid #ddd; break-inside: avoid; }
+            .synth-card-header { border-bottom: 2px solid #ddd; }
+            .do-card .synth-card-header h3 { color: #059669; }
+            .dont-card .synth-card-header h3 { color: #dc2626; }
+            .do-card .bullet { color: #059669; border-color: #059669; }
+            .dont-card .bullet { color: #dc2626; border-color: #dc2626; }
+            .synth-list li { border-bottom: 1px solid #eee; }
+            .freq { border: 1px solid #ddd; }
+            #resultsPanel { display: block !important; }
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.7rem; }
+            .container { padding: 1rem; }
+            .card { padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-badge"><span class="dot"></span> Classroom Tool</div>
+        <h1>Socratic Seminar<br>Guidelines Builder</h1>
+        <p>Collect your students' ideas and instantly synthesize them into shared class guidelines.</p>
+    </div>
+
+    <!-- NAVIGATION TABS -->
+    <div class="tabs">
+        <div class="tab active" onclick="showPanel('setup')" id="tabSetup">📋 Teacher Setup</div>
+        <div class="tab" onclick="showPanel('import')" id="tabImport">📥 Import & Synthesize</div>
+        <div class="tab" onclick="showPanel('direct')" id="tabDirect">✏️ Direct Input</div>
+        <div class="tab" onclick="showPanel('results')" id="tabResults" style="display:none;">✨ Results</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PANEL 1: TEACHER SETUP INSTRUCTIONS        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="panel active" id="setupPanel">
+        <div class="card">
+            <h2><span class="icon">🚀</span> Quick Setup (5 minutes)</h2>
+            <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1.25rem;">
+                Create a Google Form so all students can submit at the same time from their own devices. Then import the results here to instantly synthesize class-generated guidelines.
+            </p>
+
+            <div class="setup-steps">
+                <div class="setup-step">
+                    <strong>Create a new Google Form</strong>
+                    <p>Go to <a href="https://forms.google.com" target="_blank" style="color:var(--accent);">forms.google.com</a> → click <strong>Blank form</strong>.</p>
+                </div>
+
+                <div class="setup-step">
+                    <strong>Set the Form title & description</strong>
+                    <div class="form-fields-box">
+                        <strong>Copy-paste this as the Form title:</strong>
+                        <div style="background:var(--surface-alt);padding:0.6rem 0.85rem;border-radius:8px;margin:0.5rem 0;color:var(--text);font-size:0.9rem;border:1px dashed var(--border);cursor:text;user-select:all;">
+                            Socratic Seminar — Dos & Don'ts
+                        </div>
+                        <strong>Copy-paste this as the Form description:</strong>
+                        <div style="background:var(--surface-alt);padding:0.6rem 0.85rem;border-radius:8px;margin:0.5rem 0;color:var(--text);font-size:0.85rem;border:1px dashed var(--border);cursor:text;user-select:all;line-height:1.6;">
+                            We are building OUR class guidelines for Socratic Seminars — based on YOUR ideas. Think about what makes a discussion productive and respectful. What should we all commit to doing? What should we avoid? Your responses will be combined with the rest of the class to create a shared set of rules we all agree on.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setup-step">
+                    <strong>Add 3 questions (all required)</strong>
+                    <p>Mark each question as <strong>Required</strong> so every student contributes.</p>
+                    <div class="form-fields-box">
+                        <strong>Question 1 — Short answer, Required</strong>
+                        <div style="background:var(--surface-alt);padding:0.5rem 0.75rem;border-radius:6px;margin:0.4rem 0;color:var(--text);font-size:0.85rem;border:1px dashed var(--border);user-select:all;">
+                            <strong style="color:var(--text);">Title:</strong> Your Name (first name or initials)
+                        </div>
+
+                        <strong style="margin-top:0.75rem;display:block;">Question 2 — Paragraph, Required</strong>
+                        <div style="background:var(--surface-alt);padding:0.5rem 0.75rem;border-radius:6px;margin:0.4rem 0;color:var(--text);font-size:0.85rem;border:1px dashed var(--border);user-select:all;">
+                            <strong style="color:var(--text);">Title:</strong> What should we DO in a Socratic Seminar?<br>
+                            <strong style="color:var(--text);">Description:</strong> List at least 1 thing (the more the better). Put each idea on its own line. Think about: listening, speaking, evidence, respect, preparation.
+                        </div>
+
+                        <strong style="margin-top:0.75rem;display:block;">Question 3 — Paragraph, Required</strong>
+                        <div style="background:var(--surface-alt);padding:0.5rem 0.75rem;border-radius:6px;margin:0.4rem 0;color:var(--text);font-size:0.85rem;border:1px dashed var(--border);user-select:all;">
+                            <strong style="color:var(--text);">Title:</strong> What should we AVOID in a Socratic Seminar?<br>
+                            <strong style="color:var(--text);">Description:</strong> List at least 1 thing to avoid. Put each idea on its own line. Think about: behaviors, habits, or attitudes that hurt discussion.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setup-step">
+                    <strong>Share the Form with students</strong>
+                    <p>Click <strong>Send</strong> → copy the link → share via Google Classroom, or project the link/QR code on screen. Students fill it out on their own devices in 2–3 minutes.</p>
+                </div>
+
+                <div class="setup-step">
+                    <strong>Export responses to this tool</strong>
+                    <p>Once all students have submitted: in Google Forms, click <strong>Responses → Link to Sheets</strong> (the green Sheets icon). This opens a Google Sheet. Select all cells (<strong>⌘A</strong> on Mac / <strong>Ctrl+A</strong> on PC), copy (<strong>⌘C / Ctrl+C</strong>).</p>
+                </div>
+
+                <div class="setup-step">
+                    <strong>Synthesize!</strong>
+                    <p>Click the <strong>"Import & Synthesize"</strong> tab above → paste the data into the text box → click <strong>Synthesize</strong>. Your class guidelines appear instantly, ready to print or project.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="border-color: rgba(251,191,36,0.3);">
+            <h2><span class="icon">👩‍🏫</span> How to Share with Other Teachers</h2>
+            <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.8;margin-bottom:1rem;">
+                This tool is a single HTML file that runs entirely in the browser — <strong>no internet, no accounts, no install needed</strong>. Here's how to share it:
+            </p>
+            <div class="form-fields-box" style="margin-bottom:1rem;">
+                <strong style="color:var(--green);">Step 1 — Share two things:</strong>
+                <ul>
+                    <li><strong>This HTML file</strong> (<code>socratic-seminar-survey.html</code>) — send via email, AirDrop, Google Drive, or USB</li>
+                    <li><strong>Your Google Form</strong> — in Google Forms, click the 3-dot menu → <strong>"Make a copy"</strong>, then share the copy link with colleagues</li>
+                </ul>
+            </div>
+            <div class="form-fields-box" style="margin-bottom:1rem;">
+                <strong style="color:var(--green);">Step 2 — Each teacher does this:</strong>
+                <ul>
+                    <li>Opens the Google Form copy, shares it with their own class</li>
+                    <li>After students submit, opens Google Sheets, copies the response data</li>
+                    <li>Double-clicks the HTML file to open it in Chrome/Safari/any browser</li>
+                    <li>Goes to "Import & Synthesize" tab → pastes data → clicks Synthesize</li>
+                    <li>Prints or projects their class's unique guidelines</li>
+                </ul>
+            </div>
+            <p style="color:var(--text-muted);font-size:0.85rem;">
+                💡 Each teacher gets guidelines built from <strong>their own students' ideas</strong> — nothing is shared between classes. The HTML file works offline and doesn't store any data on a server.
+            </p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PANEL 2: IMPORT & SYNTHESIZE               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="panel" id="importPanel">
+        <div class="card">
+            <h2><span class="icon">📥</span> Import Student Responses</h2>
+            <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:1rem;">
+                Paste data directly from Google Sheets (3 columns: Name, Do's, Don'ts) or upload a CSV file.
+            </p>
+
+            <!-- CSV File Upload -->
+            <div class="paste-zone" id="dropZone">
+                <input type="file" accept=".csv,.tsv,.txt" id="fileInput" onchange="handleFile(this.files[0])">
+                <div class="pz-icon">📄</div>
+                <div class="pz-title">Drop a CSV file here or click to browse</div>
+                <div class="pz-sub">Exported from Google Sheets → File → Download → CSV</div>
+            </div>
+
+            <div class="or-divider">or paste from Google Sheets</div>
+
+            <!-- Direct Paste -->
+            <div class="field-group">
+                <label>Paste spreadsheet data here</label>
+                <textarea id="pasteArea" rows="8" placeholder="Select all data in Google Sheets (⌘A / Ctrl+A), copy it (⌘C / Ctrl+C), and paste here (⌘V / Ctrl+V).&#10;&#10;Expected columns: Name | Do's | Don'ts&#10;(The header row is automatically skipped)"></textarea>
+            </div>
+
+            <button class="btn btn-synth" onclick="importAndSynthesize()">
+                ✨ Synthesize Class Guidelines
+            </button>
+        </div>
+
+        <!-- Preview of parsed data -->
+        <div id="parsePreview" style="display:none;"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PANEL 3: DIRECT INPUT (BACKUP)             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="panel" id="directPanel">
+        <div class="card" style="border-color: rgba(251,191,36,0.2); margin-bottom:1rem;">
+            <p style="color:var(--gold);font-size:0.85rem;">
+                ⚡ <strong>Backup mode:</strong> Use this if you don't want to set up a Google Form. Students submit one at a time on a shared device, then you synthesize at the end.
+            </p>
+        </div>
+
+        <div class="counter-bar">
+            <div class="counter-item"><div class="num" id="countStudents">0</div><div class="label">Responses</div></div>
+            <div class="counter-item"><div class="num" id="countDos">0</div><div class="label">Do's</div></div>
+            <div class="counter-item"><div class="num" id="countDonts">0</div><div class="label">Don'ts</div></div>
+        </div>
+
+        <form id="surveyForm">
+            <div class="card">
+                <h2><span class="icon">🧑‍🎓</span> Your Response</h2>
+                <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:1.25rem;line-height:1.6;">
+                    We're building <strong style="color:var(--text);">our class guidelines</strong> for Socratic Seminars — based on your ideas. What makes a discussion productive and respectful? Your answers will be combined with everyone else's to create shared rules we all agree on.
+                </p>
+                <div class="field-group">
+                    <label for="studentName">Your Name</label>
+                    <input type="text" id="studentName" placeholder="First name or initials" autocomplete="off" required>
+                </div>
+                <div class="field-group do-section">
+                    <label for="dosInput">✅ What should we DO in a Socratic Seminar?</label>
+                    <textarea id="dosInput" placeholder="Put each idea on its own line (at least 1):&#10;Listen actively to others&#10;Use evidence from the text&#10;Build on what classmates say" required></textarea>
+                    <div class="hint">At least 1 idea required. One per line — the more the better!</div>
+                </div>
+                <div class="field-group dont-section">
+                    <label for="dontsInput">🚫 What should we AVOID?</label>
+                    <textarea id="dontsInput" placeholder="Put each idea on its own line (at least 1):&#10;Don't interrupt someone who is speaking&#10;Don't use your phone during discussion" required></textarea>
+                    <div class="hint">At least 1 idea required. One per line — the more the better!</div>
+                </div>
+                <div id="validationMsg" style="display:none;color:var(--red);font-size:0.85rem;margin-bottom:0.75rem;font-weight:500;"></div>
+                <button type="submit" class="btn btn-primary">Submit My Ideas →</button>
+            </div>
+        </form>
+
+        <div class="chips-wrap" id="chipsSection" style="display:none;">
+            <h3>Submitted</h3>
+            <div id="chipsList"></div>
+        </div>
+
+        <div style="margin-top:1.5rem;">
+            <button class="btn btn-synth" id="directSynthBtn" onclick="directSynthesize()" disabled>
+                ✨ Synthesize Class Guidelines
+            </button>
+            <div class="btn-row">
+                <button class="btn btn-outline" onclick="exportDirect()">📋 Export Raw Data</button>
+                <button class="btn btn-danger" onclick="resetDirect()">🗑 Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- PANEL 4: RESULTS                           -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="panel" id="resultsPanel">
+        <div class="print-title">
+            <h1>Our Socratic Seminar Guidelines</h1>
+            <p>Built by our class — <span id="printDate"></span></p>
+        </div>
+
+        <div id="synthResults"></div>
+
+        <div class="btn-row no-print" style="margin-top:2rem;">
+            <button class="btn btn-outline" onclick="window.print()">🖨 Print Guidelines</button>
+            <button class="btn btn-outline" onclick="copySynthesis()">📋 Copy as Text</button>
+            <button class="btn btn-danger" onclick="showPanel('import')">← Back</button>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── DATA ───
+let directSubmissions = JSON.parse(localStorage.getItem('socratic_direct') || '[]');
+
+// ─── PANEL NAV ───
+function showPanel(name) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(name + 'Panel').classList.add('active');
+    document.getElementById('tab' + name.charAt(0).toUpperCase() + name.slice(1)).classList.add('active');
+}
+
+// ─── TOAST ───
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+// ═══════════════════════════════════════════
+// IMPORT / CSV PARSING
+// ═══════════════════════════════════════════
+
+function handleFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+        document.getElementById('pasteArea').value = e.target.result;
+        showToast('✓ File loaded — click Synthesize!');
+    };
+    reader.readAsText(file);
+}
+
+// Drag & drop
+const dz = document.getElementById('dropZone');
+['dragenter','dragover'].forEach(e => dz.addEventListener(e, ev => { ev.preventDefault(); dz.classList.add('drag-over'); }));
+['dragleave','drop'].forEach(e => dz.addEventListener(e, ev => { ev.preventDefault(); dz.classList.remove('drag-over'); }));
+dz.addEventListener('drop', ev => { if (ev.dataTransfer.files.length) handleFile(ev.dataTransfer.files[0]); });
+
+function parseSpreadsheetData(raw) {
+    const lines = raw.trim().split('\n').filter(l => l.trim());
+    if (lines.length < 2) return [];
+
+    // Detect delimiter (tab for pasted sheets, comma for CSV)
+    const delim = lines[0].includes('\t') ? '\t' : ',';
+
+    const rows = lines.map(line => {
+        if (delim === ',') {
+            // Handle quoted CSV fields
+            return parseCSVLine(line);
+        }
+        return line.split('\t');
+    });
+
+    // Skip header row
+    const header = rows[0].map(h => h.toLowerCase());
+    const dataRows = rows.slice(1);
+
+    // Try to identify columns
+    let nameCol = 0, dosCol = 1, dontsCol = 2;
+
+    // Smart column detection
+    header.forEach((h, i) => {
+        if (h.includes('name') || h.includes('who')) nameCol = i;
+        if (h.includes('do') && !h.includes("don't") && !h.includes('dont') && !h.includes('avoid')) dosCol = i;
+        if (h.includes("don't") || h.includes('dont') || h.includes('avoid') || h.includes("don'ts")) dontsCol = i;
+    });
+
+    // If we have a timestamp column (Google Forms adds one), shift indices
+    if (header[0].includes('timestamp') || header[0].includes('time')) {
+        if (nameCol === 0) nameCol = 1;
+        if (dosCol === 1) dosCol = 2;
+        if (dontsCol === 2) dontsCol = 3;
+    }
+
+    return dataRows
+        .filter(r => r.length >= 3 && r[nameCol]?.trim())
+        .map(r => ({
+            name: (r[nameCol] || '').trim(),
+            dos: (r[dosCol] || '').split(/[\n;]|(?:,\s)/).map(s => s.trim()).filter(s => s),
+            donts: (r[dontsCol] || '').split(/[\n;]|(?:,\s)/).map(s => s.trim()).filter(s => s)
+        }));
+}
+
+function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') {
+            if (inQuotes && line[i+1] === '"') { current += '"'; i++; }
+            else { inQuotes = !inQuotes; }
+        } else if (ch === ',' && !inQuotes) {
+            result.push(current); current = '';
+        } else {
+            current += ch;
+        }
+    }
+    result.push(current);
+    return result;
+}
+
+function importAndSynthesize() {
+    const raw = document.getElementById('pasteArea').value.trim();
+    if (!raw) { showToast('⚠ Paste your spreadsheet data first'); return; }
+
+    const parsed = parseSpreadsheetData(raw);
+    if (parsed.length === 0) { showToast('⚠ Could not parse data — check format'); return; }
+
+    const allDos = parsed.flatMap(s => s.dos);
+    const allDonts = parsed.flatMap(s => s.donts);
+
+    renderSynthesis(groupSimilar(allDos), groupSimilar(allDonts), parsed.length);
+
+    document.getElementById('tabResults').style.display = '';
+    showPanel('results');
+    showToast(`✓ Synthesized from ${parsed.length} student responses!`);
+}
+
+// ═══════════════════════════════════════════
+// DIRECT INPUT MODE
+// ═══════════════════════════════════════════
+
+updateDirectCounters();
+renderDirectChips();
+
+document.getElementById('surveyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const vmsg = document.getElementById('validationMsg');
+    vmsg.style.display = 'none';
+
+    const name = document.getElementById('studentName').value.trim();
+    const dos = document.getElementById('dosInput').value.split('\n').map(s=>s.trim()).filter(s=>s);
+    const donts = document.getElementById('dontsInput').value.split('\n').map(s=>s.trim()).filter(s=>s);
+
+    // Validate: at least 1 do AND 1 don't
+    if (dos.length === 0 || donts.length === 0) {
+        vmsg.textContent = '⚠ Please enter at least 1 Do AND 1 Don\'t before submitting.';
+        vmsg.style.display = 'block';
+        return;
+    }
+
+    directSubmissions.push({ name, dos, donts });
+    localStorage.setItem('socratic_direct', JSON.stringify(directSubmissions));
+    updateDirectCounters();
+    renderDirectChips();
+    this.reset();
+    document.getElementById('studentName').focus();
+    showToast(`✓ ${name}'s response submitted!`);
+});
+
+function updateDirectCounters() {
+    document.getElementById('countStudents').textContent = directSubmissions.length;
+    document.getElementById('countDos').textContent = directSubmissions.reduce((s,r) => s + r.dos.length, 0);
+    document.getElementById('countDonts').textContent = directSubmissions.reduce((s,r) => s + r.donts.length, 0);
+    document.getElementById('directSynthBtn').disabled = directSubmissions.length === 0;
+}
+
+function renderDirectChips() {
+    const sec = document.getElementById('chipsSection');
+    if (!directSubmissions.length) { sec.style.display = 'none'; return; }
+    sec.style.display = 'block';
+    document.getElementById('chipsList').innerHTML = directSubmissions.map(s =>
+        `<span class="chip"><span class="cdot"></span>${escapeHtml(s.name)}</span>`
+    ).join('');
+}
+
+function directSynthesize() {
+    if (!directSubmissions.length) return;
+    const allDos = directSubmissions.flatMap(s => s.dos);
+    const allDonts = directSubmissions.flatMap(s => s.donts);
+    renderSynthesis(groupSimilar(allDos), groupSimilar(allDonts), directSubmissions.length);
+    document.getElementById('tabResults').style.display = '';
+    showPanel('results');
+}
+
+function resetDirect() {
+    if (!confirm('Clear all submissions?')) return;
+    directSubmissions = [];
+    localStorage.setItem('socratic_direct', '[]');
+    updateDirectCounters();
+    renderDirectChips();
+}
+
+function exportDirect() {
+    if (!directSubmissions.length) return;
+    let t = 'SOCRATIC SEMINAR SURVEY — RAW DATA\n' + '═'.repeat(50) + '\n\n';
+    directSubmissions.forEach(s => {
+        t += `── ${s.name} ──\nDO's:\n${s.dos.map(d=>'  • '+d).join('\n')}\nDON'Ts:\n${s.donts.map(d=>'  • '+d).join('\n')}\n\n`;
+    });
+    const blob = new Blob([t], {type:'text/plain'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = 'socratic-seminar-data.txt'; a.click();
+}
+
+// ═══════════════════════════════════════════
+// SYNTHESIS ENGINE
+// ═══════════════════════════════════════════
+
+function groupSimilar(items) {
+    const processed = items.map(item => ({
+        original: item,
+        normalized: normalize(item),
+        keywords: extractKeywords(normalize(item))
+    }));
+
+    const groups = [];
+    for (const item of processed) {
+        let matched = false;
+        for (const group of groups) {
+            if (isSimilar(item.keywords, group.keywords)) {
+                group.items.push(item.original);
+                item.keywords.forEach(k => group.keywords.add(k));
+                matched = true;
+                break;
+            }
+        }
+        if (!matched) {
+            groups.push({ items: [item.original], keywords: new Set(item.keywords) });
+        }
+    }
+
+    groups.sort((a, b) => b.items.length - a.items.length);
+
+    return groups.map(g => ({
+        label: generateLabel(g.items),
+        count: g.items.length,
+        sources: g.items
+    }));
+}
+
+function normalize(text) {
+    return text.toLowerCase()
+        .replace(/don'?t\s*/gi, '').replace(/do not\s*/gi, '')
+        .replace(/should(n'?t)?\s*/gi, '').replace(/always\s*/gi, '')
+        .replace(/never\s*/gi, '').replace(/[^\w\s]/g, '').trim();
+}
+
+function extractKeywords(text) {
+    const stop = new Set([
+        'the','a','an','is','are','was','were','be','been','being','have','has','had',
+        'do','does','did','will','would','could','should','may','might','must','shall',
+        'can','need','dare','to','of','in','for','on','with','at','by','from','as',
+        'into','through','during','before','after','above','below','it','its','they',
+        'them','their','you','your','we','our','and','but','or','nor','not','so','yet',
+        'both','either','that','this','these','those','what','which','who','whom','when',
+        'where','while','if','then','than','too','very','just','about','up','out','off',
+        'over','only','own','same','other','each','every','all','any','few','more','most',
+        'make','sure','get','use','try','keep','let','say','go','thing','things','someone',
+        'something','people','person','during','seminar','discussion','socratic'
+    ]);
+    return text.split(/\s+/).filter(w => w.length > 2 && !stop.has(w));
+}
+
+function isSimilar(kw1, kw2) {
+    const set2 = kw2 instanceof Set ? kw2 : new Set(kw2);
+    const arr1 = kw1 instanceof Set ? [...kw1] : kw1;
+    if (!arr1.length) return false;
+    let matches = 0;
+    for (const word of arr1) {
+        if (set2.has(word)) matches++;
+        for (const w2 of set2) {
+            if (word !== w2 && stemMatch(word, w2)) { matches += 0.5; break; }
+        }
+    }
+    return (matches / Math.max(arr1.length, set2.size)) >= 0.4;
+}
+
+function stemMatch(a, b) {
+    const m = Math.min(a.length, b.length);
+    if (m < 4) return false;
+    const c = Math.max(4, Math.floor(m * 0.7));
+    return a.substring(0, c) === b.substring(0, c);
+}
+
+function generateLabel(items) {
+    const sorted = [...items].sort((a, b) => b.length - a.length);
+    let label = sorted[0];
+    label = label.charAt(0).toUpperCase() + label.slice(1);
+    label = label.replace(/[.!]+$/, '');
+    return label;
+}
+
+function renderSynthesis(dos, donts, studentCount) {
+    const container = document.getElementById('synthResults');
+    document.getElementById('printDate').textContent = new Date().toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+    });
+
+    const renderCard = (items, type, icon, title) => `
+        <div class="synth-card ${type}-card" style="animation:fadeUp 0.5s ease">
+            <div class="synth-card-header">
+                <div class="icon-circle">${icon}</div>
+                <div>
+                    <h3>${title}</h3>
+                    <div style="font-size:0.73rem;color:var(--text-muted);">${items.length} guidelines synthesized from ${studentCount} students</div>
+                </div>
+            </div>
+            <ul class="synth-list">
+                ${items.map((d, i) => `
+                    <li>
+                        <div class="bullet">${i + 1}</div>
+                        <div class="item-content">
+                            <div class="item-text">${escapeHtml(d.label)}</div>
+                            <div class="item-meta">
+                                <span class="freq">${d.count} student${d.count !== 1 ? 's' : ''} mentioned this</span>
+                                ${d.count > 1 ? `<span title="${escapeHtml(d.sources.join('\n'))}" style="cursor:help;"> ℹ️</span>` : ''}
+                            </div>
+                        </div>
+                    </li>
+                `).join('')}
+            </ul>
+        </div>
+    `;
+
+    container.innerHTML = renderCard(dos, 'do', '✅', "The Do's") + renderCard(donts, 'dont', '🚫', "The Don'ts");
+}
+
+function copySynthesis() {
+    const results = document.getElementById('synthResults');
+    const cards = results.querySelectorAll('.synth-card');
+    let text = '═══ OUR SOCRATIC SEMINAR GUIDELINES ═══\n\n';
+    cards.forEach(card => {
+        const title = card.querySelector('h3').textContent;
+        text += `── ${title.toUpperCase()} ──\n`;
+        card.querySelectorAll('.item-text').forEach((item, i) => {
+            text += `${i + 1}. ${item.textContent}\n`;
+        });
+        text += '\n';
+    });
+    navigator.clipboard.writeText(text).then(() => showToast('✓ Copied to clipboard!'));
+}
+</script>
+
+</body>
+</html>

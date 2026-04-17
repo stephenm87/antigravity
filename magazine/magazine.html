@@ -1,0 +1,2610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Qing Gazette — Asian History Political Cartoon Exhibition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    /* ================================================
+       RESET & BASE
+       ================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --page-width: 8.5in;
+      --page-height: 11in;
+      --charcoal: #1a1a1a;
+      --warm-black: #0d0d0d;
+      --gold: #c9a84c;
+      --gold-light: #dfc070;
+      --imperial-red: #8b1a1a;
+      --crimson: #cc3333;
+      --parchment: #f5f0e8;
+      --parchment-dark: #e8e0d0;
+      --ink: #2a2420;
+      --caption: #555;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #333;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ================================================
+       PAGE SYSTEM
+       ================================================ */
+    .page {
+      width: var(--page-width);
+      height: var(--page-height);
+      margin: 1rem auto;
+      position: relative;
+      overflow: hidden;
+      background: var(--parchment);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    }
+
+    @media print {
+      body { background: none; margin: 0; padding: 0; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        page-break-inside: avoid;
+      }
+      .page:last-child { page-break-after: auto; }
+      .cover-selector { display: none !important; }
+    }
+
+    @page {
+      size: letter;
+      margin: 0;
+    }
+
+    /* ================================================
+       COVER PAGES — SHARED
+       ================================================ */
+    .cover-page {
+      background: #000;
+    }
+    .cover-page img.cover-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
+    }
+    .cover-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    /* ── Option C — Centered bottom gradient band ── */
+    .jade-cover .cover-overlay {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 0.8in 0.5in;
+      background: linear-gradient(180deg,
+        rgba(0,0,0,0.6) 0%,
+        rgba(0,0,0,0.15) 8%,
+        transparent 15%,
+        transparent 55%,
+        rgba(0,0,0,0.25) 68%,
+        rgba(0,0,0,0.7) 82%,
+        rgba(0,0,0,0.92) 100%
+      );
+    }
+    /* ── Top metadata bar: Issue No. left, Spring 2026 right ── */
+    .jade-cover .cover-top-meta {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0.35in 0.45in 0 0.45in;
+    }
+    .jade-cover .cover-top-meta .meta-left,
+    .jade-cover .cover-top-meta .meta-right {
+      font-family: 'Inter', sans-serif;
+      font-size: 7pt;
+      font-weight: 500;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+    }
+    .jade-cover .title-line {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 21pt;
+      letter-spacing: 4px;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      text-align: center;
+      line-height: 1.4;
+    }
+    .jade-cover .title-line .accent { color: var(--gold); font-weight: 900; }
+    .jade-cover .cover-rule {
+      width: 45px; height: 2px;
+      background: var(--gold);
+      margin: 0.1in auto;
+    }
+    .jade-cover .subject {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 17pt;
+      letter-spacing: 5px;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+    .jade-cover .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 12pt;
+      color: rgba(255,255,255,0.75);
+      margin-top: 0.06in;
+    }
+
+
+
+    /* ================================================
+       INTRODUCTION SPREAD
+       ================================================ */
+    .intro-page {
+      padding: 0.7in 0.75in 0.6in;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .intro-header {
+      text-align: center;
+      margin-bottom: 0.3in;
+      padding-bottom: 0.2in;
+      border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+    .intro-header h1 {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 18pt;
+      color: var(--charcoal);
+      letter-spacing: 3px;
+      margin-bottom: 0.06in;
+    }
+    .intro-header h1 .accent { color: var(--imperial-red); }
+    .intro-header .intro-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 11pt;
+      color: #777;
+      letter-spacing: 1px;
+    }
+
+    .intro-content {
+      flex: 1;
+      column-count: 2;
+      column-gap: 0.35in;
+      column-rule: 1px solid rgba(0,0,0,0.08);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11pt;
+      line-height: 1.65;
+      color: var(--ink);
+      text-align: justify;
+    }
+
+    .intro-content h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 10pt;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--charcoal);
+      margin: 0.18in 0 0.06in;
+      text-transform: uppercase;
+      break-after: avoid;
+    }
+    .intro-content h2:first-child { margin-top: 0; }
+
+    .intro-content .drop-cap::first-letter {
+      font-family: 'Cinzel', serif;
+      font-size: 36pt;
+      font-weight: 700;
+      float: left;
+      line-height: 0.85;
+      margin: 0 0.06in 0 0;
+      color: var(--imperial-red);
+    }
+
+    .intro-content p {
+      margin-bottom: 0.1in;
+    }
+
+    .intro-content .pull-quote {
+      break-inside: avoid;
+      margin: 0.15in 0;
+      padding: 0.12in 0.15in;
+      border-left: 3px solid var(--gold);
+      background: rgba(201,168,76,0.06);
+      font-style: italic;
+      font-size: 10.5pt;
+      color: #555;
+    }
+
+    .intro-content .tool-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--imperial-red);
+      margin-bottom: 0.03in;
+      display: block;
+    }
+
+    .intro-page .page-number {
+      position: absolute;
+      bottom: 0.4in;
+      right: 0.6in;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9pt;
+      color: #aaa;
+    }
+    .intro-page .page-number-left {
+      position: absolute;
+      bottom: 0.4in;
+      left: 0.6in;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9pt;
+      color: #aaa;
+    }
+
+    /* ================================================
+       TABLE OF CONTENTS
+       ================================================ */
+    .toc-page {
+      padding: 0.7in 0.65in 0.6in;
+      display: flex;
+      flex-direction: column;
+    }
+    .toc-header {
+      text-align: center;
+      margin-bottom: 0.3in;
+    }
+    .toc-header h1 {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 22pt;
+      letter-spacing: 8px;
+      color: var(--charcoal);
+    }
+    .toc-header-rule {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.12in auto 0;
+    }
+    .toc-body {
+      flex: 1;
+    }
+    .toc-section {
+      margin-bottom: 0.22in;
+    }
+    .toc-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.1in;
+      margin-bottom: 0.06in;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 0.04in;
+    }
+    .toc-section-numeral {
+      font-family: 'Cinzel', serif;
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--imperial-red);
+      min-width: 0.3in;
+    }
+    .toc-section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 12pt;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--charcoal);
+    }
+    .toc-dots {
+      flex: 1;
+      border-bottom: 1px dotted rgba(0,0,0,0.2);
+      margin: 0 0.05in;
+      min-width: 0.3in;
+      align-self: flex-end;
+      margin-bottom: 0.04in;
+    }
+    .toc-page-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10pt;
+      color: #888;
+      min-width: 0.4in;
+      text-align: right;
+    }
+    .toc-students {
+      padding-left: 0.4in;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9pt;
+      color: #666;
+      line-height: 1.65;
+    }
+    .toc-student {
+      display: inline;
+    }
+    .toc-student:not(:last-child)::after {
+      content: " · ";
+      color: #bbb;
+    }
+
+    /* ================================================
+       SECTION DIVIDER PAGES
+       ================================================ */
+    .divider-page {
+      background: var(--warm-black) !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Subtle gold border inset on divider pages */
+    .divider-page::before {
+      content: '';
+      position: absolute;
+      inset: 0.4in;
+      border: 1px solid rgba(201,168,76,0.15);
+      pointer-events: none;
+    }
+    .divider-content {
+      text-align: center;
+      max-width: 5.5in;
+      padding: 0 0.5in;
+    }
+    .divider-numeral {
+      font-family: 'Cinzel', serif;
+      font-weight: 400;
+      font-size: 14pt;
+      letter-spacing: 6px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 0.25in;
+    }
+    .divider-rule {
+      width: 50px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.2in auto;
+    }
+    .divider-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 24pt;
+      letter-spacing: 5px;
+      color: var(--gold);
+      margin-bottom: 0.08in;
+    }
+    .divider-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14pt;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 0.15in;
+    }
+    .divider-count {
+      font-family: 'Inter', sans-serif;
+      font-size: 8pt;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.35in;
+    }
+    .divider-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11.5pt;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+      margin-top: 0.15in;
+      max-width: 5in;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ================================================
+       PULL QUOTE PAGES
+       ================================================ */
+    .quote-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .quote-content {
+      max-width: 5in;
+      text-align: center;
+      padding: 0 0.5in;
+    }
+    .quote-rule-top, .quote-rule-bottom {
+      width: 30px;
+      height: 1px;
+      background: rgba(0,0,0,0.2);
+      margin: 0 auto;
+    }
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72pt;
+      line-height: 0.6;
+      color: var(--gold);
+      margin: 0.25in 0 0.1in;
+    }
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16pt;
+      line-height: 1.7;
+      color: var(--ink);
+      margin-bottom: 0.25in;
+    }
+    .quote-attribution {
+      font-family: 'Inter', sans-serif;
+      font-size: 8pt;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 0.25in;
+    }
+
+    /* ================================================
+       GALLERY PAGES — UNIFIED LAYOUT
+       All images use the same structure:
+       - Header at top (fixed height)
+       - Image area fills center (flex: 1)
+       - Student name in reserved band at bottom (fixed height)
+       - Page number below name (absolute)
+       ================================================ */
+    .gallery-page {
+      padding: 0.15in 0.15in 0.2in;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Section-specific background tints */
+    .section-opium { background: #f5f0e8; }
+    .section-imperialism { background: #edeef2; }
+    .section-rebellions { background: #f2ede4; }
+    .section-reform { background: #f0e8e8; }
+
+    /* ── Decorative corner flourishes on gallery pages ── */
+    .gallery-page::before,
+    .gallery-page::after {
+      content: '';
+      position: absolute;
+      width: 0.3in;
+      height: 0.3in;
+      border-color: rgba(0,0,0,0.08);
+      border-style: solid;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .gallery-page::before {
+      top: 0.25in;
+      left: 0.25in;
+      border-width: 1px 0 0 1px;
+    }
+    .gallery-page::after {
+      top: 0.25in;
+      right: 0.25in;
+      border-width: 1px 1px 0 0;
+    }
+
+    .gallery-header {
+      display: flex;
+      align-items: center;
+      gap: 0.12in;
+      margin-bottom: 0.08in;
+      flex-shrink: 0;
+      padding: 0 0.15in;
+    }
+    .gallery-header-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(0,0,0,0.12);
+    }
+    .gallery-header-text {
+      font-family: 'Cinzel', serif;
+      font-size: 7pt;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      white-space: nowrap;
+    }
+
+    .gallery-image-area {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+      overflow: hidden;
+      padding: 0.02in;
+    }
+
+    .gallery-image-area img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      /* Subtle shadow lifts the artwork off the parchment */
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.08));
+    }
+
+    /* ── Aspect-ratio overrides ── */
+    .aspect-wide .gallery-image-area img {
+      object-fit: contain;
+    }
+    .aspect-wide .gallery-image-area {
+      align-items: flex-start;
+      padding-top: 0.15in;
+    }
+
+    .aspect-landscape .gallery-image-area {
+      align-items: center;
+    }
+
+    .aspect-square .gallery-image-area {
+      align-items: center;
+    }
+
+    .aspect-tall .gallery-image-area {
+      align-items: center;
+    }
+
+    /* ================================================
+       Student Name — reserved band, never overlaps image
+       ================================================ */
+    .gallery-name {
+      margin-top: 0.04in;
+      padding-top: 0.02in;
+      font-family: 'Cinzel', serif;
+      font-size: 14pt;
+      font-weight: 600;
+      color: var(--charcoal);
+      text-align: center;
+      letter-spacing: 2px;
+      flex-shrink: 0;
+      min-height: 0.25in;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page-number {
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8pt;
+      color: #bbb;
+      flex-shrink: 0;
+      padding-bottom: 0.02in;
+    }
+
+    /* ================================================
+       COLOPHON PAGE
+       ================================================ */
+    .colophon-page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--parchment);
+    }
+    .colophon-content {
+      text-align: center;
+      max-width: 4.5in;
+    }
+    .colophon-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 16pt;
+      letter-spacing: 5px;
+      color: var(--charcoal);
+      margin-bottom: 0.2in;
+    }
+    .colophon-rule {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 0.3in;
+    }
+    .colophon-rule-thin {
+      width: 60px;
+      height: 1px;
+      background: rgba(0,0,0,0.15);
+      margin: 0.25in auto;
+    }
+    .colophon-details {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11pt;
+      line-height: 1.8;
+      color: var(--ink);
+    }
+    .colophon-credits {
+      margin-top: 0.2in;
+    }
+    .colophon-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 7pt;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--imperial-red);
+      margin-bottom: 0.04in;
+    }
+    .colophon-credits p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10pt;
+      line-height: 1.6;
+      color: #666;
+    }
+    .colophon-footer {
+      margin-top: 0.1in;
+      font-family: 'Cinzel', serif;
+      font-size: 9pt;
+      letter-spacing: 3px;
+      color: #bbb;
+    }
+
+    /* ================================================
+       BACK COVER — Fallen Dynasty (rain-slicked palace)
+       ================================================ */
+    .back-cover {
+      background: #000;
+      position: relative;
+    }
+    .back-cover img.back-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
+    }
+    .back-cover .back-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 1.2in;
+      background: linear-gradient(180deg,
+        rgba(0,0,0,0.3) 0%,
+        rgba(0,0,0,0.0) 25%,
+        rgba(0,0,0,0.0) 55%,
+        rgba(0,0,0,0.65) 100%
+      );
+    }
+    .back-cover .back-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 14pt;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 4px;
+    }
+    .back-cover .back-rule {
+      width: 45px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0.25in auto;
+    }
+    .back-cover .back-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 11pt;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 4in;
+    }
+    .back-cover .back-school {
+      font-family: 'Cinzel', serif;
+      font-size: 12pt;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      margin-top: 0.5in;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+
+    /* ================================================
+       COVER SELECTOR (screen only)
+       ================================================ */
+  </style>
+</head>
+<body>
+
+
+
+  <!-- ════════════════ FRONT COVER: JADE DRAGON (Option C) ════════════════ -->
+  <div class="page cover-page jade-cover" id="cover-jade">
+    <img class="cover-bg" src="covers/v3b_kintsugi.png" alt="Cracked jade dragon with kintsugi gold veins on crimson">
+    <div class="cover-top-meta">
+      <span class="meta-left">Issue No. 1</span>
+      <span class="meta-right">Spring 2026</span>
+    </div>
+    <div class="cover-overlay">
+      <div class="title-line">POLITICAL CARTOON <span class="accent">GAZETTE</span></div>
+      <div class="cover-rule"></div>
+      <div class="subject">ASIAN HISTORY</div>
+      <div class="sub">The Fall of the Qing Dynasty</div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════ INTRODUCTION (Page 2) ════════════════ -->
+  <div class="page intro-page">
+    <div class="intro-header">
+      <h1>THE FALL OF THE <span class="accent">QING</span></h1>
+      <div class="intro-sub">A Visual Inquiry into the End of Imperial China</div>
+    </div>
+    <div class="intro-content">
+      <p class="drop-cap">The Qing Dynasty, China's last imperial house, ruled for over 260 years before its dramatic collapse in 1912. Through the lens of political cartooning, our Grade 9 historians have investigated the forces — internal and external — that brought down one of the world's most enduring civilizations. Each cartoon in this exhibition represents a student's analytical interpretation of a pivotal moment in Qing history.</p>
+
+      <h2>The Historical Themes</h2>
+      <p>Students explored four interconnected dimensions of the Qing's decline:</p>
+
+      <div class="pull-quote">
+        <span class="tool-tag">The Opium Trade</span>
+        The devastating economic and social impact of the opium trade, from the Opium Wars to the Treaty of Nanjing, which forced open China's ports and ceded Hong Kong to Britain.
+      </div>
+
+      <div class="pull-quote">
+        <span class="tool-tag">Foreign Imperialism</span>
+        The scramble for concessions, extraterritorial rights, and spheres of influence that carved China into zones of foreign control, undermining Qing sovereignty.
+      </div>
+
+      <div class="pull-quote">
+        <span class="tool-tag">Internal Rebellions</span>
+        From the Taiping Rebellion — one of history's deadliest conflicts — to the Boxer Uprising, internal movements that shook the dynasty's foundations.
+      </div>
+
+      <div class="pull-quote">
+        <span class="tool-tag">Reform &amp; Revolution</span>
+        The desperate modernization attempts of the Hundred Days' Reform and the Self-Strengthening Movement, and the revolutionary forces that ultimately toppled the throne.
+      </div>
+
+      <div style="break-before: column;"></div>
+      <h2>The Visual Toolbox</h2>
+      <p>Each student was challenged to employ at least one of three classic cartooning techniques to convey their historical argument:</p>
+
+      <p><strong>Analogy &amp; Symbols</strong> — Using visual metaphors to represent abstract political concepts. A crumbling wall might stand for the weakening dynasty; a puppet on strings for foreign manipulation.</p>
+
+      <p><strong>Caricature &amp; Exaggeration</strong> — Amplifying physical or behavioral traits to make a political point. The exaggeration of power dynamics, greed, or suffering forces the viewer to confront uncomfortable truths.</p>
+
+      <p><strong>Contrast &amp; Juxtaposition</strong> — Placing opposing elements side by side to reveal contradictions — wealth beside poverty, rhetoric beside reality, tradition beside modernity.</p>
+
+      <h2>The Assignment</h2>
+      <p>Students were asked to judge their chosen historical event or trend as <em>positive, negative, short-sighted, wise,</em> or <em>ironic</em> — and to communicate that judgment visually. The result is a rich tapestry of perspectives, each offering a unique window into one of history's most consequential transformations.</p>
+    </div>
+    <div class="page-number">2</div>
+  </div>
+
+  <!-- ════════════════ INTRODUCTION (Page 3) — About This Exhibition ════════════════ -->
+  <div class="page intro-page">
+    <div class="intro-header">
+      <h1>ABOUT THIS <span class="accent">EXHIBITION</span></h1>
+      <div class="intro-sub">Perspectives on the End of Empire</div>
+    </div>
+    <div class="intro-content">
+      <p class="drop-cap">This gazette collects the work of student-historians from our Grade 9 Asian History program. Working individually, each student selected a specific aspect of the Qing Dynasty's decline and crafted a political cartoon that communicates their historical analysis through visual argument.</p>
+
+      <p>The cartoons on the following pages represent an extraordinary range of approaches — from dark satire to hopeful commentary, from ink-brush minimalism to vivid digital illustration. What unites them is their commitment to thinking historically: not merely describing the past, but interrogating it, evaluating it, and making a visual argument about its significance.</p>
+
+      <h2>How to Read These Cartoons</h2>
+      <p>As you explore the gallery, consider the following questions:</p>
+
+      <p>• What <strong>symbols</strong> has the artist chosen, and what do they represent?</p>
+      <p>• What is being <strong>exaggerated</strong>, and why?</p>
+      <p>• What <strong>contrasts</strong> or juxtapositions are present?</p>
+      <p>• What <strong>judgment</strong> is the artist making about the historical event?</p>
+      <p>• Do you <strong>agree</strong> with the artist's interpretation? What evidence would you cite?</p>
+
+      <div class="pull-quote">
+        "A political cartoon is an argument in miniature — a historian's thesis distilled into a single, unforgettable image."
+      </div>
+
+      <h2>Acknowledgments</h2>
+      <p>This exhibition would not have been possible without the dedication and creative risk-taking of every student who contributed. Each cartoon represents historical research, conceptual planning, and artistic execution.</p>
+
+      <p>We invite you to linger over these pages, to read the cartoons closely, and to engage with the historical arguments they present. The best political cartoons don't just illustrate history — they make you <em>think</em> about it differently.</p>
+
+      <p style="margin-top: 0.25in; font-style: italic; text-align: right; color: #888;">
+        — The Asian History Department<br>
+        <span style="font-size: 9pt;">Spring 2026</span>
+      </p>
+    </div>
+    <div class="page-number">3</div>
+  </div>
+
+  <!-- ════════════════ TABLE OF CONTENTS (Page 4) ════════════════ -->
+  
+    <div class="page toc-page">
+      <div class="toc-header">
+        <h1>CONTENTS</h1>
+        <div class="toc-header-rule"></div>
+      </div>
+      <div class="toc-body">
+        
+      <div class="toc-section">
+        <div class="toc-section-header">
+          <span class="toc-section-numeral">I</span>
+          <span class="toc-section-title">The Opium Trade</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page-num">7–50</span>
+        </div>
+        <div class="toc-students">
+          <span class="toc-student">Lazarus Anderson</span><span class="toc-student">Chloe Chan</span><span class="toc-student">Charlene Chen</span><span class="toc-student">Edison Chen</span><span class="toc-student">Eric Chen</span><span class="toc-student">Stella Chen</span><span class="toc-student">James Choi</span><span class="toc-student">Jacob Dell</span><span class="toc-student">Brian Ding</span><span class="toc-student">Connie Du</span><span class="toc-student">Emily</span><span class="toc-student">Roy Espeseth</span><span class="toc-student">Emily Gong</span><span class="toc-student">Francus Gu</span><span class="toc-student">Annie Hua</span><span class="toc-student">William Hung</span><span class="toc-student">Patty Jin</span><span class="toc-student">David Kang</span><span class="toc-student">Chloe Kim</span><span class="toc-student">Chris Kim</span><span class="toc-student">Jiyu Kim</span><span class="toc-student">Jay Koo</span><span class="toc-student">Ethan Lee</span><span class="toc-student">Benjamin Li</span><span class="toc-student">David Li</span><span class="toc-student">Lizzy Li</span><span class="toc-student">Shelley Li</span><span class="toc-student">Kenneth Liu</span><span class="toc-student">Sophie Lu</span><span class="toc-student">Yu Lucas</span><span class="toc-student">Ouya Woelders</span><span class="toc-student">Annabella Peng</span><span class="toc-student">Virginia Humphreys Pestana</span><span class="toc-student">Tiffany Qi</span><span class="toc-student">Caylen Wang</span><span class="toc-student">Helen Wang</span><span class="toc-student">Evelina Wu</span><span class="toc-student">Annabelle Xu</span><span class="toc-student">Sophia Xue</span><span class="toc-student">Max Yang</span><span class="toc-student">Matthew Ye</span><span class="toc-student">Arianne Zhang</span><span class="toc-student">You Yi</span><span class="toc-student">Elizabeth Zhou</span>
+        </div>
+      </div>
+      <div class="toc-section">
+        <div class="toc-section-header">
+          <span class="toc-section-numeral">II</span>
+          <span class="toc-section-title">Foreign Imperialism</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page-num">53–81</span>
+        </div>
+        <div class="toc-students">
+          <span class="toc-student">Henri Chainet</span><span class="toc-student">Boontanig Charoenthitiwong</span><span class="toc-student">Michelle Chen</span><span class="toc-student">Alex Choi</span><span class="toc-student">Stanisław Czaplicki</span><span class="toc-student">Leo Fondelli</span><span class="toc-student">Olivia Golden</span><span class="toc-student">Bruce Gong</span><span class="toc-student">Caroline Gu</span><span class="toc-student">Jonathan Gu</span><span class="toc-student">Katelyn He</span><span class="toc-student">Fiona Huang</span><span class="toc-student">Marcus Huang</span><span class="toc-student">Mingeon Kim</span><span class="toc-student">Sarah Kim</span><span class="toc-student">Jinny Ko</span><span class="toc-student">Aiden Kuang</span><span class="toc-student">Kelly Ren</span><span class="toc-student">Julia Lee</span><span class="toc-student">Sarah Lee</span><span class="toc-student">Darren Li</span><span class="toc-student">Alex Lu</span><span class="toc-student">Dominique Penaloza</span><span class="toc-student">Tiger Wang</span><span class="toc-student">Yuekai Xiao</span><span class="toc-student">Tiger Ye</span><span class="toc-student">Jayden Zhang</span><span class="toc-student">Youzhe Zhao</span><span class="toc-student">Zhiyang Zhou</span>
+        </div>
+      </div>
+      <div class="toc-section">
+        <div class="toc-section-header">
+          <span class="toc-section-numeral">III</span>
+          <span class="toc-section-title">Internal Rebellions</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page-num">84–120</span>
+        </div>
+        <div class="toc-students">
+          <span class="toc-student">Keren Chen</span><span class="toc-student">Jaden Hui</span><span class="toc-student">Kelly Hung</span><span class="toc-student">Isabella Huang</span><span class="toc-student">Bella Huang</span><span class="toc-student">Kingston</span><span class="toc-student">Kunwoong Moon</span><span class="toc-student">Jayden Lam</span><span class="toc-student">Bryan Li</span><span class="toc-student">Haoran Li</span><span class="toc-student">Nico Li</span><span class="toc-student">Yody Lin</span><span class="toc-student">Aaron Liu</span><span class="toc-student">Sophia Liu</span><span class="toc-student">Katie Li</span><span class="toc-student">Macario</span><span class="toc-student">Taylor Mi</span><span class="toc-student">Rafaela</span><span class="toc-student">Jacqueline Shao</span><span class="toc-student">Luke Shen</span><span class="toc-student">Kaci Sherman</span><span class="toc-student">Mark Shih</span><span class="toc-student">Vivienne Tan</span><span class="toc-student">Ethan Tang</span><span class="toc-student">Kamado Tso</span><span class="toc-student">Danny Wang</span><span class="toc-student">Julia Wang</span><span class="toc-student">Xiuyuan Wang</span><span class="toc-student">Chu Chu Wen</span><span class="toc-student">Aya Williams</span><span class="toc-student">Scarlett Xu</span><span class="toc-student">Daisy Xu</span><span class="toc-student">Kai Yang</span><span class="toc-student">Leilani Yang</span><span class="toc-student">Ellany Yu</span><span class="toc-student">Jacquelyn Pei Lyn Yeoh</span><span class="toc-student">Chloe Zhao</span>
+        </div>
+      </div>
+      <div class="toc-section">
+        <div class="toc-section-header">
+          <span class="toc-section-numeral">IV</span>
+          <span class="toc-section-title">Reform & the Last Empress</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page-num">123–142</span>
+        </div>
+        <div class="toc-students">
+          <span class="toc-student">Isabella</span><span class="toc-student">Ying Jin</span><span class="toc-student">Adina Kang</span><span class="toc-student">Alex Lee</span><span class="toc-student">Haoxuan Li</span><span class="toc-student">Lena Drew</span><span class="toc-student">Reesa Liu</span><span class="toc-student">Victor Lopin</span><span class="toc-student">Isaac Lu</span><span class="toc-student">Jio Park</span><span class="toc-student">Bomin Park</span><span class="toc-student">William Sheng</span><span class="toc-student">Linnea Heiberg</span><span class="toc-student">Sherlock Xian</span><span class="toc-student">Grace Wong</span><span class="toc-student">Cece Yang</span><span class="toc-student">Eliza Yao</span><span class="toc-student">Yuki Yu</span><span class="toc-student">Zoe Zhang</span><span class="toc-student">Julian Zhu</span>
+        </div>
+      </div>
+      </div>
+      <div class="page-number">4</div>
+    </div>
+
+  <!-- ════════════════ THEMATIC SECTIONS ════════════════ -->
+  
+    <div class="page quote-page" style="background: #f5f0e8;">
+      <div class="quote-content">
+        <div class="quote-rule-top"></div>
+        <div class="quote-mark">“</div>
+        <div class="quote-text">If we continue to allow [opium] to be brought in, in a few dozen years we shall not only be without soldiers to resist the enemy, but also in want of silver to provide an army.</div>
+        <div class="quote-attribution">— Lin Zexu, Memorial to the Daoguang Emperor, 1838</div>
+        <div class="quote-rule-bottom"></div>
+      </div>
+      <div class="page-number">5</div>
+    </div>
+    <div class="page divider-page">
+      <div class="divider-content">
+        <div class="divider-numeral">I</div>
+        <div class="divider-rule"></div>
+        <div class="divider-title">THE OPIUM TRADE</div>
+        <div class="divider-subtitle">Poison, Profit & the Seeds of War</div>
+        <div class="divider-rule"></div>
+        <div class="divider-intro">The British East India Company's systematic flooding of China with opium — and the Qing court's desperate attempts to stop it — ignited the conflicts that would shatter the old order forever.</div>
+        <div class="divider-count">44 Student Cartoons</div>
+      </div>
+    </div>
+    <div class="page gallery-page section-opium aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/anderson_lazarus.jpg" alt="Political cartoon by Lazarus Anderson" loading="lazy">
+      </div>
+      <div class="gallery-name">Lazarus Anderson</div>
+      <div class="page-number">7</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/chloe_chan_pc.jpg" alt="Political cartoon by Chloe Chan" loading="lazy">
+      </div>
+      <div class="gallery-name">Chloe Chan</div>
+      <div class="page-number">8</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/chen_charlene.jpg" alt="Political cartoon by Charlene Chen" loading="lazy">
+      </div>
+      <div class="gallery-name">Charlene Chen</div>
+      <div class="page-number">9</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/chen_edison.jpg" alt="Political cartoon by Edison Chen" loading="lazy">
+      </div>
+      <div class="gallery-name">Edison Chen</div>
+      <div class="page-number">10</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/chen_eric.jpg" alt="Political cartoon by Eric Chen" loading="lazy">
+      </div>
+      <div class="gallery-name">Eric Chen</div>
+      <div class="page-number">11</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/chen_stella.jpg" alt="Political cartoon by Stella Chen" loading="lazy">
+      </div>
+      <div class="gallery-name">Stella Chen</div>
+      <div class="page-number">12</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/choi_james.jpg" alt="Political cartoon by James Choi" loading="lazy">
+      </div>
+      <div class="gallery-name">James Choi</div>
+      <div class="page-number">13</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/dell_jacob.jpg" alt="Political cartoon by Jacob Dell" loading="lazy">
+      </div>
+      <div class="gallery-name">Jacob Dell</div>
+      <div class="page-number">14</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/ding_brian.jpg" alt="Political cartoon by Brian Ding" loading="lazy">
+      </div>
+      <div class="gallery-name">Brian Ding</div>
+      <div class="page-number">15</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/du_connie.jpg" alt="Political cartoon by Connie Du" loading="lazy">
+      </div>
+      <div class="gallery-name">Connie Du</div>
+      <div class="page-number">16</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/emily_3bd_political_cartoon.jpg" alt="Political cartoon by Emily" loading="lazy">
+      </div>
+      <div class="gallery-name">Emily</div>
+      <div class="page-number">17</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/roy_espeseth.jpg" alt="Political cartoon by Roy Espeseth" loading="lazy">
+      </div>
+      <div class="gallery-name">Roy Espeseth</div>
+      <div class="page-number">18</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/gong_emily.jpg" alt="Political cartoon by Emily Gong" loading="lazy">
+      </div>
+      <div class="gallery-name">Emily Gong</div>
+      <div class="page-number">19</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/gu_francus.jpg" alt="Political cartoon by Francus Gu" loading="lazy">
+      </div>
+      <div class="gallery-name">Francus Gu</div>
+      <div class="page-number">20</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/hua_annie.jpg" alt="Political cartoon by Annie Hua" loading="lazy">
+      </div>
+      <div class="gallery-name">Annie Hua</div>
+      <div class="page-number">21</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/hung_william.jpg" alt="Political cartoon by William Hung" loading="lazy">
+      </div>
+      <div class="gallery-name">William Hung</div>
+      <div class="page-number">22</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/jin_patty.jpg" alt="Political cartoon by Patty Jin" loading="lazy">
+      </div>
+      <div class="gallery-name">Patty Jin</div>
+      <div class="page-number">23</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/david_kang_3bd_political_cartoon.jpg" alt="Political cartoon by David Kang" loading="lazy">
+      </div>
+      <div class="gallery-name">David Kang</div>
+      <div class="page-number">24</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/kim_chloe.jpg" alt="Political cartoon by Chloe Kim" loading="lazy">
+      </div>
+      <div class="gallery-name">Chloe Kim</div>
+      <div class="page-number">25</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/kim_chris.jpg" alt="Political cartoon by Chris Kim" loading="lazy">
+      </div>
+      <div class="gallery-name">Chris Kim</div>
+      <div class="page-number">26</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/kim_jiyu.jpg" alt="Political cartoon by Jiyu Kim" loading="lazy">
+      </div>
+      <div class="gallery-name">Jiyu Kim</div>
+      <div class="page-number">27</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/koo_jay.jpg" alt="Political cartoon by Jay Koo" loading="lazy">
+      </div>
+      <div class="gallery-name">Jay Koo</div>
+      <div class="page-number">28</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/ethan_lee.jpg" alt="Political cartoon by Ethan Lee" loading="lazy">
+      </div>
+      <div class="gallery-name">Ethan Lee</div>
+      <div class="page-number">29</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/li_benjamin.jpg" alt="Political cartoon by Benjamin Li" loading="lazy">
+      </div>
+      <div class="gallery-name">Benjamin Li</div>
+      <div class="page-number">30</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/li_david.jpg" alt="Political cartoon by David Li" loading="lazy">
+      </div>
+      <div class="gallery-name">David Li</div>
+      <div class="page-number">31</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/li_lizzy.jpg" alt="Political cartoon by Lizzy Li" loading="lazy">
+      </div>
+      <div class="gallery-name">Lizzy Li</div>
+      <div class="page-number">32</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/shelley_li_inaccurate.jpg" alt="Political cartoon by Shelley Li" loading="lazy">
+      </div>
+      <div class="gallery-name">Shelley Li</div>
+      <div class="page-number">33</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/liu_kenneth.jpg" alt="Political cartoon by Kenneth Liu" loading="lazy">
+      </div>
+      <div class="gallery-name">Kenneth Liu</div>
+      <div class="page-number">34</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/lu_sophie.jpg" alt="Political cartoon by Sophie Lu" loading="lazy">
+      </div>
+      <div class="gallery-name">Sophie Lu</div>
+      <div class="page-number">35</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/yu_lucas_class_3b_political_cartoon.jpg" alt="Political cartoon by Yu Lucas" loading="lazy">
+      </div>
+      <div class="gallery-name">Yu Lucas</div>
+      <div class="page-number">36</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/ouya_woelders_political_cartoon.jpg" alt="Political cartoon by Ouya Woelders" loading="lazy">
+      </div>
+      <div class="gallery-name">Ouya Woelders</div>
+      <div class="page-number">37</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/peng_annabella.jpg" alt="Political cartoon by Annabella Peng" loading="lazy">
+      </div>
+      <div class="gallery-name">Annabella Peng</div>
+      <div class="page-number">38</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/humphreys_pestana_virginia.jpg" alt="Political cartoon by Virginia Humphreys Pestana" loading="lazy">
+      </div>
+      <div class="gallery-name">Virginia Humphreys Pestana</div>
+      <div class="page-number">39</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/qi_tiffany.jpg" alt="Political cartoon by Tiffany Qi" loading="lazy">
+      </div>
+      <div class="gallery-name">Tiffany Qi</div>
+      <div class="page-number">40</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/wang_caylen.jpg" alt="Political cartoon by Caylen Wang" loading="lazy">
+      </div>
+      <div class="gallery-name">Caylen Wang</div>
+      <div class="page-number">41</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/wang_helen.jpg" alt="Political cartoon by Helen Wang" loading="lazy">
+      </div>
+      <div class="gallery-name">Helen Wang</div>
+      <div class="page-number">42</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/evelina_wu_4bd_politicalcartoon.jpg" alt="Political cartoon by Evelina Wu" loading="lazy">
+      </div>
+      <div class="gallery-name">Evelina Wu</div>
+      <div class="page-number">43</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/xu_annabelle.jpg" alt="Political cartoon by Annabelle Xu" loading="lazy">
+      </div>
+      <div class="gallery-name">Annabelle Xu</div>
+      <div class="page-number">44</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/xue_sophia.jpg" alt="Political cartoon by Sophia Xue" loading="lazy">
+      </div>
+      <div class="gallery-name">Sophia Xue</div>
+      <div class="page-number">45</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/yang_max.jpg" alt="Political cartoon by Max Yang" loading="lazy">
+      </div>
+      <div class="gallery-name">Max Yang</div>
+      <div class="page-number">46</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/ye_matthew.jpg" alt="Political cartoon by Matthew Ye" loading="lazy">
+      </div>
+      <div class="gallery-name">Matthew Ye</div>
+      <div class="page-number">47</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/zhang_arianne.jpg" alt="Political cartoon by Arianne Zhang" loading="lazy">
+      </div>
+      <div class="gallery-name">Arianne Zhang</div>
+      <div class="page-number">48</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/you_yi_3bd_political_cartoon.jpg" alt="Political cartoon by You Yi" loading="lazy">
+      </div>
+      <div class="gallery-name">You Yi</div>
+      <div class="page-number">49</div>
+    </div>
+    <div class="page gallery-page section-opium aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">THE OPIUM TRADE</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/zhou_elizabeth.jpg" alt="Political cartoon by Elizabeth Zhou" loading="lazy">
+      </div>
+      <div class="gallery-name">Elizabeth Zhou</div>
+      <div class="page-number">50</div>
+    </div>
+    <div class="page quote-page" style="background: #edeef2;">
+      <div class="quote-content">
+        <div class="quote-rule-top"></div>
+        <div class="quote-mark">“</div>
+        <div class="quote-text">China is like a body after a long illness… the foreigners are like the surgeons who cut without caring whether the patient lives.</div>
+        <div class="quote-attribution">— Sun Yat-sen, Kidnapped in London, 1897</div>
+        <div class="quote-rule-bottom"></div>
+      </div>
+      <div class="page-number">51</div>
+    </div>
+    <div class="page divider-page">
+      <div class="divider-content">
+        <div class="divider-numeral">II</div>
+        <div class="divider-rule"></div>
+        <div class="divider-title">FOREIGN IMPERIALISM</div>
+        <div class="divider-subtitle">Carving the Melon — The Scramble for China</div>
+        <div class="divider-rule"></div>
+        <div class="divider-intro">As the wars over opium forced China's doors open, the great powers descended like vultures — demanding treaty ports, territorial concessions, and spheres of influence that reduced the once-mighty empire to a semi-colonial patchwork.</div>
+        <div class="divider-count">29 Student Cartoons</div>
+      </div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/henri_chainet.jpg" alt="Political cartoon by Henri Chainet" loading="lazy">
+      </div>
+      <div class="gallery-name">Henri Chainet</div>
+      <div class="page-number">53</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/charoenthitiwong_boontanig.jpg" alt="Political cartoon by Boontanig Charoenthitiwong" loading="lazy">
+      </div>
+      <div class="gallery-name">Boontanig Charoenthitiwong</div>
+      <div class="page-number">54</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/chen_michelle.jpg" alt="Political cartoon by Michelle Chen" loading="lazy">
+      </div>
+      <div class="gallery-name">Michelle Chen</div>
+      <div class="page-number">55</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/choi_alex.jpg" alt="Political cartoon by Alex Choi" loading="lazy">
+      </div>
+      <div class="gallery-name">Alex Choi</div>
+      <div class="page-number">56</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/stanisaw_czaplicki.jpg" alt="Political cartoon by Stanisław Czaplicki" loading="lazy">
+      </div>
+      <div class="gallery-name">Stanisław Czaplicki</div>
+      <div class="page-number">57</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/fondelli_leo.jpg" alt="Political cartoon by Leo Fondelli" loading="lazy">
+      </div>
+      <div class="gallery-name">Leo Fondelli</div>
+      <div class="page-number">58</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/golden_olivia.jpg" alt="Political cartoon by Olivia Golden" loading="lazy">
+      </div>
+      <div class="gallery-name">Olivia Golden</div>
+      <div class="page-number">59</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/gong_bruce.jpg" alt="Political cartoon by Bruce Gong" loading="lazy">
+      </div>
+      <div class="gallery-name">Bruce Gong</div>
+      <div class="page-number">60</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/caroline_gu_4b_political_cartoon.jpg" alt="Political cartoon by Caroline Gu" loading="lazy">
+      </div>
+      <div class="gallery-name">Caroline Gu</div>
+      <div class="page-number">61</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/gu_jonathan.jpg" alt="Political cartoon by Jonathan Gu" loading="lazy">
+      </div>
+      <div class="gallery-name">Jonathan Gu</div>
+      <div class="page-number">62</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/katelyn_he.jpg" alt="Political cartoon by Katelyn He" loading="lazy">
+      </div>
+      <div class="gallery-name">Katelyn He</div>
+      <div class="page-number">63</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/huang_fiona.jpg" alt="Political cartoon by Fiona Huang" loading="lazy">
+      </div>
+      <div class="gallery-name">Fiona Huang</div>
+      <div class="page-number">64</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/marcus_huang_politcal_cartoon.jpg" alt="Political cartoon by Marcus Huang" loading="lazy">
+      </div>
+      <div class="gallery-name">Marcus Huang</div>
+      <div class="page-number">65</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/kim_mingeon.jpg" alt="Political cartoon by Mingeon Kim" loading="lazy">
+      </div>
+      <div class="gallery-name">Mingeon Kim</div>
+      <div class="page-number">66</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/sarah_kim.jpg" alt="Political cartoon by Sarah Kim" loading="lazy">
+      </div>
+      <div class="gallery-name">Sarah Kim</div>
+      <div class="page-number">67</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/jinny_ko.jpg" alt="Political cartoon by Jinny Ko" loading="lazy">
+      </div>
+      <div class="gallery-name">Jinny Ko</div>
+      <div class="page-number">68</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/kuang_aiden.jpg" alt="Political cartoon by Aiden Kuang" loading="lazy">
+      </div>
+      <div class="gallery-name">Aiden Kuang</div>
+      <div class="page-number">69</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/kelly_ren_pc.jpg" alt="Political cartoon by Kelly Ren" loading="lazy">
+      </div>
+      <div class="gallery-name">Kelly Ren</div>
+      <div class="page-number">70</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/lee_julia.jpg" alt="Political cartoon by Julia Lee" loading="lazy">
+      </div>
+      <div class="gallery-name">Julia Lee</div>
+      <div class="page-number">71</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/sarah_lee_pc.jpg" alt="Political cartoon by Sarah Lee" loading="lazy">
+      </div>
+      <div class="gallery-name">Sarah Lee</div>
+      <div class="page-number">72</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/darren_li.jpg" alt="Political cartoon by Darren Li" loading="lazy">
+      </div>
+      <div class="gallery-name">Darren Li</div>
+      <div class="page-number">73</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/lu_alex.jpg" alt="Political cartoon by Alex Lu" loading="lazy">
+      </div>
+      <div class="gallery-name">Alex Lu</div>
+      <div class="page-number">74</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/dominique_penaloza_pc.jpg" alt="Political cartoon by Dominique Penaloza" loading="lazy">
+      </div>
+      <div class="gallery-name">Dominique Penaloza</div>
+      <div class="page-number">75</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/wang_tiger.jpg" alt="Political cartoon by Tiger Wang" loading="lazy">
+      </div>
+      <div class="gallery-name">Tiger Wang</div>
+      <div class="page-number">76</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/xiao_yuekai.jpg" alt="Political cartoon by Yuekai Xiao" loading="lazy">
+      </div>
+      <div class="gallery-name">Yuekai Xiao</div>
+      <div class="page-number">77</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/ye_tiger.jpg" alt="Political cartoon by Tiger Ye" loading="lazy">
+      </div>
+      <div class="gallery-name">Tiger Ye</div>
+      <div class="page-number">78</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/jayden_zhang.jpg" alt="Political cartoon by Jayden Zhang" loading="lazy">
+      </div>
+      <div class="gallery-name">Jayden Zhang</div>
+      <div class="page-number">79</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/zhao_youzhe.jpg" alt="Political cartoon by Youzhe Zhao" loading="lazy">
+      </div>
+      <div class="gallery-name">Youzhe Zhao</div>
+      <div class="page-number">80</div>
+    </div>
+    <div class="page gallery-page section-imperialism aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">FOREIGN IMPERIALISM</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/zhou_zhiyang.jpg" alt="Political cartoon by Zhiyang Zhou" loading="lazy">
+      </div>
+      <div class="gallery-name">Zhiyang Zhou</div>
+      <div class="page-number">81</div>
+    </div>
+    <div class="page quote-page" style="background: #f2ede4;">
+      <div class="quote-content">
+        <div class="quote-rule-top"></div>
+        <div class="quote-mark">“</div>
+        <div class="quote-text">The people fear not death; why threaten them with it?</div>
+        <div class="quote-attribution">— Dao De Jing, Chapter 74 — invoked by Taiping and Boxer rebels</div>
+        <div class="quote-rule-bottom"></div>
+      </div>
+      <div class="page-number">82</div>
+    </div>
+    <div class="page divider-page">
+      <div class="divider-content">
+        <div class="divider-numeral">III</div>
+        <div class="divider-rule"></div>
+        <div class="divider-title">INTERNAL REBELLIONS</div>
+        <div class="divider-subtitle">When the People Rose — Taiping, Nian, Miao & Boxer</div>
+        <div class="divider-rule"></div>
+        <div class="divider-intro">Crushed by taxes, floods, famine, and foreign humiliation, millions of Chinese peasants took up arms in a series of devastating uprisings that brought the Qing dynasty to the brink of collapse — and killed more people than the First World War.</div>
+        <div class="divider-count">37 Student Cartoons</div>
+      </div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/keren_chen_pc.jpg" alt="Political cartoon by Keren Chen" loading="lazy">
+      </div>
+      <div class="gallery-name">Keren Chen</div>
+      <div class="page-number">84</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/hui_jaden.jpg" alt="Political cartoon by Jaden Hui" loading="lazy">
+      </div>
+      <div class="gallery-name">Jaden Hui</div>
+      <div class="page-number">85</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/hung_kelly.jpg" alt="Political cartoon by Kelly Hung" loading="lazy">
+      </div>
+      <div class="gallery-name">Kelly Hung</div>
+      <div class="page-number">86</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/huang_isabella.jpg" alt="Political cartoon by Isabella Huang" loading="lazy">
+      </div>
+      <div class="gallery-name">Isabella Huang</div>
+      <div class="page-number">87</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/bella_huang_pc.jpg" alt="Political cartoon by Bella Huang" loading="lazy">
+      </div>
+      <div class="gallery-name">Bella Huang</div>
+      <div class="page-number">88</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/kingston_3bd_political_cartoon.jpg" alt="Political cartoon by Kingston" loading="lazy">
+      </div>
+      <div class="gallery-name">Kingston</div>
+      <div class="page-number">89</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/kunwoongmoon_3b_political_cartoon.jpg" alt="Political cartoon by Kunwoong Moon" loading="lazy">
+      </div>
+      <div class="gallery-name">Kunwoong Moon</div>
+      <div class="page-number">90</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/lam_jayden.jpg" alt="Political cartoon by Jayden Lam" loading="lazy">
+      </div>
+      <div class="gallery-name">Jayden Lam</div>
+      <div class="page-number">91</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/li_bryan.jpg" alt="Political cartoon by Bryan Li" loading="lazy">
+      </div>
+      <div class="gallery-name">Bryan Li</div>
+      <div class="page-number">92</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/li_haoran.jpg" alt="Political cartoon by Haoran Li" loading="lazy">
+      </div>
+      <div class="gallery-name">Haoran Li</div>
+      <div class="page-number">93</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/li_nico.jpg" alt="Political cartoon by Nico Li" loading="lazy">
+      </div>
+      <div class="gallery-name">Nico Li</div>
+      <div class="page-number">94</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/lin_yody.jpg" alt="Political cartoon by Yody Lin" loading="lazy">
+      </div>
+      <div class="gallery-name">Yody Lin</div>
+      <div class="page-number">95</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/aaron_liu_pc.jpg" alt="Political cartoon by Aaron Liu" loading="lazy">
+      </div>
+      <div class="gallery-name">Aaron Liu</div>
+      <div class="page-number">96</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/liu_sophia.jpg" alt="Political cartoon by Sophia Liu" loading="lazy">
+      </div>
+      <div class="gallery-name">Sophia Liu</div>
+      <div class="page-number">97</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/katie_li_4b_political_cartoon.jpg" alt="Political cartoon by Katie Li" loading="lazy">
+      </div>
+      <div class="gallery-name">Katie Li</div>
+      <div class="page-number">98</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/macario_4b_political_cartoon.jpg" alt="Political cartoon by Macario" loading="lazy">
+      </div>
+      <div class="gallery-name">Macario</div>
+      <div class="page-number">99</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/mi_taylor.jpg" alt="Political cartoon by Taylor Mi" loading="lazy">
+      </div>
+      <div class="gallery-name">Taylor Mi</div>
+      <div class="page-number">100</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/rafaela_4bd_political_cartoon.jpg" alt="Political cartoon by Rafaela" loading="lazy">
+      </div>
+      <div class="gallery-name">Rafaela</div>
+      <div class="page-number">101</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/shao_jacqueline.jpg" alt="Political cartoon by Jacqueline Shao" loading="lazy">
+      </div>
+      <div class="gallery-name">Jacqueline Shao</div>
+      <div class="page-number">102</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/shen_luke.jpg" alt="Political cartoon by Luke Shen" loading="lazy">
+      </div>
+      <div class="gallery-name">Luke Shen</div>
+      <div class="page-number">103</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/sherman_kaci.jpg" alt="Political cartoon by Kaci Sherman" loading="lazy">
+      </div>
+      <div class="gallery-name">Kaci Sherman</div>
+      <div class="page-number">104</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/shih_mark.jpg" alt="Political cartoon by Mark Shih" loading="lazy">
+      </div>
+      <div class="gallery-name">Mark Shih</div>
+      <div class="page-number">105</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/tan_vivienne.png" alt="Political cartoon by Vivienne Tan" loading="lazy">
+      </div>
+      <div class="gallery-name">Vivienne Tan</div>
+      <div class="page-number">106</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/tang_ethan.jpg" alt="Political cartoon by Ethan Tang" loading="lazy">
+      </div>
+      <div class="gallery-name">Ethan Tang</div>
+      <div class="page-number">107</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/kamado_tso_4b_political_cartoon.jpg" alt="Political cartoon by Kamado Tso" loading="lazy">
+      </div>
+      <div class="gallery-name">Kamado Tso</div>
+      <div class="page-number">108</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/danny_wang.jpg" alt="Political cartoon by Danny Wang" loading="lazy">
+      </div>
+      <div class="gallery-name">Danny Wang</div>
+      <div class="page-number">109</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/julia_wang_4b_political_cartoon.jpg" alt="Political cartoon by Julia Wang" loading="lazy">
+      </div>
+      <div class="gallery-name">Julia Wang</div>
+      <div class="page-number">110</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/wang_xiuyuan_henry.jpg" alt="Political cartoon by Xiuyuan Wang" loading="lazy">
+      </div>
+      <div class="gallery-name">Xiuyuan Wang</div>
+      <div class="page-number">111</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/wen_chuchu.jpg" alt="Political cartoon by Chu Chu Wen" loading="lazy">
+      </div>
+      <div class="gallery-name">Chu Chu Wen</div>
+      <div class="page-number">112</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/williams_aya.jpg" alt="Political cartoon by Aya Williams" loading="lazy">
+      </div>
+      <div class="gallery-name">Aya Williams</div>
+      <div class="page-number">113</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/scarlett_xu_political_cartoon.jpg" alt="Political cartoon by Scarlett Xu" loading="lazy">
+      </div>
+      <div class="gallery-name">Scarlett Xu</div>
+      <div class="page-number">114</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/xu_daisy.jpg" alt="Political cartoon by Daisy Xu" loading="lazy">
+      </div>
+      <div class="gallery-name">Daisy Xu</div>
+      <div class="page-number">115</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/yang_kai.jpg" alt="Political cartoon by Kai Yang" loading="lazy">
+      </div>
+      <div class="gallery-name">Kai Yang</div>
+      <div class="page-number">116</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/yang_leilani.jpg" alt="Political cartoon by Leilani Yang" loading="lazy">
+      </div>
+      <div class="gallery-name">Leilani Yang</div>
+      <div class="page-number">117</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/yu_ellany.jpg" alt="Political cartoon by Ellany Yu" loading="lazy">
+      </div>
+      <div class="gallery-name">Ellany Yu</div>
+      <div class="page-number">118</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/yeoh_jacquelyn_pei_lyn.jpg" alt="Political cartoon by Jacquelyn Pei Lyn Yeoh" loading="lazy">
+      </div>
+      <div class="gallery-name">Jacquelyn Pei Lyn Yeoh</div>
+      <div class="page-number">119</div>
+    </div>
+    <div class="page gallery-page section-rebellions aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">INTERNAL REBELLIONS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/zhao_chloe.jpg" alt="Political cartoon by Chloe Zhao" loading="lazy">
+      </div>
+      <div class="gallery-name">Chloe Zhao</div>
+      <div class="page-number">120</div>
+    </div>
+    <div class="page quote-page" style="background: #f0e8e8;">
+      <div class="quote-content">
+        <div class="quote-rule-top"></div>
+        <div class="quote-mark">“</div>
+        <div class="quote-text">We should adopt the foreigners’ superior techniques in order to control them.</div>
+        <div class="quote-attribution">— Feng Guifen, Protests from the Study of Jiaobin, 1861</div>
+        <div class="quote-rule-bottom"></div>
+      </div>
+      <div class="page-number">121</div>
+    </div>
+    <div class="page divider-page">
+      <div class="divider-content">
+        <div class="divider-numeral">IV</div>
+        <div class="divider-rule"></div>
+        <div class="divider-title">REFORM & THE LAST EMPRESS</div>
+        <div class="divider-subtitle">Cixi's Gambit — Too Little, Too Late?</div>
+        <div class="divider-rule"></div>
+        <div class="divider-intro">As the dynasty crumbled, one woman held the empire's fate in her hands. Empress Dowager Cixi crushed reformers, backed the Boxers, then reversed course — launching the very modernization she had once destroyed. History has never quite decided: was she China's saviour or its executioner?</div>
+        <div class="divider-count">20 Student Cartoons</div>
+      </div>
+    </div>
+    <div class="page gallery-page section-reform aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/isabella_3bd_politicalcartoon.jpg" alt="Political cartoon by Isabella" loading="lazy">
+      </div>
+      <div class="gallery-name">Isabella</div>
+      <div class="page-number">123</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/ying_jin.jpg" alt="Political cartoon by Ying Jin" loading="lazy">
+      </div>
+      <div class="gallery-name">Ying Jin</div>
+      <div class="page-number">124</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/adina_kang.jpg" alt="Political cartoon by Adina Kang" loading="lazy">
+      </div>
+      <div class="gallery-name">Adina Kang</div>
+      <div class="page-number">125</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/lee_alex.jpg" alt="Political cartoon by Alex Lee" loading="lazy">
+      </div>
+      <div class="gallery-name">Alex Lee</div>
+      <div class="page-number">126</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/li_haoxuan.jpg" alt="Political cartoon by Haoxuan Li" loading="lazy">
+      </div>
+      <div class="gallery-name">Haoxuan Li</div>
+      <div class="page-number">127</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/lena_drew_pc.jpg" alt="Political cartoon by Lena Drew" loading="lazy">
+      </div>
+      <div class="gallery-name">Lena Drew</div>
+      <div class="page-number">128</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/liu_reesa.jpg" alt="Political cartoon by Reesa Liu" loading="lazy">
+      </div>
+      <div class="gallery-name">Reesa Liu</div>
+      <div class="page-number">129</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/victor_lopin.jpg" alt="Political cartoon by Victor Lopin" loading="lazy">
+      </div>
+      <div class="gallery-name">Victor Lopin</div>
+      <div class="page-number">130</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/lu_isaac.jpg" alt="Political cartoon by Isaac Lu" loading="lazy">
+      </div>
+      <div class="gallery-name">Isaac Lu</div>
+      <div class="page-number">131</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/jio_park_4bd_political_cartoon.jpg" alt="Political cartoon by Jio Park" loading="lazy">
+      </div>
+      <div class="gallery-name">Jio Park</div>
+      <div class="page-number">132</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/bomin_park_4bc_political_cartoon.jpg" alt="Political cartoon by Bomin Park" loading="lazy">
+      </div>
+      <div class="gallery-name">Bomin Park</div>
+      <div class="page-number">133</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/sheng_william.jpg" alt="Political cartoon by William Sheng" loading="lazy">
+      </div>
+      <div class="gallery-name">William Sheng</div>
+      <div class="page-number">134</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/linnea_heiberg_4bd_political_cartoon.jpg" alt="Political cartoon by Linnea Heiberg" loading="lazy">
+      </div>
+      <div class="gallery-name">Linnea Heiberg</div>
+      <div class="page-number">135</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/sherlock_xian.jpg" alt="Political cartoon by Sherlock Xian" loading="lazy">
+      </div>
+      <div class="gallery-name">Sherlock Xian</div>
+      <div class="page-number">136</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/wong_grace.jpg" alt="Political cartoon by Grace Wong" loading="lazy">
+      </div>
+      <div class="gallery-name">Grace Wong</div>
+      <div class="page-number">137</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/cece_yang.jpg" alt="Political cartoon by Cece Yang" loading="lazy">
+      </div>
+      <div class="gallery-name">Cece Yang</div>
+      <div class="page-number">138</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-tall">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/yao_eliza.jpg" alt="Political cartoon by Eliza Yao" loading="lazy">
+      </div>
+      <div class="gallery-name">Eliza Yao</div>
+      <div class="page-number">139</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-wide">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/yu_yuki.jpg" alt="Political cartoon by Yuki Yu" loading="lazy">
+      </div>
+      <div class="gallery-name">Yuki Yu</div>
+      <div class="page-number">140</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-landscape">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/zhang_zoe.jpg" alt="Political cartoon by Zoe Zhang" loading="lazy">
+      </div>
+      <div class="gallery-name">Zoe Zhang</div>
+      <div class="page-number">141</div>
+    </div>
+    <div class="page gallery-page section-reform aspect-square">
+      <div class="gallery-header">
+        <div class="gallery-header-line"></div>
+        <span class="gallery-header-text">REFORM & THE LAST EMPRESS</span>
+        <div class="gallery-header-line"></div>
+      </div>
+      <div class="gallery-image-area">
+        <img src="gallery/julian_zhupng.jpg" alt="Political cartoon by Julian Zhu" loading="lazy">
+      </div>
+      <div class="gallery-name">Julian Zhu</div>
+      <div class="page-number">142</div>
+    </div>
+
+  <!-- ════════════════ COLOPHON ════════════════ -->
+  
+    <div class="page colophon-page">
+      <div class="colophon-content">
+        <div class="colophon-title">THE QING GAZETTE</div>
+        <div class="colophon-rule"></div>
+        <div class="colophon-details">
+          <p><strong>Shanghai American School</strong></p>
+          <p>Puxi Campus</p>
+          <p>Grade 9 Asian History</p>
+          <p>Spring 2026</p>
+        </div>
+        <div class="colophon-rule-thin"></div>
+        <div class="colophon-credits">
+          <p class="colophon-label">PRODUCED BY</p>
+          <p>The Asian History Department</p>
+        </div>
+        <div class="colophon-credits">
+          <p class="colophon-label">DESIGN</p>
+          <p>Stephen F. Martinez</p>
+        </div>
+        <div class="colophon-credits">
+          <p class="colophon-label">STUDENT CARTOONS</p>
+          <p>Created by hand, digitally, or with AI assistance.<br>
+          Each cartoon represents original historical research<br>
+          and analytical interpretation by the student artist.</p>
+        </div>
+        <div class="colophon-credits">
+          <p class="colophon-label">TYPOGRAPHY</p>
+          <p>Cinzel · Cormorant Garamond · Inter</p>
+        </div>
+        <div class="colophon-credits">
+          <p class="colophon-label">EXHIBITION FORMAT</p>
+          <p>Published as a class exhibition catalogue<br>
+          featuring 130 student political cartoons<br>
+          organized across four thematic sections.</p>
+        </div>
+        <div class="colophon-credits">
+          <p class="colophon-label">EDITION</p>
+          <p>First edition · 144 pages · Letter format<br>
+          Digitally typeset and exported to PDF</p>
+        </div>
+        <div class="colophon-rule-thin"></div>
+        <div class="colophon-footer">
+          <p>Issue No. 1</p>
+          <p style="font-size: 7pt; margin-top: 0.08in; letter-spacing: 2px; color: #ccc;">© 2026 Shanghai American School</p>
+        </div>
+      </div>
+      <div class="page-number">143</div>
+    </div>
+
+  <!-- ════════════════ BACK COVER ════════════════ -->
+  <div class="page back-cover">
+    <img class="back-bg" src="covers/back_rear_intact.png" alt="Jade dragon rear view, turned away, intact with kintsugi veins">
+    <div class="back-overlay">
+      <div class="back-sub">
+        The dynasty fell. The stories remain.
+      </div>
+      <div class="back-school">Asian History · Grade 9 · Spring 2026</div>
+    </div>
+  </div>
+
+
+
+</body>
+</html>

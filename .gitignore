@@ -1,0 +1,68 @@
+# ============================================================
+#  Antigravity Workspace — .gitignore
+# ============================================================
+
+# --- macOS system files ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V8
+.Trashes
+.AppleDouble
+.LSOverrides
+
+# --- Node.js ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.node_repl_history
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+ENV/
+.env
+*.egg-info/
+dist/
+build/
+
+# --- Antigravity Agent Internals (not source code) ---
+brain/
+.agent/
+context_state/
+conversations/
+annotations/
+implicit/
+prompting/
+code_tracker/
+daemon/
+browser_recordings/
+chrome_profile_notebooklm/
+knowledge/
+html_artifacts/
+installation_id
+
+# --- Build outputs & generated PDFs ---
+*.pdf
+*.docx
+*.pptx
+
+# --- Secrets & config with API keys ---
+.env
+.env.local
+.env.*.local
+mcp_config.json
+notebooklm_config.json
+notebooklm_config.yaml
+
+# --- VSCode workspace files (optional — remove if you want to track these) ---
+*.code-workspace
+
+# --- Playground / scratch work ---
+scratch/
+playground/

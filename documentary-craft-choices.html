@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentary Creation: Craft Choices Checklist</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 11px;
+            color: #222;
+            background: #e0e0e0;
+        }
+
+        /* ── SCREEN: show pages as cards ── */
+        .page {
+            width: 10.2in;
+            min-height: 7.7in;
+            background: white;
+            margin: 20px auto;
+            padding: 0.25in;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ── HEADER ── */
+        .header-block {
+            border: 1.5px solid #2c3e50;
+            border-radius: 4px;
+            padding: 7px 12px;
+            margin-bottom: 8px;
+        }
+
+        .header-block h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 1.15em;
+            border-bottom: 1.5px solid #2c3e50;
+            padding-bottom: 5px;
+            margin-bottom: 7px;
+        }
+
+        .header-fields {
+            display: grid;
+            grid-template-columns: 2fr 2fr 1fr;
+            gap: 10px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .field label {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .field .line {
+            border-bottom: 1px solid #aaa;
+            height: 16px;
+        }
+
+        /* ── LEGEND ── */
+        .legend {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            margin-bottom: 7px;
+            font-size: 0.8em;
+            align-items: center;
+            color: #444;
+        }
+
+        .legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot.target {
+            background: #7d3c98;
+        }
+
+        .dot.basic {
+            background: #b7950b;
+        }
+
+        .dot.better {
+            background: #1a6b8a;
+        }
+
+        .dot.best {
+            background: #1d6a3e;
+        }
+
+        .divider {
+            color: #ccc;
+        }
+
+        /* ── TABLE ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 5px 8px;
+            text-align: left;
+            font-size: 0.88em;
+            color: white;
+            background-color: #2c3e50;
+            line-height: 1.2;
+        }
+
+        th.target-col {
+            background-color: #7d3c98;
+            width: 9%;
+        }
+
+        th.basic-col {
+            background-color: #b7950b;
+            width: 23%;
+        }
+
+        th.better-col {
+            background-color: #1a6b8a;
+            width: 23%;
+        }
+
+        th.best-col {
+            background-color: #1d6a3e;
+            width: 23%;
+        }
+
+        th.cat-col {
+            width: 13%;
+        }
+
+        td {
+            border: 1px solid #ccc;
+            padding: 5px 7px;
+            vertical-align: top;
+        }
+
+        td.category {
+            font-weight: bold;
+            background-color: #f0f2f4;
+            color: #2c3e50;
+            font-size: 0.88em;
+            line-height: 1.3;
+        }
+
+        .category-star {
+            display: block;
+            font-weight: normal;
+            font-size: 0.82em;
+            color: #bbb;
+            margin-top: 5px;
+            letter-spacing: 0.1em;
+        }
+
+        td.target-cell {
+            background-color: #f8f0ff;
+            font-size: 0.82em;
+            color: #4a235a;
+        }
+
+        .target-label {
+            font-weight: bold;
+            font-size: 0.8em;
+            color: #7d3c98;
+            display: block;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .target-options {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .target-options span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .circle {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            min-width: 12px;
+            border: 1.5px solid #7d3c98;
+            border-radius: 50%;
+        }
+
+        td.basic-cell {
+            background-color: #fefce8;
+        }
+
+        td.better-cell {
+            background-color: #eff8ff;
+        }
+
+        td.best-cell {
+            background-color: #f0fff4;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        .check {
+            display: inline-block;
+            width: 11px;
+            height: 11px;
+            min-width: 11px;
+            border: 1.5px solid #555;
+            border-radius: 2px;
+            margin-top: 1px;
+        }
+
+        /* ── WRITING ROWS ── */
+        tr.notes-row td {
+            background-color: #fafafa;
+            padding: 3px 8px;
+            border-top: none;
+        }
+
+        tr.teacher-row td {
+            background-color: #eaf2fb;
+            padding: 3px 8px;
+            border-top: none;
+        }
+
+        .row-label {
+            font-size: 0.73em;
+            font-weight: bold;
+            color: #777;
+            white-space: nowrap;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        tr.teacher-row .row-label {
+            color: #1a6b8a;
+        }
+
+        .write-line {
+            display: inline-block;
+            border-bottom: 1px solid #bbb;
+            height: 16px;
+            vertical-align: bottom;
+            width: calc(100% - 120px);
+        }
+
+        .write-line-full {
+            display: block;
+            border-bottom: 1px solid #bbb;
+            height: 16px;
+            margin-top: 3px;
+        }
+
+        /* ── PRINT ── */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .page {
+                width: 100%;
+                height: 7.7in;
+                overflow: hidden;
+                margin: 0;
+                padding: 0.25in;
+                box-shadow: none;
+                break-after: page;
+                page-break-after: always;
+            }
+
+            .page:last-child {
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            .screen-note {
+                display: none;
+            }
+        }
+
+        @page {
+            size: 11in 8.5in landscape;
+            margin: 0;
+        }
+
+        /* ── SCREEN HELPER ── */
+        .screen-note {
+            text-align: center;
+            font-size: 0.8em;
+            color: #888;
+            background: white;
+            padding: 6px;
+            margin: -10px auto 10px;
+            width: 10.2in;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════ SIDE 1 ═══════════════════════════════ -->
+    <div class="page">
+
+        <div class="header-block">
+            <h1>Documentary Creation: Craft Choices — Side 1 of 2</h1>
+            <div class="header-fields">
+                <div class="field"><label>Documentary Title</label>
+                    <div class="line"></div>
+                </div>
+                <div class="field"><label>Group Members</label>
+                    <div class="line"></div>
+                </div>
+                <div class="field"><label>Date</label>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <span><span class="dot target"></span> Circle target before filming</span>
+            <span class="divider">|</span>
+            <span><span class="dot basic"></span> Basic</span>
+            <span><span class="dot better"></span> Better</span>
+            <span><span class="dot best"></span> Best</span>
+            <span class="divider">|</span>
+            <span>☆ = teacher key criterion</span>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="cat-col">Category</th>
+                    <th class="target-col">Target</th>
+                    <th class="basic-col">Basic</th>
+                    <th class="better-col">Better</th>
+                    <th class="best-col">Best</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- 1. NARRATIVE VOICE -->
+                <tr>
+                    <td class="category">Narrative Voice<span class="category-star">☆ ☆ ☆</span></td>
+                    <td class="target-cell"><span class="target-label">Circle one</span>
+                        <div class="target-options">
+                            <span><span class="circle"></span> Basic</span>
+                            <span><span class="circle"></span> Better</span>
+                            <span><span class="circle"></span> Best</span>
+                        </div>
+                    </td>
+                    <td class="basic-cell">
+                        <ul>
+                            <li><span class="check"></span>Single narrator (voiceover throughout)</li>
+                            <li><span class="check"></span>Neutral, explanatory tone</li>
+                            <li><span class="check"></span>Clear signposting ("First… Next…")</li>
+                        </ul>
+                    </td>
+                    <td class="better-cell">
+                        <ul>
+                            <li><span class="check"></span>Reduced narration, more interview voices</li>
+                            <li><span class="check"></span>Narrator at key transitions only</li>
+                            <li><span class="check"></span>Distinct tonal shifts across sections</li>
+                        </ul>
+                    </td>
+                    <td class="best-cell">
+                        <ul>
+                            <li><span class="check"></span>No traditional narrator</li>
+                            <li><span class="check"></span>Meaning built through juxtaposition</li>
+                            <li><span class="check"></span>Narration used ironically for contrast</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Evidence:</span><span class="write-line"></span></td>
+                </tr>
+                <tr class="teacher-row">
+                    <td colspan="5"><span class="row-label">Teacher feedback:</span><span class="write-line"></span>
+                    </td>
+                </tr>
+
+                <!-- 2. DOCUMENTARY STRUCTURE -->
+                <tr>
+                    <td class="category">Documentary Structure<span class="category-star">☆ ☆ ☆</span></td>
+                    <td class="target-cell"><span class="target-label">Circle one</span>
+                        <div class="target-options">
+                            <span><span class="circle"></span> Basic</span>
+                            <span><span class="circle"></span> Better</span>
+                            <span><span class="circle"></span> Best</span>
+                        </div>
+                    </td>
+                    <td class="basic-cell">
+                        <ul>
+                            <li><span class="check"></span>Linear structure</li>
+                            <li><span class="check"></span>Clear beginning–middle–end</li>
+                            <li><span class="check"></span>One idea per section</li>
+                        </ul>
+                    </td>
+                    <td class="better-cell">
+                        <ul>
+                            <li><span class="check"></span>Cause–effect or problem–solution structure</li>
+                            <li><span class="check"></span>Interwoven interviews and evidence</li>
+                            <li><span class="check"></span>Recurring ideas across sections</li>
+                        </ul>
+                    </td>
+                    <td class="best-cell">
+                        <ul>
+                            <li><span class="check"></span>Braided narratives (two or more threads)</li>
+                            <li><span class="check"></span>Circular structure, returns to opening</li>
+                            <li><span class="check"></span>Strategic withholding of information</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Evidence:</span><span class="write-line"></span></td>
+                </tr>
+                <tr class="teacher-row">
+                    <td colspan="5"><span class="row-label">Teacher feedback:</span><span class="write-line"></span>
+                    </td>
+                </tr>
+
+                <!-- 3. VISUAL LANGUAGE -->
+                <tr>
+                    <td class="category">Visual Language<span class="category-star">☆ ☆ ☆</span></td>
+                    <td class="target-cell"><span class="target-label">Circle one</span>
+                        <div class="target-options">
+                            <span><span class="circle"></span> Basic</span>
+                            <span><span class="circle"></span> Better</span>
+                            <span><span class="circle"></span> Best</span>
+                        </div>
+                    </td>
+                    <td class="basic-cell">
+                        <ul>
+                            <li><span class="check"></span>Talking heads</li>
+                            <li><span class="check"></span>Literal b-roll (shelves, people, products)</li>
+                            <li><span class="check"></span>Stock footage filling gaps</li>
+                        </ul>
+                    </td>
+                    <td class="better-cell">
+                        <ul>
+                            <li><span class="check"></span>Purposeful b-roll tied to claims</li>
+                            <li><span class="check"></span>Repeated visual motifs</li>
+                            <li><span class="check"></span>Visual contrast (before/after, public/private)</li>
+                        </ul>
+                    </td>
+                    <td class="best-cell">
+                        <ul>
+                            <li><span class="check"></span>Symbolic visuals</li>
+                            <li><span class="check"></span>Parallel editing to suggest comparison</li>
+                            <li><span class="check"></span>Visual metaphors that evolve</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Evidence:</span><span class="write-line"></span></td>
+                </tr>
+                <tr class="teacher-row">
+                    <td colspan="5"><span class="row-label">Teacher feedback:</span><span class="write-line"></span>
+                    </td>
+                </tr>
+
+                <!-- 4. INTERVIEWS -->
+                <tr>
+                    <td class="category">Interviews<span class="category-star">☆ ☆ ☆</span></td>
+                    <td class="target-cell"><span class="target-label">Circle one</span>
+                        <div class="target-options">
+                            <span><span class="circle"></span> Basic</span>
+                            <span><span class="circle"></span> Better</span>
+                            <span><span class="circle"></span> Best</span>
+                        </div>
+                    </td>
+                    <td class="basic-cell">
+                        <ul>
+                            <li><span class="check"></span>One interview at a time</li>
+                            <li><span class="check"></span>Full answers included</li>
+                            <li><span class="check"></span>Minimal cutting</li>
+                        </ul>
+                    </td>
+                    <td class="better-cell">
+                        <ul>
+                            <li><span class="check"></span>Intercut interviews on same question</li>
+                            <li><span class="check"></span>Use of pauses and reaction shots</li>
+                            <li><span class="check"></span>Interviews placed strategically</li>
+                        </ul>
+                    </td>
+                    <td class="best-cell">
+                        <ul>
+                            <li><span class="check"></span>Interviews as dialogue, not monologue</li>
+                            <li><span class="check"></span>Contradictory perspectives side by side</li>
+                            <li><span class="check"></span>Strategic absence of voices to make a point</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Evidence:</span><span class="write-line"></span></td>
+                </tr>
+                <tr class="teacher-row">
+                    <td colspan="5"><span class="row-label">Teacher feedback:</span><span class="write-line"></span>
+                    </td>
+                </tr>
+
+                <!-- 5. EDITING CHOICES -->
+                <tr>
+                    <td class="category">Editing Choices<span class="category-star">☆ ☆ ☆</span></td>
+                    <td class="target-cell"><span class="target-label">Circle one</span>
+                        <div class="target-options">
+                            <span><span class="circle"></span> Basic</span>
+                            <span><span class="circle"></span> Better</span>
+                            <span><span class="circle"></span> Best</span>
+                        </div>
+                    </td>
+                    <td class="basic-cell">
+                        <ul>
+                            <li><span class="check"></span>Clean cuts</li>
+                            <li><span class="check"></span>Consistent pacing</li>
+                            <li><span class="check"></span>Music under narration</li>
+                        </ul>
+                    </td>
+                    <td class="better-cell">
+                        <ul>
+                            <li><span class="check"></span>Pacing shifts to signal importance</li>
+                            <li><span class="check"></span>Silence used intentionally</li>
+                            <li><span class="check"></span>Match cuts or motivated transitions</li>
+                        </ul>
+                    </td>
+                    <td class="best-cell">
+                        <ul>
+                            <li><span class="check"></span>Editing rhythms reflect theme (speed, repetition)</li>
+                            <li><span class="check"></span>Sound bridges between scenes</li>
+                            <li><span class="check"></span>Visual callbacks to earlier moments</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Evidence:</span><span class="write-line"></span></td>
+                </tr>
+                <tr class="teacher-row">
+                    <td colspan="5"><span class="row-label">Teacher feedback:</span><span class="write-line"></span>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div><!-- end page 1 -->
+
+    <p class="screen-note">↑ Side 1 &nbsp;|&nbsp; Side 2 ↓ &nbsp; — Print landscape, double-sided, scale: 100% (do not
+        "Fit to page")</p>
+
+    <!-- ═══════════════════════════════ SIDE 2 ═══════════════════════════════ -->
+    <div class="page">
+
+        <div class="header-block">
+            <h1>Documentary Creation: Craft Choices — Side 2 of 2</h1>
+            <div class="header-fields">
+                <div class="field"><label>Documentary Title</label>
+                    <div class="line"></div>
+                </div>
+                <div class="field"><label>Group Members</label>
+                    <div class="line"></div>
+                </div>
+                <div class="field"><label>Date</label>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="cat-col">Category</th>
+                    <th class="target-col">Target</th>
+                    <th class="basic-col">Basic</th>
+                    <th class="better-col">Better</th>
+                    <th class="best-col">Best</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- 6. TEXT & GRAPHICS -->
+                <tr>
+                    <td class="category">Text &amp; On-Screen Graphics<span class="category-star">☆ ☆ ☆</span></td>
+                    <td class="target-cell"><span class="target-label">Circle one</span>
+                        <div class="target-options">
+                            <span><span class="circle"></span> Basic</span>
+                            <span><span class="circle"></span> Better</span>
+                            <span><span class="circle"></span> Best</span>
+                        </div>
+                    </td>
+                    <td class="basic-cell">
+                        <ul>
+                            <li><span class="check"></span>Titles and labels</li>
+                            <li><span class="check"></span>Simple statistics on screen</li>
+                            <li><span class="check"></span>Text used sparingly for emphasis</li>
+                        </ul>
+                    </td>
+                    <td class="better-cell">
+                        <ul>
+                            <li><span class="check"></span>Visual hierarchy (size, placement, timing)</li>
+                            <li><span class="check"></span>Text timed to audio beats</li>
+                        </ul>
+                    </td>
+                    <td class="best-cell">
+                        <ul>
+                            <li><span class="check"></span>Text as argument (e.g., repeated phrases)</li>
+                            <li><span class="check"></span>Delayed captions to create tension</li>
+                            <li><span class="check"></span>Text contradicts visuals intentionally</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Evidence:</span><span class="write-line"></span><span
+                            class="write-line-full"></span></td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Next step:</span><span class="write-line"></span></td>
+                </tr>
+                <tr class="teacher-row">
+                    <td colspan="5"><span class="row-label">Teacher feedback:</span><span
+                            class="write-line"></span><span class="write-line-full"></span></td>
+                </tr>
+
+                <!-- 7. SOUND DESIGN -->
+                <tr>
+                    <td class="category">Sound Design<span class="category-star">☆ ☆ ☆</span></td>
+                    <td class="target-cell"><span class="target-label">Circle one</span>
+                        <div class="target-options">
+                            <span><span class="circle"></span> Basic</span>
+                            <span><span class="circle"></span> Better</span>
+                            <span><span class="circle"></span> Best</span>
+                        </div>
+                    </td>
+                    <td class="basic-cell">
+                        <ul>
+                            <li><span class="check"></span>Background music throughout</li>
+                            <li><span class="check"></span>Clear audio levels</li>
+                            <li><span class="check"></span>Minimal ambient sound</li>
+                        </ul>
+                    </td>
+                    <td class="better-cell">
+                        <ul>
+                            <li><span class="check"></span>Music starts and stops deliberately</li>
+                            <li><span class="check"></span>Ambient sound layered under visuals</li>
+                            <li><span class="check"></span>Silence used for emphasis</li>
+                        </ul>
+                    </td>
+                    <td class="best-cell">
+                        <ul>
+                            <li><span class="check"></span>Sound carries transitions</li>
+                            <li><span class="check"></span>Natural sound replaces music at key moments</li>
+                            <li><span class="check"></span>Audio contrast creates meaning</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Evidence:</span><span class="write-line"></span><span
+                            class="write-line-full"></span></td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Next step:</span><span class="write-line"></span></td>
+                </tr>
+                <tr class="teacher-row">
+                    <td colspan="5"><span class="row-label">Teacher feedback:</span><span
+                            class="write-line"></span><span class="write-line-full"></span></td>
+                </tr>
+
+                <!-- 8. OPENING SEQUENCE -->
+                <tr>
+                    <td class="category">Opening Sequence<span class="category-star">☆ ☆ ☆</span></td>
+                    <td class="target-cell"><span class="target-label">Circle one</span>
+                        <div class="target-options">
+                            <span><span class="circle"></span> Basic</span>
+                            <span><span class="circle"></span> Better</span>
+                            <span><span class="circle"></span> Best</span>
+                        </div>
+                    </td>
+                    <td class="basic-cell">
+                        <ul>
+                            <li><span class="check"></span>Logo related to topic</li>
+                            <li><span class="check"></span>Simple animation or fade-in</li>
+                        </ul>
+                    </td>
+                    <td class="better-cell">
+                        <ul>
+                            <li><span class="check"></span>Logo connects to thematic throughline</li>
+                            <li><span class="check"></span>Opening establishes tone and pace</li>
+                        </ul>
+                    </td>
+                    <td class="best-cell">
+                        <ul>
+                            <li><span class="check"></span>Opening acts as a micro-argument</li>
+                            <li><span class="check"></span>Logo symbolism evolves across the film</li>
+                            <li><span class="check"></span>Opening image returns at the end</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Evidence:</span><span class="write-line"></span><span
+                            class="write-line-full"></span></td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Next step:</span><span class="write-line"></span></td>
+                </tr>
+                <tr class="teacher-row">
+                    <td colspan="5"><span class="row-label">Teacher feedback:</span><span
+                            class="write-line"></span><span class="write-line-full"></span></td>
+                </tr>
+
+                <!-- 9. COLLABORATION -->
+                <tr>
+                    <td class="category">Collaboration<span class="category-star">☆ ☆ ☆</span></td>
+                    <td class="target-cell"><span class="target-label">Circle one</span>
+                        <div class="target-options">
+                            <span><span class="circle"></span> Basic</span>
+                            <span><span class="circle"></span> Better</span>
+                            <span><span class="circle"></span> Best</span>
+                        </div>
+                    </td>
+                    <td class="basic-cell">
+                        <ul>
+                            <li><span class="check"></span>Tasks divided evenly</li>
+                            <li><span class="check"></span>Group agrees quickly on disagreements</li>
+                        </ul>
+                    </td>
+                    <td class="better-cell">
+                        <ul>
+                            <li><span class="check"></span>Roles assigned based on strengths</li>
+                            <li><span class="check"></span>Deliberate debate over creative choices</li>
+                        </ul>
+                    </td>
+                    <td class="best-cell">
+                        <ul>
+                            <li><span class="check"></span>Shared vision with specialized leadership</li>
+                            <li><span class="check"></span>Conflict used to improve decisions</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Evidence:</span><span class="write-line"></span><span
+                            class="write-line-full"></span></td>
+                </tr>
+                <tr class="notes-row">
+                    <td colspan="5"><span class="row-label">Next step:</span><span class="write-line"></span></td>
+                </tr>
+                <tr class="teacher-row">
+                    <td colspan="5"><span class="row-label">Teacher feedback:</span><span
+                            class="write-line"></span><span class="write-line-full"></span></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div><!-- end page 2 -->
+
+</body>
+
+</html>

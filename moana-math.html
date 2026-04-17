@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Star Voyage — Math Planet Hopper</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Nunito:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Nunito', sans-serif;
+            touch-action: manipulation;
+            background: #020617
+        }
+
+        /* ===== DEEP SPACE BACKGROUND ===== */
+        .space {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 50%, #0a0e27 0%, #020617 50%, #000 100%);
+            overflow: hidden
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: .15;
+            pointer-events: none
+        }
+
+        .nebula.n1 {
+            width: 600px;
+            height: 400px;
+            top: 10%;
+            left: -5%;
+            background: radial-gradient(circle, #6366f1, transparent)
+        }
+
+        .nebula.n2 {
+            width: 500px;
+            height: 350px;
+            bottom: 5%;
+            right: -10%;
+            background: radial-gradient(circle, #06b6d4, transparent)
+        }
+
+        .nebula.n3 {
+            width: 400px;
+            height: 300px;
+            top: 40%;
+            left: 50%;
+            background: radial-gradient(circle, #d946ef, transparent);
+            animation: nebula-drift 20s ease-in-out infinite alternate
+        }
+
+        @keyframes nebula-drift {
+            0% {
+                transform: translate(0, 0)
+            }
+
+            100% {
+                transform: translate(-60px, 40px)
+            }
+        }
+
+        .stars-layer {
+            position: absolute;
+            inset: -10%;
+            width: 120%;
+            height: 120%;
+            pointer-events: none;
+            animation: star-drift 30s linear infinite
+        }
+
+        @keyframes star-drift {
+            0% {
+                transform: translate(0, 0)
+            }
+
+            25% {
+                transform: translate(-3%, 2%)
+            }
+
+            50% {
+                transform: translate(-1%, -2%)
+            }
+
+            75% {
+                transform: translate(2%, 1%)
+            }
+
+            100% {
+                transform: translate(0, 0)
+            }
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite alternate
+        }
+
+        .star.bright {
+            box-shadow: 0 0 6px 2px rgba(255, 255, 255, .4)
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: .15;
+                transform: scale(.8)
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.2)
+            }
+        }
+
+        /* ===== HUD ===== */
+        .hud {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background: linear-gradient(180deg, rgba(2, 6, 23, .9) 0%, rgba(2, 6, 23, .4) 70%, transparent);
+            border-bottom: 1px solid rgba(0, 255, 255, .1);
+            pointer-events: none
+        }
+
+        .hud>* {
+            pointer-events: auto
+        }
+
+        .title {
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffff;
+            font-size: 1rem;
+            text-shadow: 0 0 12px rgba(0, 255, 255, .5);
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+
+        .level-badge {
+            font-family: 'Orbitron', sans-serif;
+            color: rgba(255, 255, 255, .6);
+            font-size: .6rem;
+            background: rgba(0, 255, 255, .08);
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-top: 3px;
+            border: 1px solid rgba(0, 255, 255, .15);
+            letter-spacing: 1px;
+            text-transform: uppercase
+        }
+
+        .shells {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Orbitron', sans-serif;
+            color: #f4d35e;
+            font-size: .9rem;
+            text-shadow: 0 0 8px rgba(244, 211, 94, .4)
+        }
+
+        .hud-right {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .streak-display {
+            font-family: 'Orbitron', sans-serif;
+            color: #d946ef;
+            font-size: .8rem;
+            opacity: 0;
+            transition: opacity .3s;
+            text-shadow: 0 0 10px rgba(217, 70, 239, .5)
+        }
+
+        .streak-display.show {
+            opacity: 1
+        }
+
+        .progress-dots {
+            display: flex;
+            gap: 6px;
+            align-items: center
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 255, 255, .3);
+            background: transparent;
+            transition: all .4s
+        }
+
+        .dot.done {
+            background: #00ffff;
+            border-color: #00ffff;
+            box-shadow: 0 0 8px #00ffff
+        }
+
+        .dot.current {
+            border-color: #d946ef;
+            box-shadow: 0 0 10px #d946ef;
+            animation: pulse-dot 1.5s ease-in-out infinite
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                box-shadow: 0 0 6px #d946ef
+            }
+
+            50% {
+                box-shadow: 0 0 16px #d946ef
+            }
+        }
+
+        .hud-btn {
+            background: rgba(0, 255, 255, .08);
+            border: 1px solid rgba(0, 255, 255, .2);
+            color: #00ffff;
+            font-size: 1rem;
+            padding: 5px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all .2s
+        }
+
+        .hud-btn:hover {
+            background: rgba(0, 255, 255, .15);
+            box-shadow: 0 0 12px rgba(0, 255, 255, .2)
+        }
+
+        /* ===== SCREENS ===== */
+        .screen {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            transition: opacity .6s;
+            pointer-events: auto
+        }
+
+        .screen.hidden {
+            opacity: 0;
+            pointer-events: none
+        }
+
+        .big-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.4rem;
+            color: #00ffff;
+            text-shadow: 0 0 30px rgba(0, 255, 255, .5), 0 0 60px rgba(0, 255, 255, .2);
+            text-align: center;
+            line-height: 1.3;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase
+        }
+
+        .subtitle {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, .6);
+            text-align: center;
+            margin-bottom: 28px;
+            font-weight: 700
+        }
+
+        .start-btn {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            padding: 14px 44px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, .15), rgba(217, 70, 239, .15));
+            color: #00ffff;
+            border: 2px solid rgba(0, 255, 255, .4);
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 255, 255, .15);
+            transition: all .3s;
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 255, .25), rgba(217, 70, 239, .25));
+            box-shadow: 0 0 30px rgba(0, 255, 255, .3);
+            transform: scale(1.03)
+        }
+
+        .start-btn:active {
+            transform: scale(.95)
+        }
+
+        /* ===== SPACESHIP ===== */
+        .ship-container {
+            position: absolute;
+            z-index: 30;
+            transition: all 1.4s cubic-bezier(.4, 0, .2, 1);
+            filter: drop-shadow(0 0 12px rgba(0, 255, 255, .4))
+        }
+
+        .ship {
+            width: 60px;
+            height: 30px;
+            position: relative;
+            animation: hover-ship 3s ease-in-out infinite
+        }
+
+        .ship-body {
+            position: absolute;
+            top: 4px;
+            left: 8px;
+            width: 44px;
+            height: 18px;
+            background: linear-gradient(180deg, #94a3b8, #475569);
+            border-radius: 22px 22px 8px 8px;
+            border: 1px solid rgba(0, 255, 255, .3)
+        }
+
+        .ship-cockpit {
+            position: absolute;
+            top: 6px;
+            left: 30px;
+            width: 14px;
+            height: 12px;
+            background: linear-gradient(135deg, #22d3ee, #06b6d4);
+            border-radius: 0 12px 6px 0;
+            box-shadow: 0 0 8px rgba(0, 255, 255, .5)
+        }
+
+        .ship-wing {
+            position: absolute;
+            top: 14px;
+            left: 12px;
+            width: 20px;
+            height: 6px;
+            background: linear-gradient(180deg, #64748b, #475569);
+            border-radius: 2px;
+            transform: skewX(-10deg)
+        }
+
+        .ship-engine {
+            position: absolute;
+            top: 8px;
+            left: 2px;
+            width: 8px;
+            height: 10px;
+            background: linear-gradient(90deg, #d946ef, rgba(217, 70, 239, .3), transparent);
+            border-radius: 50%;
+            animation: engine-glow 1s ease-in-out infinite alternate;
+            box-shadow: -4px 0 12px #d946ef
+        }
+
+        @keyframes engine-glow {
+            0% {
+                opacity: .6;
+                width: 8px
+            }
+
+            100% {
+                opacity: 1;
+                width: 14px
+            }
+        }
+
+        @keyframes hover-ship {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-4px)
+            }
+        }
+
+        /* ===== PLANETS ===== */
+        .planet-map {
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            pointer-events: none
+        }
+
+        .planet {
+            position: absolute;
+            pointer-events: none;
+            transition: all .5s
+        }
+
+        .planet-body {
+            position: relative;
+            border-radius: 50%;
+            box-shadow: inset -8px -4px 12px rgba(0, 0, 0, .4), 0 0 20px rgba(0, 0, 0, .3);
+            transition: box-shadow .4s
+        }
+
+        .planet-num {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, .5);
+            line-height: 1
+        }
+
+        .planet.active .planet-body {
+            box-shadow: inset -8px -4px 12px rgba(0, 0, 0, .4), 0 0 30px rgba(0, 255, 255, .5);
+            animation: glow-planet 2s ease-in-out infinite alternate
+        }
+
+        @keyframes glow-planet {
+            0% {
+                box-shadow: inset -8px -4px 12px rgba(0, 0, 0, .4), 0 0 20px rgba(0, 255, 255, .4)
+            }
+
+            100% {
+                box-shadow: inset -8px -4px 12px rgba(0, 0, 0, .4), 0 0 40px rgba(0, 255, 255, .6)
+            }
+        }
+
+        .planet.done .planet-body {
+            box-shadow: inset -8px -4px 12px rgba(0, 0, 0, .4), 0 0 15px rgba(0, 255, 255, .3)
+        }
+
+        .planet.done .planet-num {
+            color: #00ffff
+        }
+
+        /* Planet ring */
+        .planet-ring {
+            position: absolute;
+            width: 140%;
+            height: 30%;
+            top: 50%;
+            left: -20%;
+            border: 2px solid rgba(255, 255, 255, .15);
+            border-radius: 50%;
+            transform: translateY(-50%) rotateX(70deg);
+            pointer-events: none
+        }
+
+        /* Mars */
+        .p-mars .planet-body {
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 30% 30%, #e8825c, #c1440e 45%, #8b2500 80%, #5c1a00);
+            box-shadow: inset -10px -6px 14px rgba(0, 0, 0, .5), inset 4px 4px 8px rgba(255, 180, 120, .15), 0 0 20px rgba(193, 68, 14, .25)
+        }
+
+        /* Jupiter */
+        .p-jupiter .planet-body {
+            width: 110px;
+            height: 110px;
+            background: repeating-linear-gradient(0deg, #d4a574 0%, #c4956a 8%, #e8c9a0 12%, #b8845a 18%, #d4a574 22%, #a07040 28%, #c49060 32%, #e0b888 38%);
+            background-size: 100% 100%;
+            box-shadow: inset -12px -6px 16px rgba(0, 0, 0, .4), inset 5px 5px 10px rgba(255, 220, 180, .1), 0 0 24px rgba(200, 150, 80, .2)
+        }
+
+        /* Saturn */
+        .p-saturn .planet-body {
+            width: 95px;
+            height: 95px;
+            background: radial-gradient(circle at 35% 35%, #f0d8a0, #d4b878 40%, #b89858 70%, #8a7040);
+            box-shadow: inset -10px -5px 14px rgba(0, 0, 0, .35), 0 0 20px rgba(200, 170, 100, .2)
+        }
+
+        .p-saturn .planet-ring {
+            border: 3px solid rgba(210, 180, 120, .35);
+            width: 160%;
+            left: -30%;
+            box-shadow: 0 0 8px rgba(210, 180, 120, .15)
+        }
+
+        /* Neptune */
+        .p-neptune .planet-body {
+            width: 88px;
+            height: 88px;
+            background: radial-gradient(circle at 30% 30%, #4488dd, #2255aa 45%, #1a3d7a 75%, #0a1f4a);
+            box-shadow: inset -10px -5px 14px rgba(0, 0, 0, .45), inset 3px 3px 6px rgba(100, 180, 255, .1), 0 0 22px rgba(50, 100, 200, .25)
+        }
+
+        /* Earth */
+        .p-earth .planet-body {
+            width: 92px;
+            height: 92px;
+            background: radial-gradient(circle at 30% 30%, #6eb5ff, #2e8bc0 30%, #1a6b3a 50%, #2e8bc0 65%, #1a4a7a 85%, #0a2a4a);
+            box-shadow: inset -10px -5px 14px rgba(0, 0, 0, .4), 0 0 18px rgba(50, 150, 255, .2)
+        }
+
+        .p-earth .planet-body::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(100, 200, 255, .15), transparent 50%);
+            pointer-events: none
+        }
+
+        /* Galactic Core — final destination */
+        .p-final .planet-body {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 35% 35%, #80ffff, #00ddff 30%, #0891b2 60%, #065a7a);
+            box-shadow: inset -10px -6px 16px rgba(0, 0, 0, .3), 0 0 50px rgba(0, 255, 255, .4), 0 0 100px rgba(0, 255, 255, .15)
+        }
+
+        .path-dot {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(0, 255, 255, .2);
+            border-radius: 50%;
+            z-index: 5
+        }
+
+        /* ===== PROBLEM AREA ===== */
+        .problem-area {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 60;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 16px 20px;
+            transform: translateY(100%);
+            transition: transform .5s cubic-bezier(.4, 0, .2, 1);
+            background: linear-gradient(0deg, rgba(2, 6, 23, .95) 0%, rgba(2, 6, 23, .8) 50%, transparent);
+            border-top: 1px solid rgba(0, 255, 255, .08);
+            pointer-events: none
+        }
+
+        .problem-area.active {
+            transform: translateY(0);
+            pointer-events: auto
+        }
+
+        .problem-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.6rem;
+            color: #fff;
+            text-shadow: 0 0 12px rgba(255, 255, 255, .3);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 2px
+        }
+
+        .problem-text .op {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, .5)
+        }
+
+        .problem-text .eq {
+            color: rgba(255, 255, 255, .4)
+        }
+
+        .problem-text .qmark {
+            color: #d946ef;
+            animation: bounce-q 1s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(217, 70, 239, .5)
+        }
+
+        @keyframes bounce-q {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-6px)
+            }
+        }
+
+        /* ===== COUNTING AID ===== */
+        .counting-aid {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            min-height: 24px;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+        .count-group {
+            display: flex;
+            gap: 3px;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+        .count-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pop-in .3s ease-out backwards
+        }
+
+        .count-dot.a {
+            background: radial-gradient(circle, #00ffff, #0891b2);
+            box-shadow: 0 0 4px rgba(0, 255, 255, .4)
+        }
+
+        .count-dot.b {
+            background: radial-gradient(circle, #d946ef, #9333ea);
+            box-shadow: 0 0 4px rgba(217, 70, 239, .4)
+        }
+
+        .count-op {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: #00ffff;
+            margin: 0 6px
+        }
+
+        @keyframes pop-in {
+            0% {
+                transform: scale(0);
+                opacity: 0
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        /* ===== ANSWER BUBBLES ===== */
+        .answers {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 6px
+        }
+
+        .answer-bubble {
+            width: 88px;
+            height: 88px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, .15);
+            transition: all .2s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
+            user-select: none;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        .answer-bubble:nth-child(1) {
+            background: linear-gradient(135deg, rgba(0, 255, 255, .15), rgba(0, 255, 255, .05));
+            border-color: rgba(0, 255, 255, .3)
+        }
+
+        .answer-bubble:nth-child(2) {
+            background: linear-gradient(135deg, rgba(217, 70, 239, .15), rgba(217, 70, 239, .05));
+            border-color: rgba(217, 70, 239, .3)
+        }
+
+        .answer-bubble:nth-child(3) {
+            background: linear-gradient(135deg, rgba(244, 211, 94, .15), rgba(244, 211, 94, .05));
+            border-color: rgba(244, 211, 94, .3)
+        }
+
+        .answer-bubble:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 20px rgba(0, 255, 255, .2)
+        }
+
+        .answer-bubble:active {
+            transform: scale(.92)
+        }
+
+        .answer-bubble.correct {
+            background: linear-gradient(135deg, rgba(0, 255, 255, .3), rgba(0, 255, 255, .1)) !important;
+            border-color: #00ffff;
+            box-shadow: 0 0 25px rgba(0, 255, 255, .4);
+            animation: pop-correct .5s ease-out;
+            color: #00ffff
+        }
+
+        .answer-bubble.wrong {
+            background: linear-gradient(135deg, rgba(239, 68, 68, .3), rgba(239, 68, 68, .1)) !important;
+            border-color: #ef4444;
+            animation: shake .4s ease-out;
+            color: #ef4444
+        }
+
+        @keyframes pop-correct {
+            0% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(1.25)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0)
+            }
+
+            20% {
+                transform: translateX(-8px)
+            }
+
+            40% {
+                transform: translateX(8px)
+            }
+
+            60% {
+                transform: translateX(-5px)
+            }
+
+            80% {
+                transform: translateX(5px)
+            }
+        }
+
+        /* ===== TRILINGUAL CENTERED OVERLAY ===== */
+        .tri-lang {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            z-index: 90;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity .4s, transform .5s cubic-bezier(.34, 1.56, .64, 1);
+            pointer-events: none;
+            padding: 30px 40px;
+            background: rgba(2, 6, 23, .85);
+            border: 2px solid rgba(0, 255, 255, .3);
+            border-radius: 20px;
+            box-shadow: 0 0 60px rgba(0, 255, 255, .15), inset 0 0 30px rgba(0, 255, 255, .03);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px)
+        }
+
+        .tri-lang.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1)
+        }
+
+        .lang-chip {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(0, 255, 255, .06);
+            border: 1px solid rgba(0, 255, 255, .15);
+            border-radius: 12px;
+            padding: 12px 28px;
+            color: #fff;
+            font-weight: 700;
+            min-width: 200px;
+            justify-content: center
+        }
+
+        .lang-chip .flag {
+            font-size: 2.2rem
+        }
+
+        .lang-chip .word {
+            color: #00ffff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.4rem;
+            text-shadow: 0 0 16px rgba(0, 255, 255, .4);
+            letter-spacing: 2px
+        }
+
+        /* ===== NUMBER LINE ===== */
+        .number-line {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            margin: 8px 0;
+            padding: 8px 14px;
+            background: rgba(0, 255, 255, .04);
+            border: 1px solid rgba(0, 255, 255, .1);
+            border-radius: 10px;
+            flex-wrap: wrap;
+            max-width: 90vw
+        }
+
+        .number-line.show {
+            display: flex
+        }
+
+        .nl-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .3);
+            min-width: 22px;
+            text-align: center;
+            padding: 2px;
+            border-radius: 4px;
+            transition: all .3s
+        }
+
+        .nl-num.start {
+            color: #d946ef;
+            background: rgba(217, 70, 239, .15);
+            font-size: 1.1rem
+        }
+
+        .nl-num.highlight {
+            color: #00ffff;
+            background: rgba(0, 255, 255, .1)
+        }
+
+        .nl-num.answer-num {
+            color: #fff;
+            background: rgba(0, 255, 255, .25);
+            font-size: 1.1rem;
+            box-shadow: 0 0 8px rgba(0, 255, 255, .2)
+        }
+
+        .nl-arrow {
+            color: #d946ef;
+            font-size: .7rem;
+            margin: 0 1px
+        }
+
+        .nl-label {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            margin-bottom: 4px;
+            text-align: center;
+            width: 100%
+        }
+
+        /* ===== FEEDBACK ===== */
+        .feedback {
+            position: fixed;
+            top: 38%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 80;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(0, 255, 255, .5);
+            opacity: 0;
+            pointer-events: none;
+            letter-spacing: 1px
+        }
+
+        .feedback.show {
+            opacity: 1;
+            animation: float-up 1.5s ease-out forwards
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(.8)
+            }
+
+            30% {
+                transform: translate(-50%, -60%) scale(1.1)
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -80%) scale(1)
+            }
+        }
+
+        .feedback.correct-fb {
+            color: #00ffff
+        }
+
+        .feedback.wrong-fb {
+            color: #ef4444;
+            font-size: 1.2rem
+        }
+
+        /* ===== ROCKET STREAK ===== */
+        .streak-rocket {
+            position: fixed;
+            z-index: 85;
+            font-size: 3rem;
+            pointer-events: none;
+            opacity: 0
+        }
+
+        .streak-rocket.fly {
+            animation: rocket-fly 2.2s ease-in-out forwards
+        }
+
+        @keyframes rocket-fly {
+            0% {
+                opacity: 1;
+                transform: translate(-60vw, 50vh) rotate(-25deg)
+            }
+
+            25% {
+                transform: translate(10vw, 15vh) rotate(-15deg)
+            }
+
+            50% {
+                opacity: 1;
+                transform: translate(50vw, -5vh) rotate(-5deg)
+            }
+
+            75% {
+                transform: translate(80vw, 10vh) rotate(5deg)
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(120vw, -20vh) rotate(10deg)
+            }
+        }
+
+        /* ===== ENCOURAGE ===== */
+        .encourage {
+            position: fixed;
+            bottom: 160px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 70;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: .85rem;
+            color: rgba(255, 255, 255, .5);
+            opacity: 0;
+            transition: opacity .3s;
+            white-space: nowrap
+        }
+
+        .encourage.show {
+            opacity: 1
+        }
+
+        /* ===== VICTORY & LEVEL ===== */
+        .victory-screen {
+            background: radial-gradient(ellipse at center, rgba(0, 255, 255, .15), transparent 60%)
+        }
+
+        .victory-screen .big-title {
+            text-shadow: 0 0 40px rgba(0, 255, 255, .6)
+        }
+
+        .victory-screen .stats,
+        .level-complete-screen .stats {
+            color: #f4d35e;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 2;
+            letter-spacing: 1px
+        }
+
+        .level-complete-screen {
+            background: radial-gradient(ellipse at center, rgba(217, 70, 239, .1), transparent 60%)
+        }
+
+        .level-complete-screen .big-title {
+            font-size: 1.8rem;
+            color: #d946ef;
+            text-shadow: 0 0 30px rgba(217, 70, 239, .5)
+        }
+
+        /* ===== CONFETTI → STARBURSTS ===== */
+        .confetti-piece {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            z-index: 90;
+            border-radius: 50%;
+            animation: starburst 2.5s ease-out forwards;
+            pointer-events: none;
+            box-shadow: 0 0 6px currentColor
+        }
+
+        @keyframes starburst {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1
+            }
+
+            100% {
+                transform: translate(var(--dx), var(--dy)) scale(0);
+                opacity: 0
+            }
+        }
+
+        /* ===== WARP GLOW ===== */
+        .warp-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 255, .3), transparent 70%);
+            z-index: 45;
+            animation: warp-pulse 2s ease-in-out infinite alternate;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1s
+        }
+
+        .warp-glow.show {
+            opacity: 1
+        }
+
+        @keyframes warp-pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1)
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1.4)
+            }
+        }
+
+        /* ===== STATS MODAL ===== */
+        .stats-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(2, 6, 23, .9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(6px)
+        }
+
+        .stats-overlay.show {
+            display: flex
+        }
+
+        .stats-modal {
+            background: linear-gradient(135deg, #0a0e27, #1a1e3e);
+            border: 1px solid rgba(0, 255, 255, .15);
+            border-radius: 16px;
+            padding: 28px;
+            max-width: 480px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 0 40px rgba(0, 255, 255, .08)
+        }
+
+        .stats-modal h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffff;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 255, 255, .3)
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px
+        }
+
+        .stats-table th {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: rgba(0, 255, 255, .7);
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 8px 6px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 255, 255, .1)
+        }
+
+        .stats-table td {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .8);
+            font-size: .85rem;
+            padding: 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, .03)
+        }
+
+        .stats-table .wrong-row td {
+            color: #ef4444
+        }
+
+        .stats-summary {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .6);
+            font-size: .85rem;
+            text-align: center;
+            line-height: 1.8
+        }
+
+        .stats-summary strong {
+            color: #00ffff
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:1024px) {
+            .answer-bubble {
+                width: 100px;
+                height: 100px;
+                font-size: 2.2rem;
+                border-width: 3px
+            }
+
+            .problem-text {
+                font-size: 3rem
+            }
+
+            .lang-chip .word {
+                font-size: 1.5rem
+            }
+
+            .start-btn {
+                font-size: 1.3rem;
+                padding: 18px 52px
+            }
+
+            .planet-num {
+                font-size: 2.8rem
+            }
+        }
+
+        @media(max-width:500px) {
+            .big-title {
+                font-size: 1.8rem
+            }
+
+            .problem-text {
+                font-size: 2rem
+            }
+
+            .answer-bubble {
+                width: 78px;
+                height: 78px;
+                font-size: 1.5rem
+            }
+
+            .title {
+                font-size: .8rem
+            }
+
+            .planet-num {
+                font-size: 2rem
+            }
+
+            .lang-chip {
+                font-size: .9rem;
+                padding: 6px 12px
+            }
+
+            .lang-chip .word {
+                font-size: 1rem
+            }
+        }
+
+        @media(hover:none) and (pointer:coarse) {
+            .answer-bubble {
+                min-width: 90px;
+                min-height: 90px
+            }
+
+            .answer-bubble:hover {
+                transform: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="space">
+        <div class="stars-layer" id="stars"></div>
+        <div class="nebula n1"></div>
+        <div class="nebula n2"></div>
+        <div class="nebula n3"></div>
+    </div>
+
+    <div class="hud">
+        <div>
+            <div class="title">🚀 Star Voyage</div>
+            <div class="level-badge" id="levelBadge">Sector 1 — Asteroid Belt</div>
+        </div>
+        <div class="progress-dots" id="progressDots"></div>
+        <div class="hud-right">
+            <div class="streak-display" id="streakDisplay">🔥 0</div>
+            <div class="shells"><span>⭐</span><span id="shellCount">0</span></div>
+            <button class="hud-btn" id="soundToggle" onclick="toggleAmbience()" title="Toggle space sounds">🔊</button>
+            <button class="hud-btn" onclick="showStats()" title="Mission Log">📊</button>
+        </div>
+    </div>
+
+    <div class="planet-map" id="planetMap"></div>
+    <div class="ship-container" id="ship">
+        <div class="ship">
+            <div class="ship-body"></div>
+            <div class="ship-cockpit"></div>
+            <div class="ship-wing"></div>
+            <div class="ship-engine"></div>
+        </div>
+    </div>
+
+    <div class="problem-area" id="problemArea">
+        <div class="problem-text" id="problemText"></div>
+        <div class="counting-aid" id="countingAid"></div>
+        <div class="answers" id="answers"></div>
+        <div class="number-line" id="numberLine"></div>
+        <div class="tri-lang" id="triLang"></div>
+    </div>
+
+    <div class="encourage" id="encourage"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="warp-glow" id="warpGlow"></div>
+
+    <div class="screen" id="startScreen">
+        <div class="big-title">🚀 Star Voyage 🌌</div>
+        <div class="subtitle">Fly between planets by solving math problems!<br>Chart a course across the galaxy!</div>
+        <button class="start-btn" onclick="startGame()">Launch! 🚀</button>
+    </div>
+
+    <div class="screen level-complete-screen hidden" id="levelCompleteScreen">
+        <div class="big-title" id="lcTitle"></div>
+        <div class="subtitle" id="lcSubtitle"></div>
+        <div class="stats" id="lcStats"></div>
+        <button class="start-btn" onclick="nextLevel()">Warp to Next Sector! 🌌</button>
+    </div>
+
+    <div class="screen victory-screen hidden" id="victoryScreen">
+        <div class="big-title">🌟 Galaxy Charted! 🌟</div>
+        <div class="subtitle">You explored every sector of the galaxy!</div>
+        <div class="stats" id="victoryStats"></div>
+        <button class="start-btn" onclick="restartGame()">New Mission! 🚀</button>
+    </div>
+
+    <div class="stats-overlay" id="statsOverlay" onclick="if(event.target===this)hideStats()">
+        <div class="stats-modal">
+            <h2>📊 Mission Log</h2>
+            <div id="statsContent"></div>
+            <div style="text-align:center;margin-top:16px"><button class="start-btn"
+                    style="font-size:.9rem;padding:10px 28px" onclick="hideStats()">Close</button></div>
+        </div>
+    </div>
+
+    <script>
+        const PLANETS_PER_SECTOR = 5;
+        const LEVELS = [
+            { name: "Asteroid Belt", maxA: 9, maxB: 5, accent: "#06b6d4" },
+            { name: "Nebula Crossing", maxA: 12, maxB: 9, accent: "#8b5cf6" },
+            { name: "Red Giant Zone", maxA: 15, maxB: 12, accent: "#ef4444" },
+            { name: "Wormhole Sector", maxA: 20, maxB: 15, accent: "#d946ef" },
+            { name: "Galactic Core", maxA: 25, maxB: 20, accent: "#00ffff" }
+        ];
+
+        const PLANET_CLASSES = ['p-mars', 'p-jupiter', 'p-saturn', 'p-neptune', 'p-earth'];
+
+        const NW = {
+            0: { en: "zero", es: "cero", zh: "líng" }, 1: { en: "one", es: "uno", zh: "yī" }, 2: { en: "two", es: "dos", zh: "èr" },
+            3: { en: "three", es: "tres", zh: "sān" }, 4: { en: "four", es: "cuatro", zh: "sì" }, 5: { en: "five", es: "cinco", zh: "wǔ" },
+            6: { en: "six", es: "seis", zh: "liù" }, 7: { en: "seven", es: "siete", zh: "qī" }, 8: { en: "eight", es: "ocho", zh: "bā" },
+            9: { en: "nine", es: "nueve", zh: "jiǔ" }, 10: { en: "ten", es: "diez", zh: "shí" }, 11: { en: "eleven", es: "once", zh: "shí yī" },
+            12: { en: "twelve", es: "doce", zh: "shí èr" }, 13: { en: "thirteen", es: "trece", zh: "shí sān" }, 14: { en: "fourteen", es: "catorce", zh: "shí sì" },
+            15: { en: "fifteen", es: "quince", zh: "shí wǔ" }, 16: { en: "sixteen", es: "dieciséis", zh: "shí liù" }, 17: { en: "seventeen", es: "diecisiete", zh: "shí qī" },
+            18: { en: "eighteen", es: "dieciocho", zh: "shí bā" }, 19: { en: "nineteen", es: "diecinueve", zh: "shí jiǔ" }, 20: { en: "twenty", es: "veinte", zh: "èr shí" },
+            21: { en: "twenty-one", es: "veintiuno", zh: "èr shí yī" }, 22: { en: "twenty-two", es: "veintidós", zh: "èr shí èr" },
+            23: { en: "twenty-three", es: "veintitrés", zh: "èr shí sān" }, 24: { en: "twenty-four", es: "veinticuatro", zh: "èr shí sì" },
+            25: { en: "twenty-five", es: "veinticinco", zh: "èr shí wǔ" }, 26: { en: "twenty-six", es: "veintiséis", zh: "èr shí liù" },
+            27: { en: "twenty-seven", es: "veintisiete", zh: "èr shí qī" }, 28: { en: "twenty-eight", es: "veintiocho", zh: "èr shí bā" },
+            29: { en: "twenty-nine", es: "veintinueve", zh: "èr shí jiǔ" }, 30: { en: "thirty", es: "treinta", zh: "sān shí" },
+            31: { en: "thirty-one", es: "treinta y uno", zh: "sān shí yī" }, 32: { en: "thirty-two", es: "treinta y dos", zh: "sān shí èr" },
+            33: { en: "thirty-three", es: "treinta y tres", zh: "sān shí sān" }, 34: { en: "thirty-four", es: "treinta y cuatro", zh: "sān shí sì" },
+            35: { en: "thirty-five", es: "treinta y cinco", zh: "sān shí wǔ" }, 36: { en: "thirty-six", es: "treinta y seis", zh: "sān shí liù" },
+            37: { en: "thirty-seven", es: "treinta y siete", zh: "sān shí qī" }, 38: { en: "thirty-eight", es: "treinta y ocho", zh: "sān shí bā" },
+            39: { en: "thirty-nine", es: "treinta y nueve", zh: "sān shí jiǔ" }, 40: { en: "forty", es: "cuarenta", zh: "sì shí" },
+            41: { en: "forty-one", es: "cuarenta y uno", zh: "sì shí yī" }, 42: { en: "forty-two", es: "cuarenta y dos", zh: "sì shí èr" },
+            43: { en: "forty-three", es: "cuarenta y tres", zh: "sì shí sān" }, 44: { en: "forty-four", es: "cuarenta y cuatro", zh: "sì shí sì" },
+            45: { en: "forty-five", es: "cuarenta y cinco", zh: "sì shí wǔ" }
+        };
+        const ZH = { 0: "零", 1: "一", 2: "二", 3: "三", 4: "四", 5: "五", 6: "六", 7: "七", 8: "八", 9: "九", 10: "十", 11: "十一", 12: "十二", 13: "十三", 14: "十四", 15: "十五", 16: "十六", 17: "十七", 18: "十八", 19: "十九", 20: "二十", 21: "二十一", 22: "二十二", 23: "二十三", 24: "二十四", 25: "二十五", 26: "二十六", 27: "二十七", 28: "二十八", 29: "二十九", 30: "三十", 31: "三十一", 32: "三十二", 33: "三十三", 34: "三十四", 35: "三十五", 36: "三十六", 37: "三十七", 38: "三十八", 39: "三十九", 40: "四十", 41: "四十一", 42: "四十二", 43: "四十三", 44: "四十四", 45: "四十五" };
+
+        const layouts = [
+            [{ x: 8, y: 55 }, { x: 25, y: 30 }, { x: 45, y: 55 }, { x: 65, y: 28 }, { x: 85, y: 48 }],
+            [{ x: 10, y: 42 }, { x: 28, y: 62 }, { x: 48, y: 30 }, { x: 68, y: 55 }, { x: 88, y: 32 }],
+            [{ x: 7, y: 38 }, { x: 22, y: 60 }, { x: 42, y: 32 }, { x: 62, y: 58 }, { x: 82, y: 35 }],
+            [{ x: 12, y: 50 }, { x: 30, y: 28 }, { x: 52, y: 52 }, { x: 72, y: 26 }, { x: 90, y: 48 }],
+            [{ x: 8, y: 48 }, { x: 26, y: 30 }, { x: 46, y: 52 }, { x: 66, y: 28 }, { x: 86, y: 42 }]
+        ];
+
+        const correctMsgs = ["STELLAR! 🌟", "BULLSEYE! ⭐", "COSMIC! 🚀", "WARP SPEED! 💫", "BRILLIANT! ✨", "PERFECT! 🌌", "AMAZING! 🛸"];
+        const wrongMsgs = ["Almost! Try again 🔄", "So close! 🌠", "Not quite! ⭐", "Recalibrate! 🔧"];
+        const streakMsgs = ["3-STAR STREAK! 🛸", "TURBO BOOST! 🚀💨", "UNSTOPPABLE! 🌟🛸", "LEGENDARY! 💫🚀"];
+
+        let currentLevel = 0, currentPlanet = 0, stars = 0, currentProblem = null, answered = false;
+        let wrongAttempts = 0, totalWrong = 0, streak = 0, bestStreak = 0;
+        let audioCtx = null, ambienceOn = false, ambienceNode = null, ambienceGain = null;
+        let problemLog = [];
+
+        /* === AUDIO === */
+        function initAudio() { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { } }
+        function playTone(f, d, t = 'sine', vol = 0.4) { if (!audioCtx) return; try { const o = audioCtx.createOscillator(), g = audioCtx.createGain(); o.type = t; o.frequency.value = f; g.gain.setValueAtTime(vol, audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(.001, audioCtx.currentTime + d); o.connect(g); g.connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime + d); } catch (e) { } }
+        function playCorrect() { playTone(660, .15, 'sine', .5); setTimeout(() => playTone(880, .15, 'sine', .45), 100); setTimeout(() => playTone(1100, .2, 'sine', .4), 200); setTimeout(() => playTone(1320, .3, 'sine', .3), 300); }
+        function playWrong() { playTone(250, .3, 'sawtooth', .3); setTimeout(() => playTone(180, .35, 'sawtooth', .25), 120); }
+        function playVictory() { [660, 880, 1100, 1320, 1540, 1760].forEach((n, i) => setTimeout(() => playTone(n, .35, 'sine', .4), i * 130)); }
+        function playLevelUp() { [440, 660, 880, 1100].forEach((n, i) => setTimeout(() => playTone(n, .25, 'sine', .4), i * 150)); }
+
+        function startAmbience() {
+            if (!audioCtx || ambienceNode) return;
+            try {
+                const buf = audioCtx.createBuffer(1, audioCtx.sampleRate * 4, audioCtx.sampleRate); const d = buf.getChannelData(0); for (let i = 0; i < d.length; i++)d[i] = (Math.random() * 2 - 1) * .3;
+                ambienceNode = audioCtx.createBufferSource(); ambienceNode.buffer = buf; ambienceNode.loop = true;
+                const lp = audioCtx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 200;
+                ambienceGain = audioCtx.createGain(); ambienceGain.gain.value = .04;
+                ambienceNode.connect(lp); lp.connect(ambienceGain); ambienceGain.connect(audioCtx.destination);
+                ambienceNode.start(); ambienceOn = true; document.getElementById('soundToggle').textContent = '🔊';
+            } catch (e) { }
+        }
+        function stopAmbience() { if (ambienceNode) { try { ambienceNode.stop(); } catch (e) { } ambienceNode = null; } ambienceOn = false; document.getElementById('soundToggle').textContent = '🔇'; }
+        function toggleAmbience() { if (!audioCtx) initAudio(); if (ambienceOn) stopAmbience(); else startAmbience(); }
+
+        /* === SPEECH === */
+        function speakNumber(n) {
+            if (!('speechSynthesis' in window)) return;
+            const w = NW[n] || { en: String(n), es: String(n), zh: String(n) };
+            [{ text: w.en, lang: 'en-US', d: 0 }, { text: w.es, lang: 'es-ES', d: 1200 }, { text: w.zh, lang: 'zh-CN', d: 2400 }].forEach(l => {
+                setTimeout(() => { const u = new SpeechSynthesisUtterance(l.text); u.lang = l.lang; u.rate = .85; u.volume = 1; speechSynthesis.cancel(); speechSynthesis.speak(u); }, l.d);
+            });
+        }
+
+        /* === INIT === */
+        function init() { createStars(); setupLevel(); }
+        function createStars() {
+            const el = document.getElementById('stars');
+            for (let i = 0; i < 80; i++) {
+                const s = document.createElement('div'); s.className = 'star' + (Math.random() > .85 ? ' bright' : '');
+                s.style.left = Math.random() * 100 + '%'; s.style.top = Math.random() * 100 + '%'; s.style.animationDelay = Math.random() * 4 + 's';
+                s.style.width = s.style.height = (1 + Math.random() * 2.5) + 'px'; el.appendChild(s);
+            }
+        }
+
+        /* === LEVEL === */
+        function setupLevel() {
+            const lv = LEVELS[currentLevel];
+            document.getElementById('levelBadge').textContent = `Sector ${currentLevel + 1} — ${lv.name}`;
+            createPlanets(); createProgressDots(); positionShip(true);
+        }
+        function createPlanets() {
+            const map = document.getElementById('planetMap'); map.innerHTML = '';
+            const pos = layouts[currentLevel % layouts.length];
+            for (let i = 0; i < PLANETS_PER_SECTOR - 1; i++) { const a = pos[i], b = pos[i + 1]; for (let j = 1; j < 4; j++) { const d = document.createElement('div'); d.className = 'path-dot'; const t = j / 4; d.style.left = (a.x + (b.x - a.x) * t) + '%'; d.style.top = (a.y + (b.y - a.y) * t) + '%'; map.appendChild(d); } }
+            pos.forEach((p, i) => {
+                const el = document.createElement('div');
+                const isFinal = i === PLANETS_PER_SECTOR - 1 && currentLevel === LEVELS.length - 1;
+                const cls = isFinal ? 'p-final' : PLANET_CLASSES[(currentLevel * 5 + i) % PLANET_CLASSES.length];
+                el.className = 'planet ' + cls; el.id = 'planet-' + i;
+                el.style.left = p.x + '%'; el.style.top = p.y + '%';
+                const hasRing = cls === 'p-saturn';
+                const label = isFinal ? '🌟' : (currentLevel * PLANETS_PER_SECTOR + i + 1);
+                el.innerHTML = `<div class="planet-body"><span class="planet-num">${label}</span></div>${hasRing ? '<div class="planet-ring"></div>' : ''}`;
+                map.appendChild(el);
+            });
+        }
+        function createProgressDots() {
+            const el = document.getElementById('progressDots'); el.innerHTML = '';
+            for (let i = 0; i < PLANETS_PER_SECTOR; i++) { const d = document.createElement('div'); d.className = 'dot' + (i < currentPlanet ? ' done' : '') + (i === currentPlanet ? ' current' : ''); d.id = 'pdot-' + i; el.appendChild(d); }
+        }
+        function positionShip(instant) {
+            const c = document.getElementById('ship'); const pos = layouts[currentLevel % layouts.length][Math.min(currentPlanet, PLANETS_PER_SECTOR - 1)];
+            if (instant) c.style.transition = 'none'; c.style.left = `calc(${pos.x}% + 20px)`; c.style.top = `calc(${pos.y}% - 20px)`;
+            if (instant) setTimeout(() => c.style.transition = '', 50);
+        }
+
+        /* === PROBLEM === */
+        function generateProblem() {
+            const lv = LEVELS[currentLevel]; let a = Math.floor(Math.random() * (lv.maxA + 1)), b = Math.floor(Math.random() * (lv.maxB + 1)), op, answer;
+            if (Math.random() < .5) { op = '+'; answer = a + b; } else { op = '−'; if (a < b) [a, b] = [b, a]; answer = a - b; }
+            const ds = new Set([answer]); let att = 0; while (ds.size < 3 && att < 50) { let d = answer + (Math.random() < .5 ? 1 : -1) * (Math.floor(Math.random() * 5) + 1); if (d >= 0 && !ds.has(d)) ds.add(d); att++; }
+            while (ds.size < 3) ds.add(answer + ds.size * 2);
+            const choices = [...ds]; for (let i = choices.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[choices[i], choices[j]] = [choices[j], choices[i]]; }
+            return { a, b, op, answer, choices };
+        }
+
+        function showCountingAid(prob) {
+            const el = document.getElementById('countingAid'); el.innerHTML = '';
+            if (prob.a > 12 || prob.b > 12) return;
+            const ga = document.createElement('span'); ga.className = 'count-group';
+            for (let i = 0; i < prob.a; i++) { const d = document.createElement('span'); d.className = 'count-dot a'; d.style.animationDelay = (i * .05) + 's'; ga.appendChild(d); }
+            const op = document.createElement('span'); op.className = 'count-op'; op.textContent = prob.op;
+            const gb = document.createElement('span'); gb.className = 'count-group';
+            for (let i = 0; i < prob.b; i++) { const d = document.createElement('span'); d.className = 'count-dot b'; d.style.animationDelay = ((prob.a + i) * .05) + 's'; gb.appendChild(d); }
+            el.appendChild(ga); el.appendChild(op); el.appendChild(gb);
+        }
+
+        function showNumberLineHint(prob) {
+            const el = document.getElementById('numberLine'); el.innerHTML = ''; el.classList.add('show');
+            const isAdd = prob.op === '+', start = prob.a, end = prob.answer;
+            const lo = Math.max(0, Math.min(start, end) - 1), hi = Math.max(start, end) + 1;
+            const label = document.createElement('div'); label.className = 'nl-label';
+            label.textContent = isAdd ? `Count UP from ${start}!` : `Count DOWN from ${start}!`; el.appendChild(label);
+            for (let n = lo; n <= hi; n++) {
+                if (n > lo) { const inR = isAdd ? (n > start && n <= end) : (n > end && n <= start); if (inR) { const arr = document.createElement('span'); arr.className = 'nl-arrow'; arr.textContent = isAdd ? '→' : '←'; el.appendChild(arr); } }
+                const num = document.createElement('span'); num.className = 'nl-num';
+                if (n === start) num.classList.add('start'); if (n === end) num.classList.add('answer-num');
+                else if (isAdd ? (n > start && n < end) : (n < start && n > end)) num.classList.add('highlight');
+                num.textContent = n; el.appendChild(num);
+            }
+        }
+
+        /* === GAME FLOW === */
+        function startGame() {
+            initAudio(); startAmbience(); document.getElementById('startScreen').classList.add('hidden');
+            currentLevel = 0; currentPlanet = 0; stars = 0; totalWrong = 0; streak = 0; bestStreak = 0; problemLog = [];
+            document.getElementById('shellCount').textContent = '0'; updateStreakDisplay();
+            setupLevel(); setTimeout(() => showProblem(), 700);
+        }
+        function restartGame() { document.getElementById('victoryScreen').classList.add('hidden'); document.getElementById('warpGlow').classList.remove('show'); startGame(); }
+        function nextLevel() { document.getElementById('levelCompleteScreen').classList.add('hidden'); currentPlanet = 0; setupLevel(); setTimeout(() => showProblem(), 700); }
+
+        function showProblem() {
+            if (currentPlanet >= PLANETS_PER_SECTOR) { if (currentLevel >= LEVELS.length - 1) showVictory(); else showLevelComplete(); return; }
+            const el = document.getElementById('planet-' + currentPlanet); if (el) el.classList.add('active');
+            currentProblem = generateProblem(); answered = false; wrongAttempts = 0;
+            document.getElementById('problemText').innerHTML = `<span>${currentProblem.a}</span><span class="op">${currentProblem.op}</span><span>${currentProblem.b}</span><span class="eq">=</span><span class="qmark">?</span>`;
+            showCountingAid(currentProblem);
+            const ans = document.getElementById('answers'); ans.innerHTML = '';
+            currentProblem.choices.forEach(c => { const btn = document.createElement('div'); btn.className = 'answer-bubble'; btn.textContent = c; btn.onclick = () => checkAnswer(c, btn); ans.appendChild(btn); });
+            document.getElementById('triLang').innerHTML = ''; document.getElementById('triLang').classList.remove('show');
+            document.getElementById('numberLine').classList.remove('show'); document.getElementById('numberLine').innerHTML = '';
+            document.getElementById('problemArea').classList.add('active'); document.getElementById('encourage').classList.remove('show');
+        }
+
+        function showTriLang(n) {
+            const w = NW[n] || { en: String(n), es: String(n), zh: String(n) }; const zh = ZH[n] || String(n);
+            const el = document.getElementById('triLang');
+            el.innerHTML = `<div class="lang-chip"><span class="flag">🇺🇸</span><span class="word">${w.en}</span></div><div class="lang-chip"><span class="flag">🇪🇸</span><span class="word">${w.es}</span></div><div class="lang-chip"><span class="flag">🇨🇳</span><span class="word">${zh}</span></div>`;
+            el.classList.add('show'); speakNumber(n);
+        }
+
+        function updateStreakDisplay() { const el = document.getElementById('streakDisplay'); if (streak >= 2) { el.textContent = `🔥 ${streak}`; el.classList.add('show'); } else el.classList.remove('show'); }
+        function spawnRocket() { const r = document.createElement('div'); r.className = 'streak-rocket fly'; r.textContent = '🛸'; r.style.top = (20 + Math.random() * 30) + '%'; document.body.appendChild(r); setTimeout(() => r.remove(), 2500); }
+
+        function checkAnswer(choice, btn) {
+            if (answered) return;
+            if (choice === currentProblem.answer) {
+                answered = true; btn.classList.add('correct'); playCorrect(); stars++; streak++; if (streak > bestStreak) bestStreak = streak;
+                updateStreakDisplay(); document.getElementById('shellCount').textContent = stars;
+                showFeedback(correctMsgs[Math.floor(Math.random() * correctMsgs.length)], true);
+                document.getElementById('encourage').classList.remove('show');
+                document.querySelectorAll('.answer-bubble').forEach(b => b.style.pointerEvents = 'none');
+                showTriLang(currentProblem.answer);
+                problemLog.push({ a: currentProblem.a, b: currentProblem.b, op: currentProblem.op, answer: currentProblem.answer, attempts: wrongAttempts + 1, correct: true });
+                if (streak >= 3 && streak % 3 === 0) setTimeout(() => { spawnRocket(); showFeedback(streakMsgs[Math.min(Math.floor(streak / 3) - 1, streakMsgs.length - 1)], true); }, 600);
+                setTimeout(() => {
+                    document.getElementById('problemArea').classList.remove('active'); document.getElementById('countingAid').innerHTML = '';
+                    const pl = document.getElementById('planet-' + currentPlanet); if (pl) { pl.classList.remove('active'); pl.classList.add('done'); }
+                    const pd = document.getElementById('pdot-' + currentPlanet); if (pd) { pd.classList.remove('current'); pd.classList.add('done'); }
+                    currentPlanet++; const nd = document.getElementById('pdot-' + currentPlanet); if (nd) nd.classList.add('current');
+                    positionShip(false); setTimeout(() => showProblem(), 1300);
+                }, 2800);
+            } else {
+                btn.classList.add('wrong'); playWrong(); wrongAttempts++; totalWrong++; streak = 0; updateStreakDisplay();
+                showFeedback(wrongMsgs[Math.floor(Math.random() * wrongMsgs.length)], false);
+                if (wrongAttempts >= 2) showNumberLineHint(currentProblem);
+                setTimeout(() => { btn.classList.remove('wrong'); btn.style.pointerEvents = 'none'; btn.style.opacity = '.25'; }, 500);
+            }
+        }
+        function showFeedback(msg, ok) { const fb = document.getElementById('feedback'); fb.textContent = msg; fb.className = 'feedback show ' + (ok ? 'correct-fb' : 'wrong-fb'); setTimeout(() => fb.className = 'feedback', 1500); }
+
+        function showLevelComplete() {
+            playLevelUp(); const lv = LEVELS[currentLevel];
+            document.getElementById('lcTitle').textContent = `🌌 ${lv.name} Complete!`;
+            document.getElementById('lcSubtitle').textContent = 'Sector cleared, Captain!';
+            document.getElementById('lcStats').innerHTML = `⭐ ${stars} stars · 🔥 Best streak: ${bestStreak}`;
+            currentLevel++; document.getElementById('levelCompleteScreen').classList.remove('hidden'); spawnStarbursts(30);
+        }
+        function showVictory() {
+            playVictory(); document.getElementById('warpGlow').classList.add('show');
+            document.getElementById('victoryStats').innerHTML = `⭐ ${stars} stars collected<br>🔥 Best streak: ${bestStreak}<br>across ${LEVELS.length} sectors!`;
+            setTimeout(() => document.getElementById('victoryScreen').classList.remove('hidden'), 1000); spawnStarbursts(60);
+        }
+        function spawnStarbursts(n) {
+            const colors = ['#00ffff', '#d946ef', '#f4d35e', '#6366f1', '#22c55e', '#ef4444'];
+            const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+            for (let i = 0; i < n; i++) {
+                const c = document.createElement('div'); c.className = 'confetti-piece';
+                c.style.left = cx + 'px'; c.style.top = cy + 'px'; c.style.color = colors[Math.floor(Math.random() * colors.length)];
+                c.style.background = 'currentColor';
+                const angle = Math.random() * Math.PI * 2, dist = 100 + Math.random() * 300;
+                c.style.setProperty('--dx', Math.cos(angle) * dist + 'px'); c.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+                c.style.animationDelay = Math.random() * .5 + 's'; c.style.width = (3 + Math.random() * 5) + 'px'; c.style.height = c.style.width;
+                document.body.appendChild(c); setTimeout(() => c.remove(), 3500);
+            }
+        }
+
+        /* === STATS === */
+        function showStats() {
+            const el = document.getElementById('statsContent');
+            if (!problemLog.length) { el.innerHTML = '<div class="stats-summary">No data yet — start a mission first!</div>'; }
+            else {
+                const total = problemLog.length, firstTry = problemLog.filter(p => p.attempts === 1).length;
+                const hard = problemLog.filter(p => p.attempts > 1).sort((a, b) => b.attempts - a.attempts);
+                let h = `<div class="stats-summary"><strong>${total}</strong> problems · <strong>${firstTry}</strong> first-try (${Math.round(firstTry / total * 100)}%)<br>Best streak: <strong>${bestStreak}</strong> · Stars: <strong>${stars}</strong></div>`;
+                if (hard.length) {
+                    h += `<h3 style="color:#ef4444;font-family:'Orbitron',sans-serif;font-size:.8rem;margin:16px 0 8px;text-align:center;letter-spacing:2px">⚠️ NEEDS PRACTICE</h3><table class="stats-table"><thead><tr><th>Problem</th><th>Answer</th><th>Tries</th></tr></thead><tbody>`;
+                    hard.slice(0, 8).forEach(p => { h += `<tr class="wrong-row"><td>${p.a} ${p.op} ${p.b}</td><td>${p.answer}</td><td>${p.attempts}</td></tr>`; }); h += `</tbody></table>`;
+                }
+                const easy = problemLog.filter(p => p.attempts === 1).slice(-5);
+                if (easy.length) {
+                    h += `<h3 style="color:#00ffff;font-family:'Orbitron',sans-serif;font-size:.8rem;margin:16px 0 8px;text-align:center;letter-spacing:2px">✅ MASTERED</h3><table class="stats-table"><thead><tr><th>Problem</th><th>Answer</th><th>Tries</th></tr></thead><tbody>`;
+                    easy.forEach(p => { h += `<tr><td>${p.a} ${p.op} ${p.b}</td><td>${p.answer}</td><td>1 ✓</td></tr>`; }); h += `</tbody></table>`;
+                }
+                el.innerHTML = h;
+            }
+            document.getElementById('statsOverlay').classList.add('show');
+        }
+        function hideStats() { document.getElementById('statsOverlay').classList.remove('show'); }
+
+        init();
+    </script>
+</body>
+
+</html>

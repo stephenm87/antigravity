@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAS Impact Expo — Judging Scorecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ============ SAS BRAND ============ */
+  :root {
+    --navy: #1B2A4A;
+    --red: #C41E3A;
+    --red-dark: #9E1830;
+    --gold: #D4A853;
+    --gold-light: #E8C97A;
+    --warm-gray: #8B7D6B;
+    --warm-gray-light: #A89E8E;
+    --text-dark: #2C2C2C;
+    --cream: #F5F0E6;
+  }
+
+  @page {
+    size: landscape;
+    margin: 0.3in;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #d5d0c8;
+    color: var(--text-dark);
+  }
+
+  /* ============ SCREEN CONTROLS ============ */
+  .controls {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--navy);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .controls h1 {
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .controls-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .controls label {
+    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .controls select, .controls input {
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+  }
+  .controls select option { color: #333; background: white; }
+  .btn-print {
+    padding: 7px 20px;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+  .btn-print:hover { background: var(--red-dark); }
+
+  @media print {
+    .controls { display: none !important; }
+    body { background: none; }
+  }
+
+  /* ============ SCORECARD PAGE ============ */
+  .scorecard-page {
+    width: 11in;
+    height: 8.5in;
+    margin: 70px auto 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen {
+    .scorecard-page {
+      background: var(--cream);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23F5F0E6'/%3E%3Crect width='1' height='1' x='0' y='0' fill='%23EDE8DC' fill-opacity='0.3'/%3E%3Crect width='1' height='1' x='2' y='2' fill='%23F8F4EC' fill-opacity='0.3'/%3E%3C/svg%3E");
+    }
+  }
+  @media print {
+    .scorecard-page {
+      margin: 0;
+      box-shadow: none;
+      background: transparent;
+    }
+  }
+
+  /* --- Top stripe --- */
+  .top-stripe {
+    height: 6px;
+    background: linear-gradient(90deg, var(--red) 0%, var(--red) 33%, white 33%, white 66%, var(--navy) 66%);
+    flex-shrink: 0;
+  }
+
+  /* --- Bottom bar --- */
+  .bottom-bar {
+    height: 5px;
+    background: var(--navy);
+    flex-shrink: 0;
+  }
+
+  /* --- Content area --- */
+  .scorecard-content {
+    flex: 1;
+    padding: 18px 32px 14px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* --- Header --- */
+  .sc-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .sc-header-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sc-school {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    font-weight: 600;
+  }
+
+  .sc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-top: 1px;
+  }
+
+  .sc-subtitle {
+    font-size: 11px;
+    color: var(--warm-gray);
+    font-weight: 500;
+    margin-top: 2px;
+    letter-spacing: 0.3px;
+  }
+
+  .sc-header-right {
+    text-align: right;
+    padding-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .sc-field {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 5px;
+  }
+
+  .sc-field-label {
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .sc-field-line {
+    width: 200px;
+    border-bottom: 1px solid rgba(27,42,74,0.2);
+    height: 16px;
+  }
+
+  /* --- Divider --- */
+  .sc-divider {
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    margin-bottom: 10px;
+    opacity: 0.6;
+  }
+
+  /* --- Instructions --- */
+  .sc-instructions {
+    font-size: 10px;
+    color: var(--warm-gray);
+    margin-bottom: 10px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .sc-instructions strong {
+    color: var(--navy);
+    font-style: normal;
+  }
+
+  /* ============ RUBRIC TABLE ============ */
+  .rubric-table {
+    width: 100%;
+    border-collapse: collapse;
+    flex: 1;
+    table-layout: fixed;
+  }
+
+  .rubric-table thead th {
+    font-size: 8.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 7px 6px;
+    border-bottom: 2px solid var(--navy);
+    vertical-align: bottom;
+  }
+
+  .rubric-table thead th:first-child {
+    text-align: left;
+    color: var(--navy);
+    width: 30%;
+  }
+
+  .rubric-table thead th.rating-col {
+    text-align: center;
+    width: 14%;
+    color: var(--warm-gray);
+  }
+
+  .rubric-table thead th.notes-col {
+    text-align: center;
+    width: 16%;
+    color: var(--warm-gray);
+  }
+
+  /* Row colors per award */
+  .rubric-table tbody tr { border-bottom: 1px solid rgba(27,42,74,0.08); }
+  .rubric-table tbody tr:nth-child(odd) { background: rgba(27,42,74,0.02); }
+
+  .rubric-table tbody td {
+    padding: 8px 6px;
+    vertical-align: top;
+    font-size: 9.5px;
+    line-height: 1.45;
+  }
+
+  /* Criteria cell */
+  .criteria-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .criteria-name {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 11px;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .criteria-icon {
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  .criteria-ttg {
+    font-size: 7.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 1px 5px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-top: 1px;
+    width: fit-content;
+  }
+
+  .criteria-prompt {
+    color: #6B6050;
+    font-style: italic;
+    font-size: 9px;
+    margin-top: 2px;
+  }
+
+  /* Rating cells */
+  .rating-cell {
+    text-align: center;
+    vertical-align: middle !important;
+  }
+
+  .rating-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(27,42,74,0.2);
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(27,42,74,0.3);
+    transition: none;
+  }
+
+  .rating-label {
+    font-size: 7px;
+    color: var(--warm-gray-light);
+    margin-top: 2px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Notes cell */
+  .notes-cell {
+    vertical-align: middle !important;
+    border-left: 1px solid rgba(27,42,74,0.06);
+  }
+
+  /* Per-award accent colors */
+  .row-community .criteria-ttg  { background: rgba(196,30,58,0.08); color: #C41E3A; }
+  .row-teamwork .criteria-ttg   { background: rgba(42,107,124,0.08); color: #2A6B7C; }
+  .row-story .criteria-ttg      { background: rgba(184,134,11,0.08); color: #B8860B; }
+  .row-thinking .criteria-ttg   { background: rgba(107,58,107,0.08); color: #6B3A6B; }
+  .row-creative .criteria-ttg   { background: rgba(196,155,48,0.08); color: #9E7A20; }
+
+  .row-community .criteria-name { color: #C41E3A; }
+  .row-teamwork .criteria-name  { color: #2A6B7C; }
+  .row-story .criteria-name     { color: #B8860B; }
+  .row-thinking .criteria-name  { color: #6B3A6B; }
+  .row-creative .criteria-name  { color: #9E7A20; }
+
+  /* --- Footer area --- */
+  .sc-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(212,168,83,0.3);
+  }
+
+  .sc-footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sc-overall {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sc-overall-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .sc-overall-prompt {
+    font-size: 8.5px;
+    color: var(--warm-gray);
+    font-style: italic;
+  }
+
+  .sc-standout {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .sc-standout-label {
+    font-size: 8px;
+    font-weight: 600;
+    color: var(--warm-gray);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .sc-standout-line {
+    flex: 1;
+    width: 340px;
+    border-bottom: 1px solid rgba(27,42,74,0.15);
+    height: 14px;
+  }
+
+  .sc-footer-right {
+    text-align: right;
+  }
+
+  .sc-footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    opacity: 0.3;
+  }
+
+  .sc-footer-year {
+    font-size: 8px;
+    color: var(--warm-gray-light);
+    letter-spacing: 2px;
+  }
+
+  /* ============ MULTI-COPY LAYOUT (2-up on one page) ============ */
+  .scorecard-page.half-page {
+    height: 4.25in;
+    page-break-after: auto;
+  }
+  .scorecard-page.half-page:nth-child(2) {
+    page-break-after: always;
+  }
+  .scorecard-page.half-page .scorecard-content {
+    padding: 10px 24px 8px;
+  }
+  .scorecard-page.half-page .sc-title { font-size: 18px; }
+  .scorecard-page.half-page .rubric-table tbody td { padding: 4px 4px; font-size: 8.5px; }
+  .scorecard-page.half-page .rubric-table thead th { padding: 4px; font-size: 7.5px; }
+  .scorecard-page.half-page .rating-circle { width: 22px; height: 22px; font-size: 10px; }
+  .scorecard-page.half-page .sc-instructions { font-size: 8.5px; margin-bottom: 4px; }
+
+  /* ============ PRINT TWEAKS ============ */
+  @media print {
+    .scorecard-page, .guide-page {
+      margin: 0;
+      box-shadow: none;
+    }
+    .rating-circle { border-color: rgba(27,42,74,0.35); }
+  }
+
+  /* ============ TTG QUICK GUIDE PAGE ============ */
+  .guide-page {
+    width: 11in;
+    height: 8.5in;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    page-break-before: always;
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen {
+    .guide-page {
+      background: var(--cream);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23F5F0E6'/%3E%3Crect width='1' height='1' x='0' y='0' fill='%23EDE8DC' fill-opacity='0.3'/%3E%3Crect width='1' height='1' x='2' y='2' fill='%23F8F4EC' fill-opacity='0.3'/%3E%3C/svg%3E");
+    }
+  }
+  @media print { .guide-page { margin: 0; box-shadow: none; background: transparent; } }
+
+  .guide-content {
+    flex: 1;
+    padding: 20px 36px 14px;
+    display: flex;
+    flex-direction: column;
+  }
+  .guide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .guide-header-left { display: flex; flex-direction: column; }
+  .guide-school {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    font-weight: 600;
+  }
+  .guide-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-top: 1px;
+  }
+  .guide-subtitle {
+    font-size: 11px;
+    color: var(--warm-gray);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .guide-header-badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1.5px solid var(--red);
+    border-radius: 3px;
+    padding: 5px 12px;
+    opacity: 0.7;
+    margin-top: 6px;
+  }
+  .guide-divider {
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    margin-bottom: 10px;
+    opacity: 0.6;
+  }
+  .guide-intro {
+    font-size: 10.5px;
+    color: var(--warm-gray);
+    font-style: italic;
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+  .guide-table {
+    width: 100%;
+    border-collapse: collapse;
+    flex: 1;
+    table-layout: fixed;
+  }
+  .guide-table thead th {
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 6px 8px;
+    border-bottom: 2px solid var(--navy);
+    vertical-align: bottom;
+    color: var(--warm-gray);
+  }
+  .guide-table thead th:first-child {
+    text-align: left;
+    color: var(--navy);
+    width: 14%;
+  }
+  .guide-table thead th.guide-level {
+    width: 21.5%;
+    text-align: left;
+  }
+  .guide-table thead .level-num {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    text-align: center;
+    line-height: 16px;
+    font-size: 9px;
+    font-weight: 800;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  .guide-table tbody tr {
+    border-bottom: 1px solid rgba(27,42,74,0.08);
+  }
+  .guide-table tbody tr:nth-child(odd) {
+    background: rgba(27,42,74,0.018);
+  }
+  .guide-table tbody td {
+    padding: 8px 8px;
+    vertical-align: top;
+    font-size: 9.5px;
+    line-height: 1.5;
+    color: #4A4A4A;
+  }
+  .guide-table tbody td:first-child {
+    font-weight: 700;
+    font-size: 10.5px;
+  }
+  .guide-criteria-icon { font-size: 13px; margin-right: 3px; }
+  .guide-table .gt-emphasis {
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .guide-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 8px;
+    padding-top: 5px;
+    border-top: 1px solid rgba(212,168,83,0.3);
+  }
+  .guide-footer-note {
+    font-size: 9px;
+    color: var(--warm-gray);
+    font-style: italic;
+  }
+  .guide-footer-right { text-align: right; }
+  .guide-footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    opacity: 0.3;
+  }
+  .guide-footer-year {
+    font-size: 8px;
+    color: var(--warm-gray-light);
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SCREEN CONTROLS ============ -->
+<div class="controls">
+  <h1>SAS IMPACT EXPO — JUDGING SCORECARD</h1>
+  <div class="controls-right">
+    <label>Layout:</label>
+    <select id="layoutSelect" onchange="toggleLayout(this.value)">
+      <option value="full">Full Page (1 per sheet)</option>
+      <option value="half">Half Page (2 per sheet)</option>
+    </select>
+    <button class="btn-print" onclick="window.print()">PRINT</button>
+  </div>
+</div>
+
+<!-- ============ FULL-PAGE SCORECARD ============ -->
+<div class="scorecard-page" id="scorecardFull">
+  <div class="top-stripe"></div>
+
+  <div class="scorecard-content">
+    <!-- Header -->
+    <div class="sc-header">
+      <div class="sc-header-left">
+        <div class="sc-school">Shanghai American School</div>
+        <div class="sc-title">Impact Expo Scorecard</div>
+        <div class="sc-subtitle">Grade 10 · Parent & Community Judge Evaluation</div>
+      </div>
+      <div class="sc-header-right">
+        <div class="sc-field">
+          <span class="sc-field-label">Student Name</span>
+          <div class="sc-field-line"></div>
+        </div>
+        <div class="sc-field">
+          <span class="sc-field-label">Judge Name</span>
+          <div class="sc-field-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sc-divider"></div>
+
+    <!-- Instructions -->
+    <div class="sc-instructions">
+      For each category, <strong>circle one rating</strong> that best describes the presentation you observed. Use the guiding question to help you decide. Feel free to add notes on the right.
+    </div>
+
+    <!-- Rubric Table -->
+    <table class="rubric-table">
+      <thead>
+        <tr>
+          <th>What to look for</th>
+          <th class="rating-col">Getting There</th>
+          <th class="rating-col">Good</th>
+          <th class="rating-col">Great</th>
+          <th class="rating-col">Outstanding</th>
+          <th class="notes-col">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Row 1: Community Impact -->
+        <tr class="row-community">
+          <td>
+            <div class="criteria-cell">
+              <div class="criteria-name"><span class="criteria-icon">🌍</span> Community Impact</div>
+              <div class="criteria-ttg">Community Engagement</div>
+              <div class="criteria-prompt">Does this project make a real, meaningful difference for others?</div>
+            </div>
+          </td>
+          <td class="rating-cell"><div class="rating-circle">1</div><div class="rating-label">Basic</div></td>
+          <td class="rating-cell"><div class="rating-circle">2</div><div class="rating-label">Developing</div></td>
+          <td class="rating-cell"><div class="rating-circle">3</div><div class="rating-label">Strong</div></td>
+          <td class="rating-cell"><div class="rating-circle">4</div><div class="rating-label">Exceptional</div></td>
+          <td class="notes-cell"></td>
+        </tr>
+
+        <!-- Row 2: Teamwork -->
+        <tr class="row-teamwork">
+          <td>
+            <div class="criteria-cell">
+              <div class="criteria-name"><span class="criteria-icon">🤝</span> Teamwork</div>
+              <div class="criteria-ttg">Collaboration</div>
+              <div class="criteria-prompt">Did they work together effectively and share responsibilities?</div>
+            </div>
+          </td>
+          <td class="rating-cell"><div class="rating-circle">1</div><div class="rating-label">Basic</div></td>
+          <td class="rating-cell"><div class="rating-circle">2</div><div class="rating-label">Developing</div></td>
+          <td class="rating-cell"><div class="rating-circle">3</div><div class="rating-label">Strong</div></td>
+          <td class="rating-cell"><div class="rating-circle">4</div><div class="rating-label">Exceptional</div></td>
+          <td class="notes-cell"></td>
+        </tr>
+
+        <!-- Row 3: Storytelling -->
+        <tr class="row-story">
+          <td>
+            <div class="criteria-cell">
+              <div class="criteria-name"><span class="criteria-icon">🎤</span> Storytelling</div>
+              <div class="criteria-ttg">Communication</div>
+              <div class="criteria-prompt">Did they explain their journey clearly and reflectively?</div>
+            </div>
+          </td>
+          <td class="rating-cell"><div class="rating-circle">1</div><div class="rating-label">Basic</div></td>
+          <td class="rating-cell"><div class="rating-circle">2</div><div class="rating-label">Developing</div></td>
+          <td class="rating-cell"><div class="rating-circle">3</div><div class="rating-label">Strong</div></td>
+          <td class="rating-cell"><div class="rating-circle">4</div><div class="rating-label">Exceptional</div></td>
+          <td class="notes-cell"></td>
+        </tr>
+
+        <!-- Row 4: Deep Thinking -->
+        <tr class="row-thinking">
+          <td>
+            <div class="criteria-cell">
+              <div class="criteria-name"><span class="criteria-icon">🧠</span> Deep Thinking</div>
+              <div class="criteria-ttg">Critical Thinking</div>
+              <div class="criteria-prompt">Did they show careful research, analysis, and logical reasoning?</div>
+            </div>
+          </td>
+          <td class="rating-cell"><div class="rating-circle">1</div><div class="rating-label">Basic</div></td>
+          <td class="rating-cell"><div class="rating-circle">2</div><div class="rating-label">Developing</div></td>
+          <td class="rating-cell"><div class="rating-circle">3</div><div class="rating-label">Strong</div></td>
+          <td class="rating-cell"><div class="rating-circle">4</div><div class="rating-label">Exceptional</div></td>
+          <td class="notes-cell"></td>
+        </tr>
+
+        <!-- Row 5: Creative Approach -->
+        <tr class="row-creative">
+          <td>
+            <div class="criteria-cell">
+              <div class="criteria-name"><span class="criteria-icon">💡</span> Creative Approach</div>
+              <div class="criteria-ttg">Creativity</div>
+              <div class="criteria-prompt">Did they try something new, original, or unexpected?</div>
+            </div>
+          </td>
+          <td class="rating-cell"><div class="rating-circle">1</div><div class="rating-label">Basic</div></td>
+          <td class="rating-cell"><div class="rating-circle">2</div><div class="rating-label">Developing</div></td>
+          <td class="rating-cell"><div class="rating-circle">3</div><div class="rating-label">Strong</div></td>
+          <td class="rating-cell"><div class="rating-circle">4</div><div class="rating-label">Exceptional</div></td>
+          <td class="notes-cell"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Footer -->
+    <div class="sc-footer">
+      <div class="sc-footer-left">
+        <div class="sc-standout">
+          <span class="sc-standout-label">What stood out most?</span>
+          <div class="sc-standout-line"></div>
+        </div>
+        <div class="sc-standout">
+          <span class="sc-standout-label">One suggestion</span>
+          <div class="sc-standout-line"></div>
+        </div>
+      </div>
+      <div class="sc-footer-right">
+        <div class="sc-footer-brand">SAS Impact Expo</div>
+        <div class="sc-footer-year">2 0 2 6</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar"></div>
+</div>
+
+<!-- ============ HALF-PAGE COPIES (hidden by default) ============ -->
+<div class="scorecard-page half-page" id="scorecardHalf1" style="display:none;">
+  <div class="top-stripe"></div>
+  <div class="scorecard-content">
+    <div class="sc-header">
+      <div class="sc-header-left">
+        <div class="sc-school">Shanghai American School</div>
+        <div class="sc-title">Impact Expo Scorecard</div>
+        <div class="sc-subtitle">Grade 10 · Parent & Community Judge</div>
+      </div>
+      <div class="sc-header-right">
+        <div class="sc-field">
+          <span class="sc-field-label">Student</span>
+          <div class="sc-field-line" style="width:150px"></div>
+        </div>
+        <div class="sc-field">
+          <span class="sc-field-label">Judge</span>
+          <div class="sc-field-line" style="width:150px"></div>
+        </div>
+      </div>
+    </div>
+    <div class="sc-divider"></div>
+    <div class="sc-instructions">Circle one rating per row. <strong>1</strong> = Getting There · <strong>2</strong> = Good · <strong>3</strong> = Great · <strong>4</strong> = Outstanding</div>
+    <table class="rubric-table">
+      <thead>
+        <tr>
+          <th>Criteria</th>
+          <th class="rating-col">1</th>
+          <th class="rating-col">2</th>
+          <th class="rating-col">3</th>
+          <th class="rating-col">4</th>
+          <th class="notes-col">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-community"><td><div class="criteria-cell"><div class="criteria-name"><span class="criteria-icon">🌍</span> Community Impact</div><div class="criteria-prompt">Real, meaningful difference for others?</div></div></td><td class="rating-cell"><div class="rating-circle">1</div></td><td class="rating-cell"><div class="rating-circle">2</div></td><td class="rating-cell"><div class="rating-circle">3</div></td><td class="rating-cell"><div class="rating-circle">4</div></td><td class="notes-cell"></td></tr>
+        <tr class="row-teamwork"><td><div class="criteria-cell"><div class="criteria-name"><span class="criteria-icon">🤝</span> Teamwork</div><div class="criteria-prompt">Worked together, shared responsibilities?</div></div></td><td class="rating-cell"><div class="rating-circle">1</div></td><td class="rating-cell"><div class="rating-circle">2</div></td><td class="rating-cell"><div class="rating-circle">3</div></td><td class="rating-cell"><div class="rating-circle">4</div></td><td class="notes-cell"></td></tr>
+        <tr class="row-story"><td><div class="criteria-cell"><div class="criteria-name"><span class="criteria-icon">🎤</span> Storytelling</div><div class="criteria-prompt">Explained their journey clearly?</div></div></td><td class="rating-cell"><div class="rating-circle">1</div></td><td class="rating-cell"><div class="rating-circle">2</div></td><td class="rating-cell"><div class="rating-circle">3</div></td><td class="rating-cell"><div class="rating-circle">4</div></td><td class="notes-cell"></td></tr>
+        <tr class="row-thinking"><td><div class="criteria-cell"><div class="criteria-name"><span class="criteria-icon">🧠</span> Deep Thinking</div><div class="criteria-prompt">Careful research and logical reasoning?</div></div></td><td class="rating-cell"><div class="rating-circle">1</div></td><td class="rating-cell"><div class="rating-circle">2</div></td><td class="rating-cell"><div class="rating-circle">3</div></td><td class="rating-cell"><div class="rating-circle">4</div></td><td class="notes-cell"></td></tr>
+        <tr class="row-creative"><td><div class="criteria-cell"><div class="criteria-name"><span class="criteria-icon">💡</span> Creative Approach</div><div class="criteria-prompt">Something new, original, or unexpected?</div></div></td><td class="rating-cell"><div class="rating-circle">1</div></td><td class="rating-cell"><div class="rating-circle">2</div></td><td class="rating-cell"><div class="rating-circle">3</div></td><td class="rating-cell"><div class="rating-circle">4</div></td><td class="notes-cell"></td></tr>
+      </tbody>
+    </table>
+    <div class="sc-footer" style="margin-top:4px; padding-top:4px;">
+      <div class="sc-standout"><span class="sc-standout-label">Standout moment?</span><div class="sc-standout-line" style="width:260px"></div></div>
+      <div class="sc-footer-right"><div class="sc-footer-brand">SAS Impact Expo</div><div class="sc-footer-year">2 0 2 6</div></div>
+    </div>
+  </div>
+  <div class="bottom-bar"></div>
+</div>
+
+<div class="scorecard-page half-page" id="scorecardHalf2" style="display:none;">
+  <div class="top-stripe"></div>
+  <div class="scorecard-content">
+    <div class="sc-header">
+      <div class="sc-header-left">
+        <div class="sc-school">Shanghai American School</div>
+        <div class="sc-title">Impact Expo Scorecard</div>
+        <div class="sc-subtitle">Grade 10 · Parent & Community Judge</div>
+      </div>
+      <div class="sc-header-right">
+        <div class="sc-field">
+          <span class="sc-field-label">Student</span>
+          <div class="sc-field-line" style="width:150px"></div>
+        </div>
+        <div class="sc-field">
+          <span class="sc-field-label">Judge</span>
+          <div class="sc-field-line" style="width:150px"></div>
+        </div>
+      </div>
+    </div>
+    <div class="sc-divider"></div>
+    <div class="sc-instructions">Circle one rating per row. <strong>1</strong> = Getting There · <strong>2</strong> = Good · <strong>3</strong> = Great · <strong>4</strong> = Outstanding</div>
+    <table class="rubric-table">
+      <thead>
+        <tr>
+          <th>Criteria</th>
+          <th class="rating-col">1</th>
+          <th class="rating-col">2</th>
+          <th class="rating-col">3</th>
+          <th class="rating-col">4</th>
+          <th class="notes-col">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-community"><td><div class="criteria-cell"><div class="criteria-name"><span class="criteria-icon">🌍</span> Community Impact</div><div class="criteria-prompt">Real, meaningful difference for others?</div></div></td><td class="rating-cell"><div class="rating-circle">1</div></td><td class="rating-cell"><div class="rating-circle">2</div></td><td class="rating-cell"><div class="rating-circle">3</div></td><td class="rating-cell"><div class="rating-circle">4</div></td><td class="notes-cell"></td></tr>
+        <tr class="row-teamwork"><td><div class="criteria-cell"><div class="criteria-name"><span class="criteria-icon">🤝</span> Teamwork</div><div class="criteria-prompt">Worked together, shared responsibilities?</div></div></td><td class="rating-cell"><div class="rating-circle">1</div></td><td class="rating-cell"><div class="rating-circle">2</div></td><td class="rating-cell"><div class="rating-circle">3</div></td><td class="rating-cell"><div class="rating-circle">4</div></td><td class="notes-cell"></td></tr>
+        <tr class="row-story"><td><div class="criteria-cell"><div class="criteria-name"><span class="criteria-icon">🎤</span> Storytelling</div><div class="criteria-prompt">Explained their journey clearly?</div></div></td><td class="rating-cell"><div class="rating-circle">1</div></td><td class="rating-cell"><div class="rating-circle">2</div></td><td class="rating-cell"><div class="rating-circle">3</div></td><td class="rating-cell"><div class="rating-circle">4</div></td><td class="notes-cell"></td></tr>
+        <tr class="row-thinking"><td><div class="criteria-cell"><div class="criteria-name"><span class="criteria-icon">🧠</span> Deep Thinking</div><div class="criteria-prompt">Careful research and logical reasoning?</div></div></td><td class="rating-cell"><div class="rating-circle">1</div></td><td class="rating-cell"><div class="rating-circle">2</div></td><td class="rating-cell"><div class="rating-circle">3</div></td><td class="rating-cell"><div class="rating-circle">4</div></td><td class="notes-cell"></td></tr>
+        <tr class="row-creative"><td><div class="criteria-cell"><div class="criteria-name"><span class="criteria-icon">💡</span> Creative Approach</div><div class="criteria-prompt">Something new, original, or unexpected?</div></div></td><td class="rating-cell"><div class="rating-circle">1</div></td><td class="rating-cell"><div class="rating-circle">2</div></td><td class="rating-cell"><div class="rating-circle">3</div></td><td class="rating-cell"><div class="rating-circle">4</div></td><td class="notes-cell"></td></tr>
+      </tbody>
+    </table>
+    <div class="sc-footer" style="margin-top:4px; padding-top:4px;">
+      <div class="sc-standout"><span class="sc-standout-label">Standout moment?</span><div class="sc-standout-line" style="width:260px"></div></div>
+      <div class="sc-footer-right"><div class="sc-footer-brand">SAS Impact Expo</div><div class="sc-footer-year">2 0 2 6</div></div>
+    </div>
+  </div>
+  <div class="bottom-bar"></div>
+</div>
+
+<!-- ============ TTG QUICK GUIDE ============ -->
+<div class="guide-page" id="ttgGuide">
+  <div class="top-stripe"></div>
+  <div class="guide-content">
+    <div class="guide-header">
+      <div class="guide-header-left">
+        <div class="guide-school">Shanghai American School</div>
+        <div class="guide-title">Rating Quick Guide</div>
+        <div class="guide-subtitle">What does each score look like? Use this as a reference while you evaluate.</div>
+      </div>
+      <div class="guide-header-badge">Reference Sheet</div>
+    </div>
+    <div class="guide-divider"></div>
+    <div class="guide-intro">
+      This guide helps you calibrate your ratings. For each category, read across to see what a 1, 2, 3, or 4 looks like in practice.
+    </div>
+    <table class="guide-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th class="guide-level"><span class="level-num">1</span> Getting There</th>
+          <th class="guide-level"><span class="level-num">2</span> Good</th>
+          <th class="guide-level"><span class="level-num">3</span> Great</th>
+          <th class="guide-level"><span class="level-num">4</span> Outstanding</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="guide-criteria-icon">🌍</span> Community Impact</td>
+          <td>The project addresses a need, but the impact on others is unclear or limited.</td>
+          <td>The project benefits others and shows some understanding of the community's needs.</td>
+          <td>The project creates a <span class="gt-emphasis">meaningful, measurable difference</span> for a specific community.</td>
+          <td>The project drives <span class="gt-emphasis">lasting change</span>, with clear evidence of deep community understanding and engagement.</td>
+        </tr>
+        <tr>
+          <td><span class="guide-criteria-icon">🤝</span> Teamwork</td>
+          <td>Participation is uneven; some members seem to carry the work.</td>
+          <td>Team members contribute, but roles and responsibilities aren't always clear.</td>
+          <td>Everyone <span class="gt-emphasis">contributes consistently</span> and supports each other's ideas respectfully.</td>
+          <td>The team <span class="gt-emphasis">elevates each other</span> — building on ideas, resolving disagreements, and operating like a well-oiled machine.</td>
+        </tr>
+        <tr>
+          <td><span class="guide-criteria-icon">🎤</span> Storytelling</td>
+          <td>Facts are shared, but the presentation feels flat or reads from notes.</td>
+          <td>Ideas are communicated clearly enough, with some engaging moments.</td>
+          <td>The presentation <span class="gt-emphasis">tells a compelling story</span> — visuals and speech work together with confidence.</td>
+          <td>The audience is <span class="gt-emphasis">captivated</span> — the presentation feels professional, polished, and emotionally resonant.</td>
+        </tr>
+        <tr>
+          <td><span class="guide-criteria-icon">🧠</span> Deep Thinking</td>
+          <td>Basic understanding is shown, but analysis stays on the surface.</td>
+          <td>Ideas are explained with some connections, though reasoning could go deeper.</td>
+          <td>Evidence from <span class="gt-emphasis">multiple sources</span> is used to draw logical, well-supported conclusions.</td>
+          <td>Analysis reveals <span class="gt-emphasis">patterns, counterexamples, and nuance</span> — going well beyond what was expected.</td>
+        </tr>
+        <tr>
+          <td><span class="guide-criteria-icon">💡</span> Creative Approach</td>
+          <td>The project follows a standard or predictable approach.</td>
+          <td>There are some interesting choices, though the approach is mostly conventional.</td>
+          <td>The project takes a <span class="gt-emphasis">fresh, effective approach</span> that clearly fits its goals.</td>
+          <td>The project is <span class="gt-emphasis">highly original</span> — showing creative risk-taking that leads to a uniquely compelling result.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="guide-footer">
+      <div class="guide-footer-note">Tip: A score of 3 ("Great") represents strong, grade-level performance. Reserve 4 ("Outstanding") for truly exceptional work.</div>
+      <div class="guide-footer-right">
+        <div class="guide-footer-brand">SAS Impact Expo</div>
+        <div class="guide-footer-year">2 0 2 6</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar"></div>
+</div>
+
+<script>
+  function toggleLayout(mode) {
+    const full = document.getElementById('scorecardFull');
+    const half1 = document.getElementById('scorecardHalf1');
+    const half2 = document.getElementById('scorecardHalf2');
+    const guide = document.getElementById('ttgGuide');
+    if (mode === 'half') {
+      full.style.display = 'none';
+      half1.style.display = 'flex';
+      half2.style.display = 'flex';
+      guide.style.display = 'flex';
+    } else {
+      full.style.display = 'flex';
+      half1.style.display = 'none';
+      half2.style.display = 'none';
+      guide.style.display = 'flex';
+    }
+  }
+</script>
+</body>
+</html>

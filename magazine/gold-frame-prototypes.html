@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rear View — Back Cover Options</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --gold: #c9a84c; --cover-scale: 0.49; }
+    body {
+      font-family: 'Inter', sans-serif; background: #050505; color: #ccc;
+      min-height: 100vh; padding: 2rem 1.5rem 5rem;
+    }
+    h1.page-title {
+      font-family: 'Cinzel', serif; font-size: 1.4rem;
+      text-align: center; margin-bottom: 0.3rem; color: var(--gold); letter-spacing: 4px;
+    }
+    p.subtitle {
+      text-align: center; color: #555; font-size: 0.75rem; margin-bottom: 2rem;
+      font-weight: 300; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.7;
+    }
+    .section-divider {
+      display: flex; align-items: center; justify-content: center;
+      color: #444; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase;
+      margin: 3rem auto 1.5rem; max-width: 1400px;
+    }
+    .section-divider::before, .section-divider::after {
+      content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.08); margin: 0 1rem;
+    }
+
+    /* Pair layout: front + back side by side */
+    .pair {
+      display: flex; gap: 0; justify-content: center; align-items: flex-start; margin: 0 auto 1.5rem;
+    }
+    .pair .side { display: flex; flex-direction: column; align-items: center; }
+    .pair .spine {
+      width: 12px; background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 50%, #1a1a1a 100%);
+      border-left: 1px solid rgba(201,168,76,0.15); border-right: 1px solid rgba(201,168,76,0.15);
+      align-self: stretch; margin-top: 0; flex-shrink: 0;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
+    }
+    .pair-label {
+      text-align: center; margin-top: 0.6rem; font-size: 0.65rem;
+      font-weight: 500; color: #555; letter-spacing: 1px; text-transform: uppercase;
+    }
+
+    /* 3-col grid for standalone options */
+    .grid-3 {
+      display: grid; grid-template-columns: repeat(3, 400px);
+      gap: 2.5rem 2rem; max-width: 1400px; margin: 0 auto; justify-content: center;
+    }
+
+    .cover-wrapper {
+      width: 400px; height: calc(400px * 11 / 8.5); overflow: hidden; border-radius: 2px;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.7); position: relative;
+    }
+    .cover {
+      position: absolute; top: 0; left: 0; width: 8.5in; height: 11in;
+      transform-origin: top left; transform: scale(var(--cover-scale));
+      overflow: hidden; background: #000;
+    }
+    .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .option { display: flex; flex-direction: column; align-items: center; }
+    .option-label {
+      text-align: center; margin-top: 0.8rem; font-size: 0.72rem;
+      font-weight: 600; color: var(--gold); letter-spacing: 2px; text-transform: uppercase;
+    }
+    .option-desc {
+      text-align: center; margin-top: 0.25rem; font-size: 0.65rem;
+      color: #555; font-weight: 300; line-height: 1.6; max-width: 380px;
+    }
+
+    /* Front cover text */
+    .front-cover .overlay {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+      padding: 0 0.8in 0.5in;
+      background: linear-gradient(180deg, transparent 0%, transparent 55%,
+        rgba(0,0,0,0.25) 68%, rgba(0,0,0,0.7) 82%, rgba(0,0,0,0.92) 100%);
+    }
+    .front-cover .title-line {
+      font-family: 'Cinzel', serif; font-weight: 700; font-size: 21pt;
+      letter-spacing: 4px; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      text-align: center; line-height: 1.4; white-space: nowrap;
+    }
+    .front-cover .title-line .accent { color: var(--gold); font-weight: 900; }
+    .front-cover .cover-rule { width: 45px; height: 2px; background: var(--gold); margin: 0.1in auto; }
+    .front-cover .subject {
+      font-family: 'Cinzel', serif; font-weight: 600; font-size: 17pt;
+      letter-spacing: 5px; color: rgba(255,255,255,0.9);
+    }
+    .front-cover .sub {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 12pt; color: rgba(255,255,255,0.75); margin-top: 0.06in;
+    }
+    .front-cover .edition {
+      font-family: 'Inter', sans-serif; font-size: 7pt; letter-spacing: 4px;
+      text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.12in;
+    }
+
+    /* D3 halo */
+    .d3-frame .vignette {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg,
+        rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 12%, transparent 22%,
+        transparent 55%, rgba(0,0,0,0.25) 68%, rgba(0,0,0,0.7) 82%, rgba(0,0,0,0.92) 100%);
+      pointer-events: none;
+    }
+    .d3-frame .frame-outer {
+      position: absolute; top: 0.25in; left: 0.25in; right: 0.25in; bottom: 0.25in;
+      border: 0.5px solid rgba(201,168,76,0.2);
+      box-shadow: 0 0 20px rgba(201,168,76,0.06), inset 0 0 20px rgba(201,168,76,0.04);
+      z-index: 5; pointer-events: none;
+    }
+    .d3-frame .frame-inner {
+      position: absolute; top: 0.38in; left: 0.38in; right: 0.38in; bottom: 0.38in;
+      border: 1px solid rgba(201,168,76,0.4);
+      box-shadow: 0 0 15px rgba(201,168,76,0.12), 0 0 35px rgba(201,168,76,0.06), inset 0 0 15px rgba(201,168,76,0.08);
+      z-index: 5; pointer-events: none;
+    }
+    .d3-frame .text-block {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 10;
+      display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+      padding: 0 0.8in 0.5in;
+    }
+
+    /* Back cover text */
+    .back-page .back-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      align-items: center; text-align: center; padding-bottom: 1.2in;
+      background: linear-gradient(180deg,
+        rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.0) 25%,
+        rgba(0,0,0,0.0) 55%, rgba(0,0,0,0.65) 100%);
+    }
+    .back-page .back-sub {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 11pt; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 4in;
+    }
+    .back-page .back-school {
+      font-family: 'Cinzel', serif; font-size: 12pt; font-weight: 600;
+      letter-spacing: 5px; text-transform: uppercase;
+      color: rgba(255,255,255,0.85); margin-top: 0.35in;
+    }
+
+    .note {
+      text-align: center; color: #333; font-size: 0.62rem; font-style: italic;
+      margin-top: 0.5rem; letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-title">FRONT ↔ BACK: THE DRAGON TURNS AWAY</h1>
+  <p class="subtitle">The concept: when you close the magazine, the front shows the jade dragon facing you. The back shows it turned away — as if the dragon walks into the story. Three rear-view variants shown paired with the front cover.</p>
+
+  <!-- ═══════════════ PAIR 1: FRONT + REAR INTACT ═══════════════ -->
+  <div class="section-divider">Pair 1 — Intact Dragon, Rear View (same dragon, turned away)</div>
+  <div class="pair">
+    <div class="side">
+      <div class="cover-wrapper">
+        <div class="cover back-page d3-frame">
+          <img src="covers/back_rear_intact.png" alt="Dragon rear view intact">
+          <div class="vignette"></div><div class="frame-outer"></div><div class="frame-inner"></div>
+          <div class="back-overlay">
+            <div class="back-sub">The dynasty fell. The stories remain.</div>
+            <div class="back-school">Asian History · Grade 9 · Spring 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-label">← Back Cover</div>
+    </div>
+    <div class="spine"></div>
+    <div class="side">
+      <div class="cover-wrapper">
+        <div class="cover front-cover d3-frame">
+          <img src="covers/v3b_kintsugi.png" alt="Jade Dragon">
+          <div class="vignette"></div><div class="frame-outer"></div><div class="frame-inner"></div>
+          <div class="text-block">
+            <div class="title-line">POLITICAL CARTOON <span class="accent">GAZETTE</span></div>
+            <div class="cover-rule"></div>
+            <div class="subject">ASIAN HISTORY</div>
+            <div class="sub">The Fall of the Qing Dynasty</div>
+            <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-label">Front Cover →</div>
+    </div>
+  </div>
+  <p class="note">The same jade dragon, intact, with matching crimson gradient. Front faces you; back turns away into darkness.</p>
+
+  <!-- ═══════════════ PAIR 2: FRONT + REAR SKELETON ═══════════════ -->
+  <div class="section-divider">Pair 2 — Skeleton Rear View (the dragon's hidden truth)</div>
+  <div class="pair">
+    <div class="side">
+      <div class="cover-wrapper">
+        <div class="cover back-page d3-frame">
+          <img src="covers/back_rear_skeleton.png" alt="Dragon rear view skeleton">
+          <div class="vignette"></div><div class="frame-outer"></div><div class="frame-inner"></div>
+          <div class="back-overlay">
+            <div class="back-sub">The dynasty fell. The stories remain.</div>
+            <div class="back-school">Asian History · Grade 9 · Spring 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-label">← Back Cover</div>
+    </div>
+    <div class="spine"></div>
+    <div class="side">
+      <div class="cover-wrapper">
+        <div class="cover front-cover d3-frame">
+          <img src="covers/v3b_kintsugi.png" alt="Jade Dragon">
+          <div class="vignette"></div><div class="frame-outer"></div><div class="frame-inner"></div>
+          <div class="text-block">
+            <div class="title-line">POLITICAL CARTOON <span class="accent">GAZETTE</span></div>
+            <div class="cover-rule"></div>
+            <div class="subject">ASIAN HISTORY</div>
+            <div class="sub">The Fall of the Qing Dynasty</div>
+            <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-label">Front Cover →</div>
+    </div>
+  </div>
+  <p class="note">From the front: a beautiful jade dragon. From behind: a jade skeleton. The empire's facade vs. its reality.</p>
+
+  <!-- ═══════════════ PAIR 3: FRONT + REAR DISSOLVING ═══════════════ -->
+  <div class="section-divider">Pair 3 — Dissolving Rear View (the dragon crumbles from behind)</div>
+  <div class="pair">
+    <div class="side">
+      <div class="cover-wrapper">
+        <div class="cover back-page d3-frame">
+          <img src="covers/back_rear_dissolve.png" alt="Dragon rear view dissolving">
+          <div class="vignette"></div><div class="frame-outer"></div><div class="frame-inner"></div>
+          <div class="back-overlay">
+            <div class="back-sub">The dynasty fell. The stories remain.</div>
+            <div class="back-school">Asian History · Grade 9 · Spring 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-label">← Back Cover</div>
+    </div>
+    <div class="spine"></div>
+    <div class="side">
+      <div class="cover-wrapper">
+        <div class="cover front-cover d3-frame">
+          <img src="covers/v3b_kintsugi.png" alt="Jade Dragon">
+          <div class="vignette"></div><div class="frame-outer"></div><div class="frame-inner"></div>
+          <div class="text-block">
+            <div class="title-line">POLITICAL CARTOON <span class="accent">GAZETTE</span></div>
+            <div class="cover-rule"></div>
+            <div class="subject">ASIAN HISTORY</div>
+            <div class="sub">The Fall of the Qing Dynasty</div>
+            <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-label">Front Cover →</div>
+    </div>
+  </div>
+  <p class="note">Intact from the front, crumbling from behind. Gold kintsugi veins glow as the jade shatters away. The dynasty's concealed decline.</p>
+
+</body>
+</html>

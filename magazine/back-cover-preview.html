@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Back Cover Options — The Qing Gazette</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #080808;
+      color: #ccc;
+      min-height: 100vh;
+      padding: 3rem 2rem 6rem;
+    }
+
+    h1.page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 0.4rem;
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 3px;
+    }
+    p.subtitle {
+      text-align: center;
+      color: #777;
+      font-size: 0.88rem;
+      margin-bottom: 3rem;
+      font-weight: 300;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cover {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 8.5 / 11;
+      overflow: hidden;
+      border-radius: 3px;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.6);
+      background: #111;
+    }
+    .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
+    }
+
+    .cover .overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    /* ── Option A: Imperial Seal ── */
+    .opt-seal .overlay {
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.25) 20%, rgba(0,0,0,0.7) 100%);
+      justify-content: flex-end;
+      padding-bottom: 2rem;
+    }
+    .opt-seal .back-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 13pt;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 4px;
+      margin-bottom: 0.3rem;
+    }
+    .opt-seal .back-rule {
+      width: 40px; height: 2px;
+      background: #c9a84c;
+      margin: 0.4rem auto;
+    }
+    .opt-seal .back-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 10pt;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+    .opt-seal .back-school {
+      font-family: 'Inter', sans-serif;
+      font-size: 6.5pt;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.6rem;
+    }
+
+    /* ── Option B: Cartoonist's Studio ── */
+    .opt-studio .overlay {
+      background: linear-gradient(180deg,
+        rgba(0,0,0,0.5) 0%,
+        rgba(0,0,0,0.1) 30%,
+        rgba(0,0,0,0.1) 60%,
+        rgba(0,0,0,0.75) 100%
+      );
+      justify-content: flex-end;
+      padding-bottom: 1.5rem;
+    }
+    .opt-studio .back-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 11pt;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 3px;
+      margin-bottom: 0.2rem;
+    }
+    .opt-studio .back-rule {
+      width: 35px; height: 1.5px;
+      background: #c9a84c;
+      margin: 0.35rem auto;
+    }
+    .opt-studio .back-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 9.5pt;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      max-width: 260px;
+    }
+    .opt-studio .back-school {
+      font-family: 'Inter', sans-serif;
+      font-size: 6.5pt;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-top: 0.5rem;
+    }
+
+    /* ── Option C: Fallen Dynasty ── */
+    .opt-fallen .overlay {
+      background: linear-gradient(180deg,
+        rgba(0,0,0,0.3) 0%,
+        rgba(0,0,0,0.0) 25%,
+        rgba(0,0,0,0.0) 55%,
+        rgba(0,0,0,0.65) 100%
+      );
+      justify-content: flex-end;
+      padding-bottom: 1.8rem;
+    }
+    .opt-fallen .back-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 12pt;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 4px;
+    }
+    .opt-fallen .back-rule {
+      width: 35px; height: 2px;
+      background: #cc3333;
+      margin: 0.4rem auto;
+    }
+    .opt-fallen .back-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 10pt;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+    .opt-fallen .back-school {
+      font-family: 'Inter', sans-serif;
+      font-size: 6.5pt;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-top: 0.6rem;
+    }
+
+    /* ── Option D: Kintsugi Jade ── */
+    .opt-kintsugi .overlay {
+      background: radial-gradient(ellipse at center bottom, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.65) 100%);
+      justify-content: center;
+    }
+    .opt-kintsugi .inner-frame {
+      border: 1px solid rgba(201,168,76,0.35);
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+    }
+    .opt-kintsugi .back-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 400;
+      font-size: 12pt;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 4px;
+      line-height: 1.4;
+    }
+    .opt-kintsugi .back-title .accent {
+      color: #c9a84c;
+      font-weight: 700;
+    }
+    .opt-kintsugi .back-rule {
+      width: 30px; height: 1px;
+      background: #c9a84c;
+      margin: 0.5rem auto;
+    }
+    .opt-kintsugi .back-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 9.5pt;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 250px;
+      margin: 0 auto;
+    }
+    .opt-kintsugi .back-school {
+      font-family: 'Inter', sans-serif;
+      font-size: 6.5pt;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-top: 0.6rem;
+    }
+
+    /* Labels */
+    .option-label {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #ddd;
+      letter-spacing: 1px;
+    }
+    .option-desc {
+      text-align: center;
+      margin-top: 0.3rem;
+      font-size: 0.75rem;
+      color: #777;
+      font-weight: 300;
+      line-height: 1.6;
+      padding: 0 0.5rem;
+      max-width: 420px;
+    }
+    .option-pairing {
+      text-align: center;
+      margin-top: 0.3rem;
+      font-size: 0.68rem;
+      color: #c9a84c;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="page-title">BACK COVER OPTIONS</h1>
+  <p class="subtitle">
+    Four designs that extend the front cover's narrative without duplicating it.
+    Each pairs with either the Jade Dragon or Forbidden City front cover.
+    Pick the one that feels like the right "closing" for the magazine.
+  </p>
+
+  <div class="options-grid">
+
+    <!-- A: Imperial Seal -->
+    <div class="option">
+      <div class="cover opt-seal">
+        <img src="covers/back_seal.png" alt="Imperial seal impressions on aged parchment">
+        <div class="overlay">
+          <div class="back-title">THE ART OF REBELLION</div>
+          <div class="back-rule"></div>
+          <div class="back-sub">
+            130 student voices. Four centuries of history.<br>
+            One dynasty's fall, seen through the eyes of a new generation.
+          </div>
+          <div class="back-school">Asian History · Grade 9 · Spring 2026</div>
+        </div>
+      </div>
+      <div class="option-label">A — The Imperial Seal</div>
+      <div class="option-desc">Crimson seal impressions on aged parchment. The stamp of authority — now a relic. Connects to the theme of power and its dissolution.</div>
+      <div class="option-pairing">✦ Pairs with either front cover</div>
+    </div>
+
+    <!-- B: Cartoonist's Studio -->
+    <div class="option">
+      <div class="cover opt-studio">
+        <img src="covers/back_studio.png" alt="Overhead view of cartoon sketches, ink, and brushes">
+        <div class="overlay">
+          <div class="back-title">THE ART OF REBELLION</div>
+          <div class="back-rule"></div>
+          <div class="back-sub">
+            Where ink meets history.<br>
+            130 young cartoonists pick up the brush.
+          </div>
+          <div class="back-school">Asian History · Grade 9 · Spring 2026</div>
+        </div>
+      </div>
+      <div class="option-label">B — The Cartoonist's Table</div>
+      <div class="option-desc">A bird's-eye view of scattered sketches, ink stones, and brushes. Celebrates the creative process — the "making" behind the exhibition.</div>
+      <div class="option-pairing">✦ Pairs with either front cover</div>
+    </div>
+
+    <!-- C: Fallen Dynasty -->
+    <div class="option">
+      <div class="cover opt-fallen">
+        <img src="covers/back_fallen.png" alt="Rain-slicked Forbidden City floor with lanterns">
+        <div class="overlay">
+          <div class="back-title">THE ART OF REBELLION</div>
+          <div class="back-rule"></div>
+          <div class="back-sub">
+            The dynasty fell. The stories remain.<br>
+            130 voices ask why — and what it meant.
+          </div>
+          <div class="back-school">Asian History · Grade 9 · Spring 2026</div>
+        </div>
+      </div>
+      <div class="option-label">C — The Fallen Court</div>
+      <div class="option-desc">Rain-slicked palace floors, amber lanterns, scattered scrolls. A contemplative epilogue — the aftermath of empire. A cinematic closing shot.</div>
+      <div class="option-pairing">✦ Best with: Forbidden City front cover</div>
+    </div>
+
+    <!-- D: Kintsugi Jade -->
+    <div class="option">
+      <div class="cover opt-kintsugi">
+        <img src="covers/back_kintsugi.png" alt="Cracked jade with gold kintsugi veins">
+        <div class="overlay">
+          <div class="inner-frame">
+            <div class="back-title">THE ART OF<br><span class="accent">REBELLION</span></div>
+            <div class="back-rule"></div>
+            <div class="back-sub">
+              What breaks can be reborn in gold.<br>
+              130 students find beauty in the fractures.
+            </div>
+            <div class="back-school">Asian History · Grade 9 · Spring 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="option-label">D — The Kintsugi Dragon</div>
+      <div class="option-desc">Cracked jade repaired with gold kintsugi veins against crimson. A visual metaphor: finding beauty in what was broken. Directly mirrors the Jade Dragon front cover.</div>
+      <div class="option-pairing">✦ Best with: Jade Dragon front cover</div>
+    </div>
+
+  </div>
+</body>
+</html>

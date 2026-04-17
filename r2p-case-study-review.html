@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>R2P Case Study Review | IB Global Politics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --bg: #0a0e1a;
+            --surface: rgba(20, 28, 50, 0.85);
+            --surface2: rgba(15, 22, 42, 0.9);
+            --border: rgba(0, 255, 255, 0.12);
+            --accent: #00ffff;
+            --accent2: #ff00ff;
+            --gold: #fbbf24;
+            --danger: #ff3366;
+            --green: #00ff88;
+            --text: #e8ecf4;
+            --muted: #8899bb;
+            --radius: 12px;
+            --glow-cyan: 0 0 15px rgba(0, 255, 255, 0.25);
+            --glow-magenta: 0 0 15px rgba(255, 0, 255, 0.25)
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1e2e 100%);
+            color: var(--text);
+            line-height: 1.75;
+            min-height: 100vh;
+            position: relative
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0, 255, 255, 0.02) 0px, transparent 1px, transparent 2px, rgba(0, 255, 255, 0.02) 3px);
+            pointer-events: none;
+            z-index: 9999;
+            animation: scanlines 10s linear infinite
+        }
+
+        @keyframes scanlines {
+            0% {
+                transform: translateY(0)
+            }
+
+            100% {
+                transform: translateY(20px)
+            }
+        }
+
+        .hero {
+            padding: 64px 24px 56px;
+            text-align: center;
+            background: radial-gradient(ellipse 120% 60% at 50% 0%, rgba(0, 255, 255, .08) 0%, transparent 70%), linear-gradient(180deg, rgba(20, 28, 50, .95) 0%, var(--bg) 100%);
+            border-bottom: 2px solid rgba(0, 255, 255, .3);
+            box-shadow: 0 4px 30px rgba(0, 255, 255, .1)
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 255, 255, .08);
+            border: 1px solid rgba(0, 255, 255, .35);
+            color: #00ffff;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, .15)
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.9rem, 4.5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(90deg, #00ffff 0%, #00ff88 40%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            max-width: 800px;
+            margin: 0 auto 16px;
+            text-shadow: 0 0 40px rgba(0, 255, 255, .3)
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--muted);
+            max-width: 640px;
+            margin: 0 auto 28px
+        }
+
+        .meta-pills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: .76rem;
+            font-weight: 600;
+            border: 1px solid
+        }
+
+        .pill-blue {
+            background: rgba(0, 255, 255, .08);
+            border-color: rgba(0, 255, 255, .30);
+            color: #00ccee
+        }
+
+        .pill-gold {
+            background: rgba(251, 191, 36, .08);
+            border-color: rgba(251, 191, 36, .30);
+            color: #fbbf24
+        }
+
+        .pill-purple {
+            background: rgba(255, 0, 255, .08);
+            border-color: rgba(255, 0, 255, .30);
+            color: #dd55ff
+        }
+
+        .pill-danger {
+            background: rgba(255, 51, 102, .08);
+            border-color: rgba(255, 51, 102, .30);
+            color: #ff3366
+        }
+
+        .pill-green {
+            background: rgba(0, 255, 136, .08);
+            border-color: rgba(0, 255, 136, .30);
+            color: #00ff88
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 0 24px 80px
+        }
+
+        .section {
+            margin-top: 56px;
+            scroll-margin-top: 20px
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 22px
+        }
+
+        .section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            font-size: .88rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            color: #fff
+        }
+
+        .num-blue {
+            background: linear-gradient(135deg, #0088aa, #00ffff);
+            color: #0a0e1a;
+            box-shadow: 0 0 12px rgba(0, 255, 255, .3)
+        }
+
+        .num-gold {
+            background: linear-gradient(135deg, #cc9900, #fbbf24);
+            color: #0a0e1a;
+            box-shadow: 0 0 12px rgba(251, 191, 36, .3)
+        }
+
+        .num-danger {
+            background: linear-gradient(135deg, #cc2255, #ff3366);
+            box-shadow: 0 0 12px rgba(255, 51, 102, .3)
+        }
+
+        .num-purple {
+            background: linear-gradient(135deg, #8800cc, #ff00ff);
+            box-shadow: 0 0 12px rgba(255, 0, 255, .3)
+        }
+
+        .num-green {
+            background: linear-gradient(135deg, #009955, #00ff88);
+            color: #0a0e1a;
+            box-shadow: 0 0 12px rgba(0, 255, 136, .3)
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700
+        }
+
+        .section-title span {
+            font-family: 'Inter', sans-serif;
+            font-size: .76rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            display: block;
+            color: var(--muted);
+            margin-bottom: 2px
+        }
+
+        hr.divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, .3), transparent);
+            margin-top: 56px
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin-bottom: 16px
+        }
+
+        .alert {
+            display: flex;
+            gap: 14px;
+            padding: 18px 22px;
+            border-radius: var(--radius);
+            margin: 20px 0;
+            border: 1px solid
+        }
+
+        .alert-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 1px
+        }
+
+        .alert-blue {
+            background: rgba(91, 141, 238, .08);
+            border-color: rgba(91, 141, 238, .3)
+        }
+
+        .alert-gold {
+            background: rgba(232, 184, 75, .08);
+            border-color: rgba(232, 184, 75, .3)
+        }
+
+        .alert-danger {
+            background: rgba(224, 90, 109, .08);
+            border-color: rgba(224, 90, 109, .3)
+        }
+
+        .alert-purple {
+            background: rgba(124, 92, 191, .08);
+            border-color: rgba(124, 92, 191, .3)
+        }
+
+        .alert-green {
+            background: rgba(62, 207, 142, .08);
+            border-color: rgba(62, 207, 142, .3)
+        }
+
+        .alert h4 {
+            font-size: .9rem;
+            font-weight: 700;
+            margin-bottom: 5px
+        }
+
+        .alert p,
+        .alert ul {
+            font-size: .86rem;
+            color: var(--muted)
+        }
+
+        .alert ul {
+            padding-left: 18px
+        }
+
+        .alert li {
+            margin-bottom: 4px
+        }
+
+        .text-muted {
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        /* Quiz */
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 20px
+        }
+
+        .q-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px 24px;
+            transition: border-color .2s
+        }
+
+        .q-card:hover {
+            border-color: rgba(0, 255, 255, .35);
+            box-shadow: 0 0 12px rgba(0, 255, 255, .1)
+        }
+
+        .q-num {
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px
+        }
+
+        .question {
+            font-size: .93rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            line-height: 1.6;
+            color: var(--text)
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .choice-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 9px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface2);
+            font-size: .84rem;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            transition: background .18s, border-color .18s, color .18s;
+            font-family: 'Inter', sans-serif
+        }
+
+        .choice-btn:hover:not(:disabled) {
+            background: rgba(0, 255, 255, .08);
+            border-color: rgba(0, 255, 255, .35);
+            color: var(--accent);
+            box-shadow: 0 0 8px rgba(0, 255, 255, .1)
+        }
+
+        .choice-btn.correct {
+            background: rgba(0, 255, 136, .12);
+            border-color: rgba(0, 255, 136, .5);
+            color: #00ff88;
+            font-weight: 700;
+            box-shadow: 0 0 10px rgba(0, 255, 136, .2)
+        }
+
+        .choice-btn.wrong {
+            background: rgba(255, 51, 102, .10);
+            border-color: rgba(255, 51, 102, .4);
+            color: #ff3366
+        }
+
+        .choice-btn:disabled {
+            cursor: default
+        }
+
+        .q-feedback {
+            margin-top: 12px;
+            font-size: .82rem;
+            line-height: 1.6;
+            padding: 10px 14px;
+            border-radius: 8px;
+            display: none;
+            border: 1px solid
+        }
+
+        .q-feedback.show {
+            display: block
+        }
+
+        .q-feedback.fb-correct {
+            background: rgba(0, 255, 136, .08);
+            border-color: rgba(0, 255, 136, .3);
+            color: #00ff88
+        }
+
+        .q-feedback.fb-wrong {
+            background: rgba(255, 51, 102, .08);
+            border-color: rgba(255, 51, 102, .3);
+            color: #ff6688
+        }
+
+        .score-bar {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap
+        }
+
+        .score-label {
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--muted);
+            flex-shrink: 0
+        }
+
+        .score-track {
+            flex: 1;
+            height: 10px;
+            background: var(--surface2);
+            border-radius: 50px;
+            overflow: hidden;
+            min-width: 120px
+        }
+
+        .score-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 50px;
+            background: linear-gradient(90deg, #00ffff, #00ff88);
+            box-shadow: 0 0 12px rgba(0, 255, 255, .4);
+            transition: width .5s ease
+        }
+
+        .score-count {
+            font-size: .9rem;
+            font-weight: 800;
+            color: var(--accent);
+            flex-shrink: 0
+        }
+
+        .reset-btn {
+            padding: 7px 18px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            font-size: .8rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--muted);
+            font-family: 'Inter', sans-serif;
+            transition: background .2s;
+            flex-shrink: 0
+        }
+
+        .reset-btn:hover {
+            background: rgba(0, 255, 255, .10);
+            color: var(--accent);
+            border-color: rgba(0, 255, 255, .3)
+        }
+
+        /* Drag drop */
+        .scenario-pool {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px
+        }
+
+        .scenario-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: .86rem;
+            font-weight: 600;
+            color: var(--text);
+            cursor: grab;
+            user-select: none;
+            transition: border-color .2s, box-shadow .2s, opacity .2s;
+            line-height: 1.5
+        }
+
+        .scenario-card:hover {
+            border-color: rgba(0, 255, 255, .5);
+            box-shadow: 0 4px 16px rgba(0, 255, 255, .15)
+        }
+
+        .scenario-card.dragging {
+            opacity: .45
+        }
+
+        .scenario-card.placed {
+            border-color: rgba(0, 255, 136, .5);
+            background: rgba(0, 255, 136, .06);
+            cursor: default;
+            box-shadow: 0 0 8px rgba(0, 255, 136, .15)
+        }
+
+        .scenario-card.wrong-drop {
+            border-color: rgba(255, 51, 102, .5);
+            background: rgba(255, 51, 102, .06);
+            animation: shake .35s ease
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0)
+            }
+
+            25% {
+                transform: translateX(-6px)
+            }
+
+            75% {
+                transform: translateX(6px)
+            }
+        }
+
+        .drop-zones {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px
+        }
+
+        @media(max-width:680px) {
+            .drop-zones {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .drop-zone {
+            min-height: 130px;
+            border-radius: var(--radius);
+            border: 2px dashed var(--border);
+            padding: 14px;
+            transition: border-color .2s, background .2s
+        }
+
+        .drop-zone.drag-over {
+            border-color: var(--accent);
+            background: rgba(0, 255, 255, .06);
+            box-shadow: inset 0 0 15px rgba(0, 255, 255, .1)
+        }
+
+        .drop-zone-label {
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px
+        }
+
+        .drop-placeholder {
+            font-size: .8rem;
+            color: var(--border);
+            font-style: italic;
+            text-align: center;
+            margin-top: 16px
+        }
+
+        .sort-result-msg {
+            margin-top: 18px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: .86rem;
+            font-weight: 600;
+            display: none;
+            border: 1px solid
+        }
+
+        .sort-result-msg.show {
+            display: block
+        }
+
+        .sort-result-msg.all-correct {
+            background: rgba(0, 255, 136, .08);
+            border-color: rgba(0, 255, 136, .3);
+            color: #00ff88
+        }
+
+        /* Evidence bank */
+        .eb-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px
+        }
+
+        @media(max-width:700px) {
+            .eb-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .eb-case {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px
+        }
+
+        .eb-case h3 {
+            font-size: .95rem;
+            font-weight: 700;
+            margin-bottom: 16px
+        }
+
+        .eb-slot {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--surface2)
+        }
+
+        .eb-slot:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0
+        }
+
+        .eb-slot label {
+            display: block;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px
+        }
+
+        .eb-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: .84rem;
+            color: var(--text);
+            background: var(--surface2);
+            transition: border-color .2s
+        }
+
+        .eb-input:focus {
+            outline: none;
+            border-color: rgba(0, 255, 255, .5);
+            box-shadow: 0 0 8px rgba(0, 255, 255, .15)
+        }
+
+        textarea.eb-input {
+            min-height: 60px;
+            resize: vertical;
+            line-height: 1.6
+        }
+
+        .eb-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px
+        }
+
+        .eb-row select {
+            flex: 1;
+            padding: 7px 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: .82rem;
+            color: var(--text);
+            background: var(--surface2)
+        }
+
+        /* Writing */
+        .scaffold-box {
+            background: linear-gradient(135deg, rgba(0, 255, 255, .06), rgba(255, 0, 255, .06));
+            border: 1px solid rgba(0, 255, 255, .25);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            margin: 22px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 255, 255, .08)
+        }
+
+        .scaffold-box::before {
+            content: '"';
+            position: absolute;
+            top: -12px;
+            left: 18px;
+            font-size: 7rem;
+            font-family: 'Playfair Display', serif;
+            color: rgba(0, 255, 255, .08);
+            line-height: 1
+        }
+
+        .scaffold-label {
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--accent2);
+            margin-bottom: 12px
+        }
+
+        .scaffold-box blockquote {
+            font-size: 1.05rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.65;
+            border: none;
+            padding: 0;
+            margin: 0 0 14px
+        }
+
+        .scaffold-box p {
+            font-size: .85rem;
+            color: var(--muted)
+        }
+
+        .writing-input {
+            width: 100%;
+            min-height: 160px;
+            margin-top: 18px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: .88rem;
+            color: var(--text);
+            background: var(--surface);
+            resize: vertical;
+            line-height: 1.8;
+            transition: border-color .2s
+        }
+
+        .writing-input:focus {
+            outline: none;
+            border-color: rgba(0, 255, 255, .5);
+            box-shadow: 0 0 10px rgba(0, 255, 255, .15)
+        }
+
+        .writing-input::placeholder {
+            color: var(--border)
+        }
+
+        .wc-bar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 8px;
+            flex-wrap: wrap
+        }
+
+        .wc-label {
+            font-size: .78rem;
+            color: var(--muted)
+        }
+
+        .wc-count {
+            font-size: .78rem;
+            font-weight: 700;
+            color: var(--accent)
+        }
+
+        .timer-btn {
+            padding: 7px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(192, 40, 62, .3);
+            background: rgba(192, 40, 62, .08);
+            color: var(--danger);
+            font-size: .8rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: background .2s
+        }
+
+        .timer-btn:hover {
+            background: rgba(192, 40, 62, .15)
+        }
+
+        .timer-display {
+            font-size: .9rem;
+            font-weight: 800;
+            color: var(--danger);
+            min-width: 50px
+        }
+
+        .sentence-starters {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px
+        }
+
+        @media(max-width:620px) {
+            .sentence-starters {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .starter-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 18px
+        }
+
+        .starter-category {
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 8px
+        }
+
+        .starter-card ul {
+            list-style: none;
+            padding: 0
+        }
+
+        .starter-card ul li {
+            font-size: .83rem;
+            color: var(--muted);
+            padding: 4px 0;
+            border-bottom: 1px solid var(--surface2);
+            font-style: italic
+        }
+
+        .starter-card ul li:last-child {
+            border-bottom: none
+        }
+
+        /* Debate prep */
+        .stance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px
+        }
+
+        @media(max-width:620px) {
+            .stance-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .stance-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            cursor: pointer;
+            transition: border-color .2s, box-shadow .2s, transform .2s;
+            text-align: center
+        }
+
+        .stance-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 255, 255, .12);
+            border-color: rgba(0, 255, 255, .3)
+        }
+
+        .stance-card.selected {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 255, 255, .15), 0 0 20px rgba(0, 255, 255, .1)
+        }
+
+        .stance-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px
+        }
+
+        .stance-card p {
+            font-size: .85rem;
+            color: var(--muted)
+        }
+
+        .outline-builder {
+            display: none;
+            margin-top: 28px
+        }
+
+        .outline-builder.show {
+            display: block
+        }
+
+        .ob-step {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin-bottom: 14px
+        }
+
+        .ob-step label {
+            display: block;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px
+        }
+
+        .ob-step textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: .86rem;
+            color: var(--text);
+            background: var(--surface2);
+            resize: vertical;
+            line-height: 1.7
+        }
+
+        .ob-step textarea:focus {
+            outline: none;
+            border-color: rgba(0, 255, 255, .5);
+            box-shadow: 0 0 8px rgba(0, 255, 255, .15)
+        }
+
+        .next-steps {
+            background: linear-gradient(135deg, rgba(0, 255, 136, .06), rgba(0, 255, 255, .06));
+            border: 1px solid rgba(0, 255, 136, .25);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            margin-top: 32px;
+            box-shadow: 0 0 15px rgba(0, 255, 136, .08)
+        }
+
+        .next-steps h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--green)
+        }
+
+        .next-steps ol {
+            padding-left: 20px;
+            font-size: .9rem;
+            color: var(--muted)
+        }
+
+        .next-steps li {
+            margin-bottom: 8px
+        }
+
+        .next-steps strong {
+            color: var(--text)
+        }
+
+        footer {
+            background: rgba(10, 14, 26, .95);
+            border-top: 2px solid rgba(0, 255, 255, .2);
+            text-align: center;
+            padding: 28px 24px;
+            font-size: .8rem;
+            color: var(--muted)
+        }
+
+        footer strong {
+            color: #00ffff
+        }
+
+        /* ── Sticky nav ── */
+        .progress-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            gap: 0;
+            background: rgba(10, 14, 26, .95);
+            border-bottom: 2px solid rgba(0, 255, 255, .25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            overflow-x: auto;
+            padding: 0 12px
+        }
+
+        .nav-tab {
+            padding: 12px 18px;
+            font-size: .76rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-decoration: none;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: color .2s, border-color .2s
+        }
+
+        .nav-tab:hover,
+        .nav-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent)
+        }
+
+        @media(max-width:600px) {
+            .nav-tab {
+                padding: 10px 12px;
+                font-size: .7rem
+            }
+        }
+
+        /* ── Theory feedback tooltip ── */
+        .theory-feedback-msg {
+            margin-top: 8px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: .8rem;
+            line-height: 1.5;
+            background: rgba(255, 51, 102, .08);
+            border: 1px solid rgba(255, 51, 102, .3);
+            color: #ff6688;
+            display: none
+        }
+
+        .theory-feedback-msg.show {
+            display: block
+        }
+
+        /* ── Model paragraph ── */
+        .model-toggle {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 255, .3);
+            background: rgba(0, 255, 255, .06);
+            color: var(--accent);
+            font-size: .82rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: background .2s, box-shadow .2s
+        }
+
+        .model-toggle:hover {
+            background: rgba(0, 255, 255, .12);
+            box-shadow: 0 0 10px rgba(0, 255, 255, .15)
+        }
+
+        .model-para {
+            display: none;
+            margin-top: 18px
+        }
+
+        .model-para.show {
+            display: block
+        }
+
+        .model-band {
+            border-radius: var(--radius);
+            padding: 22px 24px;
+            margin-bottom: 14px
+        }
+
+        .model-band-high {
+            background: rgba(0, 255, 136, .06);
+            border: 1px solid rgba(0, 255, 136, .25)
+        }
+
+        .model-band-label {
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: #00ff88
+        }
+
+        .model-band p {
+            font-size: .86rem;
+            line-height: 1.85;
+            color: var(--muted);
+            margin: 0
+        }
+
+        .model-band p strong {
+            color: var(--text)
+        }
+
+        .model-band .examiner-note {
+            font-size: .78rem;
+            font-style: italic;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+            margin-top: 12px
+        }
+
+        /* ── Back link ── */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--muted);
+            font-size: .78rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color .2s
+        }
+
+        .back-link:hover {
+            color: var(--accent)
+        }
+
+        @media print {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+                box-shadow: none !important;
+                text-shadow: none !important
+            }
+
+            body::before {
+                display: none !important;
+                content: none !important;
+                background: none !important;
+                width: 0 !important;
+                height: 0 !important;
+                z-index: -1 !important
+            }
+
+            body {
+                background: #fff !important;
+                color: #1a1e2e !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .hero {
+                padding: 30px 20px;
+                background: #1B2A4A !important;
+                border-bottom: 3px solid #D4A843 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .hero h1 {
+                background: none !important;
+                -webkit-text-fill-color: #fff !important;
+                color: #fff !important
+            }
+
+            .hero-badge {
+                background: rgba(255, 255, 255, 0.15) !important;
+                border-color: rgba(255, 255, 255, 0.3) !important;
+                color: #fff !important
+            }
+
+            .hero-sub {
+                color: rgba(255, 255, 255, 0.8) !important
+            }
+
+            .back-link {
+                color: rgba(255, 255, 255, 0.6) !important
+            }
+
+            .text-muted,
+            .alert p,
+            .alert ul,
+            .starter-card ul li,
+            .stance-card p,
+            .next-steps ol,
+            .wc-label,
+            .model-band p {
+                color: #444 !important
+            }
+
+            .container {
+                padding: 0 20px
+            }
+
+            .section {
+                page-break-inside: avoid
+            }
+
+            .progress-nav {
+                display: none !important
+            }
+
+            .section-num {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .num-blue {
+                background: #2A7B88 !important;
+                color: #fff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .num-gold {
+                background: #D4A843 !important;
+                color: #fff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .num-danger {
+                background: #cc3355 !important;
+                color: #fff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .num-purple {
+                background: #8844cc !important;
+                color: #fff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .num-green {
+                background: #228855 !important;
+                color: #fff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .card,
+            .q-card,
+            .eb-case,
+            .starter-card,
+            .stance-card,
+            .ob-step,
+            .score-bar {
+                background: #fff !important;
+                border-color: #ccc !important;
+                color: #1a1e2e !important
+            }
+
+            .choice-btn {
+                background: #f5f5f5 !important;
+                border-color: #ccc !important;
+                color: #1a1e2e !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .choice-btn.correct {
+                background: #e6f9ec !important;
+                border-color: #2a9d4a !important;
+                color: #1a6b30 !important
+            }
+
+            .choice-btn.wrong {
+                background: #fce8ed !important;
+                border-color: #cc3355 !important;
+                color: #992244 !important
+            }
+
+            .question,
+            .section-title,
+            .scaffold-box blockquote,
+            .alert h4,
+            .next-steps strong,
+            .eb-case h3,
+            .stance-card h4 {
+                color: #1a1e2e !important
+            }
+
+            .scaffold-box {
+                background: #f0f0ff !important;
+                border-color: #999 !important
+            }
+
+            .scaffold-box::before {
+                color: rgba(0, 0, 0, .05) !important
+            }
+
+            .alert {
+                border-color: #ccc !important;
+                background: #f9f9f9 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .alert-gold {
+                background: #fffbeb !important;
+                border-color: #D4A843 !important
+            }
+
+            .next-steps {
+                background: #f0faf5 !important;
+                border-color: #aaa !important
+            }
+
+            .scenario-card,
+            .drop-zone {
+                border-color: #ccc !important;
+                background: #fff !important
+            }
+
+            hr.divider {
+                background: #ccc !important
+            }
+
+            footer {
+                background: #f5f5f5 !important;
+                border-color: #ccc !important;
+                color: #666 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            footer strong {
+                color: #1a1e2e !important
+            }
+
+            .pill {
+                border-color: #999 !important;
+                background: #eee !important;
+                color: #333 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .meta-pills .pill-blue {
+                background: #e0f4f8 !important;
+                color: #1a5a6a !important;
+                border-color: #9ecfdb !important
+            }
+
+            .meta-pills .pill-gold {
+                background: #fef3d0 !important;
+                color: #8a6d10 !important;
+                border-color: #dcb94a !important
+            }
+
+            .meta-pills .pill-danger {
+                background: #fde8ed !important;
+                color: #993344 !important;
+                border-color: #e0889a !important
+            }
+
+            .meta-pills .pill-purple {
+                background: #f3e8fd !important;
+                color: #663399 !important;
+                border-color: #c49ae0 !important
+            }
+
+            .meta-pills .pill-green {
+                background: #e8fdf0 !important;
+                color: #226644 !important;
+                border-color: #88cc99 !important
+            }
+
+            .q-num,
+            .score-count,
+            .ob-step label,
+            .scaffold-label,
+            .drop-zone-label,
+            .starter-category,
+            .score-label,
+            .eb-slot label {
+                color: #333 !important
+            }
+
+            .q-feedback {
+                color: #444 !important;
+                background: #f9f9f9 !important;
+                border-color: #ccc !important
+            }
+
+            .q-feedback.correct-fb {
+                background: #e6f9ec !important;
+                border-color: #4a9 !important;
+                color: #2a5a3a !important
+            }
+
+            .q-feedback.wrong-fb {
+                background: #fce8ed !important;
+                border-color: #c66 !important;
+                color: #883344 !important
+            }
+
+            .model-band {
+                background: #f0faf5 !important;
+                border-color: #aaa !important
+            }
+
+            .model-band-label {
+                color: #228855 !important
+            }
+
+            .model-toggle,
+            .reset-btn {
+                background: #eee !important;
+                border-color: #999 !important;
+                color: #333 !important
+            }
+
+            .eb-input,
+            .ob-step textarea {
+                background: #fff !important;
+                border-color: #ccc !important;
+                color: #1a1e2e !important
+            }
+
+            select {
+                background: #fff !important;
+                border-color: #ccc !important;
+                color: #333 !important
+            }
+
+            .score-fill {
+                background: #2a9d4a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact
+            }
+
+            .score-track {
+                background: #eee !important
+            }
+
+            .theory-feedback-msg {
+                background: #fce8ed !important;
+                border-color: #c66 !important;
+                color: #883344 !important
+            }
+
+            .sort-result-msg {
+                color: #333 !important
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="hero-badge">IB Global Politics · Post-Reading Review · March 2026</div>
+        <h1>Case Study Deep Dive:<br />Venezuela & Iran Through R2P</h1>
+        <p class="hero-sub">Now that you have read the articles on both interventions, let's test your understanding,
+            build your evidence bank, and prepare for the Paper 2 essay and debate.</p>
+        <div class="meta-pills">
+            <span class="pill pill-blue">📜 Sovereignty & Power</span>
+            <span class="pill pill-gold">⚖️ Human Rights</span>
+            <span class="pill pill-danger">💥 Security</span>
+            <span class="pill pill-purple">🎯 Paper 2 Prep</span>
+            <span class="pill pill-green">✍️ Writing Practice</span>
+        </div>
+        <div style="margin-top:14px"><a class="back-link" href="r2p-lesson-plan.html">← Back to Lesson Plan</a>
+            &nbsp;·&nbsp; <a class="back-link" href="r2p-review-activity.html">← R2P Review Activity</a></div>
+    </header>
+
+    <!-- ─── STICKY NAV ─── -->
+    <nav class="progress-nav" id="main-nav">
+        <a class="nav-tab active" href="#s1">1 · Quiz</a>
+        <a class="nav-tab" href="#s2">2 · Theory Match</a>
+        <a class="nav-tab" href="#s3">3 · Evidence Bank</a>
+        <a class="nav-tab" href="#s4">4 · PEEL Writing</a>
+        <a class="nav-tab" href="#s5">5 · Debate Prep</a>
+    </nav>
+
+    <main class="container">
+
+        <!-- ══ SECTION 1: RECALL QUIZ ══ -->
+        <section class="section" id="s1">
+            <div class="section-header">
+                <div class="section-num num-blue">1</div>
+                <div class="section-title"><span>Reading Recall · ~8 min</span>Case Study Knowledge Check</div>
+            </div>
+            <p class="text-muted">10 questions drawn from your Venezuela and Iran readings. No notes — test what stuck.
+            </p>
+
+            <div class="quiz-grid" id="quizGrid">
+
+                <div class="q-card" data-q="1">
+                    <div class="q-num">Question 1 · Venezuela</div>
+                    <div class="question">What was the official US name for the operation that extracted Maduro from
+                        Caracas?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="true">Operation Absolute Resolve</button>
+                        <button class="choice-btn" data-correct="false">Operation Enduring Freedom</button>
+                        <button class="choice-btn" data-correct="false">Operation Southern Shield</button>
+                        <button class="choice-btn" data-correct="false">Operation Sovereign Justice</button>
+                    </div>
+                    <div class="q-feedback">Operation Absolute Resolve was the name given to the US military extraction
+                        of Maduro and his wife from Caracas to face narco-terrorism charges in New York.</div>
+                </div>
+
+                <div class="q-card" data-q="2">
+                    <div class="q-num">Question 2 · Venezuela</div>
+                    <div class="question">What criminal charges did the US bring against Maduro?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">War crimes and genocide under the ICC</button>
+                        <button class="choice-btn" data-correct="true">Narco-terrorism charges under US federal
+                            indictments</button>
+                        <button class="choice-btn" data-correct="false">Money laundering through the UN Oil-for-Food
+                            programme</button>
+                        <button class="choice-btn" data-correct="false">Election fraud under OAS electoral law</button>
+                    </div>
+                    <div class="q-feedback">The US used its own federal indictments charging Maduro with narco-terrorism
+                        — notably NOT humanitarian charges under international law, which is why critics question the
+                        R2P applicability.</div>
+                </div>
+
+                <div class="q-card" data-q="3">
+                    <div class="q-num">Question 3 · Venezuela</div>
+                    <div class="question">Which Venezuelan security force was linked to extrajudicial killings during
+                        the humanitarian crisis?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">The Bolivarian National Guard (GNB)</button>
+                        <button class="choice-btn" data-correct="true">The Special Action Forces (FAES)</button>
+                        <button class="choice-btn" data-correct="false">The Venezuelan Intelligence Service
+                            (SEBIN)</button>
+                        <button class="choice-btn" data-correct="false">The Colectivos militia network</button>
+                    </div>
+                    <div class="q-feedback">The FAES (Fuerzas de Acciones Especiales) were repeatedly cited by the UN
+                        and human rights organisations for extrajudicial killings — a key piece of evidence for arguing
+                        crimes against humanity existed.</div>
+                </div>
+
+                <div class="q-card" data-q="4">
+                    <div class="q-num">Question 4 · Venezuela</div>
+                    <div class="question">Which UN Charter article do critics cite when arguing the Venezuela extraction
+                        violated international law?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">Article 51 — the right to self-defence</button>
+                        <button class="choice-btn" data-correct="true">Article 2(4) — prohibition on use of force
+                            against territorial integrity</button>
+                        <button class="choice-btn" data-correct="false">Article 39 — determination of threats to
+                            peace</button>
+                        <button class="choice-btn" data-correct="false">Article 99 — Secretary-General's emergency
+                            powers</button>
+                    </div>
+                    <div class="q-feedback">Article 2(4) is the foundational prohibition on using force against another
+                        state's territorial integrity. The unilateral extraction, without UNSC authorisation, is argued
+                        to violate this article directly.</div>
+                </div>
+
+                <div class="q-card" data-q="5">
+                    <div class="q-num">Question 5 · Venezuela</div>
+                    <div class="question">A Constructivist analysing the Venezuela operation would most likely focus on:
+                    </div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">The balance of military power between the US and
+                            Venezuela</button>
+                        <button class="choice-btn" data-correct="false">Whether the operation was
+                            cost-effective</button>
+                        <button class="choice-btn" data-correct="true">How the "narco-terrorist" label was used to strip
+                            Maduro of sovereign protection</button>
+                        <button class="choice-btn" data-correct="false">The number of Venezuelan troops versus US forces
+                            deployed</button>
+                    </div>
+                    <div class="q-feedback">Constructivists examine how language, identity, and framing shape political
+                        reality. The "narco-terrorist" label is a Constructivist framing device — it redefines a
+                        sovereign leader as a criminal, making intervention seem justified.</div>
+                </div>
+
+                <div class="q-card" data-q="6">
+                    <div class="q-num">Question 6 · Iran</div>
+                    <div class="question">What were the names of the joint US-Israel operations that struck Iran in
+                        February 2026?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">Operation Desert Storm and Operation Olive
+                            Branch</button>
+                        <button class="choice-btn" data-correct="true">Operation Epic Fury (US) and Operation Roaring
+                            Lion (Israel)</button>
+                        <button class="choice-btn" data-correct="false">Operation Iron Dome and Operation Northern
+                            Thunder</button>
+                        <button class="choice-btn" data-correct="false">Operation Cedar Shield and Operation Infinite
+                            Justice</button>
+                    </div>
+                    <div class="q-feedback">The US code-named its strikes Operation Epic Fury; Israel's component was
+                        Operation Roaring Lion. Together they constituted one of the most dramatic decapitation strikes
+                        in modern history.</div>
+                </div>
+
+                <div class="q-card" data-q="7">
+                    <div class="q-num">Question 7 · Iran</div>
+                    <div class="question">What was the most significant leadership target eliminated in the Iran
+                        strikes?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">President Raisi</button>
+                        <button class="choice-btn" data-correct="true">Supreme Leader Ayatollah Ali Khamenei</button>
+                        <button class="choice-btn" data-correct="false">Head of the IRGC Quds Force</button>
+                        <button class="choice-btn" data-correct="false">Iran's UN Ambassador</button>
+                    </div>
+                    <div class="q-feedback">The strikes eliminated Supreme Leader Khamenei — the highest political and
+                        religious authority in Iran. This is why critics describe it as an assassination of a sovereign
+                        head of state, shattering international norms.</div>
+                </div>
+
+                <div class="q-card" data-q="8">
+                    <div class="q-num">Question 8 · Iran</div>
+                    <div class="question">Why do critics argue the Iran strikes CANNOT be classified as R2P?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">Because Iran is a permanent member of the UN
+                            Security Council</button>
+                        <button class="choice-btn" data-correct="false">Because the strikes were authorised by the
+                            UNSC</button>
+                        <button class="choice-btn" data-correct="true">Because R2P covers genocide, war crimes, ethnic
+                            cleansing, and crimes against humanity — not nuclear proliferation</button>
+                        <button class="choice-btn" data-correct="false">Because the US has no bilateral treaty with
+                            Iran</button>
+                    </div>
+                    <div class="q-feedback">R2P's four trigger situations are genocide, war crimes, ethnic cleansing,
+                        and crimes against humanity. Nuclear proliferation, however dangerous, falls outside this
+                        framework — making R2P inapplicable to the Iran strikes.</div>
+                </div>
+
+                <div class="q-card" data-q="9">
+                    <div class="q-num">Question 9 · Iran</div>
+                    <div class="question">What "liberation" rhetoric did the US use to partially frame the Iran strikes?
+                    </div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="true">That the strikes gave the Iranian people a chance
+                            to "take back" their country</button>
+                        <button class="choice-btn" data-correct="false">That Iran was being admitted to NATO as a new
+                            democracy</button>
+                        <button class="choice-btn" data-correct="false">That UN peacekeepers would immediately replace
+                            Iranian government</button>
+                        <button class="choice-btn" data-correct="false">That free elections would be held within 30
+                            days</button>
+                    </div>
+                    <div class="q-feedback">The "liberation" language borrows from R2P rhetoric — framing the strikes as
+                        freeing an oppressed population. Constructivists see this as evidence that R2P's normative
+                        language persists even when its institutional requirements are ignored.</div>
+                </div>
+
+                <div class="q-card" data-q="10">
+                    <div class="q-num">Question 10 · Iran</div>
+                    <div class="question">What was the immediate consequence of the Iran strikes for regional human
+                        security?</div>
+                    <div class="choices">
+                        <button class="choice-btn" data-correct="false">A rapid improvement in civilian safety across
+                            the Middle East</button>
+                        <button class="choice-btn" data-correct="false">Iran immediately signed a peace treaty with
+                            Israel</button>
+                        <button class="choice-btn" data-correct="true">Mass civilian casualties, retaliatory strikes
+                            against US bases and Gulf states, and regional destabilisation</button>
+                        <button class="choice-btn" data-correct="false">The UN deployed peacekeepers to Tehran within 48
+                            hours</button>
+                    </div>
+                    <div class="q-feedback">The strikes triggered retaliatory barrages against US military bases and
+                        Gulf states, causing mass casualties and regional destabilisation — the very opposite of
+                        advancing human security, which is the core paradox for Paper 2.</div>
+                </div>
+
+            </div>
+
+            <div class="score-bar">
+                <span class="score-label">Score</span>
+                <div class="score-track">
+                    <div class="score-fill" id="scoreFill"></div>
+                </div>
+                <span class="score-count" id="scoreCount">0 / 10</span>
+                <button class="reset-btn" onclick="resetQuiz()">↩ Reset</button>
+            </div>
+        </section>
+
+        <hr class="divider" />
+
+        <!-- ══ SECTION 2: THEORY LENS MATCHING ══ -->
+        <section class="section" id="s2">
+            <div class="section-header">
+                <div class="section-num num-gold">2</div>
+                <div class="section-title"><span>Theory Matching · ~6 min</span>Which Theory Lens? — Drag & Drop</div>
+            </div>
+            <p class="text-muted" style="margin-bottom:18px">Each quote below reflects a specific IR theory. Drag each
+                card into the correct theory zone.</p>
+
+            <div class="scenario-pool" id="theoryPool">
+                <div class="scenario-card" draggable="true" data-theory="Realism" id="t1">"The US acted in its national
+                    security interest — removing a narco-state on its doorstep regardless of what the UN thinks."</div>
+                <div class="scenario-card" draggable="true" data-theory="Constructivism" id="t2">"By calling Maduro a
+                    'narco-terrorist,' the US linguistically stripped him of sovereign legitimacy before any legal
+                    process."</div>
+                <div class="scenario-card" draggable="true" data-theory="Liberalism" id="t3">"The operation should have
+                    gone through the UN Security Council — multilateral institutions exist precisely for situations like
+                    this."</div>
+                <div class="scenario-card" draggable="true" data-theory="Realism" id="t4">"Israel struck Iran's nuclear
+                    sites as preemptive self-help — survival in an anarchic system requires acting before the threat
+                    materialises."</div>
+                <div class="scenario-card" draggable="true" data-theory="Constructivism" id="t5">"The 'liberation of the
+                    Iranian people' rhetoric borrows R2P language to make a military strike seem humanitarian."</div>
+                <div class="scenario-card" draggable="true" data-theory="Liberalism" id="t6">"R2P as a norm only works
+                    when states commit to the institutional framework — bypassing the UNSC destroys the norm's
+                    credibility."</div>
+                <div class="scenario-card" draggable="true" data-theory="Realism" id="t7">"Both interventions are about
+                    US hegemony in their respective regions — humanitarian language is just a cover for power
+                    projection."</div>
+                <div class="scenario-card" draggable="true" data-theory="Constructivism" id="t8">"Even though R2P was
+                    not formally invoked, humanitarian language shaped public acceptance — proving norms have power
+                    beyond institutions."</div>
+            </div>
+
+            <div class="drop-zones" id="theoryZones">
+                <div class="drop-zone" data-theory="Realism" id="zone-R">
+                    <div class="drop-zone-label">🏛️ Realism</div>
+                    <div class="drop-placeholder">Drop here</div>
+                </div>
+                <div class="drop-zone" data-theory="Liberalism" id="zone-L">
+                    <div class="drop-zone-label">🌐 Liberalism</div>
+                    <div class="drop-placeholder">Drop here</div>
+                </div>
+                <div class="drop-zone" data-theory="Constructivism" id="zone-C">
+                    <div class="drop-zone-label">💬 Constructivism</div>
+                    <div class="drop-placeholder">Drop here</div>
+                </div>
+            </div>
+            <div class="theory-feedback-msg" id="theoryFeedback"></div>
+            <div class="sort-result-msg" id="theoryResultMsg"></div>
+            <div style="margin-top:14px"><button class="reset-btn" onclick="resetTheory()">↩ Reset Theory Match</button>
+            </div>
+        </section>
+
+        <hr class="divider" />
+
+        <!-- ══ SECTION 3: EVIDENCE BANK ══ -->
+        <section class="section" id="s3">
+            <div class="section-header">
+                <div class="section-num num-danger">3</div>
+                <div class="section-title"><span>Evidence Bank · ~10 min</span>Build Your Case Study Arsenal</div>
+            </div>
+            <p class="text-muted">For each case study, record 3 key pieces of evidence from your readings. Tag each with
+                the Assessment Objective it supports and the theory lens it connects to. This becomes your essay
+                ammunition.</p>
+
+            <div class="alert alert-gold" style="margin-bottom:24px">
+                <span class="alert-icon">💡</span>
+                <div>
+                    <h4 style="color:var(--gold)">What makes strong evidence?</h4>
+                    <p>Specific facts beat vague summaries. Use <strong style="color:var(--text)">names, dates,
+                            operations, and organisations</strong>. For example: "The FAES carried out extrajudicial
+                        killings (AO1) — a Constructivist would note this was reframed as 'counter-narcotics' rather
+                        than 'crimes against humanity' (AO2)."</p>
+                </div>
+            </div>
+
+            <div class="eb-grid">
+                <div class="eb-case">
+                    <h3>🌎 Venezuela — Operation Absolute Resolve</h3>
+                    <div class="eb-slot"><label>Evidence 1</label><textarea class="eb-input" data-key="v1"
+                            placeholder="e.g. FAES extrajudicial killings documented by UN Human Rights Council..."></textarea>
+                        <div class="eb-row"><select data-key="v1ao">
+                                <option value="">AO...</option>
+                                <option>AO1 — Knowledge</option>
+                                <option>AO2 — Application</option>
+                                <option>AO3 — Synthesis</option>
+                                <option>AO4 — Key Concepts</option>
+                            </select><select data-key="v1t">
+                                <option value="">Theory...</option>
+                                <option>Realism</option>
+                                <option>Liberalism</option>
+                                <option>Constructivism</option>
+                            </select></div>
+                    </div>
+                    <div class="eb-slot"><label>Evidence 2</label><textarea class="eb-input" data-key="v2"
+                            placeholder="e.g. Unilateral operation bypassed UNSC — no Art. 2(4) authorisation..."></textarea>
+                        <div class="eb-row"><select data-key="v2ao">
+                                <option value="">AO...</option>
+                                <option>AO1 — Knowledge</option>
+                                <option>AO2 — Application</option>
+                                <option>AO3 — Synthesis</option>
+                                <option>AO4 — Key Concepts</option>
+                            </select><select data-key="v2t">
+                                <option value="">Theory...</option>
+                                <option>Realism</option>
+                                <option>Liberalism</option>
+                                <option>Constructivism</option>
+                            </select></div>
+                    </div>
+                    <div class="eb-slot"><label>Evidence 3</label><textarea class="eb-input" data-key="v3"
+                            placeholder="e.g. 'Narco-terrorist' framing constructed a new identity for Maduro..."></textarea>
+                        <div class="eb-row"><select data-key="v3ao">
+                                <option value="">AO...</option>
+                                <option>AO1 — Knowledge</option>
+                                <option>AO2 — Application</option>
+                                <option>AO3 — Synthesis</option>
+                                <option>AO4 — Key Concepts</option>
+                            </select><select data-key="v3t">
+                                <option value="">Theory...</option>
+                                <option>Realism</option>
+                                <option>Liberalism</option>
+                                <option>Constructivism</option>
+                            </select></div>
+                    </div>
+                </div>
+
+                <div class="eb-case">
+                    <h3>💥 Iran — Operation Epic Fury / Roaring Lion</h3>
+                    <div class="eb-slot"><label>Evidence 1</label><textarea class="eb-input" data-key="i1"
+                            placeholder="e.g. Decapitation strike eliminated Supreme Leader Khamenei..."></textarea>
+                        <div class="eb-row"><select data-key="i1ao">
+                                <option value="">AO...</option>
+                                <option>AO1 — Knowledge</option>
+                                <option>AO2 — Application</option>
+                                <option>AO3 — Synthesis</option>
+                                <option>AO4 — Key Concepts</option>
+                            </select><select data-key="i1t">
+                                <option value="">Theory...</option>
+                                <option>Realism</option>
+                                <option>Liberalism</option>
+                                <option>Constructivism</option>
+                            </select></div>
+                    </div>
+                    <div class="eb-slot"><label>Evidence 2</label><textarea class="eb-input" data-key="i2"
+                            placeholder="e.g. Nuclear non-proliferation cited — not an R2P trigger crime..."></textarea>
+                        <div class="eb-row"><select data-key="i2ao">
+                                <option value="">AO...</option>
+                                <option>AO1 — Knowledge</option>
+                                <option>AO2 — Application</option>
+                                <option>AO3 — Synthesis</option>
+                                <option>AO4 — Key Concepts</option>
+                            </select><select data-key="i2t">
+                                <option value="">Theory...</option>
+                                <option>Realism</option>
+                                <option>Liberalism</option>
+                                <option>Constructivism</option>
+                            </select></div>
+                    </div>
+                    <div class="eb-slot"><label>Evidence 3</label><textarea class="eb-input" data-key="i3"
+                            placeholder="e.g. 'Liberation of the Iranian people' rhetoric echoed R2P language..."></textarea>
+                        <div class="eb-row"><select data-key="i3ao">
+                                <option value="">AO...</option>
+                                <option>AO1 — Knowledge</option>
+                                <option>AO2 — Application</option>
+                                <option>AO3 — Synthesis</option>
+                                <option>AO4 — Key Concepts</option>
+                            </select><select data-key="i3t">
+                                <option value="">Theory...</option>
+                                <option>Realism</option>
+                                <option>Liberalism</option>
+                                <option>Constructivism</option>
+                            </select></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-blue" style="margin-top:20px">
+                <span class="alert-icon">💾</span>
+                <div>
+                    <h4 style="color:var(--accent)">Auto-saved</h4>
+                    <p>Your evidence bank saves automatically to your browser. Refresh the page and your work will still
+                        be here.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider" />
+
+        <!-- ══ SECTION 4: TIMED PARAGRAPH ══ -->
+        <section class="section" id="s4">
+            <div class="section-header">
+                <div class="section-num num-purple">4</div>
+                <div class="section-title"><span>Writing Practice · ~10 min</span>Timed PEEL Body Paragraph</div>
+            </div>
+
+            <div class="scaffold-box">
+                <div class="scaffold-label">Paper 2 Practice Prompt</div>
+                <blockquote>"The concept of the Responsibility to Protect (R2P) has been rendered obsolete by the
+                    strategic security interests of powerful states." Evaluate this claim using two contemporary
+                    examples.</blockquote>
+                <p>Write a <strong style="color:var(--text)">single PEEL body paragraph</strong> (~150–200 words) on
+                    <strong style="color:var(--text)">either Venezuela or Iran</strong>. Use the PEEL structure: Point,
+                    Evidence, Explanation, Link back to the question.
+                </p>
+            </div>
+
+            <div class="sentence-starters">
+                <div class="starter-card">
+                    <div class="starter-category" style="color:var(--accent)">🔵 Point</div>
+                    <ul>
+                        <li>"Venezuela demonstrates that R2P has been rendered obsolete because..."</li>
+                        <li>"The Iran strikes reveal that strategic security interests now override..."</li>
+                    </ul>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-category" style="color:var(--gold)">🟡 Evidence</div>
+                    <ul>
+                        <li>"This is evidenced by Operation Absolute Resolve, in which..."</li>
+                        <li>"The ISW report documented that the strikes targeted..."</li>
+                    </ul>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-category" style="color:var(--green)">🟢 Explanation</div>
+                    <ul>
+                        <li>"From a Realist perspective, this demonstrates that..."</li>
+                        <li>"A Constructivist would argue that the 'liberation' framing reveals..."</li>
+                    </ul>
+                </div>
+                <div class="starter-card">
+                    <div class="starter-category" style="color:var(--accent2)">🟣 Link</div>
+                    <ul>
+                        <li>"Therefore, this case supports/challenges the claim that R2P is obsolete because..."</li>
+                        <li>"This suggests that R2P is not dead but rather selectively invoked when it aligns with..."
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="wc-bar" style="margin-top:20px">
+                <button class="timer-btn" id="timerBtn" onclick="toggleTimer()"
+                    style="border-color:rgba(0,255,255,.3);background:rgba(0,255,255,.06);color:#00ffff">⏱ Start 10-min
+                    timer</button>
+                <span class="timer-display" id="timerDisplay" style="color:#00ffff"></span>
+                <span style="flex:1"></span>
+                <span class="wc-label">Words:</span>
+                <span class="wc-count" id="wordCount">0</span>
+                <span class="wc-label">/ 150–200 target</span>
+            </div>
+
+            <textarea class="writing-input" id="peelInput" data-key="peel"
+                placeholder="Write your PEEL paragraph here. Remember: Point → Evidence → Explanation → Link..."></textarea>
+
+            <button class="model-toggle" id="modelToggle" onclick="toggleModel()">👁 Show Model PEEL Paragraph</button>
+            <div class="model-para" id="modelPara">
+                <div class="model-band model-band-high">
+                    <div class="model-band-label">High-Band Exemplar · Venezuela PEEL Paragraph</div>
+                    <p><strong>The capture of Nicolás Maduro in January 2026 demonstrates that R2P has been rendered
+                            functionally obsolete by the strategic priorities of powerful states.</strong> Operation
+                        Absolute Resolve was a unilateral US military extraction that bypassed the UN Security Council
+                        entirely, despite Venezuela's humanitarian crisis — including mass displacement and
+                        extrajudicial killings by the FAES — arguably meeting the threshold for R2P Pillar III
+                        activation. <strong>From a Realist perspective, the operation was driven by US national security
+                            interests</strong> — specifically counter-narcotics enforcement and hemispheric hegemony —
+                        rather than by any genuine commitment to the humanitarian norm. The fact that the US framed the
+                        intervention as a law-enforcement action against a "narco-terrorist" rather than as a
+                        humanitarian mission reveals, as a Constructivist would argue, that <strong>R2P's language was
+                            deliberately avoided</strong> because invoking it would have required multilateral
+                        legitimacy the US did not seek. <strong>Therefore, this case strongly supports the claim that
+                            R2P is obsolete</strong>: even where a genuine humanitarian crisis exists, powerful states
+                        choose unilateral action driven by strategic interest, rendering the norm's institutional
+                        requirements irrelevant in practice.</p>
+                    <div class="examiner-note">✅ <strong>Examiner note:</strong> This paragraph names the theory
+                        (Realism, Constructivism), uses specific evidence (FAES, UNSC bypass, narco-terrorist framing),
+                        distinguishes state security from human security, and links back to the prompt with a clear
+                        evaluative position. This is what a 13–15 mark body paragraph looks like.</div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider" />
+
+        <!-- ══ SECTION 5: DEBATE PREP ══ -->
+        <section class="section" id="s5">
+            <div class="section-header">
+                <div class="section-num num-green">5</div>
+                <div class="section-title"><span>Debate Prep · ~8 min</span>Choose Your Stance & Build Your Argument
+                </div>
+            </div>
+            <p class="text-muted" style="margin-bottom:6px">Commit to a position. This will drive your homework essay
+                and your debate next class.</p>
+
+            <div class="stance-grid">
+                <div class="stance-card" id="stanceA" onclick="selectStance('A')">
+                    <div style="font-size:2rem;margin-bottom:10px">🔴</div>
+                    <h4>R2P Is Obsolete</h4>
+                    <p>Both 2026 interventions prove that powerful states act on national security interests, not
+                        humanitarian norms. Pillar III is functionally dead.</p>
+                </div>
+                <div class="stance-card" id="stanceB" onclick="selectStance('B')">
+                    <div style="font-size:2rem;margin-bottom:10px">🟢</div>
+                    <h4>R2P Is Evolving</h4>
+                    <p>Humanitarian language still shapes legitimacy. The norm persists in discourse even when
+                        institutional requirements are bypassed — it is evolving, not dying.</p>
+                </div>
+            </div>
+
+            <div class="outline-builder" id="outlineBuilder">
+                <h3 style="font-size:1rem;font-weight:700;margin-bottom:16px">📋 3-Paragraph Essay Outline</h3>
+
+                <div class="ob-step"><label>Paragraph 1 — Thesis & Theoretical Framework</label><textarea data-key="ob1"
+                        placeholder="State your position clearly. Name the theory (Realism, Liberalism, or Constructivism) that best supports your argument. Define the key concept (R2P, sovereignty, or security)."></textarea>
+                </div>
+                <div class="ob-step"><label>Paragraph 2 — Venezuela Evidence</label><textarea data-key="ob2"
+                        placeholder="How does Operation Absolute Resolve support your argument? What specific evidence from the readings will you use? Which AO does it serve?"></textarea>
+                </div>
+                <div class="ob-step"><label>Paragraph 3 — Iran Evidence</label><textarea data-key="ob3"
+                        placeholder="How do the Iran strikes support your argument? Will you use this as supporting evidence or as a managed counter-claim? What theory lens applies?"></textarea>
+                </div>
+
+                <div class="ob-step" style="border-color:rgba(192,40,62,.2);background:rgba(192,40,62,.03)">
+                    <label style="color:var(--danger)">⚔️ Counter-Argument Anticipator</label>
+                    <textarea data-key="ob4"
+                        placeholder="What will the other side argue? How will you respond? e.g. 'A Constructivist might counter that liberation rhetoric proves R2P's normative power, but I would respond that...'"></textarea>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h3>📌 What Happens Next</h3>
+                <ol>
+                    <li><strong>Homework:</strong> Write a full Paper 2 extended response (800–1,000 words) using your
+                        outline above. Argue consistently from your chosen perspective.</li>
+                    <li><strong>Next class:</strong> You will be paired with peers who argued the
+                        <strong>opposite</strong> position. Each of you defends your essay stance in a structured debate
+                        exchange.
+                    </li>
+                    <li><strong>Use theory labels:</strong> In your debate, signal your framework explicitly — "From a
+                        Realist perspective..." or "A Constructivist would counter that..."</li>
+                </ol>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <strong>IB Global Politics</strong> · R2P Case Study Review · HL Security Challenge · March 2026
+        <div style="margin-top:10px"><a class="back-link" href="r2p-lesson-plan.html">← Lesson Plan</a> &nbsp;·&nbsp; <a
+                class="back-link" href="r2p-review-activity.html">← Review Activity</a></div>
+    </footer>
+
+    <script>
+        // ── QUIZ ──
+        let score = 0, answered = 0; const total = 10;
+        document.getElementById('quizGrid').addEventListener('click', function (e) {
+            const btn = e.target.closest('.choice-btn'); if (!btn || btn.disabled) return;
+            const card = btn.closest('.q-card'), btns = card.querySelectorAll('.choice-btn'), fb = card.querySelector('.q-feedback');
+            btns.forEach(b => { b.disabled = true; if (b.dataset.correct === 'true') b.classList.add('correct') });
+            if (btn.dataset.correct === 'true') { score++; fb.classList.add('fb-correct') } else { btn.classList.add('wrong'); fb.classList.add('fb-wrong') }
+            fb.classList.add('show'); answered++;
+            document.getElementById('scoreFill').style.width = (score / total * 100) + '%';
+            document.getElementById('scoreCount').textContent = score + ' / ' + total;
+        });
+        function resetQuiz() {
+            score = 0; answered = 0;
+            document.querySelectorAll('#quizGrid .choice-btn').forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong') });
+            document.querySelectorAll('#quizGrid .q-feedback').forEach(f => { f.classList.remove('show', 'fb-correct', 'fb-wrong') });
+            document.getElementById('scoreFill').style.width = '0%'; document.getElementById('scoreCount').textContent = '0 / 10';
+        }
+
+        // ── DRAG & DROP THEORY MATCHING ──
+        const theoryExplanations = {
+            't1': { correct: 'Realism', why: { 'Liberalism': 'This quote emphasises unilateral self-interest and ignoring the UN — that is Realist behaviour, not Liberal institutionalism.', 'Constructivism': 'The quote focuses on material security interests and unilateral action, not on language, identity, or norm construction — it is Realist.' } },
+            't2': { correct: 'Constructivism', why: { 'Realism': 'This quote is about LANGUAGE ("narco-terrorist" label) stripping legitimacy — Realism focuses on power and self-interest, not how labels construct reality.', 'Liberalism': 'The quote is about how naming and identity construction reshapes sovereignty — that is Constructivism, not institutional cooperation.' } },
+            't3': { correct: 'Liberalism', why: { 'Realism': 'This quote advocates for multilateral institutions (UNSC) — Realists see institutions as irrelevant power tools, not solutions.', 'Constructivism': 'The quote is about institutional process and multilateralism, not about how language or norms shape behaviour.' } },
+            't4': { correct: 'Realism', why: { 'Liberalism': 'Preemptive "self-help" in an "anarchic system" is textbook Realism — Liberals believe in institutional solutions, not unilateral survival logic.', 'Constructivism': 'Anarchy and self-help are Realist core concepts — Constructivists would examine how the "threat" was socially constructed, not take it as given.' } },
+            't5': { correct: 'Constructivism', why: { 'Realism': 'This quote is about RHETORIC and how language ("liberation") makes strikes SEEM humanitarian — Realists ignore language and focus on material power.', 'Liberalism': 'The quote critiques the use of normative language as a framing device — it is about discourse, not about institutions functioning correctly.' } },
+            't6': { correct: 'Liberalism', why: { 'Realism': 'This quote argues norms WORK when institutions are followed — Realists reject the idea that norms constrain powerful states.', 'Constructivism': 'The quote is about institutional legitimacy and procedural rules, not about how meaning or identity is constructed through language.' } },
+            't7': { correct: 'Realism', why: { 'Liberalism': 'This quote dismisses humanitarian language as a "cover" for power — Liberals take norms and institutions seriously, not as mere covers.', 'Constructivism': 'While it mentions language, the argument is that POWER drives everything — that is Realism. A Constructivist would say the language itself matters.' } },
+            't8': { correct: 'Constructivism', why: { 'Realism': 'This quote argues norms have power BEYOND institutions — Realists deny that norms independently shape state behaviour.', 'Liberalism': 'The quote says norms work even WITHOUT formal institutional invocation — Liberals tie norm-power to institutions, Constructivists to discourse.' } }
+        };
+        let theoryPlaced = 0; const theoryTotal = 8;
+        function initTheoryDrag() {
+            document.querySelectorAll('#theoryPool .scenario-card').forEach(card => {
+                card.addEventListener('dragstart', e => { e.dataTransfer.setData('text/plain', card.id); card.classList.add('dragging') });
+                card.addEventListener('dragend', () => card.classList.remove('dragging'));
+            });
+            document.querySelectorAll('#theoryZones .drop-zone').forEach(zone => {
+                zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over') });
+                zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+                zone.addEventListener('drop', e => {
+                    e.preventDefault(); zone.classList.remove('drag-over');
+                    const id = e.dataTransfer.getData('text/plain'), card = document.getElementById(id);
+                    if (!card || card.classList.contains('placed')) return;
+                    const fb = document.getElementById('theoryFeedback');
+                    if (card.dataset.theory === zone.dataset.theory) {
+                        card.classList.add('placed'); card.draggable = false; zone.querySelector('.drop-placeholder')?.remove(); zone.appendChild(card); theoryPlaced++;
+                        fb.classList.remove('show');
+                        if (theoryPlaced === theoryTotal) { const m = document.getElementById('theoryResultMsg'); m.textContent = '✅ All 8 quotes correctly matched! You can identify theory in real-world language.'; m.classList.add('show', 'all-correct') }
+                    } else {
+                        card.classList.add('wrong-drop'); setTimeout(() => card.classList.remove('wrong-drop'), 400);
+                        const info = theoryExplanations[id];
+                        if (info && info.why[zone.dataset.theory]) { fb.innerHTML = '❌ <strong>Not quite.</strong> ' + info.why[zone.dataset.theory] + ' <em>(This quote is ' + info.correct + '.)</em>'; fb.classList.add('show') }
+                    }
+                });
+            });
+        }
+        initTheoryDrag();
+
+        function resetTheory() {
+            theoryPlaced = 0;
+            const pool = document.getElementById('theoryPool');
+            document.querySelectorAll('#theoryZones .scenario-card').forEach(c => { c.classList.remove('placed'); c.draggable = true; pool.appendChild(c) });
+            document.querySelectorAll('.drop-zone').forEach(z => { if (!z.querySelector('.drop-placeholder')) { const p = document.createElement('div'); p.className = 'drop-placeholder'; p.textContent = 'Drop here'; z.appendChild(p) } });
+            document.getElementById('theoryResultMsg').classList.remove('show', 'all-correct'); document.getElementById('theoryResultMsg').textContent = '';
+            document.getElementById('theoryFeedback').classList.remove('show'); document.getElementById('theoryFeedback').innerHTML = '';
+        }
+
+        // ── EVIDENCE BANK + WRITING — LOCALSTORAGE ──
+        const LS_KEY = 'r2p-case-review-v1';
+        function saveAll() {
+            const data = {};
+            document.querySelectorAll('[data-key]').forEach(el => { data[el.dataset.key] = el.value || el.options?.[el.selectedIndex]?.value || '' });
+            try { localStorage.setItem(LS_KEY, JSON.stringify(data)) } catch { }
+        }
+        function loadAll() {
+            try {
+                const data = JSON.parse(localStorage.getItem(LS_KEY)); if (!data) return;
+                document.querySelectorAll('[data-key]').forEach(el => { if (data[el.dataset.key] != null) el.value = data[el.dataset.key] });
+                updateWordCount();
+            } catch { }
+        }
+        document.addEventListener('input', e => { if (e.target.dataset.key) { saveAll(); if (e.target.id === 'peelInput') updateWordCount() } });
+        document.addEventListener('change', e => { if (e.target.dataset.key) saveAll() });
+        loadAll();
+
+        // ── WORD COUNT ──
+        function updateWordCount() { const t = document.getElementById('peelInput').value.trim(); const c = t ? t.split(/\s+/).length : 0; const el = document.getElementById('wordCount'); el.textContent = c; el.style.color = c >= 150 && c <= 200 ? '#00ff88' : c > 200 ? '#ff3366' : '#00ffff' }
+
+        // ── TIMER ──
+        let timerInterval = null, timerSeconds = 600;
+        function toggleTimer() {
+            const btn = document.getElementById('timerBtn'), disp = document.getElementById('timerDisplay');
+            if (timerInterval) { clearInterval(timerInterval); timerInterval = null; btn.textContent = '⏱ Start 10-min timer'; btn.style.borderColor = 'rgba(0,255,255,.3)'; btn.style.background = 'rgba(0,255,255,.06)'; btn.style.color = '#00ffff'; disp.textContent = ''; timerSeconds = 600; return }
+            btn.textContent = '⏹ Stop'; btn.style.borderColor = 'rgba(0,255,255,.3)'; btn.style.color = '#00ffff';
+            timerInterval = setInterval(() => {
+                timerSeconds--; if (timerSeconds <= 0) { clearInterval(timerInterval); timerInterval = null; btn.textContent = '⏱ Restart'; btn.style.borderColor = 'rgba(255,51,102,.3)'; btn.style.color = '#ff3366'; disp.textContent = '⏰ Time!'; disp.style.color = '#ff3366'; return }
+                const m = Math.floor(timerSeconds / 60), s = timerSeconds % 60; disp.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+                if (timerSeconds <= 120) { disp.style.color = '#ff3366'; btn.style.borderColor = 'rgba(255,51,102,.3)'; btn.style.background = 'rgba(255,51,102,.06)'; btn.style.color = '#ff3366' }
+                else { disp.style.color = '#00ffff'; btn.style.borderColor = 'rgba(0,255,255,.3)'; btn.style.background = 'rgba(0,255,255,.06)'; btn.style.color = '#00ffff' }
+            }, 1000);
+        }
+
+        // ── MODEL PARAGRAPH ──
+        function toggleModel() { const p = document.getElementById('modelPara'), b = document.getElementById('modelToggle'); p.classList.toggle('show'); b.textContent = p.classList.contains('show') ? '👁 Hide Model PEEL Paragraph' : '👁 Show Model PEEL Paragraph' }
+
+        // ── STICKY NAV HIGHLIGHT ──
+        const navTabs = document.querySelectorAll('.nav-tab');
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { navTabs.forEach(t => t.classList.remove('active')); const tab = document.querySelector('.nav-tab[href="#' + e.target.id + '"]'); if (tab) tab.classList.add('active') } }) }, { threshold: 0.2 });
+        sections.forEach(s => observer.observe(s));
+
+        // ── STANCE SELECTOR ──
+        function selectStance(s) {
+            document.getElementById('stanceA').classList.toggle('selected', s === 'A');
+            document.getElementById('stanceB').classList.toggle('selected', s === 'B');
+            document.getElementById('outlineBuilder').classList.add('show');
+            saveAll();
+        }
+    </script>
+</body>
+
+</html>

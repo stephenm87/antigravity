@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cover Options — Minimal Bottom (C variants)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --page-w: 8.5in;
+      --page-h: 11in;
+      --gold: #c9a84c;
+      --gold-light: #dfc070;
+    }
+
+    body {
+      background: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+      color: #ccc;
+      padding: 40px 0 80px;
+    }
+
+    .label {
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin: 60px 0 20px;
+    }
+    .label:first-child { margin-top: 20px; }
+    .label em {
+      font-style: normal;
+      color: rgba(255,255,255,0.3);
+      font-weight: 400;
+      display: block;
+      margin-top: 6px;
+      letter-spacing: 2px;
+      font-size: 10px;
+    }
+
+    .page {
+      width: var(--page-w);
+      height: var(--page-h);
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 12px 60px rgba(0,0,0,0.6);
+    }
+
+    .page img.bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    /* ═══════════════════════════════════════════
+       OPTION C (original reference)
+       ═══════════════════════════════════════════ */
+    .opt-c .overlay {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 0.8in 0.5in;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        transparent 55%,
+        rgba(0,0,0,0.25) 68%,
+        rgba(0,0,0,0.7) 82%,
+        rgba(0,0,0,0.92) 100%
+      );
+    }
+    .opt-c .title-line {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 21pt;
+      letter-spacing: 4px;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      text-align: center;
+      line-height: 1.4;
+    }
+    .opt-c .title-line .accent { color: var(--gold); font-weight: 900; }
+    .opt-c .rule {
+      width: 45px; height: 2px;
+      background: var(--gold);
+      margin: 0.1in auto;
+    }
+    .opt-c .subject {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 17pt;
+      letter-spacing: 5px;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+    .opt-c .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 12pt;
+      color: rgba(255,255,255,0.75);
+      margin-top: 0.06in;
+    }
+    .opt-c .edition {
+      font-family: 'Inter', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-top: 0.12in;
+    }
+
+    /* ═══════════════════════════════════════════
+       OPTION C2 — SINGLE GOLD STRIP
+       Narrow band, title on one line. Ultra-minimal.
+       ═══════════════════════════════════════════ */
+    .opt-c2 .overlay {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        transparent 68%,
+        rgba(0,0,0,0.15) 76%,
+        rgba(0,0,0,0.65) 88%,
+        rgba(0,0,0,0.95) 100%
+      );
+    }
+    .opt-c2 .strip {
+      width: 100%;
+      padding: 0.28in 0.6in 0.4in;
+      text-align: center;
+    }
+    .opt-c2 .strip .rule-top {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold) 25%, var(--gold) 75%, transparent);
+      margin-bottom: 0.18in;
+      opacity: 0.6;
+    }
+    .opt-c2 .strip .title {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 13pt;
+      letter-spacing: 6px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .opt-c2 .strip .divider {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin: 0 0.15in;
+      vertical-align: middle;
+      opacity: 0.7;
+    }
+    .opt-c2 .strip .sub-info {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11pt;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0.08in;
+      letter-spacing: 1px;
+    }
+    .opt-c2 .strip .sub-info em {
+      font-style: italic;
+    }
+    .opt-c2 .strip .edition {
+      font-family: 'Inter', sans-serif;
+      font-size: 6.5pt;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-top: 0.1in;
+    }
+
+    /* ═══════════════════════════════════════════
+       OPTION C3 — LEFT-ALIGNED ASYMMETRIC
+       Text anchored bottom-left. Cinematic.
+       ═══════════════════════════════════════════ */
+    .opt-c3 .overlay {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding: 0 0 0.45in 0.55in;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        transparent 60%,
+        rgba(0,0,0,0.2) 72%,
+        rgba(0,0,0,0.65) 85%,
+        rgba(0,0,0,0.92) 100%
+      );
+    }
+    .opt-c3 .left-rule {
+      width: 35px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 0.14in;
+    }
+    .opt-c3 .title-block .main-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 24pt;
+      letter-spacing: 3px;
+      color: #fff;
+      line-height: 1.2;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+    }
+    .opt-c3 .title-block .main-title .accent {
+      color: var(--gold);
+      font-weight: 900;
+    }
+    .opt-c3 .title-block .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 13pt;
+      color: rgba(255,255,255,0.7);
+      margin-top: 0.06in;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+    }
+    .opt-c3 .meta-line {
+      font-family: 'Inter', sans-serif;
+      font-size: 7pt;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.22in;
+    }
+    .opt-c3 .meta-line .dot {
+      margin: 0 0.08in;
+      opacity: 0.5;
+    }
+    .opt-c3 .subject-tag {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 10pt;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.12in;
+      margin-bottom: 0.04in;
+    }
+
+    /* ═══════════════════════════════════════════
+       OPTION C4 — STACKED MONUMENTAL
+       Large "GAZETTE" as hero word, rest small
+       ═══════════════════════════════════════════ */
+    .opt-c4 .overlay {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 0.6in 0.42in;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        transparent 55%,
+        rgba(0,0,0,0.18) 66%,
+        rgba(0,0,0,0.6) 80%,
+        rgba(0,0,0,0.93) 100%
+      );
+    }
+    .opt-c4 .small-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 7pt;
+      font-weight: 500;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 0.04in;
+    }
+    .opt-c4 .hero-word {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 40pt;
+      letter-spacing: 10px;
+      color: var(--gold);
+      text-shadow: 0 3px 20px rgba(0,0,0,0.4);
+      line-height: 1;
+    }
+    .opt-c4 .rule {
+      width: 60px;
+      height: 1px;
+      background: rgba(255,255,255,0.25);
+      margin: 0.12in auto;
+    }
+    .opt-c4 .subtitle-stack {
+      text-align: center;
+    }
+    .opt-c4 .subtitle-stack .subject {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 13pt;
+      letter-spacing: 5px;
+      color: rgba(255,255,255,0.85);
+    }
+    .opt-c4 .subtitle-stack .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 11.5pt;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.04in;
+    }
+    .opt-c4 .subtitle-stack .edition {
+      font-family: 'Inter', sans-serif;
+      font-size: 6.5pt;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-top: 0.12in;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ OPTION C (REFERENCE) ══════════ -->
+  <div class="label">
+    OPTION C — REFERENCE (ORIGINAL)
+    <em>Bottom gradient band, centered text stack</em>
+  </div>
+  <div class="page opt-c">
+    <img class="bg" src="covers/v3b_kintsugi.png" alt="V3B dragon">
+    <div class="overlay">
+      <div class="title-line">POLITICAL CARTOON <span class="accent">GAZETTE</span></div>
+      <div class="rule"></div>
+      <div class="subject">ASIAN HISTORY</div>
+      <div class="sub">The Fall of the Qing Dynasty</div>
+      <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ OPTION C2 — SINGLE GOLD STRIP ══════════ -->
+  <div class="label">
+    OPTION C2 — GOLD STRIP
+    <em>Ultra-narrow band with gold rule horizon. Maximum dragon.</em>
+  </div>
+  <div class="page opt-c2">
+    <img class="bg" src="covers/v3b_kintsugi.png" alt="V3B dragon">
+    <div class="overlay">
+      <div class="strip">
+        <div class="rule-top"></div>
+        <div class="title">Political Cartoon Gazette</div>
+        <div class="sub-info">Asian History<span style="margin: 0 0.12in; opacity:0.4;">·</span><em>The Fall of the Qing Dynasty</em></div>
+        <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ OPTION C3 — LEFT-ALIGNED ASYMMETRIC ══════════ -->
+  <div class="label">
+    OPTION C3 — ASYMMETRIC LEFT
+    <em>Text anchored bottom-left. Cinematic, editorial.</em>
+  </div>
+  <div class="page opt-c3">
+    <img class="bg" src="covers/v3b_kintsugi.png" alt="V3B dragon">
+    <div class="overlay">
+      <div class="subject-tag">Asian History</div>
+      <div class="left-rule"></div>
+      <div class="title-block">
+        <div class="main-title">POLITICAL CARTOON<br><span class="accent">GAZETTE</span></div>
+        <div class="sub">The Fall of the Qing Dynasty</div>
+      </div>
+      <div class="meta-line">Issue No. 1<span class="dot">·</span>Spring 2026</div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ OPTION C4 — STACKED MONUMENTAL ══════════ -->
+  <div class="label">
+    OPTION C4 — MONUMENTAL
+    <em>"GAZETTE" as hero word. Quiet authority.</em>
+  </div>
+  <div class="page opt-c4">
+    <img class="bg" src="covers/v3b_kintsugi.png" alt="V3B dragon">
+    <div class="overlay">
+      <div class="small-label">Political Cartoon</div>
+      <div class="hero-word">GAZETTE</div>
+      <div class="rule"></div>
+      <div class="subtitle-stack">
+        <div class="subject">ASIAN HISTORY</div>
+        <div class="sub">The Fall of the Qing Dynasty</div>
+        <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

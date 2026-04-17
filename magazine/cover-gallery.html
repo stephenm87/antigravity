@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Qing Gazette — Cover Images</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #111; color: #e0d6c8; font-family: 'Georgia', serif; padding: 2rem; }
+  h1 { text-align: center; font-size: 2rem; margin-bottom: .5rem; color: #c9a84c; letter-spacing: 2px; }
+  p.sub { text-align: center; font-size: .9rem; color: #888; margin-bottom: 2rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+  .card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; overflow: hidden; transition: transform .2s; }
+  .card:hover { transform: scale(1.02); border-color: #c9a84c44; }
+  .card img { width: 100%; height: auto; display: block; cursor: pointer; }
+  .card .label { padding: .6rem 1rem; font-size: .8rem; color: #aaa; border-top: 1px solid #222; }
+  /* lightbox */
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 100; justify-content: center; align-items: center; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 95vw; max-height: 95vh; object-fit: contain; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<h1>Qing Gazette — Cover &amp; Generated Images</h1>
+<p class="sub">35 images · click to enlarge</p>
+
+<div class="grid" id="grid"></div>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+const covers = [
+  "back_cover.png","back_distant_eyes.png","back_dragon_eyes.png","back_fallen.png",
+  "back_kintsugi.png","back_opt_a.png","back_opt_b.png","back_opt_c.png","back_opt_d.png",
+  "back_opt_e.png","back_opt_eyes_v2.png","back_opt_f.png","back_opt_g.png","back_opt_h.png",
+  "back_opt_i.png","back_opt_j.png","back_opt_k.png","back_opt_l.png","back_opt_l1.png",
+  "back_opt_l2.png","back_opt_l3.png","back_opt_l4.png","back_rear_dissolve.png",
+  "back_rear_intact.png","back_rear_skeleton.png","back_seal.png","back_studio.png",
+  "dragon_press.png","forbidden_city.png","jade_dragon.png","qing_wall.png",
+  "student_stylus.png","torn_silk.png","v3b_kintsugi.png","woodblock.png"
+];
+
+const grid = document.getElementById('grid');
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+
+covers.forEach(f => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  const img = document.createElement('img');
+  img.src = 'covers/' + f;
+  img.alt = f;
+  img.loading = 'lazy';
+  img.onclick = () => { lbImg.src = img.src; lb.classList.add('open'); };
+  const label = document.createElement('div');
+  label.className = 'label';
+  label.textContent = f.replace(/_/g, ' ').replace('.png', '');
+  card.appendChild(img);
+  card.appendChild(label);
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>

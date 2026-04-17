@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SLP Peer Check Checklist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <style>
+        /* ───── RESET & BASE ───── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #1B2A4A;
+            --teal: #1a6b7a;
+            --gold: #b07d10;
+            --green: #1a8a50;
+            --red: #cc3355;
+            --text: #1a1e2e;
+            --muted: #5a6578;
+            --border: #cdd5e0;
+            --surface: #ffffff;
+            --bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 10pt;
+            line-height: 1.5;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            border-bottom: 3px solid var(--navy);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        .header-left h1 {
+            font-size: 15pt;
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 2px;
+        }
+        .header-left .subtitle {
+            font-size: 8.5pt;
+            color: var(--muted);
+            font-weight: 500;
+        }
+        .header-right {
+            text-align: right;
+            font-size: 9pt;
+            line-height: 1.8;
+            flex-shrink: 0;
+        }
+        .header-right .field-label {
+            font-weight: 700;
+            color: var(--text);
+        }
+        .header-right .field-line {
+            display: inline-block;
+            width: 140px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: bottom;
+            margin-left: 4px;
+        }
+
+        /* Instructions box */
+        .instructions {
+            background: #f0f3f8;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-bottom: 10px;
+            font-size: 8pt;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .instructions strong { color: var(--text); }
+        .instructions .legend {
+            display: flex;
+            gap: 16px;
+            margin-top: 4px;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 8.5pt;
+        }
+        .legend span { display: inline-flex; align-items: center; gap: 4px; }
+        .instructions .self-note {
+            margin-top: 4px;
+            font-style: italic;
+            color: var(--teal);
+            font-weight: 600;
+        }
+        .part-heading-flush { margin-top: 0; }
+        .feedback-prompt-gap { margin-top: 6px; }
+
+        /* Part headings */
+        .part-heading {
+            font-size: 11pt;
+            font-weight: 800;
+            color: var(--navy);
+            margin: 8px 0 5px;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--navy);
+        }
+
+        /* Category headings */
+        .category {
+            font-size: 8.5pt;
+            font-weight: 700;
+            color: var(--teal);
+            margin: 6px 0 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        /* Checklist table */
+        .check-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1px;
+            font-size: 8pt;
+        }
+        .check-table th {
+            text-align: center;
+            font-size: 7pt;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 2px 0;
+            border-bottom: 1px solid var(--border);
+            width: 30px;
+        }
+        .check-table th:first-child {
+            text-align: left;
+            width: auto;
+        }
+        /* Self column header styling */
+        .check-table th.self-col {
+            color: var(--teal);
+            border-left: 2px solid var(--border);
+            width: 34px;
+        }
+        .check-table td {
+            padding: 3px 3px;
+            vertical-align: top;
+            border-bottom: 1px solid #eaecf0;
+        }
+        .check-table td:not(:first-child) {
+            text-align: center;
+            width: 30px;
+        }
+        .check-table td.self-cell {
+            border-left: 2px solid #e0e4eb;
+            width: 34px;
+            background: rgba(26, 107, 122, 0.03);
+        }
+        .check-table .item-label {
+            font-weight: 600;
+            color: var(--text);
+        }
+        .check-table .item-desc {
+            color: var(--muted);
+            font-size: 7.5pt;
+            margin-top: 0px;
+        }
+        /* Checkbox cells */
+        .check-table .cb {
+            width: 13px;
+            height: 13px;
+            border: 1.5px solid var(--border);
+            border-radius: 3px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Sub-heading inside table area */
+        .sub-heading {
+            font-size: 8pt;
+            font-weight: 700;
+            color: var(--navy);
+            font-style: italic;
+            margin: 4px 0 1px;
+        }
+
+        /* Divider line */
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: var(--border);
+            margin: 5px 0;
+        }
+
+        /* Feedback section */
+        .feedback-section {
+            margin-top: 6px;
+        }
+        .feedback-heading {
+            font-size: 11pt;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 5px;
+            padding-bottom: 2px;
+            border-bottom: 2px solid var(--navy);
+        }
+        .feedback-prompt {
+            font-size: 8.5pt;
+            font-weight: 600;
+            color: var(--text);
+            margin: 5px 0 2px;
+        }
+        .feedback-lines {
+            border-bottom: 1px solid var(--border);
+            height: 18px;
+            margin-bottom: 1px;
+        }
+
+        /* Overall rating */
+        .overall-box {
+            border: 2px solid var(--navy);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-top: 8px;
+        }
+        .overall-box .overall-title {
+            font-size: 9.5pt;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+        .overall-box .rating-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 8.5pt;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .rating-row .rating-option {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .rating-row .rb {
+            width: 13px;
+            height: 13px;
+            border: 1.5px solid var(--border);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            font-size: 7.5pt;
+            color: var(--muted);
+            margin-top: 8px;
+            padding-top: 4px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ───── PRINT ───── */
+        @media print {
+            @page {
+                size: Letter;
+                margin: 0.4in 0.45in;
+            }
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+            .instructions {
+                background: #f0f3f8 !important;
+            }
+            .overall-box {
+                border: 2px solid var(--navy) !important;
+            }
+            .header {
+                border-bottom: 3px solid var(--navy) !important;
+            }
+            .check-table td.self-cell {
+                background: rgba(26, 107, 122, 0.03) !important;
+                border-left: 2px solid #e0e4eb !important;
+            }
+            .check-table th.self-col {
+                border-left: 2px solid var(--border) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PAGE 1                                                         -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<div class="header">
+    <div class="header-left">
+        <h1>SLP Peer Check Checklist</h1>
+        <div class="subtitle">Service Learning Project - Infographic Set Review</div>
+    </div>
+    <div class="header-right">
+        <div><span class="field-label">Reviewer:</span> <span class="field-line"></span></div>
+        <div><span class="field-label">Student:</span> <span class="field-line"></span></div>
+        <div><span class="field-label">Date:</span> <span class="field-line"></span></div>
+    </div>
+</div>
+
+<div class="instructions">
+    <strong>How to use this checklist:</strong> Review your partner's <strong>3 infographics</strong> (Impact, Process, Growth) carefully. For <strong>each item</strong>, mark one column. Be honest - this helps your partner improve before final submission.
+    <div class="legend">
+        <span>✗ = Needs work</span>
+        <span>OK = Acceptable</span>
+        <span>☺ = Great job!</span>
+    </div>
+    <div class="self-note">SELF column: Before giving this to your reviewer, rate yourself first. Then compare after you get it back.</div>
+</div>
+
+<!-- PART 1: DESIGN -->
+<div class="part-heading">Part 1: Design</div>
+
+<div class="category">Visual Structure & Layout</div>
+<table class="check-table">
+    <thead>
+        <tr><th>Criteria</th><th>✗</th><th>OK</th><th>☺</th><th class="self-col">Self</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span class="item-label">Hierarchy</span><div class="item-desc">The most important information is the largest and easiest to notice.</div></td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td><span class="item-label">Alignment</span><div class="item-desc">Elements are well aligned and the layout looks organised and intentional.</div></td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td><span class="item-label">Set Consistency</span><div class="item-desc">All <strong>3 infographics</strong> look like a set (similar style, format, layout, or visual language).</div></td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="category">Typography</div>
+<table class="check-table">
+    <thead>
+        <tr><th>Criteria</th><th>✗</th><th>OK</th><th>☺</th><th class="self-col">Self</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span class="item-label">Font choice</span><div class="item-desc">Text is clear, easy to read, and appropriate for an infographic.</div></td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td><span class="item-label">Typography control</span><div class="item-desc">Font sizes, spacing, and styles are tidy and consistent across all 3 infographics.</div></td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="category">Colour</div>
+<table class="check-table">
+    <thead>
+        <tr><th>Criteria</th><th>✗</th><th>OK</th><th>☺</th><th class="self-col">Self</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span class="item-label">Colour choice</span><div class="item-desc">Colours work well together and are suitable for the topic.</div></td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td><span class="item-label">Colour for meaning</span><div class="item-desc">Colour helps understanding and does not distract from the information.</div></td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="category">Visual Communication</div>
+<table class="check-table">
+    <thead>
+        <tr><th>Criteria</th><th>✗</th><th>OK</th><th>☺</th><th class="self-col">Self</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span class="item-label">Show more than explain</span><div class="item-desc">The infographics use visuals (icons, charts, images) effectively rather than relying only on text.</div></td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td><span class="item-label">Data visualisation</span><div class="item-desc">Charts, graphs, or statistics are presented clearly and accurately (especially in the Impact infographic).</div></td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<hr class="section-divider">
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PAGE 2                                                         -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+
+<!-- PART 2: CONTENT -->
+<div class="part-heading part-heading-flush">Part 2: Content</div>
+
+<div class="category">Project Clarity</div>
+<table class="check-table">
+    <thead>
+        <tr><th>Criteria</th><th>✗</th><th>OK</th><th>☺</th><th class="self-col">Self</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Is it clear <strong>what the service learning project is</strong>?</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td>Is it clear <strong>what the student's intentions and goals</strong> are?</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td>Is it clear <strong>how many times the student participated</strong>?</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td>Is it clear <strong>who the audience is</strong> and <strong>how many people were impacted</strong>?</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="category">Authenticity & Accuracy</div>
+<table class="check-table">
+    <thead>
+        <tr><th>Criteria</th><th>✗</th><th>OK</th><th>☺</th><th class="self-col">Self</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>The information feels <strong>authentic, honest, and realistic</strong>.</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td>Data and statistics look <strong>believable</strong> - nothing seems exaggerated or fabricated.</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div class="category">Specific Infographic Checks</div>
+
+<div class="sub-heading">Infographic 1: My Impact</div>
+<table class="check-table">
+    <thead>
+        <tr><th>Criteria</th><th>✗</th><th>OK</th><th>☺</th><th class="self-col">Self</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>The data is <strong>realistic and easy to understand</strong>.</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td>The <strong>methodology</strong> (how data was collected) is clear or implied.</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="sub-heading">Infographic 2: My Process</div>
+<table class="check-table">
+    <thead>
+        <tr><th>Criteria</th><th>✗</th><th>OK</th><th>☺</th><th class="self-col">Self</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>The process is explained in <strong>enough detail</strong> (not just surface-level).</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td>The reader can follow the <strong>steps from start to finish</strong>.</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="sub-heading">Infographic 3: My Growth</div>
+<table class="check-table">
+    <thead>
+        <tr><th>Criteria</th><th>✗</th><th>OK</th><th>☺</th><th class="self-col">Self</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>The reflection shows <strong>meaningful depth</strong> and is not too generic.</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td>The student explains <strong>what they learned</strong> or <strong>how they changed</strong>, not just what they did.</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<hr class="section-divider">
+
+<div class="category">Evidence & Documentation</div>
+<table class="check-table">
+    <thead>
+        <tr><th>Criteria</th><th>✗</th><th>OK</th><th>☺</th><th class="self-col">Self</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>There are <strong>2 or more quotes</strong> included.</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td>There are <strong>5 or more images</strong> from the event.</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td>The student's <strong>full name appears on each infographic</strong>.</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+        <tr>
+            <td>Each infographic has a <strong>clear title</strong> that tells the reader what it is about.</td>
+            <td><span class="cb"></span></td><td><span class="cb"></span></td><td><span class="cb"></span></td>
+            <td class="self-cell"><span class="cb"></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<hr class="section-divider">
+
+<!-- PART 3: FEEDBACK -->
+<div class="feedback-section">
+    <div class="feedback-heading">Part 3: Feedback</div>
+
+    <div class="feedback-prompt">One specific suggestion for improvement:</div>
+    <div class="feedback-lines"></div>
+    <div class="feedback-lines"></div>
+
+    <div class="feedback-prompt feedback-prompt-gap">One thing done especially well:</div>
+    <div class="feedback-lines"></div>
+    <div class="feedback-lines"></div>
+
+    <!-- Overall assessment -->
+    <div class="overall-box">
+        <div class="overall-title">Overall: Is this project ready to submit?</div>
+        <div class="rating-row">
+            <span class="rating-option"><span class="rb"></span> Not yet - needs significant revision</span>
+            <span class="rating-option"><span class="rb"></span> Almost - a few things to fix</span>
+            <span class="rating-option"><span class="rb"></span> Yes - ready to go!</span>
+        </div>
+    </div>
+</div>
+
+<div class="page-footer">
+    IB Global Politics &middot; SLP Peer Check Checklist &middot; Mr. Martinez &middot; 2026
+</div>
+
+</body>
+</html>

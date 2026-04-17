@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Solution Research Guide | Paper 3 Q2</title>
+    <meta name="description" content="Step-by-step guide for IB Global Politics Paper 3 Q2 — build precise AMR² solution components for any case study."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{--bg:#f5f6fa;--surface:#fff;--surface2:#eef0f7;--border:rgba(0,0,0,.1);--accent:#6438b0;--accent-bg:rgba(100,56,176,.08);--blue:#2c5fc4;--green:#1a8a5a;--gold:#b07d10;--danger:#c0283e;--text:#1a1e2e;--muted:#4a5270;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.10)}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh}
+
+        /* HERO */
+        .hero{position:relative;overflow:hidden;padding:64px 24px 56px;text-align:center;background:radial-gradient(ellipse 120% 60% at 50% 0%,rgba(100,56,176,.10) 0%,transparent 70%),linear-gradient(180deg,#ece7f5 0%,var(--bg) 100%);border-bottom:1px solid var(--border)}
+        .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(0,0,0,0.025)'/%3E%3C/svg%3E");pointer-events:none}
+        .hero-badge{display:inline-block;background:rgba(100,56,176,.10);border:1px solid rgba(100,56,176,.30);color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 18px;border-radius:50px;margin-bottom:22px}
+        .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);font-weight:800;line-height:1.2;background:linear-gradient(135deg,#4a2080 0%,#6438b0 55%,#2c5fc4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:800px;margin:0 auto 18px}
+        .hero-sub{font-size:1.02rem;color:var(--muted);max-width:680px;margin:0 auto}
+
+        /* NAV */
+        .nav{background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:4px;padding:10px 20px;justify-content:center;position:sticky;top:0;z-index:100;flex-wrap:wrap;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+        .nav a{padding:8px 16px;font-size:.78rem;font-weight:600;color:var(--muted);text-decoration:none;border-radius:50px;transition:all .2s}
+        .nav a:hover{color:var(--accent);background:rgba(100,56,176,.06)}
+        .nav a.active{color:var(--accent);background:rgba(100,56,176,.10)}
+
+        .container{max-width:960px;margin:0 auto;padding:32px 24px 80px}
+
+        /* SECTIONS */
+        .section{margin-bottom:48px;scroll-margin-top:70px}
+        .section-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+        .section h2{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.9rem);font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+        .section-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:800;flex-shrink:0}
+        .section-intro{font-size:.95rem;color:var(--muted);margin-bottom:24px;max-width:700px}
+
+        /* FORMULA */
+        .formula-container{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:28px 20px;background:linear-gradient(135deg,rgba(100,56,176,.06),rgba(44,95,196,.06));border:1px solid rgba(100,56,176,.18);border-radius:var(--radius);margin-bottom:16px}
+        .formula-block{text-align:center;padding:14px 20px;border-radius:12px;min-width:120px}
+        .formula-block .f-icon{font-size:1.4rem;margin-bottom:4px}
+        .formula-block .f-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+        .formula-block .f-desc{font-size:.78rem;color:var(--muted);font-style:italic}
+        .f-actor{background:rgba(44,95,196,.10);border:1px solid rgba(44,95,196,.25)}
+        .f-mech{background:rgba(26,138,90,.10);border:1px solid rgba(26,138,90,.25)}
+        .f-rat{background:rgba(176,125,16,.10);border:1px solid rgba(176,125,16,.25)}
+        .f-risk{background:rgba(192,40,62,.10);border:1px solid rgba(192,40,62,.25)}
+        .formula-plus{font-size:1.3rem;font-weight:800;color:var(--muted)}
+        .formula-note{text-align:center;font-size:.82rem;color:var(--muted);margin-bottom:24px;font-style:italic}
+
+        /* PROMPT CARDS */
+        .prompt-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:20px;position:relative;overflow:hidden}
+        .prompt-card::before{content:'';position:absolute;top:0;left:0;width:5px;height:100%}
+        .prompt-card .step-num{font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+        .prompt-card h3{font-size:1.05rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+        .prompt-card .hint{font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:14px}
+        .prompt-card .hint strong{color:var(--text)}
+        .prompt-card .example-box{background:var(--surface2);border-radius:10px;padding:14px 18px;font-size:.82rem;color:var(--muted);font-style:italic;border-left:3px solid var(--accent);margin-bottom:12px}
+        .prompt-card .check-label{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+        .prompt-card .checklist{list-style:none;padding:0}
+        .prompt-card .checklist li{font-size:.82rem;color:var(--muted);padding:4px 0;display:flex;align-items:flex-start;gap:8px}
+        .prompt-card .checklist li::before{content:'☐';flex-shrink:0;color:var(--accent);font-weight:700}
+
+        .p1::before{background:var(--accent)}.p1 .step-num{color:var(--accent)}
+        .p2::before{background:var(--blue)}.p2 .step-num{color:var(--blue)}
+        .p3::before{background:var(--green)}.p3 .step-num{color:var(--green)}
+        .p4::before{background:var(--gold)}.p4 .step-num{color:var(--gold)}
+        .p5::before{background:var(--danger)}.p5 .step-num{color:var(--danger)}
+        .p6::before{background:#0e7c86}.p6 .step-num{color:#0e7c86}
+
+        /* ACTOR BANK */
+        .actor-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-bottom:16px}
+        .actor-table th{text-align:left;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:10px 8px;border-bottom:2px solid var(--border);background:var(--surface2)}
+        .actor-table td{padding:10px 8px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+        .actor-table tr:hover{background:rgba(100,56,176,.02)}
+        .gpc-tag{font-size:.62rem;font-weight:700;padding:3px 10px;border-radius:50px;display:inline-block}
+
+        /* MECHANISM TEMPLATES */
+        .mech-tmpl{background:rgba(26,138,90,.04);border:1px solid rgba(26,138,90,.15);border-radius:10px;padding:16px 18px;margin-bottom:12px;font-size:.84rem}
+        .mech-tmpl .label{font-size:.7rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+        .mech-blank{color:var(--accent);font-weight:600;font-style:italic}
+
+        /* RISK CATEGORIES */
+        .risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+        .risk-card{padding:16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface)}
+        .risk-card h4{font-size:.78rem;font-weight:700;color:var(--danger);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+        .risk-card p{font-size:.78rem;color:var(--muted);line-height:1.6}
+        .risk-card .risk-example{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:6px;padding-top:6px;border-top:1px dashed var(--border)}
+
+        /* TIERED EXAMPLES */
+        .tier-card{border-radius:var(--radius);padding:22px 24px;border:1px solid var(--border);position:relative;overflow:hidden;margin-bottom:12px}
+        .tier-card::before{content:'';position:absolute;top:0;left:0;width:5px;height:100%}
+        .tier-card h4{font-size:.92rem;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+        .tier-badge{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 12px;border-radius:50px}
+        .tier-card .amr-label-inline{font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:4px;display:inline;margin-right:2px;vertical-align:middle}
+        .tier-card p{font-size:.84rem;color:var(--muted);line-height:1.7;font-style:italic}
+        .t-avg{background:linear-gradient(135deg,rgba(192,40,62,.03),transparent)}
+        .t-avg::before{background:var(--danger)}.t-avg .tier-badge{background:rgba(192,40,62,.10);color:var(--danger)}
+        .t-good{background:linear-gradient(135deg,rgba(44,95,196,.03),transparent)}
+        .t-good::before{background:var(--blue)}.t-good .tier-badge{background:rgba(44,95,196,.10);color:var(--blue)}
+        .t-exc{background:linear-gradient(135deg,rgba(26,138,90,.03),transparent)}
+        .t-exc::before{background:var(--green)}.t-exc .tier-badge{background:rgba(26,138,90,.10);color:var(--green)}
+        .elevation-box{background:rgba(176,125,16,.04);border:1px solid rgba(176,125,16,.2);border-radius:10px;padding:16px 20px;margin-bottom:12px}
+        .elevation-box h4{font-size:.78rem;font-weight:700;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+        .elevation-box li{font-size:.8rem;color:var(--muted);line-height:1.6;padding:3px 0;display:flex;align-items:flex-start;gap:8px}
+        .elevation-box li::before{content:'🔼';flex-shrink:0;font-size:.7rem}
+        .elevation-box ul{list-style:none;padding:0}
+
+        /* CTA CALLOUT */
+        .cta-box{background:linear-gradient(135deg,rgba(100,56,176,.06),rgba(44,95,196,.06));border:2px solid rgba(100,56,176,.20);border-radius:var(--radius);padding:28px;text-align:center;margin-top:32px}
+        .cta-box h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--accent);margin-bottom:8px}
+        .cta-box p{font-size:.88rem;color:var(--muted)}
+
+        .footer{text-align:center;padding:40px 24px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border);margin-top:40px}
+
+        @media(max-width:600px){.risk-grid{grid-template-columns:1fr}.formula-container{gap:8px}.formula-block{min-width:90px;padding:10px 14px}}
+        @media print{.nav{position:static;box-shadow:none}}
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-badge">Paper 3 · Q2 Solution · Research Guide</div>
+        <h1>Solution Research Guide</h1>
+        <p class="hero-sub">A step-by-step framework for building precise, exam-ready policy recommendations for any case study.</p>
+    </header>
+
+    <nav class="nav">
+        <a href="#formula">AMR² Formula</a>
+        <a href="#prompts">6 Research Prompts</a>
+        <a href="#actors">Actor Bank</a>
+        <a href="#mechanisms">Mechanism Templates</a>
+        <a href="#risks">Risk Categories</a>
+        <a href="#examples">Tiered Examples</a>
+    </nav>
+
+    <main class="container">
+
+        <!-- ═══════ SECTION 1: AMR² FORMULA ═══════ -->
+        <div class="section" id="formula">
+            <div class="section-label">The Framework</div>
+            <h2><span class="section-num">1</span> The AMR² Formula</h2>
+            <p class="section-intro">Every strong policy recommendation contains four components. Your research should build each one with precision.</p>
+
+            <div class="formula-container">
+                <div class="formula-block f-actor">
+                    <div class="f-icon">🏛</div>
+                    <div class="f-label" style="color:#2c5fc4">Actor</div>
+                    <div class="f-desc">Who has the power?</div>
+                </div>
+                <span class="formula-plus">+</span>
+                <div class="formula-block f-mech">
+                    <div class="f-icon">⚙️</div>
+                    <div class="f-label" style="color:#1a8a5a">Mechanism</div>
+                    <div class="f-desc">What's the concrete action?</div>
+                </div>
+                <span class="formula-plus">+</span>
+                <div class="formula-block f-rat">
+                    <div class="f-icon">💡</div>
+                    <div class="f-label" style="color:#b07d10">Rationale</div>
+                    <div class="f-desc">Why would it work?</div>
+                </div>
+                <span class="formula-plus">+</span>
+                <div class="formula-block f-risk">
+                    <div class="f-icon">⚠️</div>
+                    <div class="f-label" style="color:#c0283e">Risk</div>
+                    <div class="f-desc">What could go wrong?</div>
+                </div>
+            </div>
+            <p class="formula-note">Band 7 answers integrate all four components into a single flowing paragraph with evidence and mitigation.</p>
+        </div>
+
+        <!-- ═══════ SECTION 2: 6 RESEARCH PROMPTS ═══════ -->
+        <div class="section" id="prompts">
+            <div class="section-label">The Process</div>
+            <h2><span class="section-num">2</span> Six Research Prompts</h2>
+            <p class="section-intro">Work through these six questions for <strong>each case study</strong> to accumulate the precise information you need for a Band 7 recommendation.</p>
+
+            <!-- Prompt 1 -->
+            <div class="prompt-card p1">
+                <div class="step-num">Prompt 1 — Maps to: Problem Context</div>
+                <h3>🔍 What's broken?</h3>
+                <div class="hint">Describe the core problem in one sentence. <strong>A problem statement backed by a statistic, date, or named impact is far more powerful than a vague claim.</strong> Not "things are bad in Haiti" but a precise, evidence-driven statement.</div>
+                <div class="example-box">"Armed gangs control approximately 80% of Port-au-Prince, with 5,600 people killed in gang violence in 2024 alone, while the Haitian National Police lacks the capacity to restore order."</div>
+                <div class="check-label">✅ Self-Check</div>
+                <ul class="checklist">
+                    <li>Does it name a specific location or population affected?</li>
+                    <li>Does it include a statistic, percentage, or measurable impact?</li>
+                    <li>Is the injustice or governance failure clearly named?</li>
+                </ul>
+            </div>
+
+            <!-- Prompt 2 -->
+            <div class="prompt-card p2">
+                <div class="step-num">Prompt 2 — Maps to: <span style="background:rgba(44,95,196,.10);color:#2c5fc4;padding:1px 8px;border-radius:4px;font-size:.65rem">ACTOR</span></div>
+                <h3>🏛 Who has the power to fix it?</h3>
+                <div class="hint">Name 2–3 specific actors who have the <strong>authority, resources, or jurisdiction</strong> to address this problem. For each, name the <strong>specific sub-body</strong> and the <strong>tool they control</strong>. Don't say "the UN" — say which organ, which mandate, which fund.</div>
+                <div class="example-box">"1) UN Security Council (Chapter VII authority) — binding resolutions, peacekeeping mandates, sanctions<br/>2) Peacebuilding Commission — institution-building funds, post-conflict governance support<br/>3) ICRC — humanitarian access negotiation, protection mandates"</div>
+                <div class="check-label">✅ Self-Check</div>
+                <ul class="checklist">
+                    <li>Did you name the specific sub-body (not just the parent organization)?</li>
+                    <li>Did you identify the specific tool or mandate each actor controls?</li>
+                    <li>Is the actor actually authorized to act on this type of issue?</li>
+                </ul>
+            </div>
+
+            <!-- Prompt 3 -->
+            <div class="prompt-card p3">
+                <div class="step-num">Prompt 3 — Maps to: <span style="background:rgba(26,138,90,.10);color:#1a8a5a;padding:1px 8px;border-radius:4px;font-size:.65rem">MECHANISM</span></div>
+                <h3>⚙️ What's the move?</h3>
+                <div class="hint">For your strongest actor, describe <strong>ONE concrete, verifiable policy action</strong>. Ask: "Could an independent observer verify whether this was done?" If the answer is no, your mechanism is too vague. Use the templates in <a href="#mechanisms">Section 4</a>.</div>
+                <div class="example-box">"The Security Council should pass a binding Chapter VII resolution mandating the Multinational Security Support mission to embed Haitian National Police officers in all operational units at a minimum 1:3 ratio, overseen by a community oversight board with quarterly reporting to the PBC."</div>
+                <div class="check-label">✅ Self-Check</div>
+                <ul class="checklist">
+                    <li>Is the action concrete (not "help" or "intervene" or "address")?</li>
+                    <li>Does it follow a mechanism template (amend / certify / condition / establish)?</li>
+                    <li>Could an observer verify whether this policy was implemented?</li>
+                </ul>
+            </div>
+
+            <!-- Prompt 4 -->
+            <div class="prompt-card p4">
+                <div class="step-num">Prompt 4 — Maps to: <span style="background:rgba(176,125,16,.10);color:#b07d10;padding:1px 8px;border-radius:4px;font-size:.65rem">RATIONALE</span></div>
+                <h3>💡 Why would it actually work?</h3>
+                <div class="hint">Provide 2–3 pieces of evidence that your mechanism is feasible. The strongest rationales combine: <strong>a precedent</strong> (it's worked before), <strong>an existing system</strong> (infrastructure already exists), and <strong>data showing urgency</strong> (why now).</div>
+                <div class="example-box">"1) MINUSTAH (2004–2017) demonstrates that military effectiveness without local legitimacy collapses — its cholera epidemic killed 10,000+<br/>2) The current MSS operates without a Chapter VII mandate, meaning no accountability mechanisms exist<br/>3) 5,600 deaths in 2024 alone demonstrates the urgency of structured intervention"</div>
+                <div class="check-label">✅ Self-Check</div>
+                <ul class="checklist">
+                    <li>Do you cite a historical precedent (what worked or failed before)?</li>
+                    <li>Do you reference an existing framework, treaty, or system?</li>
+                    <li>Do you include data or evidence that supports urgency?</li>
+                </ul>
+            </div>
+
+            <!-- Prompt 5 -->
+            <div class="prompt-card p5">
+                <div class="step-num">Prompt 5 — Maps to: <span style="background:rgba(192,40,62,.10);color:#c0283e;padding:1px 8px;border-radius:4px;font-size:.65rem">RISK</span></div>
+                <h3>⚠️ What could go wrong?</h3>
+                <div class="hint">Name the <strong>single most credible obstacle</strong>. A strong risk names a specific actor or dynamic — not "it might not work" but "China's veto history suggests UNSC authorization would face P5 resistance." See <a href="#risks">Section 5</a> for categories.</div>
+                <div class="example-box">"Armed gangs controlling approximately 80% of Port-au-Prince may exploit consultation timelines to consolidate territorial control during the oversight board transition period, undermining the legitimacy of the civilian oversight mechanism."</div>
+                <div class="check-label">✅ Self-Check</div>
+                <ul class="checklist">
+                    <li>Is the risk credible and specific to your case?</li>
+                    <li>Does it name a specific actor or dynamic that would obstruct?</li>
+                    <li>Can you categorize it (sovereignty / economic / enforcement / timeline)?</li>
+                </ul>
+            </div>
+
+            <!-- Prompt 6 -->
+            <div class="prompt-card p6">
+                <div class="step-num">Prompt 6 — Maps to: Risk Mitigation (the "However..." Pivot)</div>
+                <h3>🛡 How do you mitigate it?</h3>
+                <div class="hint">Propose a specific countermeasure — ideally naming a <strong>secondary actor</strong> or <strong>alternative mechanism</strong>. This is the sentence that elevates Band 5–6 answers to Band 7: "However, this could be mitigated by..."</div>
+                <div class="example-box">"The Security Council should authorize a phased approach: immediate security operations for 90 days under sole MSS command, followed by a gradual transfer to the community oversight board. The Peacebuilding Commission should pair this with a 5-year policing infrastructure fund ($50M minimum)."</div>
+                <div class="check-label">✅ Self-Check</div>
+                <ul class="checklist">
+                    <li>Does it name a secondary actor (different from the main actor)?</li>
+                    <li>Is the mitigation mechanism specific and actionable?</li>
+                    <li>Does it directly address the identified risk?</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ═══════ SECTION 3: ACTOR BANK ═══════ -->
+        <div class="section" id="actors">
+            <div class="section-label">Reference</div>
+            <h2><span class="section-num">3</span> Actor Bank</h2>
+            <p class="section-intro">Use this reference to identify the <strong>specific sub-bodies and tools</strong> that actors control. Don't say "the UN" — name the organ, the mandate, and the power.</p>
+
+            <table class="actor-table">
+                <thead><tr><th>GPC</th><th>Actor + Sub-unit</th><th>Tool They Control</th></tr></thead>
+                <tbody>
+                    <tr><td><span class="gpc-tag" style="background:rgba(44,95,196,.1);color:#2c5fc4">Security</span></td><td><strong>UN Security Council (Ch. VII)</strong></td><td>Binding resolutions, peacekeeping mandates, sanctions regimes</td></tr>
+                    <tr><td></td><td>AU Peace & Security Council</td><td>Continental early warning system, African Standby Force</td></tr>
+                    <tr><td></td><td>ICC Office of the Prosecutor</td><td>Investigations, arrest warrants, UNSC referrals</td></tr>
+                    <tr><td><span class="gpc-tag" style="background:rgba(26,138,90,.1);color:#1a8a5a">Environment</span></td><td><strong>UNFCCC COP Presidency</strong></td><td>Binding emissions targets, climate finance, loss-and-damage fund</td></tr>
+                    <tr><td></td><td>World Bank Climate Investment Funds</td><td>Concessional loans, Clean Technology Fund</td></tr>
+                    <tr><td></td><td>UNEP</td><td>Environmental monitoring, treaty secretariat support</td></tr>
+                    <tr><td><span class="gpc-tag" style="background:rgba(176,125,16,.1);color:#7a5800">Poverty</span></td><td><strong>World Bank IDA</strong></td><td>Zero-interest loans, debt relief (HIPC), structural adjustment</td></tr>
+                    <tr><td></td><td>WTO Dispute Settlement Body</td><td>Trade dispute rulings, tariff adjustment authorizations</td></tr>
+                    <tr><td></td><td>UNDP</td><td>Human Development Index metrics, capacity-building programs</td></tr>
+                    <tr><td><span class="gpc-tag" style="background:rgba(192,40,62,.1);color:#c0283e">Health</span></td><td><strong>WHO Director-General (IHR)</strong></td><td>PHEIC declarations, International Health Regulations enforcement</td></tr>
+                    <tr><td></td><td>Gavi, the Vaccine Alliance</td><td>Advance Market Commitments (AMCs), COVAX-style pooled procurement</td></tr>
+                    <tr><td><span class="gpc-tag" style="background:rgba(14,124,134,.1);color:#0e7c86">Technology</span></td><td><strong>EU Commission DG CONNECT</strong></td><td>Digital Services Act, AI Act, data governance regulations</td></tr>
+                    <tr><td></td><td>WTO TRIPS Council</td><td>IP waivers, compulsory licensing authorizations</td></tr>
+                    <tr><td><span class="gpc-tag" style="background:rgba(100,56,176,.1);color:#6438b0">Equality</span></td><td><strong>UN Human Rights Council (UPR)</strong></td><td>Universal Periodic Review, Special Rapporteur mandates</td></tr>
+                    <tr><td></td><td>ILO Governing Body</td><td>Convention enforcement, FPIC frameworks</td></tr>
+                    <tr><td></td><td>ICJ</td><td>Advisory opinions, binding judgments between states</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ═══════ SECTION 4: MECHANISM TEMPLATES ═══════ -->
+        <div class="section" id="mechanisms">
+            <div class="section-label">Templates</div>
+            <h2><span class="section-num">4</span> Mechanism Templates</h2>
+            <p class="section-intro">Strong mechanisms follow one of these four patterns. Fill in the blanks with your specific case study details.</p>
+
+            <div class="mech-tmpl">
+                <div class="label">Amend an Existing Framework</div>
+                <span class="mech-blank">[Actor]</span> should amend <span class="mech-blank">[existing treaty/regulation]</span> to require <span class="mech-blank">[specific new obligation]</span> verified by <span class="mech-blank">[enforcement body]</span>.
+            </div>
+            <div class="mech-tmpl">
+                <div class="label">Create Certification / Conditionality</div>
+                <span class="mech-blank">[Actor]</span> should require all <span class="mech-blank">[companies/states]</span> to obtain a <span class="mech-blank">[certificate/audit]</span> before accessing <span class="mech-blank">[market/funding]</span>.
+            </div>
+            <div class="mech-tmpl">
+                <div class="label">Link Market Access to Compliance</div>
+                <span class="mech-blank">[Actor]</span> should condition <span class="mech-blank">[trade access/funding]</span> on demonstrated compliance with <span class="mech-blank">[standard/protocol]</span>, with non-compliant parties facing <span class="mech-blank">[consequence]</span>.
+            </div>
+            <div class="mech-tmpl">
+                <div class="label">Establish an Oversight Body</div>
+                <span class="mech-blank">[Actor]</span> should create a <span class="mech-blank">[board/commission]</span> comprising <span class="mech-blank">[specific stakeholders]</span>, with the authority to <span class="mech-blank">[review/approve specific actions]</span>.
+            </div>
+        </div>
+
+        <!-- ═══════ SECTION 5: RISK CATEGORIES ═══════ -->
+        <div class="section" id="risks">
+            <div class="section-label">Obstacles</div>
+            <h2><span class="section-num">5</span> Risk Categories</h2>
+            <p class="section-intro">Most policy risks fall into one of four categories. Identify which applies to your case and name the specific dynamic.</p>
+
+            <div class="risk-grid">
+                <div class="risk-card">
+                    <h4>⚠️ Sovereignty Resistance</h4>
+                    <p>A state frames the intervention as external interference, undermining domestic political support or invoking non-intervention norms.</p>
+                    <div class="risk-example">e.g., "China's consistent veto pattern on sovereignty grounds suggests UNSC authorization would face P5 resistance."</div>
+                </div>
+                <div class="risk-card">
+                    <h4>⚠️ Economic Disruption</h4>
+                    <p>The policy risks disrupting supply chains, raising consumer prices, or threatening livelihoods — creating opposition from economic stakeholders.</p>
+                    <div class="risk-example">e.g., "Mandatory conflict mineral certification could raise smartphone component costs by 12%, incentivizing cheaper non-compliant alternatives."</div>
+                </div>
+                <div class="risk-card">
+                    <h4>⚠️ Enforcement Gap</h4>
+                    <p>The target state or actor may block auditors, expel NGOs, refuse compliance, or lack institutional capacity to implement.</p>
+                    <div class="risk-example">e.g., "Myanmar's military junta expelled the UN Special Envoy in 2021, demonstrating its capacity to block international oversight."</div>
+                </div>
+                <div class="risk-card">
+                    <h4>⚠️ Timeline Conflict</h4>
+                    <p>Consultation processes, bureaucratic delays, or phased implementation may be too slow for an urgent crisis, allowing the situation to deteriorate.</p>
+                    <div class="risk-example">e.g., "The 18-month treaty ratification timeline exceeds the WHO's projected peak infection window of 6 months."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════ SECTION 6: TIERED EXAMPLES ═══════ -->
+        <div class="section" id="examples">
+            <div class="section-label">Model Answers</div>
+            <h2><span class="section-num">6</span> Tiered Examples with Elevation Moves</h2>
+            <p class="section-intro">See how the same recommendation improves from Band 3–4 to Band 7 — and understand exactly which moves create each jump.</p>
+
+            <div class="tier-card t-avg">
+                <h4><span class="tier-badge">Band 3–4</span> Generic and vague</h4>
+                <p>"The United Nations should intervene in Haiti to help stop violence. They could send peacekeepers and provide aid. This would help because Haiti is very dangerous and people are suffering. The international community has a responsibility to protect civilians."</p>
+            </div>
+
+            <div class="elevation-box">
+                <h4>🔼 Moves That Elevate to Band 5–6</h4>
+                <ul>
+                    <li>Replace "The United Nations" with a specific sub-body (e.g., "UN Security Council acting under Chapter VII")</li>
+                    <li>Replace "intervene" with a verifiable mechanism (e.g., "pass a binding resolution mandating...")</li>
+                    <li>Add a specific precedent or data point as rationale</li>
+                    <li>Name the specific tool the actor controls (e.g., "binding resolutions, peacekeeping mandate authority")</li>
+                </ul>
+            </div>
+
+            <div class="tier-card t-good">
+                <h4><span class="tier-badge">Band 5–6</span> Specific actor and mechanism</h4>
+                <p>"The UN Security Council should pass a binding Chapter VII resolution mandating the Multinational Security Support mission to embed Haitian National Police officers in all operational units at a minimum 1:3 ratio, ensuring local capacity-building alongside security operations. This is warranted because MINUSTAH (2004–2017) demonstrated that military operations without local police integration created dependency without sustainable security gains, and 5,600 gang-related deaths in 2024 demonstrate the urgency of restructured intervention."</p>
+            </div>
+
+            <div class="elevation-box">
+                <h4>🔼 Moves That Elevate to Band 7</h4>
+                <ul>
+                    <li>Acknowledge a credible obstacle (risk) with a specific actor or dynamic</li>
+                    <li>Add the "However... which could be mitigated by..." pivot</li>
+                    <li>Name a secondary actor for the mitigation (e.g., Peacebuilding Commission)</li>
+                    <li>Include a specific mechanism for the mitigation (e.g., "$50M funding commitment, quarterly reporting")</li>
+                </ul>
+            </div>
+
+            <div class="tier-card t-exc">
+                <h4><span class="tier-badge">Band 7</span> Full AMR² with evidence, risk, and mitigation</h4>
+                <p>"The UN Security Council should pass a binding Chapter VII resolution mandating the MSS to embed Haitian National Police officers in all operational units at a minimum 1:3 ratio, overseen by a community oversight board with quarterly reporting to the Peacebuilding Commission. This is feasible because MINUSTAH's failure to integrate local forces resulted in 10,000+ cholera deaths and zero sustainable security gains, while the current MSS operates without Chapter VII accountability. However, armed gangs controlling 80% of Port-au-Prince may exploit the oversight transition timeline to consolidate territorial control. This could be mitigated by authorizing an initial 90-day sole MSS security phase before civilian oversight transfer, paired with a $50 million PBC policing infrastructure fund to ensure the HNP has the capacity to sustain gains independently."</p>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-box">
+            <h3>🤖 Want AI Feedback on Your Research?</h3>
+            <p>Use the <strong>Solution Bot</strong> in the Glopo Companion's Writing Studio for AI-powered evaluation of each step, targeted research suggestions, and auto-generated tiered drafts.</p>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>IB Global Politics HL · Paper 3 Q2 Solution Research Guide · Mr. Martinez · March 2026</p>
+    </footer>
+</body>
+</html>

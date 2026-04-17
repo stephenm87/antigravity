@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>R2P Observer Briefing | Chloe and Jasmine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --navy: #1B2A4A;
+            --teal: #1a6b7a;
+            --teal-light: #e0f4f8;
+            --gold: #c49000;
+            --gold-light: #fef3d0;
+            --green: #1a8a50;
+            --green-light: #e8fdf0;
+            --red: #cc3355;
+            --red-light: #fde8ed;
+            --purple: #6b4c9a;
+            --purple-light: #f3e8fd;
+            --orange: #c27020;
+            --orange-light: #fef0e0;
+            --text: #1a1e2e;
+            --muted: #5a6578;
+            --border: #d1d9e6;
+            --surface: #ffffff;
+            --bg: #f5f7fa;
+            --radius: 10px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(135deg, var(--navy), #243656);
+            border-bottom: 3px solid var(--orange);
+            color: #fff;
+            text-align: center;
+            padding: 28px 20px 24px;
+            margin: 0 -20px 24px;
+        }
+
+        .banner-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .25);
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 50px;
+            color: rgba(255, 255, 255, .9);
+            margin-bottom: 10px;
+        }
+
+        .banner h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .banner p {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .7);
+        }
+
+        /* Debate question */
+        .debate-q {
+            background: var(--gold-light);
+            border: 2px solid var(--gold);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .debate-q-label {
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .debate-q p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        /* Section label */
+        .label {
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .label-teal {
+            color: var(--teal)
+        }
+
+        .label-orange {
+            color: var(--orange)
+        }
+
+        .label-purple {
+            color: var(--purple)
+        }
+
+        .label-green {
+            color: var(--green)
+        }
+
+        /* Card */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .card p,
+        .card li {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .card ul {
+            padding-left: 18px
+        }
+
+        .card li {
+            margin-bottom: 3px
+        }
+
+        .card strong {
+            color: var(--text)
+        }
+
+        /* Pillars */
+        .pillars {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .pillar {
+            border-radius: var(--radius);
+            padding: 12px 14px;
+            text-align: center;
+            border-top: 3px solid;
+        }
+
+        .pillar-1 {
+            background: var(--teal-light);
+            border-color: var(--teal)
+        }
+
+        .pillar-2 {
+            background: var(--gold-light);
+            border-color: var(--gold)
+        }
+
+        .pillar-3 {
+            background: var(--red-light);
+            border-color: var(--red)
+        }
+
+        .pillar-num {
+            font-size: .58rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .pillar-1 .pillar-num {
+            color: var(--teal)
+        }
+
+        .pillar-2 .pillar-num {
+            color: var(--gold)
+        }
+
+        .pillar-3 .pillar-num {
+            color: var(--red)
+        }
+
+        .pillar p {
+            font-size: .76rem;
+            color: var(--text);
+            font-weight: 600;
+            line-height: 1.45;
+        }
+
+        /* Cases side-by-side */
+        .cases {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .case-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            border-left: 4px solid;
+        }
+
+        .case-ven {
+            border-left-color: var(--teal)
+        }
+
+        .case-iran {
+            border-left-color: var(--purple)
+        }
+
+        .case-card h3 {
+            font-size: .76rem;
+            font-weight: 800;
+            letter-spacing: .03em;
+            margin-bottom: 5px;
+        }
+
+        .case-ven h3 {
+            color: var(--teal)
+        }
+
+        .case-iran h3 {
+            color: var(--purple)
+        }
+
+        .case-card p {
+            font-size: .78rem;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .case-card strong {
+            color: var(--text)
+        }
+
+        /* Question stems compact */
+        .stems {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .stem {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+        }
+
+        .stem-label {
+            font-size: .58rem;
+            font-weight: 800;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .stem-clarify .stem-label {
+            color: var(--teal)
+        }
+
+        .stem-evidence .stem-label {
+            color: var(--gold)
+        }
+
+        .stem-connect .stem-label {
+            color: var(--green)
+        }
+
+        .stem-challenge .stem-label {
+            color: var(--purple)
+        }
+
+        .stem p {
+            font-size: .74rem;
+            color: var(--text);
+            font-style: italic;
+            line-height: 1.4;
+            margin: 2px 0;
+        }
+
+        /* Tasks compact */
+        .task-row {
+            display: flex;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: .78rem;
+        }
+
+        .task-row:last-child {
+            border-bottom: none
+        }
+
+        .task-when {
+            min-width: 110px;
+            font-weight: 700;
+            color: var(--orange);
+            flex-shrink: 0;
+            font-size: .72rem;
+        }
+
+        .task-do {
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .task-do strong {
+            color: var(--text)
+        }
+
+        /* Your role box */
+        .role-box {
+            background: var(--orange-light);
+            border: 2px solid var(--orange);
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .role-box p {
+            font-size: .84rem;
+            color: #6b3d10;
+            line-height: 1.6;
+        }
+
+        .role-box strong {
+            color: var(--orange)
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 14px;
+            border-top: 2px solid var(--navy);
+            font-size: .68rem;
+            color: var(--muted);
+        }
+
+        .footer strong {
+            color: var(--navy)
+        }
+
+        @media (max-width: 600px) {
+
+            .pillars,
+            .cases,
+            .stems {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="banner">
+        <div class="banner-tag">Observer Briefing</div>
+        <h1>Chloe + Jasmine: Your R2P Guide</h1>
+        <p>Read this during prep. This is everything you need to follow the debate.</p>
+    </div>
+
+    <!-- ── YOUR ROLE ── -->
+    <div class="role-box">
+        <p>You are <strong>active observers</strong>. You'll listen, ask questions at 3 pause points, and deliver a
+            <strong>final verdict</strong> on which side argued more convincingly. You are the jury.
+        </p>
+    </div>
+
+    <!-- ── DEBATE QUESTION ── -->
+    <div class="debate-q">
+        <div class="debate-q-label">Today's Debate Question</div>
+        <p>Is external intervention justified under the Responsibility to Protect, or does it violate state sovereignty?
+        </p>
+    </div>
+
+    <!-- ── WHAT IS R2P? ── -->
+    <div class="label label-teal">What Is R2P?</div>
+
+    <div class="card" style="margin-bottom:10px">
+        <p>The <strong>Responsibility to Protect (R2P)</strong> is an international norm adopted by the UN in 2005. It
+            says that every state has the primary responsibility to protect its own population from mass atrocities:
+            genocide, war crimes, ethnic cleansing, and crimes against humanity. When a state fails to do this, the
+            international community has a responsibility to step in.</p>
+    </div>
+
+    <div class="pillars">
+        <div class="pillar pillar-1">
+            <div class="pillar-num">Pillar 1</div>
+            <p>The state must protect its own people from mass atrocities.</p>
+        </div>
+        <div class="pillar pillar-2">
+            <div class="pillar-num">Pillar 2</div>
+            <p>The international community should help states fulfill Pillar 1.</p>
+        </div>
+        <div class="pillar pillar-3">
+            <div class="pillar-num">Pillar 3</div>
+            <p>If a state fails, the international community must intervene &mdash; diplomatically first, then by force
+                if necessary.</p>
+        </div>
+    </div>
+
+    <!-- ── CASE STUDIES ── -->
+    <div class="label label-purple">The Two Cases Being Debated</div>
+
+    <div class="cases">
+        <div class="case-card case-ven">
+            <h3>Venezuela</h3>
+            <p>A deep <strong>humanitarian crisis</strong> under the Maduro government, with allegations of crimes
+                against humanity. The R2P question: is external intervention (legal or extrajudicial) justified to
+                protect the population, or does it violate Venezuela's sovereign independence?</p>
+        </div>
+        <div class="case-card case-iran">
+            <h3>Iran</h3>
+            <p><strong>Israeli/US strikes</strong> against Iranian military and industrial targets, framed as preemptive
+                or retaliatory. The R2P question: can "protection of regional security" or "prevention of future crimes"
+                be mapped onto R2P principles, or is this classic state-on-state power politics?</p>
+        </div>
+    </div>
+
+    <!-- ── YOUR TASKS ── -->
+    <div class="label label-orange">What to Do at Each Phase</div>
+
+    <div class="card">
+        <div class="task-row">
+            <div class="task-when">Openings</div>
+            <div class="task-do">Write down: <strong>"What is the core disagreement?"</strong> in one sentence.</div>
+        </div>
+        <div class="task-row">
+            <div class="task-when">Pause 1 (2 min)</div>
+            <div class="task-do">Ask <strong>1 clarifying question</strong> each. Use the stems below.</div>
+        </div>
+        <div class="task-row">
+            <div class="task-when">Arguments</div>
+            <div class="task-do">Note the <strong>strongest evidence</strong> from each side. Write down anything you
+                don't understand.</div>
+        </div>
+        <div class="task-row">
+            <div class="task-when">Pause 2 (3 min)</div>
+            <div class="task-do">Ask <strong>1&ndash;2 questions</strong> probing the evidence. Push for specifics.
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-when">Cross-Exam</div>
+            <div class="task-do">Note <strong>who handles pressure better</strong>. Who answers directly? Who deflects?
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-when">Rebuttals</div>
+            <div class="task-do">Track which side's rebuttal is more effective. <strong>Start forming your
+                    opinion.</strong></div>
+        </div>
+        <div class="task-row">
+            <div class="task-when">Closings</div>
+            <div class="task-do">Listen carefully &mdash; <strong>this is the last input before your verdict.</strong>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-when">Pause 3 (3 min)</div>
+            <div class="task-do"><strong>Deliver your verdict.</strong> State which side wins and cite 1&ndash;2
+                specific moments.</div>
+        </div>
+    </div>
+
+    <!-- ── QUESTION STEMS ── -->
+    <div class="label label-green">Question Stems for Pauses</div>
+
+    <div class="stems">
+        <div class="stem stem-clarify">
+            <div class="stem-label">Clarifying</div>
+            <p>"Can you explain what you mean by...?"</p>
+            <p>"When you say R2P / sovereignty, what does that look like?"</p>
+        </div>
+        <div class="stem stem-evidence">
+            <div class="stem-label">Probing Evidence</div>
+            <p>"How do you know that?"</p>
+            <p>"What would the other side say about that?"</p>
+        </div>
+        <div class="stem stem-connect">
+            <div class="stem-label">Connections</div>
+            <p>"How does this connect to what the other team said?"</p>
+            <p>"Does this apply beyond this one case?"</p>
+        </div>
+        <div class="stem stem-challenge">
+            <div class="stem-label">Challenge</div>
+            <p>"What's the strongest argument against your position?"</p>
+            <p>"What would happen if the opposite were true?"</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <strong>R2P Observer Briefing</strong> &mdash; Chloe and Jasmine &mdash; IB Global Politics
+    </div>
+
+</body>
+
+</html>

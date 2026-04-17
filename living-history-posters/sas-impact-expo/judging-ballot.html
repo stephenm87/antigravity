@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAS Impact Expo — Nomination Ballot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --red: #C41E3A;
+    --red-dark: #9E1830;
+    --gold: #D4A853;
+    --gold-light: #E8C97A;
+    --warm-gray: #8B7D6B;
+    --warm-gray-light: #A89E8E;
+    --text-dark: #2C2C2C;
+    --cream: #F5F0E6;
+  }
+
+  @page { size: landscape; margin: 0.3in; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #d5d0c8;
+    color: var(--text-dark);
+  }
+
+  /* ============ SCREEN CONTROLS ============ */
+  .controls {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--navy);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .controls h1 {
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .controls-right {
+    display: flex; gap: 10px; align-items: center;
+  }
+  .controls label {
+    color: rgba(255,255,255,0.7);
+    font-size: 11px; font-weight: 500;
+  }
+  .controls select {
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+  }
+  .controls select option { color: #333; background: white; }
+  .btn-print {
+    padding: 7px 20px;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+  .btn-print:hover { background: var(--red-dark); }
+
+  @media print { .controls { display: none !important; } body { background: none; } }
+
+  /* ============ BALLOT PAGE ============ */
+  .ballot-page {
+    width: 11in;
+    height: 8.5in;
+    margin: 70px auto 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen {
+    .ballot-page {
+      background: var(--cream);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23F5F0E6'/%3E%3Crect width='1' height='1' x='0' y='0' fill='%23EDE8DC' fill-opacity='0.3'/%3E%3Crect width='1' height='1' x='2' y='2' fill='%23F8F4EC' fill-opacity='0.3'/%3E%3C/svg%3E");
+    }
+  }
+  @media print { .ballot-page { margin: 0; box-shadow: none; background: transparent; } }
+
+  .top-stripe {
+    height: 6px;
+    background: linear-gradient(90deg, var(--red) 0%, var(--red) 33%, white 33%, white 66%, var(--navy) 66%);
+    flex-shrink: 0;
+  }
+  .bottom-bar {
+    height: 5px;
+    background: var(--navy);
+    flex-shrink: 0;
+  }
+
+  .ballot-content {
+    flex: 1;
+    padding: 20px 36px 14px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- Header --- */
+  .bl-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .bl-header-left { display: flex; flex-direction: column; }
+  .bl-school {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    font-weight: 600;
+  }
+  .bl-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-top: 1px;
+  }
+  .bl-subtitle {
+    font-size: 11px;
+    color: var(--warm-gray);
+    font-weight: 500;
+    margin-top: 2px;
+    letter-spacing: 0.3px;
+  }
+  .bl-header-right {
+    text-align: right;
+    padding-top: 4px;
+    flex-shrink: 0;
+  }
+  .bl-field {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 5px;
+  }
+  .bl-field-label {
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .bl-field-line {
+    width: 200px;
+    border-bottom: 1px solid rgba(27,42,74,0.2);
+    height: 16px;
+  }
+
+  .bl-divider {
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    margin-bottom: 10px;
+    opacity: 0.6;
+  }
+
+  .bl-instructions {
+    font-size: 10.5px;
+    color: var(--warm-gray);
+    margin-bottom: 12px;
+    line-height: 1.55;
+    font-style: italic;
+  }
+  .bl-instructions strong {
+    color: var(--navy);
+    font-style: normal;
+  }
+
+  /* ============ NOMINATION TABLE ============ */
+  .nom-table {
+    width: 100%;
+    border-collapse: collapse;
+    flex: 1;
+    table-layout: fixed;
+  }
+
+  .nom-table thead th {
+    font-size: 8.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 7px 8px;
+    border-bottom: 2px solid var(--navy);
+    vertical-align: bottom;
+    color: var(--warm-gray);
+  }
+  .nom-table thead th:first-child {
+    text-align: left;
+    color: var(--navy);
+    width: 28%;
+  }
+  .nom-table thead th.nom-col {
+    width: 30%;
+  }
+  .nom-table thead th.reason-col {
+    width: 42%;
+  }
+
+  .nom-table tbody tr {
+    border-bottom: 1px solid rgba(27,42,74,0.08);
+  }
+  .nom-table tbody tr:nth-child(odd) {
+    background: rgba(27,42,74,0.018);
+  }
+
+  .nom-table tbody td {
+    padding: 10px 8px;
+    vertical-align: top;
+    font-size: 10px;
+    line-height: 1.45;
+  }
+
+  /* Criteria cell */
+  .nom-criteria {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .nom-criteria-name {
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.3px;
+  }
+  .nom-criteria-icon { font-size: 15px; line-height: 1; }
+  .nom-criteria-desc {
+    font-size: 9px;
+    color: #6B6050;
+    font-style: italic;
+    margin-top: 1px;
+    line-height: 1.4;
+  }
+
+  /* Per-category colors */
+  .row-community .nom-criteria-name { color: #C41E3A; }
+  .row-teamwork .nom-criteria-name  { color: #2A6B7C; }
+  .row-story .nom-criteria-name     { color: #B8860B; }
+  .row-thinking .nom-criteria-name  { color: #6B3A6B; }
+  .row-creative .nom-criteria-name  { color: #9E7A20; }
+
+  /* Nomination cell */
+  .nom-cell {
+    border-left: 1px solid rgba(27,42,74,0.06);
+  }
+  .nom-write-area {
+    width: 100%;
+    height: 24px;
+    border-bottom: 1px dashed rgba(27,42,74,0.15);
+  }
+  .nom-hint {
+    font-size: 7.5px;
+    color: var(--warm-gray-light);
+    margin-top: 3px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Reason cell */
+  .reason-cell {
+    border-left: 1px solid rgba(27,42,74,0.06);
+  }
+
+  /* --- Footer --- */
+  .bl-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 10px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(212,168,83,0.3);
+  }
+  .bl-footer-note {
+    font-size: 9px;
+    color: var(--warm-gray);
+    font-style: italic;
+    max-width: 500px;
+    line-height: 1.4;
+  }
+  .bl-footer-right { text-align: right; }
+  .bl-footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    opacity: 0.3;
+  }
+  .bl-footer-year {
+    font-size: 8px;
+    color: var(--warm-gray-light);
+    letter-spacing: 2px;
+  }
+
+  /* ============ HALF-PAGE VARIANT ============ */
+  .ballot-page.half-page {
+    height: 4.25in;
+    page-break-after: auto;
+  }
+  .ballot-page.half-page:nth-child(even) {
+    page-break-after: always;
+  }
+  .ballot-page.half-page .ballot-content {
+    padding: 10px 24px 8px;
+  }
+  .ballot-page.half-page .bl-title { font-size: 19px; }
+  .ballot-page.half-page .bl-instructions { font-size: 8.5px; margin-bottom: 6px; }
+  .ballot-page.half-page .nom-table thead th { padding: 4px 6px; font-size: 7.5px; }
+  .ballot-page.half-page .nom-table tbody td { padding: 5px 6px; font-size: 8.5px; }
+  .ballot-page.half-page .nom-criteria-name { font-size: 10px; }
+  .ballot-page.half-page .nom-criteria-desc { font-size: 7.5px; }
+  .ballot-page.half-page .nom-write-area { height: 16px; }
+  .ballot-page.half-page .bl-header { margin-bottom: 4px; }
+  .ballot-page.half-page .bl-divider { margin-bottom: 5px; }
+  .ballot-page.half-page .bl-footer { margin-top: 4px; padding-top: 3px; }
+  .ballot-page.half-page .bl-footer-note { font-size: 7.5px; }
+
+  @media print {
+    .ballot-page { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SCREEN CONTROLS ============ -->
+<div class="controls">
+  <h1>SAS IMPACT EXPO — NOMINATION BALLOT</h1>
+  <div class="controls-right">
+    <label>Layout:</label>
+    <select id="layoutSelect" onchange="toggleLayout(this.value)">
+      <option value="full">Full Page (1 per sheet)</option>
+      <option value="half">Half Page (2 per sheet)</option>
+    </select>
+    <button class="btn-print" onclick="window.print()">PRINT</button>
+  </div>
+</div>
+
+<!-- ============ FULL-PAGE BALLOT ============ -->
+<div class="ballot-page" id="ballotFull">
+  <div class="top-stripe"></div>
+  <div class="ballot-content">
+    <div class="bl-header">
+      <div class="bl-header-left">
+        <div class="bl-school">Shanghai American School</div>
+        <div class="bl-title">Impact Expo Nomination Ballot</div>
+        <div class="bl-subtitle">Grade 10 · May 19, 2026</div>
+      </div>
+      <div class="bl-header-right">
+        <div class="bl-field">
+          <span class="bl-field-label">Judge Name</span>
+          <div class="bl-field-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bl-divider"></div>
+
+    <div class="bl-instructions">
+      After viewing the student presentations, <strong>nominate the one student</strong> you believe best demonstrates each quality below. Write the student's name and, if you'd like, a brief reason why.
+    </div>
+
+    <table class="nom-table">
+      <thead>
+        <tr>
+          <th>Award Category</th>
+          <th class="nom-col">Your Top Pick (Student Name)</th>
+          <th class="reason-col">Why did this student stand out? <span style="font-weight:400; font-size:7px; text-transform:none; letter-spacing:0;">(optional)</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-community">
+          <td>
+            <div class="nom-criteria">
+              <div class="nom-criteria-name"><span class="nom-criteria-icon">🌍</span> Community Impact</div>
+              <div class="nom-criteria-desc">Made a real, meaningful difference for others in the community</div>
+            </div>
+          </td>
+          <td class="nom-cell"><div class="nom-write-area"></div></td>
+          <td class="reason-cell"></td>
+        </tr>
+        <tr class="row-teamwork">
+          <td>
+            <div class="nom-criteria">
+              <div class="nom-criteria-name"><span class="nom-criteria-icon">🤝</span> Best Collaborator</div>
+              <div class="nom-criteria-desc">Worked together effectively, shared responsibilities, communicated well</div>
+            </div>
+          </td>
+          <td class="nom-cell"><div class="nom-write-area"></div></td>
+          <td class="reason-cell"></td>
+        </tr>
+        <tr class="row-story">
+          <td>
+            <div class="nom-criteria">
+              <div class="nom-criteria-name"><span class="nom-criteria-icon">🎤</span> Best Reflection</div>
+              <div class="nom-criteria-desc">Explained their journey with clarity, honesty, and personal insight</div>
+            </div>
+          </td>
+          <td class="nom-cell"><div class="nom-write-area"></div></td>
+          <td class="reason-cell"></td>
+        </tr>
+        <tr class="row-thinking">
+          <td>
+            <div class="nom-criteria">
+              <div class="nom-criteria-name"><span class="nom-criteria-icon">🧠</span> Mastermind</div>
+              <div class="nom-criteria-desc">Showed deep research, careful analysis, and logical, organized thinking</div>
+            </div>
+          </td>
+          <td class="nom-cell"><div class="nom-write-area"></div></td>
+          <td class="reason-cell"></td>
+        </tr>
+        <tr class="row-creative">
+          <td>
+            <div class="nom-criteria">
+              <div class="nom-criteria-name"><span class="nom-criteria-icon">💡</span> Novel Thinking</div>
+              <div class="nom-criteria-desc">Tried something new, original, or unexpected in their approach</div>
+            </div>
+          </td>
+          <td class="nom-cell"><div class="nom-write-area"></div></td>
+          <td class="reason-cell"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="bl-footer">
+      <div class="bl-footer-note">
+        Thank you for being part of the SAS Impact Expo! Your nominations will be tallied to determine our award winners.
+        Please return this ballot to the collection table when you're finished.
+      </div>
+      <div class="bl-footer-right">
+        <div class="bl-footer-brand">SAS Impact Expo</div>
+        <div class="bl-footer-year">2 0 2 6</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar"></div>
+</div>
+
+<!-- ============ HALF-PAGE BALLOT 1 ============ -->
+<div class="ballot-page half-page" id="ballotHalf1" style="display:none;">
+  <div class="top-stripe"></div>
+  <div class="ballot-content">
+    <div class="bl-header">
+      <div class="bl-header-left">
+        <div class="bl-school">Shanghai American School</div>
+        <div class="bl-title">Impact Expo Nomination Ballot</div>
+        <div class="bl-subtitle">Grade 10 · May 19, 2026</div>
+      </div>
+      <div class="bl-header-right">
+        <div class="bl-field">
+          <span class="bl-field-label">Judge</span>
+          <div class="bl-field-line" style="width:150px"></div>
+        </div>
+      </div>
+    </div>
+    <div class="bl-divider"></div>
+    <div class="bl-instructions">
+      <strong>Nominate the one student</strong> you believe best demonstrates each quality. Write the student's name.
+    </div>
+    <table class="nom-table">
+      <thead>
+        <tr>
+          <th>Award</th>
+          <th class="nom-col">Your Top Pick</th>
+          <th class="reason-col">Why? <span style="font-weight:400; font-size:7px; text-transform:none;">(optional)</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-community"><td><div class="nom-criteria"><div class="nom-criteria-name"><span class="nom-criteria-icon">🌍</span> Community Impact</div><div class="nom-criteria-desc">Meaningful difference for others</div></div></td><td class="nom-cell"><div class="nom-write-area"></div></td><td class="reason-cell"></td></tr>
+        <tr class="row-teamwork"><td><div class="nom-criteria"><div class="nom-criteria-name"><span class="nom-criteria-icon">🤝</span> Best Collaborator</div><div class="nom-criteria-desc">Worked together effectively</div></div></td><td class="nom-cell"><div class="nom-write-area"></div></td><td class="reason-cell"></td></tr>
+        <tr class="row-story"><td><div class="nom-criteria"><div class="nom-criteria-name"><span class="nom-criteria-icon">🎤</span> Best Reflection</div><div class="nom-criteria-desc">Clarity, honesty, personal insight</div></div></td><td class="nom-cell"><div class="nom-write-area"></div></td><td class="reason-cell"></td></tr>
+        <tr class="row-thinking"><td><div class="nom-criteria"><div class="nom-criteria-name"><span class="nom-criteria-icon">🧠</span> Mastermind</div><div class="nom-criteria-desc">Deep research, logical thinking</div></div></td><td class="nom-cell"><div class="nom-write-area"></div></td><td class="reason-cell"></td></tr>
+        <tr class="row-creative"><td><div class="nom-criteria"><div class="nom-criteria-name"><span class="nom-criteria-icon">💡</span> Novel Thinking</div><div class="nom-criteria-desc">Original, unexpected approach</div></div></td><td class="nom-cell"><div class="nom-write-area"></div></td><td class="reason-cell"></td></tr>
+      </tbody>
+    </table>
+    <div class="bl-footer">
+      <div class="bl-footer-note">Please return this ballot to the collection table. Thank you!</div>
+      <div class="bl-footer-right"><div class="bl-footer-brand">SAS Impact Expo</div><div class="bl-footer-year">2 0 2 6</div></div>
+    </div>
+  </div>
+  <div class="bottom-bar"></div>
+</div>
+
+<!-- ============ HALF-PAGE BALLOT 2 ============ -->
+<div class="ballot-page half-page" id="ballotHalf2" style="display:none;">
+  <div class="top-stripe"></div>
+  <div class="ballot-content">
+    <div class="bl-header">
+      <div class="bl-header-left">
+        <div class="bl-school">Shanghai American School</div>
+        <div class="bl-title">Impact Expo Nomination Ballot</div>
+        <div class="bl-subtitle">Grade 10 · May 19, 2026</div>
+      </div>
+      <div class="bl-header-right">
+        <div class="bl-field">
+          <span class="bl-field-label">Judge</span>
+          <div class="bl-field-line" style="width:150px"></div>
+        </div>
+      </div>
+    </div>
+    <div class="bl-divider"></div>
+    <div class="bl-instructions">
+      <strong>Nominate the one student</strong> you believe best demonstrates each quality. Write the student's name.
+    </div>
+    <table class="nom-table">
+      <thead>
+        <tr>
+          <th>Award</th>
+          <th class="nom-col">Your Top Pick</th>
+          <th class="reason-col">Why? <span style="font-weight:400; font-size:7px; text-transform:none;">(optional)</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-community"><td><div class="nom-criteria"><div class="nom-criteria-name"><span class="nom-criteria-icon">🌍</span> Community Impact</div><div class="nom-criteria-desc">Meaningful difference for others</div></div></td><td class="nom-cell"><div class="nom-write-area"></div></td><td class="reason-cell"></td></tr>
+        <tr class="row-teamwork"><td><div class="nom-criteria"><div class="nom-criteria-name"><span class="nom-criteria-icon">🤝</span> Best Collaborator</div><div class="nom-criteria-desc">Worked together effectively</div></div></td><td class="nom-cell"><div class="nom-write-area"></div></td><td class="reason-cell"></td></tr>
+        <tr class="row-story"><td><div class="nom-criteria"><div class="nom-criteria-name"><span class="nom-criteria-icon">🎤</span> Best Reflection</div><div class="nom-criteria-desc">Clarity, honesty, personal insight</div></div></td><td class="nom-cell"><div class="nom-write-area"></div></td><td class="reason-cell"></td></tr>
+        <tr class="row-thinking"><td><div class="nom-criteria"><div class="nom-criteria-name"><span class="nom-criteria-icon">🧠</span> Mastermind</div><div class="nom-criteria-desc">Deep research, logical thinking</div></div></td><td class="nom-cell"><div class="nom-write-area"></div></td><td class="reason-cell"></td></tr>
+        <tr class="row-creative"><td><div class="nom-criteria"><div class="nom-criteria-name"><span class="nom-criteria-icon">💡</span> Novel Thinking</div><div class="nom-criteria-desc">Original, unexpected approach</div></div></td><td class="nom-cell"><div class="nom-write-area"></div></td><td class="reason-cell"></td></tr>
+      </tbody>
+    </table>
+    <div class="bl-footer">
+      <div class="bl-footer-note">Please return this ballot to the collection table. Thank you!</div>
+      <div class="bl-footer-right"><div class="bl-footer-brand">SAS Impact Expo</div><div class="bl-footer-year">2 0 2 6</div></div>
+    </div>
+  </div>
+  <div class="bottom-bar"></div>
+</div>
+
+<script>
+function toggleLayout(mode) {
+  const full = document.getElementById('ballotFull');
+  const half1 = document.getElementById('ballotHalf1');
+  const half2 = document.getElementById('ballotHalf2');
+  if (mode === 'half') {
+    full.style.display = 'none';
+    half1.style.display = 'flex';
+    half2.style.display = 'flex';
+  } else {
+    full.style.display = 'flex';
+    half1.style.display = 'none';
+    half2.style.display = 'none';
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>R2P Fishbowl Debate | Your Roles and Structure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --navy: #1B2A4A;
+            --navy-light: #243656;
+            --teal: #1a6b7a;
+            --teal-light: #e0f4f8;
+            --gold: #c49000;
+            --gold-light: #fef3d0;
+            --green: #1a8a50;
+            --green-light: #e8fdf0;
+            --red: #cc3355;
+            --red-light: #fde8ed;
+            --purple: #6b4c9a;
+            --purple-light: #f3e8fd;
+            --blue: #2d5fa6;
+            --blue-light: #e4edf8;
+            --orange: #c27020;
+            --orange-light: #fef0e0;
+            --text: #1a1e2e;
+            --muted: #5a6578;
+            --border: #d1d9e6;
+            --surface: #ffffff;
+            --bg: #f5f7fa;
+            --radius: 12px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.75;
+        }
+
+        .hero {
+            padding: 48px 24px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            border-bottom: 3px solid var(--gold);
+            color: #fff;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .25);
+            color: rgba(255, 255, 255, .9);
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: 5px 16px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.4rem);
+            font-weight: 800;
+            line-height: 1.25;
+            color: #fff;
+            max-width: 700px;
+            margin: 0 auto 12px;
+        }
+
+        .hero-sub {
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .7);
+            max-width: 580px;
+            margin: 0 auto 20px;
+        }
+
+        .hero-pills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .hero-pill {
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: .72rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .2);
+            color: rgba(255, 255, 255, .85);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .section {
+            margin-top: 40px
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            font-size: .8rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            color: #fff;
+        }
+
+        .num-teal {
+            background: var(--teal)
+        }
+
+        .num-gold {
+            background: var(--gold)
+        }
+
+        .num-green {
+            background: var(--green)
+        }
+
+        .num-red {
+            background: var(--red)
+        }
+
+        .num-purple {
+            background: var(--purple)
+        }
+
+        .num-blue {
+            background: var(--blue)
+        }
+
+        .num-navy {
+            background: var(--navy)
+        }
+
+        .num-orange {
+            background: var(--orange)
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            font-family: 'Inter', sans-serif;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            display: block;
+            color: var(--muted);
+            margin-bottom: 2px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px 26px;
+            margin-bottom: 14px;
+        }
+
+        .card h3 {
+            font-size: .88rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--navy);
+        }
+
+        .card p,
+        .card li {
+            font-size: .87rem;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .card ol,
+        .card ul {
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+
+        .card li {
+            margin-bottom: 5px
+        }
+
+        .card strong {
+            color: var(--text)
+        }
+
+        .callout {
+            display: flex;
+            gap: 12px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin: 14px 0;
+            border-left: 4px solid;
+            font-size: .84rem;
+            line-height: 1.7;
+        }
+
+        .callout p {
+            margin: 0
+        }
+
+        .callout strong {
+            font-weight: 700
+        }
+
+        .callout-teal {
+            background: var(--teal-light);
+            border-color: var(--teal);
+            color: #14505c
+        }
+
+        .callout-gold {
+            background: var(--gold-light);
+            border-color: var(--gold);
+            color: #6b4f0a
+        }
+
+        .callout-green {
+            background: var(--green-light);
+            border-color: var(--green);
+            color: #155e35
+        }
+
+        .callout-red {
+            background: var(--red-light);
+            border-color: var(--red);
+            color: #7a2038
+        }
+
+        .callout-purple {
+            background: var(--purple-light);
+            border-color: var(--purple);
+            color: #4a3570
+        }
+
+        .callout-orange {
+            background: var(--orange-light);
+            border-color: var(--orange);
+            color: #6b3d10
+        }
+
+        hr.divider {
+            border: none;
+            height: 1px;
+            background: var(--border);
+            margin-top: 40px
+        }
+
+        /* ── Fishbowl visual ── */
+        .fishbowl-visual {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 14px;
+        }
+
+        .bowl-title {
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .bowl-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .bowl-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bowl-observer {
+            width: 86px;
+            height: 86px;
+            border-radius: 50%;
+            border: 3px solid var(--orange);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--orange-light);
+        }
+
+        .bowl-observer-name {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--orange);
+        }
+
+        .bowl-observer-role {
+            font-size: .6rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+        .bowl-observer-label {
+            font-size: .7rem;
+            font-weight: 700;
+            color: var(--orange);
+            margin-top: 4px;
+        }
+
+        .bowl-center {
+            display: flex;
+            gap: 16px;
+            align-items: stretch;
+        }
+
+        .bowl-team {
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            min-width: 160px;
+            border: 2px solid;
+        }
+
+        .bowl-team-pro {
+            background: var(--teal-light);
+            border-color: var(--teal);
+        }
+
+        .bowl-team-con {
+            background: var(--red-light);
+            border-color: var(--red);
+        }
+
+        .bowl-team-label {
+            font-size: .64rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .bowl-team-pro .bowl-team-label {
+            color: var(--teal)
+        }
+
+        .bowl-team-con .bowl-team-label {
+            color: var(--red)
+        }
+
+        .bowl-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            font-size: .82rem;
+        }
+
+        .bowl-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .bowl-team-pro .bowl-dot {
+            background: var(--teal)
+        }
+
+        .bowl-team-con .bowl-dot {
+            background: var(--red)
+        }
+
+        .bowl-name-text {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .bowl-name-role {
+            font-size: .7rem;
+            color: var(--muted);
+            font-weight: 400;
+        }
+
+        .bowl-vs {
+            display: flex;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--muted);
+        }
+
+        /* ── Role cards ── */
+        .role-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        @media (max-width: 700px) {
+            .role-grid {
+                grid-template-columns: 1fr
+            }
+
+            .bowl-center {
+                flex-direction: column
+            }
+
+            .bowl-layout {
+                gap: 16px
+            }
+        }
+
+        .role-card {
+            border-radius: var(--radius);
+            padding: 20px 22px;
+            border: 2px solid;
+        }
+
+        .role-card-pro {
+            background: var(--teal-light);
+            border-color: var(--teal)
+        }
+
+        .role-card-con {
+            background: var(--red-light);
+            border-color: var(--red)
+        }
+
+        .role-card-obs {
+            background: var(--orange-light);
+            border-color: var(--orange)
+        }
+
+        .role-card h3 {
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .role-card-pro h3 {
+            color: var(--teal)
+        }
+
+        .role-card-con h3 {
+            color: var(--red)
+        }
+
+        .role-card-obs h3 {
+            color: var(--orange)
+        }
+
+        .role-entry {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, .06);
+        }
+
+        .role-entry:last-child {
+            border-bottom: none
+        }
+
+        .role-entry-name {
+            font-size: .86rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .role-entry-desc {
+            font-size: .78rem;
+            color: var(--muted);
+        }
+
+        /* ── Timeline ── */
+        .timeline {
+            margin-top: 14px
+        }
+
+        .tl-block {
+            display: flex;
+            gap: 16px;
+        }
+
+        .tl-sidebar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            width: 56px;
+        }
+
+        .tl-time {
+            font-size: .66rem;
+            font-weight: 800;
+            color: #fff;
+            background: var(--teal);
+            border-radius: 6px;
+            padding: 4px 8px;
+            text-align: center;
+            min-width: 48px;
+        }
+
+        .tl-time.gold {
+            background: var(--gold)
+        }
+
+        .tl-time.green {
+            background: var(--green)
+        }
+
+        .tl-time.red {
+            background: var(--red)
+        }
+
+        .tl-time.purple {
+            background: var(--purple)
+        }
+
+        .tl-time.blue {
+            background: var(--blue)
+        }
+
+        .tl-time.navy {
+            background: var(--navy)
+        }
+
+        .tl-time.orange {
+            background: var(--orange)
+        }
+
+        .tl-line {
+            flex: 1;
+            width: 2px;
+            background: var(--border);
+            margin: 4px 0;
+        }
+
+        .tl-card {
+            flex: 1;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            margin-bottom: 10px;
+        }
+
+        .tl-card.fish-card {
+            border: 2px solid var(--orange);
+            background: var(--orange-light);
+        }
+
+        .tl-card h4 {
+            font-size: .86rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+
+        .tl-card.fish-card h4 {
+            color: var(--orange)
+        }
+
+        .tl-card p,
+        .tl-card li {
+            font-size: .82rem;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .tl-card ul {
+            padding-left: 18px;
+            margin: 4px 0;
+        }
+
+        .tl-card li {
+            margin-bottom: 3px
+        }
+
+        .tl-card strong {
+            color: var(--text)
+        }
+
+        .speaker-tag {
+            display: inline-block;
+            font-size: .64rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            padding: 2px 10px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+
+        .tag-pro {
+            background: var(--teal-light);
+            color: var(--teal)
+        }
+
+        .tag-con {
+            background: var(--red-light);
+            color: var(--red)
+        }
+
+        .tag-fish {
+            background: var(--orange-light);
+            color: var(--orange);
+            border: 1px solid var(--orange)
+        }
+
+        .tag-inner {
+            background: var(--blue-light);
+            color: var(--blue)
+        }
+
+        .tag-all {
+            background: var(--gold-light);
+            color: var(--gold)
+        }
+
+        /* ── Question stems ── */
+        .stem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 640px) {
+            .stem-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .stem-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .stem-label {
+            font-size: .64rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .stem-clarify .stem-label {
+            color: var(--teal)
+        }
+
+        .stem-evidence .stem-label {
+            color: var(--gold)
+        }
+
+        .stem-connect .stem-label {
+            color: var(--green)
+        }
+
+        .stem-challenge .stem-label {
+            color: var(--purple)
+        }
+
+        .stem-card p {
+            font-size: .8rem;
+            color: var(--text);
+            font-style: italic;
+            line-height: 1.5;
+            margin: 4px 0;
+        }
+
+        /* ── Observer tasks ── */
+        .obs-task {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 8px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .obs-num {
+            width: 24px;
+            height: 24px;
+            background: var(--orange);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .7rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .obs-content h4 {
+            font-size: .84rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 3px;
+        }
+
+        .obs-content p {
+            font-size: .8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .bottom-line {
+            background: linear-gradient(135deg, var(--navy), var(--navy-light));
+            border-radius: var(--radius);
+            padding: 26px 30px;
+            margin-top: 32px;
+            color: #fff;
+        }
+
+        .bottom-line h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .bottom-line p {
+            font-size: .86rem;
+            color: rgba(255, 255, 255, .8);
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        .bottom-line p:last-child {
+            margin-bottom: 0
+        }
+
+        .bottom-line strong {
+            color: #fff
+        }
+
+        footer {
+            background: var(--navy);
+            border-top: 3px solid var(--gold);
+            text-align: center;
+            padding: 20px;
+            font-size: .76rem;
+            color: rgba(255, 255, 255, .6);
+        }
+
+        footer strong {
+            color: var(--gold)
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 36px 20px 32px
+            }
+
+            .tl-sidebar {
+                width: 44px
+            }
+
+            .tl-time {
+                font-size: .6rem;
+                min-width: 40px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="hero-badge">Debate Day</div>
+        <h1>R2P Fishbowl Debate</h1>
+        <p class="hero-sub">Your roles, structure, and objectives for today's 35-minute debate with fishbowl observers.
+        </p>
+        <div class="hero-pills">
+            <span class="hero-pill">5 Debaters</span>
+            <span class="hero-pill">2 Observers</span>
+            <span class="hero-pill">35-Min Debate</span>
+            <span class="hero-pill">10-Min Team Prep</span>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- ═══════════════════════ -->
+        <!-- HOW IT WORKS -->
+        <!-- ═══════════════════════ -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-orange">F</div>
+                <div class="section-title">
+                    <span>The Format</span>
+                    How the Fishbowl Works
+                </div>
+            </div>
+
+            <div class="card">
+                <p>Five of you will debate inside the <strong>inner circle</strong> (Pro vs. Con). Two of you will sit
+                    in the <strong>outer ring</strong> as active observers. The debate pauses at three structured
+                    moments so the observers can ask questions, challenge evidence, and ultimately deliver a verdict on
+                    which side argued more convincingly.</p>
+                <p style="margin-top:8px">Observers are <strong>not passive</strong>. You have a defined role at every
+                    stage, and the debate literally stops for you. Your questions will push the debaters to explain
+                    better, and your final verdict gives the debate real stakes.</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- ═══════════════════════ -->
+        <!-- WHO'S WHO -->
+        <!-- ═══════════════════════ -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-teal">A</div>
+                <div class="section-title">
+                    <span>Your Teams</span>
+                    Who's Who
+                </div>
+            </div>
+
+            <!-- Visual diagram -->
+            <div class="fishbowl-visual">
+                <div class="bowl-title">Seating Arrangement</div>
+                <div class="bowl-layout">
+                    <!-- Observer Chloe -->
+                    <div class="bowl-side">
+                        <div class="bowl-observer">
+                            <div class="bowl-observer-name">Chloe</div>
+                            <div class="bowl-observer-role">Observer</div>
+                        </div>
+                        <div class="bowl-observer-label">Watching Pro side</div>
+                    </div>
+
+                    <!-- Inner circle -->
+                    <div class="bowl-center">
+                        <div class="bowl-team bowl-team-pro">
+                            <div class="bowl-team-label">Pro (3)</div>
+                            <div class="bowl-name">
+                                <div class="bowl-dot"></div>
+                                <span class="bowl-name-text">Leah</span>
+                                <span class="bowl-name-role">&mdash; Lead</span>
+                            </div>
+                            <div class="bowl-name">
+                                <div class="bowl-dot"></div>
+                                <span class="bowl-name-text">Rachel</span>
+                                <span class="bowl-name-role">&mdash; Argument</span>
+                            </div>
+                            <div class="bowl-name">
+                                <div class="bowl-dot"></div>
+                                <span class="bowl-name-text">Matthew</span>
+                                <span class="bowl-name-role">&mdash; Rebuttal</span>
+                            </div>
+                        </div>
+
+                        <div class="bowl-vs">vs</div>
+
+                        <div class="bowl-team bowl-team-con">
+                            <div class="bowl-team-label">Con (2)</div>
+                            <div class="bowl-name">
+                                <div class="bowl-dot"></div>
+                                <span class="bowl-name-text">Marcus</span>
+                                <span class="bowl-name-role">&mdash; Lead</span>
+                            </div>
+                            <div class="bowl-name">
+                                <div class="bowl-dot"></div>
+                                <span class="bowl-name-text">Claire</span>
+                                <span class="bowl-name-role">&mdash; Arg + Rebuttal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Observer Jasmine -->
+                    <div class="bowl-side">
+                        <div class="bowl-observer">
+                            <div class="bowl-observer-name">Jasmine</div>
+                            <div class="bowl-observer-role">Observer</div>
+                        </div>
+                        <div class="bowl-observer-label">Watching Con side</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Role details -->
+            <div class="role-grid">
+                <div class="role-card role-card-pro">
+                    <h3>Pro Team</h3>
+                    <div class="role-entry">
+                        <div class="role-entry-name">Leah &mdash; Lead Speaker</div>
+                        <div class="role-entry-desc">Delivers the opening and closing statements. Sets the thesis and
+                            wraps up the case.</div>
+                    </div>
+                    <div class="role-entry">
+                        <div class="role-entry-name">Rachel &mdash; Argument Speaker</div>
+                        <div class="role-entry-desc">Presents the team's 2 strongest evidence points with clear claims,
+                            evidence, and links to R2P.</div>
+                    </div>
+                    <div class="role-entry">
+                        <div class="role-entry-name">Matthew &mdash; Rebuttal Specialist</div>
+                        <div class="role-entry-desc">Asks cross-examination questions and delivers the rebuttal.
+                            Dismantles the Con side's arguments.</div>
+                    </div>
+                </div>
+
+                <div class="role-card role-card-con">
+                    <h3>Con Team</h3>
+                    <div class="role-entry">
+                        <div class="role-entry-name">Marcus &mdash; Lead Speaker</div>
+                        <div class="role-entry-desc">Delivers the opening and closing statements. Frames the
+                            counter-position and lands the final word.</div>
+                    </div>
+                    <div class="role-entry">
+                        <div class="role-entry-name">Claire &mdash; Argument + Rebuttal</div>
+                        <div class="role-entry-desc">Presents both evidence points and handles cross-examination. Deeper
+                            ownership of the full Con case.</div>
+                    </div>
+                </div>
+
+                <div class="role-card role-card-obs">
+                    <h3>Observers (Outer Ring)</h3>
+                    <div class="role-entry">
+                        <div class="role-entry-name">Chloe</div>
+                        <div class="role-entry-desc">Seated behind the Pro team. Listens closely, asks questions during
+                            pauses, and delivers a verdict at the end.</div>
+                    </div>
+                    <div class="role-entry">
+                        <div class="role-entry-name">Jasmine</div>
+                        <div class="role-entry-desc">Seated behind the Con team. Same responsibilities &mdash; your
+                            questions can be directed at either side.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout callout-orange">
+                <p><strong>Chloe and Jasmine:</strong> You're each seated behind a different team so you hear their
+                    arguments up close, but your questions can challenge <em>either</em> side. By the end, you'll
+                    deliver a verdict on who argued more convincingly &mdash; you're the jury.</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- ═══════════════════════ -->
+        <!-- OBSERVER OBJECTIVES -->
+        <!-- ═══════════════════════ -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-orange">O</div>
+                <div class="section-title">
+                    <span style="font-size:.82rem; color:var(--orange); font-weight:800">Chloe + Jasmine</span>
+                    Your Objectives by Phase
+                </div>
+            </div>
+
+            <div class="card">
+                <p>Keep your notepad or device open the whole time. Your job is <strong>inquiry first, judgment
+                        last</strong>. Here's what to focus on at each stage:</p>
+            </div>
+
+            <div class="obs-task">
+                <div class="obs-num">1</div>
+                <div class="obs-content">
+                    <h4>During Opening Statements</h4>
+                    <p>Write down: <strong>"What is the core disagreement?"</strong> Capture each side's main claim in
+                        one sentence.</p>
+                </div>
+            </div>
+
+            <div class="obs-task">
+                <div class="obs-num">2</div>
+                <div class="obs-content">
+                    <h4>During Arguments</h4>
+                    <p>For each side, note the <strong>single strongest piece of evidence</strong>. Also write down
+                        anything you don't understand &mdash; that's your question for the next pause.</p>
+                </div>
+            </div>
+
+            <div class="obs-task">
+                <div class="obs-num">3</div>
+                <div class="obs-content">
+                    <h4>During Cross-Examination</h4>
+                    <p>Note <strong>which side handles tough questions better</strong>. Who answered directly? Who
+                        deflected? This feeds your final verdict.</p>
+                </div>
+            </div>
+
+            <div class="obs-task">
+                <div class="obs-num">4</div>
+                <div class="obs-content">
+                    <h4>Fishbowl Pause 3 &mdash; Your Verdict</h4>
+                    <p>State which side you find <strong>more convincing</strong> and cite 1&ndash;2 specific moments
+                        from the debate. Your reasoning matters more than your answer.</p>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- ═══════════════════════ -->
+        <!-- QUESTION STEMS -->
+        <!-- ═══════════════════════ -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-gold">Q</div>
+                <div class="section-title">
+                    <span style="font-size:.82rem; color:var(--orange); font-weight:800">Chloe + Jasmine</span>
+                    Question Stems to Use During Pauses
+                </div>
+            </div>
+
+            <div class="card">
+                <p>Use these as starting points during fishbowl pauses. You don't need to read them word-for-word
+                    &mdash; adapt them to what you actually heard.</p>
+            </div>
+
+            <div class="stem-grid">
+                <div class="stem-card stem-clarify">
+                    <div class="stem-label">Clarifying</div>
+                    <p>"Can you explain what you mean by...?"</p>
+                    <p>"When you say [R2P / sovereignty / intervention], what does that actually look like?"</p>
+                    <p>"I'm not sure I follow &mdash; can you walk me through that?"</p>
+                </div>
+                <div class="stem-card stem-evidence">
+                    <div class="stem-label">Probing Evidence</div>
+                    <p>"How do you know that? Where does that come from?"</p>
+                    <p>"Is that one example, or has it happened more than once?"</p>
+                    <p>"What would the other side say about that evidence?"</p>
+                </div>
+                <div class="stem-card stem-connect">
+                    <div class="stem-label">Making Connections</div>
+                    <p>"How does this connect to what the other team said about...?"</p>
+                    <p>"Does this apply to other countries, or just this case?"</p>
+                    <p>"If this is true, what does that mean for...?"</p>
+                </div>
+                <div class="stem-card stem-challenge">
+                    <div class="stem-label">Constructive Challenge</div>
+                    <p>"What would happen if the opposite were true?"</p>
+                    <p>"What's the strongest argument against your position?"</p>
+                    <p>"Are there any downsides to what you're proposing?"</p>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- ═══════════════════════ -->
+        <!-- 10-MIN PREP -->
+        <!-- ═══════════════════════ -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-navy">10</div>
+                <div class="section-title">
+                    <span>First 10 Minutes</span>
+                    Team Prep
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Leah, Rachel, Matthew, Marcus, Claire &mdash; Debaters</h3>
+                <ol>
+                    <li><strong>Confirm who speaks when</strong> (1 min) &mdash; use the roles above</li>
+                    <li><strong>Share and rank your evidence</strong> (4 min) &mdash; pick the 2&ndash;3 strongest
+                        points</li>
+                    <li><strong>Anticipate the other side</strong> (3 min) &mdash; what will they argue? Plan 2&ndash;3
+                        counter-responses</li>
+                    <li><strong>Plan your narrative arc</strong> (2 min) &mdash; lead with impact, build with evidence,
+                        close emotionally</li>
+                </ol>
+            </div>
+
+            <div class="card" style="border-color:var(--orange); border-width:2px">
+                <h3 style="color:var(--orange)">Chloe and Jasmine &mdash; Observers</h3>
+                <p>While the teams prep, you'll receive and read a <strong>1-page R2P briefing</strong> that covers:</p>
+                <ul>
+                    <li>What R2P is (the 3 pillars, in 3 sentences)</li>
+                    <li>Today's debate question</li>
+                    <li>The case studies being debated (Venezuela and Iran)</li>
+                    <li>Your question stem card (above) and task sheet</li>
+                </ul>
+                <p style="margin-top:8px"><strong>You don't need to take a side yet.</strong> Your job is to come in
+                    with fresh eyes, ask good questions, and form your opinion by the end based on what you hear.</p>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- ═══════════════════════ -->
+        <!-- 35-MIN TIMELINE -->
+        <!-- ═══════════════════════ -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-purple">35</div>
+                <div class="section-title">
+                    <span>The Debate &bull; 35 Minutes</span>
+                    Round-by-Round Structure
+                </div>
+            </div>
+
+            <div class="timeline">
+
+                <!-- R1 -->
+                <div class="tl-block">
+                    <div class="tl-sidebar">
+                        <div class="tl-time">4 min</div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card">
+                        <span class="speaker-tag tag-pro">Leah</span>
+                        <span class="speaker-tag tag-con">Marcus</span>
+                        <h4>Round 1: Opening Statements</h4>
+                        <p><strong>2 min per side.</strong> Leah opens for Pro, Marcus opens for Con. Present your
+                            thesis and preview your main arguments.</p>
+                        <ul>
+                            <li><strong>Chloe + Jasmine:</strong> Write down the core disagreement in one sentence</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PAUSE 1 -->
+                <div class="tl-block">
+                    <div class="tl-sidebar">
+                        <div class="tl-time orange">2 min</div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card fish-card">
+                        <span class="speaker-tag tag-fish">Fishbowl Pause 1</span>
+                        <h4>Chloe + Jasmine: Clarifying Questions</h4>
+                        <p>Each of you asks <strong>1 clarifying question</strong> about what you just heard. Use the
+                            "Clarifying" stems.</p>
+                        <ul>
+                            <li>Example: "Can you explain what R2P actually means in practice?"</li>
+                            <li>Any debater from the relevant side can answer (keep answers to 30 seconds)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- R2 -->
+                <div class="tl-block">
+                    <div class="tl-sidebar">
+                        <div class="tl-time gold">7 min</div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card">
+                        <span class="speaker-tag tag-pro">Rachel</span>
+                        <span class="speaker-tag tag-con">Claire</span>
+                        <h4>Round 2: Constructive Arguments</h4>
+                        <p><strong>Rachel (~3.5 min):</strong> Present Pro's 2 strongest evidence points.</p>
+                        <p><strong>Claire (~3.5 min):</strong> Present Con's 2 strongest evidence points.</p>
+                        <ul>
+                            <li>Each point must include: <strong>claim + evidence + link to R2P</strong></li>
+                            <li><strong>Chloe + Jasmine:</strong> Note the strongest evidence from each side</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PAUSE 2 -->
+                <div class="tl-block">
+                    <div class="tl-sidebar">
+                        <div class="tl-time orange">3 min</div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card fish-card">
+                        <span class="speaker-tag tag-fish">Fishbowl Pause 2</span>
+                        <h4>Chloe + Jasmine: Probing the Evidence</h4>
+                        <p>Each of you asks <strong>1&ndash;2 questions</strong> that dig into the evidence. Use
+                            "Probing Evidence" or "Constructive Challenge" stems.</p>
+                        <ul>
+                            <li>Example: "You mentioned Venezuela &mdash; how do you know that's about R2P and not just
+                                sanctions?"</li>
+                            <li>Debaters must answer directly &mdash; no deflecting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- R3 -->
+                <div class="tl-block">
+                    <div class="tl-sidebar">
+                        <div class="tl-time red">5 min</div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card">
+                        <span class="speaker-tag tag-pro">Matthew</span>
+                        <span class="speaker-tag tag-con">Claire</span>
+                        <h4>Round 3: Cross-Examination</h4>
+                        <p><strong>~2.5 min per side.</strong> Matthew and Claire take turns directing questions at the
+                            opposing team. Any team member can answer.</p>
+                        <ul>
+                            <li>Questions must target evidence quality, logic, or real-world application</li>
+                            <li>Genuine questions only &mdash; no speeches disguised as questions</li>
+                            <li><strong>Chloe + Jasmine:</strong> Note who handles pressure better</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- R4 -->
+                <div class="tl-block">
+                    <div class="tl-sidebar">
+                        <div class="tl-time purple">5 min</div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card">
+                        <span class="speaker-tag tag-pro">Matthew</span>
+                        <span class="speaker-tag tag-con">Claire</span>
+                        <h4>Round 4: Rebuttals</h4>
+                        <p><strong>~2.5 min per side.</strong> Directly attack the other team's strongest arguments.
+                            Reference specific claims they made.</p>
+                        <ul>
+                            <li>Non-speaking team members: pass notes to your rebuttal speaker</li>
+                            <li><strong>Chloe + Jasmine:</strong> Start preparing your verdict &mdash; which side is
+                                winning?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- R5: Closings -->
+                <div class="tl-block">
+                    <div class="tl-sidebar">
+                        <div class="tl-time navy">4 min</div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card">
+                        <span class="speaker-tag tag-pro">Leah</span>
+                        <span class="speaker-tag tag-con">Marcus</span>
+                        <h4>Round 5: Closing Statements</h4>
+                        <p><strong>2 min per side.</strong> Leah closes for Pro, Marcus closes for Con. Summarize your
+                            case &mdash; no new evidence. Marcus gets the final word.</p>
+                        <ul>
+                            <li><strong>Chloe + Jasmine:</strong> Listen carefully &mdash; this is your last input
+                                before delivering your verdict</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PAUSE 3: Verdict -->
+                <div class="tl-block">
+                    <div class="tl-sidebar">
+                        <div class="tl-time orange">3 min</div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card fish-card">
+                        <span class="speaker-tag tag-fish">Fishbowl Pause 3 &mdash; The Verdict</span>
+                        <h4>Chloe + Jasmine: Jury Statement</h4>
+                        <p>Each of you states <strong>which side you find more convincing</strong> and explains why,
+                            citing 1&ndash;2 specific moments.</p>
+                        <ul>
+                            <li>Example: "I found Pro more convincing because Rachel's evidence about Venezuela's
+                                humanitarian crisis was specific, while the Con argument about sovereignty felt more
+                                abstract."</li>
+                            <li>Your reasoning matters more than which side you pick</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Debrief -->
+                <div class="tl-block">
+                    <div class="tl-sidebar">
+                        <div class="tl-time green">2 min</div>
+                    </div>
+                    <div class="tl-card">
+                        <span class="speaker-tag tag-all">Everyone</span>
+                        <h4>Debrief</h4>
+                        <p>Step out of your roles. Quick reflection:</p>
+                        <ul>
+                            <li>What was the single strongest argument made today?</li>
+                            <li>Did anyone's thinking change?</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- ═══════════════════════ -->
+        <!-- PREP STRATEGIES -->
+        <!-- ═══════════════════════ -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num num-blue">S</div>
+                <div class="section-title">
+                    <span>For All Debaters</span>
+                    Strategies That Win Debates
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>1. The "Steel Man" Rule</h3>
+                <p>Before you rebut, <strong>restate the other side's argument in its strongest form</strong>. This
+                    proves you understood them &mdash; and makes your rebuttal more credible when you knock it down.</p>
+            </div>
+
+            <div class="card">
+                <h3>2. The Evidence Sandwich</h3>
+                <p>Structure every point as: <strong>Claim &rarr; Evidence &rarr; So What?</strong> The "so what" links
+                    it back to R2P. If you can't explain why your evidence matters, don't use it.</p>
+            </div>
+
+            <div class="card">
+                <h3>3. Think About Chloe and Jasmine</h3>
+                <p>They're hearing about R2P for the first time through your arguments. If they can't follow you, your
+                    argument isn't clear enough. <strong>Avoid jargon without explaining it.</strong> When you say "R2P"
+                    or "sovereignty," briefly define what you mean.</p>
+            </div>
+
+            <div class="card">
+                <h3>4. Pass Notes</h3>
+                <p>When you're not speaking, <strong>write notes and pass them to your teammates</strong> who are about
+                    to speak. This keeps you engaged and makes your team's rebuttals stronger.</p>
+            </div>
+        </div>
+
+        <!-- Bottom Line -->
+        <div class="bottom-line">
+            <h3>At a Glance</h3>
+            <p><strong>0:00 &ndash; 0:10</strong> &mdash; Team prep (debaters strategize / Chloe + Jasmine read
+                briefing)<br>
+                <strong>0:10 &ndash; 0:14</strong> &mdash; Openings: Leah + Marcus (2 min each)<br>
+                <strong>0:14 &ndash; 0:16</strong> &mdash; Fishbowl Pause 1: Chloe + Jasmine ask clarifying
+                questions<br>
+                <strong>0:16 &ndash; 0:23</strong> &mdash; Arguments: Rachel + Claire (3.5 min each)<br>
+                <strong>0:23 &ndash; 0:26</strong> &mdash; Fishbowl Pause 2: Chloe + Jasmine probe the evidence<br>
+                <strong>0:26 &ndash; 0:31</strong> &mdash; Cross-examination: Matthew + Claire (2.5 min each)<br>
+                <strong>0:31 &ndash; 0:36</strong> &mdash; Rebuttals: Matthew + Claire (2.5 min each)<br>
+                <strong>0:36 &ndash; 0:40</strong> &mdash; Closings: Leah + Marcus (2 min each)<br>
+                <strong>0:40 &ndash; 0:43</strong> &mdash; Fishbowl Pause 3: Chloe + Jasmine deliver verdicts<br>
+                <strong>0:43 &ndash; 0:45</strong> &mdash; Debrief: everyone
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        <strong>R2P Fishbowl Debate</strong> &mdash; IB Global Politics
+    </footer>
+
+</body>
+
+</html>

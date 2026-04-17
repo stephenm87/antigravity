@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Plan — Website Exploration & Writing Strong Introductions</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fff;
+            --text: #1a1a2e;
+            --accent: #0066cc;
+            --accent-light: #e8f0fe;
+            --border: #d0d7de;
+            --muted: #57606a;
+            --code-bg: #f6f8fa;
+            --warning-bg: #fff8e1;
+            --warning-border: #f9a825;
+            --tip-bg: #e8f5e9;
+            --tip-border: #43a047;
+            --p1: #2563eb;
+            --p1-bg: #eff6ff;
+            --p1-border: #93c5fd;
+            --p2: #059669;
+            --p2-bg: #ecfdf5;
+            --p2-border: #6ee7b7;
+            --p3: #dc2626;
+            --p3-bg: #fef2f2;
+            --p3-border: #fca5a5;
+            --sl-ctx: #7c3aed;
+            --sl-ctx-bg: #f5f3ff;
+            --sl-ten: #db2777;
+            --sl-ten-bg: #fdf2f8;
+            --sl-cas: #d97706;
+            --sl-cas-bg: #fffbeb;
+            --sl-the: #0891b2;
+            --sl-the-bg: #ecfeff;
+            --sl-rdm: #4f46e5;
+            --sl-rdm-bg: #eef2ff;
+            --sl-stk: #be185d;
+            --sl-stk-bg: #fdf2f8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1.5cm 2cm;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            font-size: 11pt;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .cover {
+            text-align: center;
+            padding: 60px 20px 50px;
+            page-break-after: always;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cover h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .cover h2 {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .cover-meta {
+            font-size: .85rem;
+            color: var(--muted);
+            border-top: 2px solid var(--border);
+            padding-top: 24px;
+            margin-top: 20px;
+        }
+
+        .cover-meta strong {
+            color: var(--text);
+        }
+
+        .cover-obj {
+            text-align: left;
+            max-width: 500px;
+            margin: 30px auto 0;
+            background: var(--accent-light);
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            padding: 20px 24px;
+        }
+
+        .cover-obj h3 {
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .cover-obj ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cover-obj li {
+            padding: 5px 0 5px 20px;
+            font-size: .9rem;
+            position: relative;
+        }
+
+        .cover-obj li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin: 50px 0 20px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 30px 0 12px;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 20px 0 8px;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        .callout {
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin: 16px 0;
+            font-size: .9rem;
+            page-break-inside: avoid;
+        }
+
+        .callout-warning {
+            background: var(--warning-bg);
+            border-left: 4px solid var(--warning-border);
+        }
+
+        .callout-tip {
+            background: var(--tip-bg);
+            border-left: 4px solid var(--tip-border);
+        }
+
+        .callout-info {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+        }
+
+        .callout strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: .88rem;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        th {
+            background: var(--code-bg);
+            font-weight: 700;
+            font-size: .82rem;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        ul,
+        ol {
+            margin: 8px 0 12px 24px;
+        }
+
+        li {
+            margin-bottom: 5px;
+            font-size: .92rem;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 28px 0;
+        }
+
+        .task-card {
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin: 14px 0;
+            page-break-inside: avoid;
+            position: relative;
+        }
+
+        .task-card::before {
+            content: attr(data-task);
+            position: absolute;
+            top: -10px;
+            left: 16px;
+            background: var(--accent);
+            color: #fff;
+            font-size: .7rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .task-card h4 {
+            font-size: .95rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            margin-top: 6px;
+        }
+
+        .task-card p {
+            font-size: .88rem;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .task-card .write-here {
+            background: var(--code-bg);
+            border: 1px dashed var(--border);
+            border-radius: 6px;
+            padding: 10px 14px;
+            min-height: 50px;
+            font-size: .82rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .task-card.gcc {
+            border-color: #93c5fd;
+        }
+
+        .task-card.gcc::before {
+            background: var(--p1);
+        }
+
+        .task-card.glopo {
+            border-color: #6ee7b7;
+        }
+
+        .task-card.glopo::before {
+            background: var(--p2);
+        }
+
+        .formula-bar {
+            display: flex;
+            gap: 6px;
+            margin: 18px 0;
+            flex-wrap: wrap;
+            page-break-inside: avoid;
+        }
+
+        .formula-slot {
+            flex: 1;
+            min-width: 120px;
+            border-radius: 8px;
+            padding: 10px 14px;
+            text-align: center;
+            font-size: .78rem;
+            font-weight: 700;
+            border: 2px solid;
+            position: relative;
+        }
+
+        .formula-slot .sl {
+            display: block;
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+            opacity: .7;
+        }
+
+        .sl-ctx {
+            background: var(--sl-ctx-bg);
+            border-color: var(--sl-ctx);
+            color: var(--sl-ctx);
+        }
+
+        .sl-ten {
+            background: var(--sl-ten-bg);
+            border-color: var(--sl-ten);
+            color: var(--sl-ten);
+        }
+
+        .sl-cas {
+            background: var(--sl-cas-bg);
+            border-color: var(--sl-cas);
+            color: var(--sl-cas);
+        }
+
+        .sl-the {
+            background: var(--sl-the-bg);
+            border-color: var(--sl-the);
+            color: var(--sl-the);
+        }
+
+        .sl-rdm {
+            background: var(--sl-rdm-bg);
+            border-color: var(--sl-rdm);
+            color: var(--sl-rdm);
+        }
+
+        .sl-stk {
+            background: var(--sl-stk-bg);
+            border-color: var(--sl-stk);
+            color: var(--sl-stk);
+        }
+
+        .plus {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--border);
+        }
+
+        .ex-block {
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 18px 0;
+            line-height: 1.9;
+            font-size: .92rem;
+            page-break-inside: avoid;
+        }
+
+        .ex-block.p1 {
+            background: var(--p1-bg);
+            border: 1px solid var(--p1-border);
+        }
+
+        .ex-block.p2 {
+            background: var(--p2-bg);
+            border: 1px solid var(--p2-border);
+        }
+
+        .ex-block.p3 {
+            background: var(--p3-bg);
+            border: 1px solid var(--p3-border);
+        }
+
+        .ex-block .lbl {
+            display: inline-block;
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .ex-block.p1 .lbl {
+            background: var(--p1);
+        }
+
+        .ex-block.p2 .lbl {
+            background: var(--p2);
+        }
+
+        .ex-block.p3 .lbl {
+            background: var(--p3);
+        }
+
+        span.c-ctx {
+            background: var(--sl-ctx-bg);
+            color: var(--sl-ctx);
+            padding: 1px 4px;
+            border-radius: 3px;
+            border-bottom: 2px solid var(--sl-ctx);
+        }
+
+        span.c-ten {
+            background: var(--sl-ten-bg);
+            color: var(--sl-ten);
+            padding: 1px 4px;
+            border-radius: 3px;
+            border-bottom: 2px solid var(--sl-ten);
+        }
+
+        span.c-cas {
+            background: var(--sl-cas-bg);
+            color: var(--sl-cas);
+            padding: 1px 4px;
+            border-radius: 3px;
+            border-bottom: 2px solid var(--sl-cas);
+        }
+
+        span.c-the {
+            background: var(--sl-the-bg);
+            color: var(--sl-the);
+            padding: 1px 4px;
+            border-radius: 3px;
+            border-bottom: 2px solid var(--sl-the);
+        }
+
+        span.c-rdm {
+            background: var(--sl-rdm-bg);
+            color: var(--sl-rdm);
+            padding: 1px 4px;
+            border-radius: 3px;
+            border-bottom: 2px solid var(--sl-rdm);
+        }
+
+        span.c-stk {
+            background: var(--sl-stk-bg);
+            color: var(--sl-stk);
+            padding: 1px 4px;
+            border-radius: 3px;
+            border-bottom: 2px solid var(--sl-stk);
+        }
+
+        .paper-hdr {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin: 30px 0 16px;
+            page-break-after: avoid;
+        }
+
+        .paper-hdr.p1 {
+            background: var(--p1-bg);
+            border-left: 5px solid var(--p1);
+        }
+
+        .paper-hdr.p2 {
+            background: var(--p2-bg);
+            border-left: 5px solid var(--p2);
+        }
+
+        .paper-hdr.p3 {
+            background: var(--p3-bg);
+            border-left: 5px solid var(--p3);
+        }
+
+        .paper-hdr h2 {
+            margin: 0;
+            font-size: 1.15rem;
+        }
+
+        .paper-hdr.p1 h2 {
+            color: var(--p1);
+        }
+
+        .paper-hdr.p2 h2 {
+            color: var(--p2);
+        }
+
+        .paper-hdr.p3 h2 {
+            color: var(--p3);
+        }
+
+        .paper-hdr .pm {
+            font-size: .78rem;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .pitfall {
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+            border-left: 4px solid #dc2626;
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            page-break-inside: avoid;
+        }
+
+        .pitfall strong {
+            color: #dc2626;
+            display: block;
+            margin-bottom: 6px;
+            font-size: .85rem;
+        }
+
+        .pitfall ul {
+            margin: 4px 0 0 18px;
+            font-size: .85rem;
+            color: var(--muted);
+        }
+
+        .step {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 18px;
+            page-break-inside: avoid;
+        }
+
+        .step-n {
+            flex-shrink: 0;
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: .82rem;
+            margin-top: 2px;
+        }
+
+        .step-c {
+            flex: 1;
+        }
+
+        .step-c h4 {
+            font-size: .95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .step-c p {
+            font-size: .9rem;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+
+        .your-turn {
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 18px 0;
+            page-break-inside: avoid;
+        }
+
+        .your-turn h4 {
+            font-size: .85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .blank {
+            border-bottom: 1px solid var(--border);
+            height: 32px;
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .blank .h {
+            position: absolute;
+            bottom: 6px;
+            left: 0;
+            font-size: .72rem;
+            color: #adb5bd;
+            font-style: italic;
+        }
+
+        .src-box {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            page-break-inside: avoid;
+            font-size: .88rem;
+        }
+
+        .src-box .src-label {
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .src-box .src-cite {
+            font-size: .75rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        .fix-block {
+            border: 2px solid #fca5a5;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 16px 0;
+            page-break-inside: avoid;
+            position: relative;
+        }
+
+        .fix-block::before {
+            content: attr(data-label);
+            position: absolute;
+            top: -10px;
+            left: 16px;
+            background: #dc2626;
+            color: #fff;
+            font-size: .65rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .fix-block .bad-intro {
+            background: #fef2f2;
+            padding: 14px 18px;
+            border-radius: 6px;
+            font-size: .88rem;
+            line-height: 1.7;
+            margin: 8px 0 12px;
+            border-left: 3px solid #fca5a5;
+        }
+
+        .fix-block .diagnosis {
+            font-size: .82rem;
+            color: var(--muted);
+        }
+
+        .fix-block .diagnosis strong {
+            color: #dc2626;
+        }
+
+        .key-box {
+            display: inline-flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 12px 0;
+        }
+
+        .key-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        .key-sw {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            border: 1px solid rgba(0, 0, 0, .1);
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 18px;
+            border-top: 2px solid var(--border);
+            text-align: center;
+            font-size: .8rem;
+            color: var(--muted);
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+
+            .cover {
+                min-height: auto;
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- COVER -->
+    <div class="cover">
+        <h1>Website Exploration &<br>Writing Strong Introductions</h1>
+        <h2>IB Global Politics — Papers 1, 2 & 3<br>Step-by-Step Formulas with Worked Examples</h2>
+        <div class="cover-obj">
+            <h3>Learning Objectives</h3>
+            <ul>
+                <li>Explore the GloPo Companion and Global Command Center to discover study and revision tools</li>
+                <li>Learn a paper-specific formula for writing strong introduction paragraphs</li>
+                <li>Study high-scoring example introductions and see how the formula is applied</li>
+                <li>Diagnose and correct weak introductions using the formula as a guide</li>
+            </ul>
+        </div>
+        <div class="cover-meta">
+            <p><strong>Subject:</strong> IB Global Politics (2026 Syllabus)</p>
+            <p><strong>Author:</strong> Stephen Martinez</p>
+            <p><strong>Date:</strong> February 2026</p>
+            <p><strong>Duration:</strong> ~70–80 minutes (20 min exploration + 50–60 min writing workshop)</p>
+        </div>
+    </div>
+
+    <!-- =============================== -->
+    <!-- PART 1 — WEBSITE EXPLORATION    -->
+    <!-- =============================== -->
+    <h1 id="part1">Part 1 — Website Exploration Activity</h1>
+    <p>Before we write, let's make sure you know <strong>where your tools are</strong>. You have two websites built
+        specifically for this course. Spend 20 minutes completing the tasks below.</p>
+
+    <div class="callout callout-info">
+        <strong>How to Use This Activity</strong>
+        Open each website on your device. Complete each task card by writing your answers in the spaces provided. Work
+        individually or in pairs.
+    </div>
+
+    <hr>
+    <h2>Website 1: The Global Command Center</h2>
+    <p><a href="https://globalcommandcenter2026.netlify.app/" target="_blank">globalcommandcenter2026.netlify.app</a> —
+        A 3D geopolitical intelligence dashboard with interactive globe, live news, and theoretical analysis.</p>
+
+    <div class="task-card gcc" data-task="Task 1">
+        <h4>Spin the Globe</h4>
+        <p>Click and drag to rotate the globe. Find three glowing nodes (data points). Click on one and record the
+            event.</p>
+        <div class="write-here">Event name: _______________________________________________</div>
+    </div>
+    <div class="task-card gcc" data-task="Task 2">
+        <h4>Apply a Theoretical Lens</h4>
+        <p>Find the Theoretical Lenses selector on the right panel. Switch between "Realist" and "Feminist" views on one
+            event. How does the analysis change?</p>
+        <div class="write-here">Realist view: ____________________________________________<br><br>Feminist view:
+            ___________________________________________</div>
+    </div>
+    <div class="task-card gcc" data-task="Task 3">
+        <h4>Check the Live Intel Feed</h4>
+        <p>Scroll to the Live Intel section. Find one headline relating to an IB core concept (Power, Sovereignty,
+            Legitimacy, or Interdependence).</p>
+        <div class="write-here">Headline: ________________________________________________<br><br>Core concept it
+            relates to: ________________________________</div>
+    </div>
+
+    <hr>
+    <h2>Website 2: The GloPo Companion</h2>
+    <p>Your all-in-one study suite — writing practice, exam prep, case studies, and conceptual revision.</p>
+
+    <div class="task-card glopo" data-task="Task 4">
+        <h4>Case Library — Build Your Evidence Bank</h4>
+        <p>Open the Case Library tab. Expand any case study. Find the 5Ws+H section and the Theoretical Analysis panel.
+        </p>
+        <div class="write-here">Case study explored: ______________________________________<br><br>One IB core concept
+            it links to: ____________________________<br><br>One theory and its interpretation:
+            __________________________</div>
+    </div>
+    <div class="task-card glopo" data-task="Task 5">
+        <h4>Writing Studio — Try the Intro Builder</h4>
+        <p>Open the Writing Studio tab → Intro Builder. Enter a key concept (Step 1), then a case study and thesis (Step
+            2). Generate the intro.</p>
+        <div class="write-here">Concept you chose: ________________________________________<br><br>Would you change
+            anything about the generated intro? ________</div>
+    </div>
+    <div class="task-card glopo" data-task="Task 6">
+        <h4>IB Concept Glossary</h4>
+        <p>Open the IB Concept Glossary tab. Search for a concept you've studied recently. Read its definition.</p>
+        <div class="write-here">Concept: __________________________________________________<br><br>How could this tool
+            help you revise? ________________________</div>
+    </div>
+    <div class="task-card glopo" data-task="Task 7">
+        <h4>Mock Exam Zone — Paper Preview</h4>
+        <p>Open the Mock Exam Zone. Click through Paper 1, Paper 2, and Paper 3. Note the format differences.</p>
+        <div class="write-here">Paper 1: _________________________ (time: ____ / marks: ____)<br><br>Paper 2:
+            _________________________ (time: ____ / marks: ____)<br><br>Paper 3: _________________________ (time: ____ /
+            marks: ____)</div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PART 2 — WRITING STRONG INTRODUCTIONS      -->
+    <!-- ========================================== -->
+    <h1 id="part2" class="page-break">Part 2 — Writing Strong Introduction Paragraphs</h1>
+    <p>Every strong essay begins with a strong introduction. But different papers demand <strong>different types of
+            introductions</strong>. For each paper below, you will:</p>
+    <ol>
+        <li>Learn the <strong>formula</strong> (colour-coded slots)</li>
+        <li>Read the <strong>stimulus/prompt</strong> you'll be working with</li>
+        <li>Study a <strong>high-scoring example</strong> to see the formula in action</li>
+        <li>Diagnose <strong>weak introductions</strong> and identify what's missing</li>
+    </ol>
+
+    <div class="callout callout-info">
+        <strong>Colour Key — Formula Components</strong>
+        <div class="key-box">
+            <span class="key-item"><span class="key-sw" style="background:var(--sl-ctx);"></span> Context</span>
+            <span class="key-item"><span class="key-sw" style="background:var(--sl-ten);"></span> Tension /
+                Position</span>
+            <span class="key-item"><span class="key-sw" style="background:var(--sl-cas);"></span> Case / Evidence</span>
+            <span class="key-item"><span class="key-sw" style="background:var(--sl-the);"></span> Thesis</span>
+            <span class="key-item"><span class="key-sw" style="background:var(--sl-rdm);"></span> Roadmap</span>
+            <span class="key-item"><span class="key-sw" style="background:var(--sl-stk);"></span> Stakeholder</span>
+        </div>
+    </div>
+
+    <!-- ======================================= -->
+    <!-- PAPER 1                                  -->
+    <!-- ======================================= -->
+    <div class="paper-hdr p1">
+        <div>
+            <h2>Paper 1 — Source Analysis Introduction</h2>
+            <p class="pm">1h 15m · 25 Marks · Focus: 10-mark extended question</p>
+        </div>
+    </div>
+
+    <h3>Step 1 — Learn the Formula</h3>
+    <p>Paper 1 gives you stimulus sources and asks you to analyse them. Your introduction for the 10-mark question must
+        orient the examiner to the source material and your analytical direction.</p>
+
+    <div class="formula-bar">
+        <div class="formula-slot sl-ctx"><span class="sl">Slot 1</span>Context Anchor</div>
+        <span class="plus">+</span>
+        <div class="formula-slot sl-ten"><span class="sl">Slot 2</span>Source Position</div>
+        <span class="plus">+</span>
+        <div class="formula-slot sl-rdm"><span class="sl">Slot 3</span>Analytical Roadmap</div>
+    </div>
+
+    <div class="step">
+        <div class="step-n" style="background:var(--p1);">1</div>
+        <div class="step-c">
+            <h4>Context Anchor</h4>
+            <p>In 1–2 sentences, establish the broad political issue the sources address. Use an IB core concept to
+                ground the reader.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-n" style="background:var(--p1);">2</div>
+        <div class="step-c">
+            <h4>Source Position</h4>
+            <p>Identify the key tension or disagreement <em>between</em> the sources. Show how they contrast — don't
+                summarise each one individually.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-n" style="background:var(--p1);">3</div>
+        <div class="step-c">
+            <h4>Analytical Roadmap</h4>
+            <p>Signal your evaluative direction: what will you explore, and what is your preliminary conclusion?</p>
+        </div>
+    </div>
+
+    <h3>Step 2 — Read the Stimulus Sources</h3>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px;"><em>The following sources relate to the question
+            of sovereignty and international intervention.</em></p>
+
+    <div class="src-box">
+        <span class="src-label">Source A — State Sovereignty as a Shield</span>
+        <p>"The principle of non-intervention remains the cornerstone of the international order. States that respect
+            each other's territorial integrity create a stable system; those that intervene — however noble the stated
+            objective — undermine the very structure that prevents global chaos. The Iraq War of 2003 demonstrated that
+            intervention without Security Council authorisation sets a dangerous precedent, enabling powerful states to
+            impose regime change under the guise of humanitarianism.</p>
+        <p>Furthermore, the aftermath of the NATO-led intervention in Libya in 2011 illustrates the long-term
+            destabilisation that regime change can produce. While the intervention was justified under R2P principles
+            and authorised by UN Security Council Resolution 1973, the resulting power vacuum led to a decade of civil
+            war, the proliferation of weapons across the Sahel, and the emergence of rival governments. Critics argue
+            that intervention rarely achieves its stated humanitarian objectives and instead creates new security
+            threats, reinforcing the realist position that sovereignty — however imperfect — provides a more stable
+            foundation for international order than selective, power-driven interference."</p>
+        <p class="src-cite">— Adapted from a realist policy analysis, International Security Review, 2024</p>
+    </div>
+    <div class="src-box">
+        <span class="src-label">Source B — Sovereignty as Responsibility</span>
+        <p>"When a state systematically massacres its own people, the international community cannot hide behind
+            sovereignty. The Responsibility to Protect (R2P) doctrine, endorsed by the UN General Assembly in 2005,
+            recognises that sovereignty is not a right but a responsibility. Rwanda's genocide in 1994, where 800,000
+            people were killed in 100 days while the world watched, proved the catastrophic cost of inaction.
+            Sovereignty must be conditional.</p>
+        <p>The case of Kosovo in 1999 further demonstrates that intervention can succeed where the political will
+            exists. NATO's air campaign, though conducted without Security Council authorisation due to the threat of a
+            Russian veto, is widely credited with halting ethnic cleansing by Serbian forces. The subsequent
+            establishment of an independent Kosovo, recognised by over 100 states, suggests that the international
+            community can act as a legitimate guarantor of human rights when a state weaponises its sovereignty against
+            its own population. The moral imperative, cosmopolitan scholars argue, must take precedence over procedural
+            adherence to a sovereignty regime that was designed to protect states — not to shield perpetrators of mass
+            atrocity."</p>
+        <p class="src-cite">— Adapted from a cosmopolitan commentary, Human Rights Quarterly, 2023</p>
+    </div>
+    <div class="src-box">
+        <span class="src-label">Source C — Data: UN Security Council Vetoes on Intervention (2011–2024)</span>
+        <p>Between 2011 and 2024, Russia and China used their veto power 14 times to block resolutions authorising
+            humanitarian intervention or sanctions — including 6 vetoes on Syria alone. In the same period, only 3
+            intervention resolutions were successfully passed (Libya 2011, Central African Republic 2013, Mali 2013).
+            The data suggests that the Security Council's structural design makes consistent, timely intervention nearly
+            impossible.</p>
+        <p>A closer examination of the voting patterns reveals a deepening geopolitical divide. Russia's vetoes on Syria
+            were explicitly framed as defending the sovereignty of the Assad government against Western-led regime
+            change, while the United States and its allies characterised them as enabling mass atrocities. The result
+            has been a paralysis that has eroded confidence in multilateral institutions: a 2023 International Crisis
+            Group survey found that 67% of humanitarian organisations rated the Security Council as "ineffective or
+            counterproductive" in responding to protection crises. Some analysts have called for reform — including veto
+            restraint initiatives and the empowerment of the General Assembly through the "Uniting for Peace" mechanism
+            — but structural change remains blocked by the very powers who benefit from the status quo.</p>
+        <p class="src-cite">— Compiled from UN Security Council records and International Crisis Group, 2023</p>
+    </div>
+    <div class="src-box">
+        <span class="src-label">Source D — Voices from Below: Civil Society and the Limits of State-Centric
+            Frameworks</span>
+        <p>"The sovereignty debate, as framed by both its defenders and its critics, overwhelmingly centres on the
+            actions and interests of states and intergovernmental organisations. What is consistently absent is the
+            voice of affected populations themselves. In South Sudan, for example, the deployment of the UN Mission
+            (UNMISS) in 2011 was framed as a protective intervention, yet years of peacekeeping have failed to prevent
+            ongoing ethnic violence, sexual violence as a weapon of war, and the displacement of over 4 million people.
+            The communities most affected by conflict rarely have meaningful input into decisions about intervention,
+            ceasefire terms, or post-conflict governance.</p>
+        <p>Feminist and postcolonial scholars argue that this omission is not accidental but structural: the
+            international order privileges the security of states over the security of individuals, and particularly
+            over the security of women, children, and marginalised ethnic groups who bear the greatest burden of both
+            conflict and intervention. A truly human-centred approach to sovereignty would require not just the right to
+            protect, but the right to be heard — embedding local civil society, women's organisations, and indigenous
+            communities into decision-making processes rather than treating them as passive beneficiaries of top-down
+            intervention."</p>
+        <p class="src-cite">— Adapted from a feminist IR analysis, Gender & Global Politics, 2024</p>
+    </div>
+
+    <p style="font-size:.85rem;color:var(--muted);"><strong>Prompt:</strong> "Using the sources, evaluate the extent to
+        which state sovereignty is eroded by international intervention." [10 marks]</p>
+
+    <h3>Step 3 — Study the High-Scoring Example</h3>
+
+    <div class="ex-block p1">
+        <span class="lbl">High-Scoring Paper 1 Intro</span>
+        <p><span class="c-ctx">The question of whether sovereignty remains absolute or is conditional upon a state's
+                protection of its citizens has become one of the defining tensions of 21st-century international
+                relations, particularly as the Responsibility to Protect (R2P) doctrine has been both invoked and
+                contested across cases from Libya to South Sudan.</span> <span class="c-ten">The sources reveal a
+                multi-dimensional debate: Sources A and B present the core divide between statist defenders of
+                non-interference and cosmopolitan advocates for conditional sovereignty, while Source C demonstrates
+                that the Security Council's veto structure makes consistent intervention structurally improbable — and
+                Source D challenges the entire framework by arguing that the state-centric debate systematically
+                excludes the voices of affected populations.</span> <span class="c-rdm">This response will evaluate
+                these positions by analysing the tension between sovereignty as a stabilising principle and sovereignty
+                as a shield for impunity, ultimately arguing that while sovereignty is not eroded in legal principle,
+                its practical legitimacy is increasingly contested through institutional mechanisms, grassroots
+                resistance, and the structural power politics that constrain multilateral action.</span></p>
+    </div>
+
+    <h3>Step 4 — Diagnose Weak Introductions</h3>
+    <p>Below are three poorly written introductions for the <strong>same prompt and sources</strong>. For each one,
+        identify the missing formula slots and write what you would add to fix it.</p>
+
+    <div class="fix-block" data-label="Weak Intro A — The Summariser">
+        <div class="bad-intro">"Source A talks about how sovereignty is important and intervention is bad. Source B
+            talks about R2P and says sovereignty should be conditional. Source C shows some veto data. Source D says
+            civil society voices are missing. These sources have different opinions about sovereignty and intervention."
+        </div>
+        <div class="diagnosis">
+            <strong>Diagnosis:</strong> This introduction <em>summarises</em> each source individually but never
+            identifies the <strong>tension</strong> between them (missing <span class="c-ten">Slot 2: Source
+                Position</span>). It also lacks a <span class="c-ctx">Context Anchor</span> — there is no broader
+            political framing or IB concept. Finally, there is no <span class="c-rdm">Analytical Roadmap</span> telling
+            the examiner what direction the essay will take.
+        </div>
+        <div class="write-here" style="margin-top:10px;">Your fix — What would you add or change? _____________________
+        </div>
+    </div>
+
+    <div class="fix-block" data-label="Weak Intro B — The Philosopher">
+        <div class="bad-intro">"Sovereignty has been debated by many scholars for centuries. Some believe in absolute
+            sovereignty while others think it should be limited. This is a complex topic with many perspectives. In this
+            essay I will discuss whether sovereignty is eroded by intervention."</div>
+        <div class="diagnosis">
+            <strong>Diagnosis:</strong> This introduction is entirely generic — it could apply to any sovereignty
+            question on any exam. It has no <span class="c-ctx">Context Anchor</span> linked to the specific stimulus
+            material, no reference to the sources at all (missing <span class="c-ten">Source Position</span>), and the
+            "roadmap" is too vague to be useful. The phrase "I will discuss" signals description, not evaluation.
+        </div>
+        <div class="write-here" style="margin-top:10px;">Your fix — What would you add or change? _____________________
+        </div>
+    </div>
+
+    <div class="fix-block" data-label="Weak Intro C — The One-Sider">
+        <div class="bad-intro">"The Responsibility to Protect (R2P) shows that sovereignty must be conditional. As
+            Source B argues, Rwanda proved that inaction is worse than intervention. The international community has a
+            moral duty to act when states commit atrocities. This essay will show that sovereignty is completely eroded
+            by intervention."</div>
+        <div class="diagnosis">
+            <strong>Diagnosis:</strong> This introduction only engages with <em>one</em> source (Source B) and one
+            perspective. It completely ignores Source A's realist counter-argument, Source C's structural data on veto
+            paralysis, and Source D's challenge to the state-centric framing — meaning the <span class="c-ten">Source
+                Position</span> slot is one-sided. The thesis ("completely eroded") is absolutist, showing no evaluative
+            nuance. A strong Paper 1 intro acknowledges the <strong>full debate</strong> across all sources, not just
+            one side.
+        </div>
+        <div class="write-here" style="margin-top:10px;">Your fix — What would you add or change? _____________________
+        </div>
+    </div>
+
+    <!-- ======================================= -->
+    <!-- PAPER 2                                  -->
+    <!-- ======================================= -->
+    <div class="paper-hdr p2 page-break">
+        <div>
+            <h2>Paper 2 — Extended Response Introduction</h2>
+            <p class="pm">1h 45m · 30 Marks · Focus: 15-mark essay (choose 1 of 2)</p>
+        </div>
+    </div>
+
+    <h3>Step 1 — Learn the Formula</h3>
+    <p>Paper 2 is a free-standing essay — no sources provided. You must bring your own knowledge, case studies, and
+        theoretical frameworks. This is where the <strong>"Golden Thread"</strong> begins: your thesis runs through
+        every paragraph.</p>
+
+    <div class="formula-bar">
+        <div class="formula-slot sl-ctx"><span class="sl">Slot 1</span>Concept Definition</div>
+        <span class="plus">+</span>
+        <div class="formula-slot sl-ten"><span class="sl">Slot 2</span>Tension Framing</div>
+        <span class="plus">+</span>
+        <div class="formula-slot sl-cas"><span class="sl">Slot 3</span>Case Preview</div>
+        <span class="plus">+</span>
+        <div class="formula-slot sl-the"><span class="sl">Slot 4</span>Thesis Statement</div>
+    </div>
+
+    <div class="step">
+        <div class="step-n" style="background:var(--p2);">1</div>
+        <div class="step-c">
+            <h4>Concept Definition</h4>
+            <p>Define the central IB concept (legitimacy, sovereignty, power, etc.) in 1–2 sentences using IB-specific
+                language, not a dictionary definition.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-n" style="background:var(--p2);">2</div>
+        <div class="step-c">
+            <h4>Tension Framing</h4>
+            <p>Frame the core debate as a clash between two perspectives (e.g., realist vs. liberal, statist vs.
+                cosmopolitan). This signals evaluation.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-n" style="background:var(--p2);">3</div>
+        <div class="step-c">
+            <h4>Case Preview</h4>
+            <p>Name your two key case studies that will anchor your argument. Depth over breadth — the examiner wants
+                sustained analysis.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-n" style="background:var(--p2);">4</div>
+        <div class="step-c">
+            <h4>Thesis Statement</h4>
+            <p>State your main claim — the "Golden Thread." Use evaluative language: "This essay will argue…", "To a
+                significant extent…"</p>
+        </div>
+    </div>
+
+    <h3>Step 2 — Read the Prompt</h3>
+    <p style="font-size:.85rem;color:var(--muted);"><strong>Prompt:</strong> "Evaluate the claim that legitimacy is the
+        most important factor in maintaining political order." [15 marks]</p>
+
+    <h3>Step 3 — Study the High-Scoring Example</h3>
+
+    <div class="ex-block p2">
+        <span class="lbl">High-Scoring Paper 2 Intro</span>
+        <p><span class="c-ctx">Legitimacy, fundamentally defined as the recognised right to rule and the acceptance of
+                authority by those governed, is the invisible architecture upon which all political order is
+                built.</span> <span class="c-ten">While realist scholars contend that it is raw power — particularly
+                military and economic coercion — that truly sustains political order, constructivist and liberal
+                perspectives argue that without the consent of the governed, even the most powerful regime is built on
+                sand.</span> <span class="c-cas">This essay will examine this tension by synthesising the contrasting
+                cases of the European Union's evolving democratic legitimacy crisis and the collapse of the Assad regime
+                in Syria, where a prolonged legitimacy vacuum fuelled a devastating civil war.</span> <span
+                class="c-the">Ultimately, this essay will argue that while power can enforce short-term compliance,
+                legitimacy is the essential foundation for durable political order, as its absence inevitably triggers
+                resistance, fragmentation, and institutional decay.</span></p>
+    </div>
+
+    <h3>Step 4 — Diagnose Weak Introductions</h3>
+
+    <div class="fix-block" data-label="Weak Intro A — The Dictionary Opener">
+        <div class="bad-intro">"Legitimacy means the right to govern. It is important for maintaining political order.
+            Many countries have struggled with legitimacy throughout history. This essay will look at whether legitimacy
+            is the most important factor."</div>
+        <div class="diagnosis">
+            <strong>Diagnosis:</strong> The <span class="c-ctx">Concept Definition</span> is shallow — "the right to
+            govern" lacks IB depth (no mention of consent, recognition, or competing sources of legitimacy). There is no
+            <span class="c-ten">Tension Framing</span> (no competing perspectives). No <span class="c-cas">Case
+                Preview</span> (no named cases). The thesis "will look at whether" is descriptive, not evaluative — it
+            doesn't take a position.
+        </div>
+        <div class="write-here" style="margin-top:10px;">Your fix — Rewrite this with all four slots:
+            ___________________</div>
+    </div>
+
+    <div class="fix-block" data-label="Weak Intro B — The Case Dump">
+        <div class="bad-intro">"The EU has a democratic deficit because citizens feel disconnected from Brussels. In
+            Syria, Assad lost legitimacy and there was a civil war. In Venezuela, Maduro's legitimacy has been
+            questioned. In North Korea, the regime uses propaganda. These examples show legitimacy matters."</div>
+        <div class="diagnosis">
+            <strong>Diagnosis:</strong> This introduction lists four cases but analyses none — it's a <span
+                class="c-cas">Case Preview</span> without the other three slots. There is no <span class="c-ctx">Concept
+                Definition</span>, no <span class="c-ten">Tension Framing</span> between perspectives, and the final
+            sentence ("legitimacy matters") is not a genuine <span class="c-the">Thesis</span>. Four cases is also too
+            many — the examiner wants depth, not breadth.
+        </div>
+        <div class="write-here" style="margin-top:10px;">Your fix — Pick 2 cases and add the missing slots: ____________
+        </div>
+    </div>
+
+    <div class="fix-block" data-label="Weak Intro C — The Fence-Sitter">
+        <div class="bad-intro">"There are many factors that contribute to political order, such as legitimacy, power,
+            institutions, and ideology. All of these are important in different ways. Some scholars think legitimacy is
+            the most important; others disagree. This essay will examine both sides of the debate."</div>
+        <div class="diagnosis">
+            <strong>Diagnosis:</strong> This introduction refuses to take a position — "both sides" and "all are
+            important" signals a lack of evaluative thinking. While there is a vague <span class="c-ten">Tension
+                Framing</span>, it names no specific theories or scholars. There is no <span class="c-cas">Case
+                Preview</span> and no <span class="c-the">Thesis Statement</span>. The examiner cannot tell what
+            argument the essay will make.
+        </div>
+        <div class="write-here" style="margin-top:10px;">Your fix — Take a clear position and add all four slots:
+            _______</div>
+    </div>
+
+    <!-- ======================================= -->
+    <!-- PAPER 3                                  -->
+    <!-- ======================================= -->
+    <div class="paper-hdr p3 page-break">
+        <div>
+            <h2>Paper 3 — Global Challenges Introduction (HL Only)</h2>
+            <p class="pm">1h 30m · 28 Marks · Focus: 15-mark extended response (Question 3)</p>
+        </div>
+    </div>
+
+    <h3>Step 1 — Learn the Formula</h3>
+    <p>Paper 3 presents a stimulus and a Question 3 drawn from a <strong>global political challenge topic area</strong>.
+        Your introduction must: <strong>restate the question</strong> in your own terms, explicitly name the challenge
+        topic area(s) you will use, identify key and related concepts, preview your case studies, signal a counterclaim,
+        and take a clear evaluative position — all while using <em>the language of Question 3 and the language of the
+            stimulus</em>.</p>
+
+    <div class="callout callout-warning" style="margin:14px 0;">
+        <strong>Q3 ≠ Generic Essay</strong>
+        Unlike Paper 2, Q3 is always anchored to a specific global political challenge topic area (e.g., Climate Change
+        &amp; Environmental Sustainability, Global Health, Forced Migration, Poverty &amp; Inequality, Nuclear
+        Proliferation, Terrorism, Cybersecurity, Resource Scarcity). Name it explicitly in your introduction.
+    </div>
+
+    <div class="formula-bar">
+        <div class="formula-slot sl-ctx"><span class="sl">Slot 1</span>Q Restatement + Challenge Framing</div>
+        <span class="plus">+</span>
+        <div class="formula-slot sl-stk"><span class="sl">Slot 2</span>Perspectives &amp; Counterclaim</div>
+        <span class="plus">+</span>
+        <div class="formula-slot sl-the"><span class="sl">Slot 3</span>Evaluative Thesis (Q3 Language)</div>
+    </div>
+
+    <div class="step">
+        <div class="step-n" style="background:var(--p3);">1</div>
+        <div class="step-c">
+            <h4>Question Restatement + Challenge Framing</h4>
+            <p>Restate the question in your own words. Name the <strong>global political challenge topic area</strong>
+                (e.g., Climate Change &amp; Environmental Sustainability). Introduce the <strong>key concept</strong>
+                (e.g., interdependence) and a <strong>related concept</strong> (e.g., human security). Reference the
+                stimulus to anchor your response, then add your own data to demonstrate independent knowledge. Give
+                brief introductory information about the <strong>case studies</strong> you will use and why they
+                are relevant to the political issue.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-n" style="background:var(--p3);">2</div>
+        <div class="step-c">
+            <h4>Perspectives &amp; Counterclaim</h4>
+            <p>Identify the perspectives and positions different actors take on the political issue raised by the
+                question. Present one side of the argument, then <strong>signal the counterclaim</strong> — the
+                contrasting view you will engage with. This shows the examiner you understand the debate, not just
+                one side of it. Show the power dynamics between those who shape the issue and those who bear its
+                consequences.</p>
+        </div>
+    </div>
+    <div class="step">
+        <div class="step-n" style="background:var(--p3);">3</div>
+        <div class="step-c">
+            <h4>Evaluative Thesis (echoing Q3 Language)</h4>
+            <p>State your clear position — which side, on the balance of the evidence, is more powerful and why.
+                <strong>Echo the exact language of Question 3</strong> (e.g., if the Q asks about "effectiveness of
+                international cooperation," use those words in your thesis). Name the challenge topic areas that
+                will frame your evaluation. Use: <em>"This response will argue that while [optimist view]…, the
+                    effectiveness of [Q3 term] is fundamentally constrained by [reason] because…"</em>
+            </p>
+        </div>
+    </div>
+
+    <h3>Step 2 — Read the Stimulus Material</h3>
+
+    <div class="src-box">
+        <span class="src-label">Stimulus — Climate Finance and the Global South</span>
+        <p>"At COP28 in Dubai (2023), developed nations pledged to operationalise a 'Loss and Damage' fund for
+            climate-vulnerable countries. However, by mid-2024, only $700 million had been committed — a fraction of the
+            estimated $400 billion needed annually. Small Island Developing States (SIDS) like Tuvalu and the Marshall
+            Islands face existential threats from rising sea levels, yet contribute less than 0.03% of global emissions.
+            Meanwhile, the world's top 10 emitters — responsible for over 70% of greenhouse gases — have resisted
+            binding emissions targets, preferring voluntary nationally determined contributions (NDCs) under the Paris
+            Agreement.</p>
+        <p>The disparity between pledges and action extends beyond the Loss and Damage fund. The Green Climate Fund,
+            established in 2010 with a target of mobilising $100 billion annually by 2020, did not reach that threshold
+            until 2023 — three years late — and much of the finance was delivered as loans rather than grants,
+            increasing the debt burden of already vulnerable nations. Meanwhile, climate litigation is emerging as an
+            alternative pathway: in 2024, the International Court of Justice received a historic advisory opinion
+            request from Pacific Island states on the legal obligations of major emitters, and Vanuatu's campaign for
+            climate justice at the UN General Assembly garnered support from over 130 nations. These developments
+            suggest that when multilateral frameworks fail to deliver, affected states are increasingly turning to
+            international law and grassroots mobilisation to force accountability."</p>
+        <p class="src-cite">— Synthesised from UNEP Emissions Gap Report 2024, COP28 outcome documents, and ICJ
+            proceedings 2024</p>
+    </div>
+
+    <p style="font-size:.85rem;color:var(--muted);"><strong>Predicted Prompt (Question 3):</strong> "With reference to
+        one of the HL topic areas, <em>discuss</em> the view that international frameworks for addressing global
+        political challenges systematically favour the interests of powerful states over the most-affected
+        populations." [15 marks]<br>
+        <span style="font-size:.8rem;color:var(--p3);font-weight:600;">Suggested HL Topic Area: Climate Change &amp;
+            Environmental Sustainability</span><br>
+        <span style="font-size:.75rem;color:var(--muted);font-style:italic;">Note: this is a teacher-predicted format
+            based on published IB specimen materials — the first examination is May 2026.</span>
+    </p>
+
+    <h3>Step 3 — Study the High-Scoring Example</h3>
+
+    <div class="callout callout-info" style="margin-bottom:4px;font-size:.82rem;">
+        Notice how this intro: restates the Q3 language (<em>discuss the view that… frameworks… systematically
+            favour…</em>) &#8594; names the HL topic area &#8594; introduces key + related concepts &#8594;
+        previews two case studies &#8594; signals a counterclaim with stimulus evidence &#8594; ends with a thesis that
+        echoes the exact Q3 wording.
+    </div>
+
+    <div class="ex-block p3">
+        <span class="lbl">Predicted High-Scoring Paper 3 Intro (Q3)</span>
+        <p><span class="c-ctx">The <em>view that international frameworks for addressing global political challenges
+                    systematically favour the interests of powerful states over the most-affected populations</em> is
+                starkly illustrated by the stimulus: despite commitments at COP28, only $700 million of an estimated
+                $400 billion annual need was mobilised for climate-vulnerable nations, while the world's top ten
+                emitters — responsible for over 70% of greenhouse gas emissions — continue to resist binding targets.
+                Within the HL topic area of <strong>Climate Change &amp; Environmental Sustainability</strong>,
+                the key concept of <strong>power</strong> — specifically who holds agenda-setting authority in
+                multilateral institutions — and the related concept of <strong>human security</strong> are essential
+                to evaluating this claim. This response will draw on the cases of <strong>the Green Climate Fund's
+                    loan-heavy disbursement model</strong> and <strong>Vanuatu's ICJ advisory opinion
+                    campaign</strong> to assess the extent to which existing frameworks serve the
+                most-affected states.</span> <span class="c-stk">Those who challenge this view point to the Paris
+                Agreement as evidence that international frameworks <em>can</em> mobilise unprecedented normative
+                consensus — 196 signatories represent a broader coalition than any previous climate regime —
+                suggesting that powerful states have at least accepted the principle of collective responsibility.
+                However, a more critical reading of the stimulus reveals a structural asymmetry: the Green Climate
+                Fund delivered much of its finance as loans rather than grants, deepening the debt burden of
+                already-vulnerable nations, while the major emitters who shape these frameworks have consistently
+                subordinated binding obligations to national economic interests.</span> <span class="c-the">This
+                response will <em>discuss</em> the view that, while international frameworks have created important
+                normative architecture, they <em>systematically favour the interests of powerful states</em> by
+                embedding voluntarist compliance, asymmetric finance mechanisms, and state-centric governance
+                structures that structurally marginalise the <em>most-affected populations</em> from
+                decision-making.</span></p>
+    </div>
+
+    <h3>Step 4 — Diagnose Weak Introductions</h3>
+    <p>Below are four poorly written introductions for the <strong>same predicted Q3 prompt and stimulus</strong>. For
+        each one,
+        identify the missing formula slots and write what you would add to fix it.</p>
+
+    <div class="fix-block" data-label="Weak Intro A — The Stimulus Parrot">
+        <div class="bad-intro">"At COP28, developed nations pledged to create a Loss and Damage fund. Only $700 million
+            was committed. SIDS like Tuvalu face threats from sea level rise. The top 10 emitters are responsible for
+            70% of greenhouse gases. Therefore, international frameworks clearly favour powerful states."</div>
+        <div class="diagnosis">
+            <strong>Diagnosis:</strong> Restates the stimulus almost verbatim with zero independent knowledge —
+            Q3 requires you to go <em>beyond</em> the stimulus. The opening does not
+            <span class="c-ctx">restate the Q3 language</span> ("systematically favour the interests of powerful
+            states" should appear early and drive the analysis). No HL topic area is named, no
+            key or related concepts are introduced, no case studies are previewed, and there is no
+            <span class="c-stk">Counterclaim</span>. The conclusion simply lifts the question as a statement, which
+            is not an evaluative <span class="c-the">Thesis</span>.
+        </div>
+        <div class="write-here" style="margin-top:10px;">Your fix — Add a counterclaim, name the HL topic area,
+            introduce a concept, and rewrite the thesis to discuss (not assert): ____</div>
+    </div>
+
+    <div class="fix-block" data-label="Weak Intro B — The Stimulus Ignorer">
+        <div class="bad-intro">"Climate change is one of the most serious global challenges. The Paris Agreement
+            was signed in 2015 by nearly 200 countries. Despite this, many countries have failed to meet their
+            targets. Powerful countries like the US and China have a lot of influence. This essay will discuss
+            whether international frameworks favour powerful states."</div>
+        <div class="diagnosis">
+            <strong>Diagnosis:</strong> Makes no reference to the stimulus at all — Q3 specifically requires it.
+            The <span class="c-ctx">Question Restatement</span> doesn't echo Q3 language precisely ("most-affected
+            populations" is entirely absent). No HL topic area is named, no concepts are identified,
+            no case studies are previewed, and the final sentence is a description of intent rather than a
+            genuine <span class="c-stk">Perspectives &amp; Counterclaim</span> or
+            <span class="c-the">Evaluative Thesis</span>.
+        </div>
+        <div class="write-here" style="margin-top:10px;">Your fix — Reference the stimulus data, name the HL topic area,
+            signal the counterclaim, and state your position: ____</div>
+    </div>
+
+    <div class="fix-block" data-label="Weak Intro C — The List-Maker">
+        <div class="bad-intro">"There are many actors involved in climate change frameworks: the UN, the IPCC, the
+            World Bank, the US, China, the EU, Small Island States, NGOs, and fossil fuel lobbies. Each has different
+            interests. As the stimulus shows, some countries have committed more money than others. Frameworks are
+            important for solving climate change."</div>
+        <div class="diagnosis">
+            <strong>Diagnosis:</strong> Lists nine actors without showing the <em>power dynamics or positions</em>
+            between them — the <span class="c-stk">Perspectives slot</span> must show <em>who argues what and why</em>,
+            not simply who exists. The stimulus is referenced vaguely. No HL topic area is named, no key concepts
+            are introduced, no case studies are previewed, no counterclaim is signalled, and the final sentence is
+            not an <span class="c-the">Evaluative Thesis</span> — it simply states that frameworks matter.
+        </div>
+        <div class="write-here" style="margin-top:10px;">Your fix — Pick 2 actors, show the power dynamic between them,
+            and argue a clear position: ____</div>
+    </div>
+
+    <div class="fix-block" data-label="Weak Intro D — The Q3-Language Dodger">
+        <div class="bad-intro">"International climate frameworks have not worked well for developing countries.
+            Rich nations have more power and this creates unfair outcomes. The Paris Agreement and COP meetings
+            show that big countries control the agenda. This essay will argue that climate governance needs
+            to be reformed to be fairer."</div>
+        <div class="diagnosis">
+            <strong>Diagnosis:</strong> This introduction never echoes the <em>exact language of Question 3</em>.
+            Words like <em>"discuss,"</em> <em>"systematically favour,"</em> <em>"the interests of powerful
+                states,"</em>
+            and <em>"most-affected populations"</em> are absent. No HL topic area is named, no key concepts
+            (power? human security?) are identified, and no case study is previewed. While there is a vague
+            <span class="c-stk">Counterclaim signal</span>, it names no specific actors or evidence.
+            The thesis ("needs to be reformed") is a normative recommendation, not a
+            <span class="c-the">discussive evaluative claim</span>.
+        </div>
+        <div class="write-here" style="margin-top:10px;">Your fix — Echo the Q3 wording, name the HL topic area, add a
+            concept and case study preview, and give a nuanced thesis: ____</div>
+    </div>
+
+    <div class="callout callout-warning" style="margin-top:20px;">
+        <strong>Examiner Reminder — The Two-Language Rule (IB Specimen Textbook)</strong>
+        "Make sure that you are using the <strong>language of Question 3</strong> as well as the <strong>language
+            of the stimulus</strong> throughout your response." This means your thesis must echo the <em>exact
+            wording</em> of the Q3 prompt. For this predicted question, phrases like
+        <em>"systematically favour,"</em> <em>"most-affected populations,"</em> and <em>"discuss the view"</em>
+        should appear in your introduction — anchored to evidence from the stimulus and your own case studies.
+    </div>
+
+    <!-- ======================================= -->
+    <!-- QUICK REFERENCE SUMMARY                  -->
+    <!-- ======================================= -->
+    <h1 id="summary" class="page-break">Quick Reference — All Three Formulas at a Glance</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Paper</th>
+                <th>Slot 1</th>
+                <th>Slot 2</th>
+                <th>Slot 3</th>
+                <th>Slot 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong style="color:var(--p1);">Paper 1</strong><br><span
+                        style="font-size:.75rem;color:var(--muted);">Source Analysis</span></td>
+                <td>Context Anchor<br><span style="font-size:.75rem;color:var(--muted);">Broad issue + IB concept</span>
+                </td>
+                <td>Source Position<br><span style="font-size:.75rem;color:var(--muted);">Tension between sources</span>
+                </td>
+                <td>Analytical Roadmap<br><span style="font-size:.75rem;color:var(--muted);">Your evaluative
+                        direction</span></td>
+                <td style="color:var(--muted);font-size:.8rem;text-align:center;">—</td>
+            </tr>
+            <tr>
+                <td><strong style="color:var(--p2);">Paper 2</strong><br><span
+                        style="font-size:.75rem;color:var(--muted);">Extended Response</span></td>
+                <td>Concept Definition<br><span style="font-size:.75rem;color:var(--muted);">IB concept in your own
+                        words</span></td>
+                <td>Tension Framing<br><span style="font-size:.75rem;color:var(--muted);">Two clashing
+                        perspectives</span></td>
+                <td>Case Preview<br><span style="font-size:.75rem;color:var(--muted);">Name 2 case studies</span></td>
+                <td>Thesis Statement<br><span style="font-size:.75rem;color:var(--muted);">"Golden Thread" claim</span>
+                </td>
+            </tr>
+            <tr>
+                <td><strong style="color:var(--p3);">Paper 3</strong><br><span
+                        style="font-size:.75rem;color:var(--muted);">Global Challenges (Q3)</span></td>
+                <td>Q Restatement + Challenge Framing<br><span style="font-size:.75rem;color:var(--muted);">Restate Q ·
+                        name topic area · key + related concepts · case study preview</span></td>
+                <td>Perspectives &amp; Counterclaim<br><span style="font-size:.75rem;color:var(--muted);">Positions
+                        actors take · signal the opposing view</span></td>
+                <td>Evaluative Thesis (Q3 Language)<br><span style="font-size:.75rem;color:var(--muted);">Echo Q3
+                        wording · clear evaluative position</span></td>
+                <td style="color:var(--muted);font-size:.8rem;text-align:center;">—</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="callout callout-tip" style="margin-top:24px;">
+        <strong>Next Steps for Practice</strong>
+        <ul>
+            <li>Use the <strong>GloPo Companion → Writing Studio → Intro Builder</strong> to rapidly prototype Paper 2
+                introductions.</li>
+            <li>Use the <strong>GloPo Companion → Mock Exam Zone</strong> to practise under timed conditions with
+                different prompts.</li>
+            <li>Use the <strong>GloPo Companion → PEEL Lab</strong> to practise body paragraphs after mastering the
+                introduction.</li>
+            <li>Use the <strong>Global Command Center</strong> to find current events that make strong, up-to-date case
+                studies.</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>IB Global Politics — Lesson Plan: Website Exploration & Strong Introductions</p>
+        <p>Stephen Martinez · February 2026 · 2026 Syllabus</p>
+        <p style="font-size:.7rem;margin-top:8px;">This document is an independent educational resource. Not affiliated
+            with or endorsed by the IBO.</p>
+    </div>
+
+</body>
+
+</html>

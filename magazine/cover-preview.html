@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cover Refinements — Political Cartoon Gazette</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #080808;
+      color: #ccc;
+      min-height: 100vh;
+      padding: 3rem 2rem 6rem;
+    }
+
+    h1.page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 0.4rem;
+      color: #fff;
+    }
+    p.subtitle {
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      font-weight: 300;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* Section headers */
+    .section-header {
+      max-width: 1300px;
+      margin: 4rem auto 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    .section-header p {
+      color: #888;
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .row {
+      display: flex;
+      gap: 2.5rem;
+      max-width: 1300px;
+      margin: 0 auto 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .variant {
+      flex: 0 0 380px;
+      max-width: 380px;
+    }
+
+    /* ========================================
+       COVER CARD — shared frame
+       ======================================== */
+    .cover {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 8.5 / 11;
+      overflow: hidden;
+      border-radius: 4px;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.7);
+      background: #111;
+    }
+    .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Label */
+    .variant-label {
+      text-align: center;
+      margin-top: 0.8rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #aaa;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .variant-desc {
+      text-align: center;
+      margin-top: 0.25rem;
+      font-size: 0.72rem;
+      color: #666;
+      font-weight: 300;
+      line-height: 1.5;
+      padding: 0 0.5rem;
+    }
+
+    /* ========================================
+       JADE DRAGON VARIANTS
+       ======================================== */
+
+    /* A: Classic Editorial — top-heavy text, generous breathing room */
+    .jade-a .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 2.2rem 1.5rem 1.5rem;
+      background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 35%, transparent 55%, transparent 80%, rgba(0,0,0,0.4) 100%);
+    }
+    .jade-a .edition {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.8rem;
+    }
+    .jade-a .masthead {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      line-height: 1.5;
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+      letter-spacing: 3px;
+    }
+    .jade-a .masthead .accent {
+      color: #c9a84c;
+      font-weight: 900;
+    }
+    .jade-a .rule {
+      width: 40px;
+      height: 1.5px;
+      background: #c9a84c;
+      margin: 0.6rem 0;
+    }
+    .jade-a .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.75);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    }
+    .jade-a .bottom-text {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+    .jade-a .bottom-text .feat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+      letter-spacing: 2px;
+    }
+
+    /* B: Bold Asymmetric — left-aligned, dramatic scale */
+    .jade-b .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 1.8rem 2rem;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.0) 40%, rgba(0,0,0,0.7) 100%);
+    }
+    .jade-b .edition {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.45rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.5rem;
+    }
+    .jade-b .masthead {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      line-height: 1.0;
+      color: #fff;
+      text-align: left;
+      text-shadow: 0 3px 15px rgba(0,0,0,0.8);
+      letter-spacing: 2px;
+    }
+    .jade-b .masthead .accent {
+      color: #c9a84c;
+    }
+    .jade-b .rule {
+      width: 50px;
+      height: 2px;
+      background: #c9a84c;
+      margin: 0.5rem 0;
+    }
+    .jade-b .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.8);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    }
+
+    /* C: Centered Minimal with border frame */
+    .jade-c .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0,0,0,0.35);
+    }
+    .jade-c .inner-frame {
+      border: 1px solid rgba(201,168,76,0.5);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .jade-c .edition {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.45rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 1rem;
+    }
+    .jade-c .masthead {
+      font-family: 'Cinzel', serif;
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 1.45;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      letter-spacing: 4px;
+    }
+    .jade-c .masthead .accent {
+      color: #c9a84c;
+      font-weight: 700;
+    }
+    .jade-c .rule {
+      width: 30px;
+      height: 1px;
+      background: #c9a84c;
+      margin: 0.8rem auto;
+    }
+    .jade-c .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ========================================
+       TORN SILK VARIANTS (full-bleed, no white border)
+       ======================================== */
+
+    /* A: Dark Vignette — heavy darkened edges, white text */
+    .silk-a .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 2rem 1.5rem 1.5rem;
+      background: 
+        radial-gradient(ellipse at center, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.75) 100%);
+    }
+    .silk-a .edition {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.6rem;
+    }
+    .silk-a .masthead {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 1.2rem;
+      line-height: 1.45;
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 2px 15px rgba(0,0,0,0.9);
+      letter-spacing: 3px;
+    }
+    .silk-a .masthead .accent {
+      color: #8b1a1a;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(139,26,26,0.3);
+    }
+    .silk-a .rule {
+      width: 40px;
+      height: 1.5px;
+      background: #8b1a1a;
+      margin: 0.5rem 0;
+    }
+    .silk-a .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.8);
+      text-shadow: 0 1px 10px rgba(0,0,0,0.8);
+    }
+    .silk-a .bottom-text {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+    .silk-a .bottom-text .feat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+      letter-spacing: 2px;
+    }
+
+    /* B: Dark header bar, image below */
+    .silk-b .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .silk-b .header-bar {
+      background: rgba(20,20,20,0.92);
+      padding: 1.5rem 1.2rem 1.2rem;
+      text-align: center;
+      backdrop-filter: blur(4px);
+    }
+    .silk-b .edition {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.45rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.5rem;
+    }
+    .silk-b .masthead {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      line-height: 1.05;
+      color: #fff;
+      letter-spacing: 3px;
+    }
+    .silk-b .masthead .accent {
+      color: #c9a84c;
+    }
+    .silk-b .rule {
+      width: 40px;
+      height: 1.5px;
+      background: #c9a84c;
+      margin: 0.4rem auto;
+    }
+    .silk-b .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .silk-b .spacer { flex: 1; }
+    .silk-b .bottom-text {
+      padding: 1rem;
+      text-align: center;
+      background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 100%);
+    }
+    .silk-b .bottom-text .feat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      letter-spacing: 2px;
+    }
+
+    /* ========================================
+       FORBIDDEN CITY VARIANTS
+       ======================================== */
+
+    /* A: Cinematic — compact title at top, image dominates */
+    .fc-a .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.2rem 1.2rem 1.2rem;
+      background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.0) 20%, rgba(0,0,0,0.0) 75%, rgba(0,0,0,0.5) 100%);
+    }
+    .fc-a .top-section { text-align: center; }
+    .fc-a .edition {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.42rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.3rem;
+    }
+    .fc-a .masthead {
+      font-family: 'Cinzel', serif;
+      font-weight: 400;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+      letter-spacing: 3px;
+    }
+    .fc-a .masthead .accent {
+      color: #cc3333;
+      font-weight: 700;
+    }
+    .fc-a .rule {
+      width: 25px;
+      height: 1px;
+      background: #cc3333;
+      margin: 0.3rem auto;
+    }
+    .fc-a .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.65);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+    }
+    .fc-a .bottom-section { text-align: center; }
+    .fc-a .bottom-section .feat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      letter-spacing: 2px;
+    }
+
+    /* B: Compact Top — title at top, full image visible below */
+    .fc-b .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1.2rem 1.2rem;
+      background: linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 22%, rgba(0,0,0,0.0) 40%, rgba(0,0,0,0.0) 75%, rgba(0,0,0,0.45) 100%);
+    }
+    .fc-b .edition {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.42rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.3rem;
+    }
+    .fc-b .masthead {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      line-height: 1.05;
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 3px 15px rgba(0,0,0,0.9);
+      letter-spacing: 3px;
+    }
+    .fc-b .masthead .accent {
+      color: #cc3333;
+    }
+    .fc-b .rule {
+      width: 35px;
+      height: 1.5px;
+      background: #cc3333;
+      margin: 0.3rem 0;
+    }
+    .fc-b .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.7);
+      text-shadow: 0 1px 10px rgba(0,0,0,0.7);
+    }
+    .fc-b .bottom-tag {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+    .fc-b .bottom-tag .feat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+      letter-spacing: 2px;
+    }
+
+    /* C: Split — dark top banner, image breathes below */
+    .fc-c .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .fc-c .header-band {
+      background: rgba(10,10,10,0.88);
+      padding: 0.8rem 1rem 0.7rem;
+      text-align: center;
+      border-bottom: 2px solid #cc3333;
+      backdrop-filter: blur(3px);
+    }
+    .fc-c .edition {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.45rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.4rem;
+    }
+    .fc-c .masthead {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      line-height: 1.35;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+    .fc-c .masthead .accent {
+      color: #cc3333;
+    }
+    .fc-c .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.3rem;
+    }
+    .fc-c .spacer { flex: 1; }
+    .fc-c .bottom-text {
+      padding: 1rem;
+      text-align: center;
+      background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 100%);
+    }
+    .fc-c .bottom-text .feat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-title">Cover Design Refinements</h1>
+  <p class="subtitle">Three finalist images × 2–3 layout variations each. All with corrected date (Spring 2026), no student count, and professional magazine typography.</p>
+
+  <!-- ===================== JADE DRAGON ===================== -->
+  <div class="section-header">
+    <h2>Image 1 — Cracked Jade Dragon</h2>
+    <p>The deep crimson background provides excellent contrast for white/gold text. The symmetry of the dragon lends itself to centered compositions.</p>
+  </div>
+  <div class="row">
+    <!-- Jade A -->
+    <div class="variant">
+      <div class="cover jade-a">
+        <img src="covers/jade_dragon.png" alt="Jade Dragon" style="transform: scale(0.92); object-position: center center;">
+        <div class="overlay">
+          <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+          <div class="masthead">
+            <span class="accent">ASIAN HISTORY</span><br>
+            POLITICAL CARTOON<br>
+            GAZETTE
+          </div>
+          <div class="rule"></div>
+          <div class="sub">The Fall of the Qing Dynasty</div>
+          <div class="bottom-text">
+            <div class="feat">The Art of Rebellion</div>
+          </div>
+        </div>
+      </div>
+      <div class="variant-label">A — Classic Editorial</div>
+      <div class="variant-desc">Title at top with gold accent on "Asian History." Elegant, restrained. Lets the dragon breathe in the center.</div>
+    </div>
+
+    <!-- Jade B -->
+    <div class="variant">
+      <div class="cover jade-b">
+        <img src="covers/jade_dragon.png" alt="Jade Dragon" style="transform: scale(0.92); object-position: center center;">
+        <div class="overlay">
+          <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+          <div class="masthead">
+            <span class="accent">ASIAN HISTORY</span><br>
+            POLITICAL CARTOON<br>
+            GAZETTE
+          </div>
+          <div class="rule"></div>
+          <div class="sub">The Fall of the Qing Dynasty</div>
+        </div>
+      </div>
+      <div class="variant-label">B — Bold Bottom</div>
+      <div class="variant-desc">Large display font anchored to the bottom. High-impact, modern magazine feel. Image dominates the upper two-thirds.</div>
+    </div>
+
+    <!-- Jade C -->
+    <div class="variant">
+      <div class="cover jade-c">
+        <img src="covers/jade_dragon.png" alt="Jade Dragon" style="transform: scale(0.92); object-position: center center;">
+        <div class="overlay">
+          <div class="inner-frame">
+            <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+            <div class="masthead">
+              <span class="accent">ASIAN HISTORY</span><br>
+              POLITICAL CARTOON<br>
+              GAZETTE
+            </div>
+            <div class="rule"></div>
+            <div class="sub">The Fall of the Qing Dynasty</div>
+          </div>
+        </div>
+      </div>
+      <div class="variant-label">C — Framed Center</div>
+      <div class="variant-desc">Thin gold border frames the centered title over a darkened overlay. Classic, formal, museum-catalogue aesthetic.</div>
+    </div>
+  </div>
+
+  <!-- ===================== TORN SILK ===================== -->
+  <div class="section-header">
+    <h2>Image 2 — Torn Imperial Silk</h2>
+    <p>The bright yellow demands dark or high-contrast text. I've removed the grey border — the silk now bleeds edge-to-edge. A heavy vignette or dark header bar ensures readability.</p>
+  </div>
+  <div class="row">
+    <!-- Silk A -->
+    <div class="variant">
+      <div class="cover silk-a">
+        <img src="covers/torn_silk.png" alt="Torn Silk" style="object-position: center center; transform: scale(1.15);">
+        <div class="overlay">
+          <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+          <div class="masthead">
+            <span class="accent">ASIAN HISTORY</span><br>
+            POLITICAL CARTOON<br>
+            GAZETTE
+          </div>
+          <div class="rule"></div>
+          <div class="sub">The Fall of the Qing Dynasty</div>
+          <div class="bottom-text">
+            <div class="feat">The Art of Rebellion</div>
+          </div>
+        </div>
+      </div>
+      <div class="variant-label">A — Dark Vignette</div>
+      <div class="variant-desc">Heavy radial vignette darkens the edges. Deep crimson accent on "Asian History" for contrast against yellow. Dramatic and cinematic.</div>
+    </div>
+
+    <!-- Silk B -->
+    <div class="variant">
+      <div class="cover silk-b">
+        <img src="covers/torn_silk.png" alt="Torn Silk" style="object-position: center center; transform: scale(1.15);">
+        <div class="overlay">
+          <div class="header-bar">
+            <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+            <div class="masthead">
+              <span class="accent">ASIAN HISTORY</span><br>
+              POLITICAL CARTOON GAZETTE
+            </div>
+            <div class="rule"></div>
+            <div class="sub">The Fall of the Qing Dynasty</div>
+          </div>
+          <div class="spacer"></div>
+          <div class="bottom-text">
+            <div class="feat">The Art of Rebellion</div>
+          </div>
+        </div>
+      </div>
+      <div class="variant-label">B — Dark Header Band</div>
+      <div class="variant-desc">Opaque dark header contains all text cleanly. The silk image breathes below it unobstructed. Clean, professional separation.</div>
+    </div>
+  </div>
+
+  <!-- ===================== FORBIDDEN CITY ===================== -->
+  <div class="section-header">
+    <h2>Image 3 — Splintered Forbidden City</h2>
+    <p>The dark, moody photograph naturally supports white text. The reds of the doors complement a crimson accent color. The arch creates a natural frame.</p>
+  </div>
+  <div class="row">
+    <!-- FC A -->
+    <div class="variant">
+      <div class="cover fc-a">
+        <img src="covers/forbidden_city.png" alt="Forbidden City">
+        <div class="overlay">
+          <div class="top-section">
+            <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+            <div class="masthead">
+              <span class="accent">ASIAN HISTORY</span><br>
+              POLITICAL CARTOON<br>
+              GAZETTE
+            </div>
+          </div>
+          <div class="bottom-section">
+            <div class="rule"></div>
+            <div class="sub">The Fall of the Qing Dynasty</div>
+            <div class="feat">The Art of Rebellion</div>
+          </div>
+        </div>
+      </div>
+      <div class="variant-label">A — Cinematic</div>
+      <div class="variant-desc">Small, elegant serif title at top. The shattered doors dominate the composition. Feels like a film poster.</div>
+    </div>
+
+    <!-- FC B -->
+    <div class="variant">
+      <div class="cover fc-b">
+        <img src="covers/forbidden_city.png" alt="Forbidden City">
+        <div class="overlay">
+          <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+          <div class="masthead">
+            <span class="accent">ASIAN HISTORY</span><br>
+            POLITICAL CARTOON GAZETTE
+          </div>
+          <div class="bottom-tag">
+            <div class="sub">The Fall of the Qing Dynasty</div>
+            <div class="feat">The Art of Rebellion</div>
+          </div>
+        </div>
+      </div>
+      <div class="variant-label">B — Compact Top</div>
+      <div class="variant-desc">Condensed display title at top with light gradient. Full arch and doors visible. Image dominates 80% of the cover.</div>
+    </div>
+
+    <!-- FC C -->
+    <div class="variant">
+      <div class="cover fc-c">
+        <img src="covers/forbidden_city.png" alt="Forbidden City">
+        <div class="overlay">
+          <div class="header-band">
+            <div class="edition">Issue No. 1 &nbsp;·&nbsp; Spring 2026</div>
+            <div class="masthead">
+              <span class="accent">ASIAN HISTORY</span><br>
+              POLITICAL CARTOON GAZETTE
+            </div>
+          </div>
+          <div class="spacer"></div>
+          <div class="bottom-text">
+            <div class="sub">The Fall of the Qing Dynasty</div>
+            <div class="feat">The Art of Rebellion</div>
+          </div>
+        </div>
+      </div>
+      <div class="variant-label">C — Banner Split</div>
+      <div class="variant-desc">Dark header band with red accent border. Image breathes below. Clean hierarchy — title separate from imagery.</div>
+    </div>
+  </div>
+
+</body>
+</html>

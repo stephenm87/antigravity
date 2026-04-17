@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Paper 3 Q1: Master the Stimulus | IB Global Politics HL 2026</title>
+    <meta name="description" content="Interactive scaffold for IB Global Politics HL Paper 3 Question 1: rubric, command terms, strategy, practice stimulus, and scored exemplars."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{--bg:#f5f6fa;--surface:#fff;--surface2:#eef0f7;--border:rgba(0,0,0,.1);--accent:#2c5fc4;--accent2:#6438b0;--gold:#b07d10;--danger:#c0283e;--green:#1a8a5a;--teal:#0e7c86;--text:#1a1e2e;--muted:#4a5270;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.10)}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh}
+
+        /* Hero */
+        .hero{position:relative;overflow:hidden;padding:72px 24px 64px;text-align:center;background:radial-gradient(ellipse 120% 60% at 50% 0%,rgba(44,95,196,.10) 0%,transparent 70%),linear-gradient(180deg,#e0eafc 0%,var(--bg) 100%);border-bottom:1px solid var(--border)}
+        .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(0,0,0,0.025)'/%3E%3C/svg%3E");pointer-events:none}
+        .hero-badge{display:inline-block;background:rgba(44,95,196,.10);border:1px solid rgba(44,95,196,.30);color:#2c5fc4;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 18px;border-radius:50px;margin-bottom:22px}
+        .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.2;background:linear-gradient(135deg,#1e3a6d 0%,#2c5fc4 55%,#6438b0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:900px;margin:0 auto 18px}
+        .hero-sub{font-size:1.05rem;color:var(--muted);max-width:680px;margin:0 auto 36px}
+        .meta-pills{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+        .pill{display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-radius:50px;font-size:.78rem;font-weight:600;border:1px solid}
+        .pill-blue{background:rgba(44,95,196,.10);border-color:rgba(44,95,196,.30);color:#1e4ba8}
+        .pill-purple{background:rgba(100,56,176,.10);border-color:rgba(100,56,176,.30);color:#4a1fa0}
+        .pill-gold{background:rgba(176,125,16,.10);border-color:rgba(176,125,16,.30);color:#7a5800}
+        .pill-green{background:rgba(26,138,90,.10);border-color:rgba(26,138,90,.30);color:#0f5e3a}
+
+        /* Nav */
+        .progress-nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;display:flex;overflow-x:auto;scrollbar-width:none;gap:0;position:sticky;top:0;z-index:100}
+        .progress-nav::-webkit-scrollbar{display:none}
+        .nav-tab{flex-shrink:0;padding:16px 22px;font-size:.82rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;text-decoration:none;white-space:nowrap}
+        .nav-tab:hover{color:var(--text);border-color:rgba(44,95,196,.4)}
+        .nav-tab.active{color:var(--accent);border-color:var(--accent)}
+
+        /* Layout */
+        .container{max-width:1100px;margin:0 auto;padding:0 24px 80px}
+        .section{margin-top:64px;scroll-margin-top:65px}
+        .section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+        .section-num{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;font-size:.9rem;font-weight:800;flex-shrink:0;color:#fff}
+        .sn-blue{background:linear-gradient(135deg,#3a6dd9,#5b8dee)}
+        .sn-purple{background:linear-gradient(135deg,#5a30a0,#7c5cbf)}
+        .sn-gold{background:linear-gradient(135deg,#bf9020,#e8b84b);color:#1a1200}
+        .sn-green{background:linear-gradient(135deg,#0e7c86,#2ab5a0)}
+        .sn-danger{background:linear-gradient(135deg,#b03050,#e05a6d)}
+        .sn-teal{background:linear-gradient(135deg,#0b6e78,#14a89a)}
+        .section-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--text)}
+        .section-title span{font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;display:block;color:var(--muted);margin-bottom:3px}
+
+        /* Cards */
+        .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;margin-bottom:18px;transition:border-color .2s,transform .2s}
+        .card:hover{border-color:rgba(44,95,196,.3);transform:translateY(-1px)}
+        .card-title{font-size:1rem;font-weight:700;margin-bottom:10px}
+        .card p{color:var(--muted);font-size:.93rem}
+
+        /* Rubric Grid */
+        .rubric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+        @media(max-width:720px){.rubric-grid{grid-template-columns:1fr}}
+        .rubric-cell{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;position:relative;overflow:hidden;border-top:4px solid var(--accent)}
+        .rubric-cell .mark-num{position:absolute;top:10px;right:16px;font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:800;opacity:.06}
+        .rubric-cell h3{font-size:.9rem;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+        .rubric-cell h3 .mark-badge{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:.72rem;font-weight:800;flex-shrink:0}
+        .rubric-cell p{font-size:.84rem;color:var(--muted)}
+        .rubric-cell.c1{border-top-color:#3a6dd9}
+        .rubric-cell.c1 h3 .mark-badge{background:#3a6dd9}
+        .rubric-cell.c2{border-top-color:#6438b0}
+        .rubric-cell.c2 h3 .mark-badge{background:#6438b0}
+        .rubric-cell.c3{border-top-color:#0e7c86}
+        .rubric-cell.c3 h3 .mark-badge{background:#0e7c86}
+
+        /* Command Term Cards */
+        .ct-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:24px}
+        .ct-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+        .ct-card:hover{border-color:rgba(44,95,196,.4);transform:translateY(-2px);box-shadow:var(--shadow)}
+        .ct-card.active{border-color:rgba(44,95,196,.5);box-shadow:var(--shadow)}
+        .ct-card h3{font-size:.92rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+        .ct-card h3 .ct-icon{font-size:1.2rem}
+        .ct-card .ct-def{font-size:.82rem;color:var(--muted);margin-bottom:6px}
+        .ct-card .ct-expect{display:block;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:.82rem;color:var(--muted)}
+        .ct-card .ct-expect strong{color:var(--text);font-weight:600}
+        .ct-card.active .ct-expect{display:block;animation:fadeIn .3s ease}
+        .ct-example{margin-top:8px;font-style:italic;background:rgba(44,95,196,.05);padding:8px 12px;border-radius:8px;border-left:3px solid var(--accent);font-size:.8rem;color:var(--muted)}
+
+        /* Strategy Steps */
+        .strat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+        @media(max-width:800px){.strat-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:480px){.strat-grid{grid-template-columns:1fr}}
+        .strat-step{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;text-align:center;position:relative}
+        .strat-step .step-num{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#3a6dd9,#6438b0);color:#fff;font-size:.85rem;font-weight:800;margin:0 auto 14px}
+        .strat-step h3{font-size:.88rem;font-weight:700;margin-bottom:6px}
+        .strat-step p{font-size:.8rem;color:var(--muted)}
+        .strat-step .step-time{display:inline-block;margin-top:10px;font-size:.72rem;font-weight:700;color:var(--accent);background:rgba(44,95,196,.08);padding:3px 12px;border-radius:50px}
+        .strat-arrow{display:none}
+        @media(min-width:801px){
+            .strat-step::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);font-size:1.2rem;color:var(--muted);opacity:.5;font-weight:700;z-index:1}
+            .strat-step:last-child::after{display:none}
+        }
+
+        /* Stimulus box */
+        .stimulus{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin:24px 0;position:relative;box-shadow:var(--shadow)}
+        .stimulus::before{content:'PRACTICE STIMULUS';position:absolute;top:-12px;left:24px;background:var(--accent);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.12em;padding:4px 14px;border-radius:50px}
+        .stimulus .source-badge{display:inline-block;background:rgba(44,95,196,.08);border:1px solid rgba(44,95,196,.25);color:var(--accent);font-size:.7rem;font-weight:600;padding:4px 12px;border-radius:50px;margin-bottom:16px}
+        .stimulus h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:14px;line-height:1.4}
+        .stimulus p{font-size:.9rem;color:var(--text);margin-bottom:14px}
+        .stimulus .quote{border-left:3px solid var(--accent);padding:12px 20px;background:rgba(44,95,196,.04);border-radius:0 10px 10px 0;margin:16px 0;font-style:italic;font-size:.88rem;color:var(--muted)}
+        .stimulus .quote cite{display:block;margin-top:8px;font-style:normal;font-weight:600;font-size:.78rem;color:var(--accent)}
+        .stimulus .data-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+        @media(max-width:600px){.stimulus .data-row{grid-template-columns:1fr}}
+        .stimulus .data-cell{text-align:center;background:var(--surface2);border-radius:10px;padding:14px 12px}
+        .stimulus .data-cell .d-num{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--accent)}
+        .stimulus .data-cell .d-label{font-size:.72rem;color:var(--muted);font-weight:500;margin-top:2px}
+
+        /* Practice Q Prompts */
+        .pq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+        @media(max-width:680px){.pq-grid{grid-template-columns:1fr}}
+        .pq-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;position:relative}
+        .pq-card .pq-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+        .pq-card .pq-ct{display:inline-block;background:rgba(100,56,176,.10);border:1px solid rgba(100,56,176,.25);color:#6438b0;font-size:.7rem;font-weight:700;padding:2px 10px;border-radius:50px;margin-bottom:10px}
+        .pq-card p{font-size:.88rem;font-weight:500;color:var(--text);line-height:1.6}
+        .pq-card .pq-marks{font-size:.78rem;font-weight:700;color:var(--muted);margin-top:10px}
+
+        /* Exemplar boxes */
+        .exemplar-container{margin-top:32px}
+        .exemplar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:24px;overflow:hidden}
+        .exemplar-header{padding:22px 28px;cursor:pointer;display:flex;align-items:center;gap:16px;transition:background .2s}
+        .exemplar-header:hover{background:rgba(0,0,0,.015)}
+        .exemplar-header::after{content:'▾';margin-left:auto;font-size:1.1rem;color:var(--muted);transition:transform .3s;flex-shrink:0}
+        .exemplar.open .exemplar-header::after{transform:rotate(180deg)}
+        .exemplar-badge{display:inline-flex;align-items:center;justify-content:center;min-width:48px;height:48px;border-radius:50%;font-size:1rem;font-weight:800;color:#fff;flex-shrink:0}
+        .exemplar-badge.medium{background:linear-gradient(135deg,#bf9020,#daa520)}
+        .exemplar-badge.high{background:linear-gradient(135deg,#1a8a5a,#2ab5a0)}
+        .exemplar-info h3{font-size:1rem;font-weight:700}
+        .exemplar-info .score{font-size:.78rem;font-weight:600;color:var(--muted)}
+
+        .exemplar-body{display:none;padding:0 28px 28px;border-top:1px solid var(--border)}
+        .exemplar.open .exemplar-body{display:block;animation:fadeIn .3s ease}
+
+        .response-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin-top:18px}
+        .response-box .rl{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+        .response-box p{font-size:.88rem;color:var(--text);line-height:1.8;margin-bottom:10px}
+        .response-box p:last-child{margin-bottom:0}
+
+        /* Mark tags */
+        .mark-tag{display:inline;font-size:.68rem;font-weight:700;padding:1px 8px;border-radius:50px;margin-left:4px;vertical-align:middle;white-space:nowrap}
+        .mark-earned{background:rgba(26,138,90,.12);border:1px solid rgba(26,138,90,.25);color:#0f5e3a}
+        .mark-missed{background:rgba(192,40,62,.10);border:1px solid rgba(192,40,62,.25);color:#a01a30}
+        .skill-tag{display:inline;background:rgba(100,56,176,.10);border:1px solid rgba(100,56,176,.25);color:#6438b0;font-size:.68rem;font-weight:700;padding:1px 8px;border-radius:50px;margin-left:4px;vertical-align:middle;white-space:nowrap}
+
+        /* Verdict Box */
+        .verdict{margin-top:18px;padding:18px 22px;border-radius:12px;border:1px solid}
+        .verdict.medium-v{background:rgba(176,125,16,.06);border-color:rgba(176,125,16,.25)}
+        .verdict.high-v{background:rgba(26,138,90,.06);border-color:rgba(26,138,90,.25)}
+        .verdict h4{font-size:.88rem;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+        .verdict p,.verdict li{font-size:.84rem;color:var(--muted)}
+        .verdict ul{list-style:disc;padding-left:18px;margin-top:6px}
+        .verdict ul li{margin-bottom:4px}
+
+        /* Alert */
+        .alert{display:flex;gap:14px;padding:20px 24px;border-radius:var(--radius);margin:24px 0;border:1px solid}
+        .alert-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px}
+        .alert-blue{background:rgba(44,95,196,.08);border-color:rgba(44,95,196,.3)}
+        .alert-gold{background:rgba(232,184,75,.08);border-color:rgba(232,184,75,.3)}
+        .alert-green{background:rgba(62,207,142,.08);border-color:rgba(62,207,142,.3)}
+        .alert-danger{background:rgba(224,90,109,.08);border-color:rgba(224,90,109,.3)}
+        .alert-purple{background:rgba(100,56,176,.08);border-color:rgba(100,56,176,.3)}
+        .alert h4{font-size:.9rem;font-weight:700;margin-bottom:6px}
+        .alert p,.alert li{font-size:.86rem;color:var(--muted)}
+        .alert ul{list-style:disc;padding-left:18px;margin-top:6px}
+        .alert ul li{margin-bottom:4px}
+
+        /* Do & Don't */
+        .dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+        @media(max-width:680px){.dd-grid{grid-template-columns:1fr}}
+        .dd-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+        .dd-col.do{border-top:3px solid var(--green)}
+        .dd-col.dont{border-top:3px solid var(--danger)}
+        .dd-col h3{font-size:.9rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+        .dd-col.do h3{color:var(--green)}
+        .dd-col.dont h3{color:var(--danger)}
+        .dd-col ul{list-style:none;padding:0}
+        .dd-col ul li{font-size:.84rem;color:var(--muted);padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;align-items:flex-start;gap:8px}
+        .dd-col ul li:last-child{border-bottom:none}
+        .dd-col ul li::before{content:'';flex-shrink:0;margin-top:5px}
+        .dd-col.do ul li::before{content:'✓';color:var(--green);font-weight:700}
+        .dd-col.dont ul li::before{content:'✗';color:var(--danger);font-weight:700}
+
+        /* Back link */
+        .back-link{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--accent);text-decoration:none;padding:10px 0}
+        .back-link:hover{text-decoration:underline}
+
+        /* Footer */
+        .footer{text-align:center;padding:40px 24px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border);margin-top:60px}
+
+        @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+        @media print{.progress-nav{position:static}.exemplar-body{display:block!important}.exemplar-header::after{display:none}.ct-card .ct-expect{display:block!important}}
+    </style>
+</head>
+<body>
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-badge">Paper 3 · Question 1 · HL Only</div>
+        <h1>Master the Stimulus</h1>
+        <p class="hero-sub">Q1 is worth only 3 marks, but it sets the foundation for every answer that follows. The stimulus triggers your thinking, but your marks come from demonstrating understanding through your own knowledge. Get it done in 8 minutes, and you'll have maximum time for the questions that count most.</p>
+        <div class="meta-pills">
+            <span class="pill pill-blue">📊 3 Marks</span>
+            <span class="pill pill-purple">⏱ ~8 Minutes</span>
+            <span class="pill pill-gold">📄 Stimulus + Own Knowledge</span>
+            <span class="pill pill-green">🎯 AO1 / AO2</span>
+        </div>
+    </header>
+
+    <!-- NAV -->
+    <nav class="progress-nav" id="navBar">
+        <a class="nav-tab active" href="#rubric">Rubric</a>
+        <a class="nav-tab" href="#commands">Command Terms</a>
+        <a class="nav-tab" href="#strategy">Strategy</a>
+        <a class="nav-tab" href="#practice">Practice</a>
+        <a class="nav-tab" href="#exemplars">Exemplars</a>
+        <a class="nav-tab" href="#pitfalls">Pitfalls</a>
+    </nav>
+
+    <main class="container">
+
+        <div style="margin-top:28px">
+            <a href="paper3-explainer.html" class="back-link">← Back to Paper 3 Complete Guide</a>
+        </div>
+
+        <!-- SECTION 1: RUBRIC -->
+        <section class="section" id="rubric">
+            <div class="section-header">
+                <div class="section-num sn-blue">1</div>
+                <div class="section-title"><span>How You're Scored</span>The Q1 Rubric</div>
+            </div>
+            <div class="card">
+                <p>Question 1 is worth <strong>3 marks</strong> and uses a <strong>question-specific mark scheme</strong> developed for each paper. The stimulus is there to <strong>stimulate your thinking</strong>, not for source interpretation. Simply repeating the content of the stimulus will not earn high marks. You must demonstrate understanding of the terminology and concepts by drawing on your <strong>own knowledge of HL topic areas</strong>.</p>
+            </div>
+            <div class="rubric-grid">
+                <div class="rubric-cell c1">
+                    <div class="mark-num">1</div>
+                    <h3><span class="mark-badge">1</span> Identify</h3>
+                    <p>Name the relevant concept, issue, or GPC from the stimulus. Be <strong>specific and direct</strong> and don't bury it in a paragraph. Put it in your first sentence.</p>
+                </div>
+                <div class="rubric-cell c2">
+                    <div class="mark-num">2</div>
+                    <h3><span class="mark-badge">2</span> Demonstrate</h3>
+                    <p><strong>Show your own understanding.</strong> Use the stimulus as a springboard to demonstrate knowledge from your HL studies. Reference specific elements in the stimulus as they relate to your political challenges and topic areas. Identify connections, causes, or implications that go beyond what the text says.</p>
+                </div>
+                <div class="rubric-cell c3">
+                    <div class="mark-num">3</div>
+                    <h3><span class="mark-badge">3</span> Explain</h3>
+                    <p>Demonstrate <strong>understanding</strong> by explaining the significance. Why does this matter? How does it connect to the broader issue? This is where you move from description to analysis.</p>
+                </div>
+            </div>
+            <div class="alert alert-blue" style="margin-top:28px">
+                <div class="alert-icon">💡</div>
+                <div>
+                    <h4>Stimulus ≠ Source Interpretation</h4>
+                    <p>The stimulus is there to <strong>stimulate your thinking</strong>. It is not a source interpretation task. Read it carefully, understand the context, then use your <strong>own knowledge</strong> to suggest (for example) causes, challenges, criticisms, benefits, or outcomes. You may also be asked to distinguish between different meanings of a terminology. The mark scheme is question-specific, so <strong>read the question carefully and follow its instructions</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: COMMAND TERMS -->
+        <section class="section" id="commands">
+            <div class="section-header">
+                <div class="section-num sn-purple">2</div>
+                <div class="section-title"><span>Decode the Question</span>Command Terms</div>
+            </div>
+            <div class="card">
+                <p>The Q1 command term tells you <strong>exactly what the examiner expects</strong>. Using the wrong approach (e.g., "distinguishing" when asked to "suggest") costs marks even if your knowledge is correct. Click each card to see what's expected.</p>
+            </div>
+            <div class="ct-grid">
+                <div class="ct-card" onclick="toggleCT(this)">
+                    <h3><span class="ct-icon">🔍</span> Identify</h3>
+                    <div class="ct-def">Name or point out a specific element.</div>
+                    <div class="ct-expect">
+                        <p><strong>What they want:</strong> A clear, direct naming of the concept, actor, or issue. No explanation needed; just precision.</p>
+                        <div class="ct-example">"The stimulus identifies a tension between state sovereignty and human rights enforcement."</div>
+                    </div>
+                </div>
+                <div class="ct-card" onclick="toggleCT(this)">
+                    <h3><span class="ct-icon">↔️</span> Distinguish</h3>
+                    <div class="ct-def">Describe the differences between two or more items.</div>
+                    <div class="ct-expect">
+                        <p><strong>What they want:</strong> A clear comparison showing how two things are <strong>different</strong>. Use "whereas" or "in contrast" to signal comparison. Give an example for each side.</p>
+                        <div class="ct-example">"The Global North refers to industrialized, wealthy nations such as the US, whereas the Global South refers to developing states such as Nigeria, often with colonial histories."</div>
+                    </div>
+                </div>
+                <div class="ct-card" onclick="toggleCT(this)">
+                    <h3><span class="ct-icon">💬</span> Suggest</h3>
+                    <div class="ct-def">Propose possible answers, reasons, or solutions.</div>
+                    <div class="ct-expect">
+                        <p><strong>What they want:</strong> Your own inference, grounded in the stimulus. You're not just quoting; you're <strong>interpreting</strong> and drawing out implications. Each suggestion should be a distinct, separate point.</p>
+                        <div class="ct-example">"One issue is that the label 'Global South' implies uniformity across states that have vastly different levels of development, masking internal inequalities."</div>
+                    </div>
+                </div>
+                <div class="ct-card" onclick="toggleCT(this)">
+                    <h3><span class="ct-icon">📖</span> Explain</h3>
+                    <div class="ct-def">Give a detailed account including reasons and causes.</div>
+                    <div class="ct-expect">
+                        <p><strong>What they want:</strong> More than naming. You need to show <strong>how or why</strong> something works. Include a causal chain: "This happens because… which leads to…"</p>
+                        <div class="ct-example">"Climate finance is contentious because wealthy nations historically responsible for emissions resist binding commitments, which perpetuates inequality as vulnerable states bear the costs of climate impacts they did not cause."</div>
+                    </div>
+                </div>
+                <div class="ct-card" onclick="toggleCT(this)">
+                    <h3><span class="ct-icon">🔬</span> Analyse</h3>
+                    <div class="ct-def">Break down a concept to explore its components and relationships.</div>
+                    <div class="ct-expect">
+                        <p><strong>What they want:</strong> Not just what, but <strong>how the parts relate</strong>. Show the interaction between actors, causes, and consequences. Analysis goes deeper than explanation because it reveals the <strong>underlying structure</strong> of an issue.</p>
+                        <div class="ct-example">"The stimulus reveals a structural tension: while the fund was created to assist vulnerable states, its voluntary nature means contributions depend on donor willingness, undermining the principle of climate justice it claims to uphold."</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: STRATEGY -->
+        <section class="section" id="strategy">
+            <div class="section-header">
+                <div class="section-num sn-gold">3</div>
+                <div class="section-title"><span>The 8-Minute Method</span>How to Nail Q1</div>
+            </div>
+            <div class="strat-grid">
+                <div class="strat-step">
+                    <div class="step-num">1</div>
+                    <h3>Read & Decode</h3>
+                    <p>Read the <strong>question first</strong>, not the stimulus. Underline the command term and count how many points are needed.</p>
+                    <span class="step-time">1 min</span>
+                </div>
+                <div class="strat-step">
+                    <div class="step-num">2</div>
+                    <h3>Read & Think</h3>
+                    <p>Read the stimulus with the question in mind. Let it <strong>trigger your thinking</strong> about connections to your own HL knowledge. Note key terms and context.</p>
+                    <span class="step-time">2 min</span>
+                </div>
+                <div class="strat-step">
+                    <div class="step-num">3</div>
+                    <h3>Frame</h3>
+                    <p>For each point, mentally compose: <strong>Stimulus context → Own knowledge → Significance.</strong> One sentence each, max.</p>
+                    <span class="step-time">1 min</span>
+                </div>
+                <div class="strat-step">
+                    <div class="step-num">4</div>
+                    <h3>Write</h3>
+                    <p>Write concisely. <strong>3 marks = ~80 to 120 words total</strong>. A sentence or two per point is ideal. Then move on.</p>
+                    <span class="step-time">4 min</span>
+                </div>
+            </div>
+            <div class="alert alert-gold" style="margin-top:28px">
+                <div class="alert-icon">⏱</div>
+                <div>
+                    <h4>Time Trap Warning</h4>
+                    <p>Q1 is worth <strong>3 out of 28 marks</strong>, which is just 11% of the paper. You should expect to spend <strong>8 minutes</strong> responding to this question. Students who spend 15+ minutes crafting a "perfect" Q1 answer are <strong>stealing time from Q3</strong>, which is worth 15 marks (54%). Be concise, earn your 3 marks, and move on.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PRACTICE STIMULUS -->
+        <section class="section" id="practice">
+            <div class="section-header">
+                <div class="section-num sn-green">4</div>
+                <div class="section-title"><span>Apply What You've Learned</span>Practice Stimulus</div>
+            </div>
+
+            <div class="stimulus">
+                <div class="source-badge">Source A: Adapted from UNFCCC Reports, Reuters, & The Guardian (2024–2025)</div>
+                <h2>Climate Finance and the "Loss and Damage" Debate</h2>
+
+                <p>At COP28 in Dubai (December 2023), 198 nations agreed to establish a Loss and Damage Fund to channel financial support to countries most vulnerable to climate change impacts. The fund, hosted by the World Bank on an interim basis, was designed to help developing nations recover from climate-related disasters such as floods, droughts, and rising sea levels that they lack the resources to address alone.</p>
+
+                <p>By late 2024, total pledges to the fund had reached approximately <strong>$700 million</strong>, far short of the estimated <strong>$400 billion per year</strong> needed according to research published in <em>Nature Climate Change</em>. The United States pledged $17.5 million, while the European Union collectively committed $275 million. China, now the world's largest emitter, classified itself as a developing nation and made no binding pledge, though it offered a voluntary $10 million contribution.</p>
+
+                <div class="data-row">
+                    <div class="data-cell">
+                        <div class="d-num">$700M</div>
+                        <div class="d-label">Total pledges (2024)</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="d-num">$400B</div>
+                        <div class="d-label">Estimated annual need</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="d-num">0.18%</div>
+                        <div class="d-label">Pledges vs. need</div>
+                    </div>
+                </div>
+
+                <div class="quote">
+                    "The Loss and Damage Fund is a historic victory in principle, but a betrayal in practice. When the richest nations pledge pocket change while our islands disappear, we must ask: whose climate justice is this?"
+                    <cite>Tina Stege, Climate Envoy, Republic of the Marshall Islands, 2024</cite>
+                </div>
+
+                <p>Critics argue that housing the fund at the World Bank, an institution where voting power is proportional to financial contribution, ensures that donor nations retain structural control over how funds are distributed. Small island developing states (SIDS) and least developed countries (LDCs), which bear the greatest climate burden, have the least influence over the fund's governance. At COP29 in Baku (November 2024), developing nations pushed for a new target of $1.3 trillion in annual climate finance by 2035, but the final agreement set a target of $300 billion, which many climate-vulnerable states rejected as inadequate.</p>
+            </div>
+
+            <h3 style="font-size:1rem;font-weight:700;margin-top:32px;margin-bottom:8px">Try These Q1 Prompts</h3>
+            <p style="font-size:.88rem;color:var(--muted);margin-bottom:8px">Both prompts use the stimulus above. Notice how the command term changes what's expected.</p>
+            <div class="pq-grid">
+                <div class="pq-card">
+                    <div class="pq-label">Prompt A</div>
+                    <div class="pq-ct">Command: Suggest</div>
+                    <p><strong>Suggest three possible reasons</strong> why the Loss and Damage Fund has struggled to meet its targets.</p>
+                    <div class="pq-marks">[3 marks]</div>
+                </div>
+                <div class="pq-card">
+                    <div class="pq-label">Prompt B</div>
+                    <div class="pq-ct">Command: Distinguish</div>
+                    <p><strong>Distinguish between</strong> the perspectives of developed and developing nations on climate finance, as presented in the stimulus.</p>
+                    <div class="pq-marks">[3 marks]</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: EXEMPLARS -->
+        <section class="section" id="exemplars">
+            <div class="section-header">
+                <div class="section-num sn-teal">5</div>
+                <div class="section-title"><span>Learn from Examples</span>Scored Exemplars</div>
+            </div>
+            <div class="card">
+                <p>Exemplars for both prompts are provided below. Compare the medium and high responses for each to see what earns marks and what falls short.</p>
+            </div>
+
+            <h3 style="font-size:1rem;font-weight:700;margin-top:28px;margin-bottom:4px">Prompt A: Suggest</h3>
+            <p style="font-size:.84rem;color:var(--muted);margin-bottom:12px">"Suggest three possible reasons why the Loss and Damage Fund has struggled to meet its targets."</p>
+
+            <div class="exemplar-container">
+                <!-- MEDIUM EXEMPLAR -->
+                <div class="exemplar open" onclick="toggleExemplar(this)">
+                    <div class="exemplar-header">
+                        <div class="exemplar-badge medium">2/3</div>
+                        <div class="exemplar-info">
+                            <h3>Medium Response</h3>
+                            <div class="score">2 out of 3 marks · Partially successful</div>
+                        </div>
+                    </div>
+                    <div class="exemplar-body">
+                        <div class="response-box">
+                            <div class="rl">📝 Student Response</div>
+                            <p>This stimulus relates to the <strong>Environment</strong> GPC, specifically the issue of climate finance. One reason the Loss and Damage Fund has struggled is that major emitters like the United States have pledged very little money. The US pledged only $17.5 million, which is a very small amount for the world's richest country. <span class="mark-tag mark-earned">✓ Mark 1: valid reason with stimulus evidence</span></p>
+                            <p>Another reason is that China has classified itself as a developing nation even though it is the world's largest emitter, so it did not have to make a binding pledge. This shows that the system allows major polluters to avoid responsibility. <span class="mark-tag mark-earned">✓ Mark 2: second valid reason with explanation</span></p>
+                            <p>Finally, the fund has not received enough money because many countries do not want to pay for climate damage. <span class="mark-tag mark-missed">✗ Mark 3: too vague, no own knowledge, restates the problem</span></p>
+                        </div>
+                        <div class="verdict medium-v">
+                            <h4>⚖️ Examiner Verdict: 2/3</h4>
+                            <p><strong>What worked:</strong></p>
+                            <ul>
+                                <li>Points 1 and 2 are well-grounded in the stimulus with specific data ($17.5M, China's classification)</li>
+                                <li>Point 2 goes beyond naming the issue and explains <em>why</em> the classification matters (avoidance of binding commitment)</li>
+                            </ul>
+                            <p style="margin-top:10px"><strong>Why it lost a mark:</strong></p>
+                            <ul>
+                                <li>Point 3 is a <strong>general restatement</strong> of the problem, not a distinct reason. "Countries don't want to pay" doesn't demonstrate any own knowledge from HL studies</li>
+                                <li>The student could have used the stimulus to trigger thinking about concepts like <strong>structural power</strong> (World Bank governance giving donors control) or the <strong>democratic deficit</strong> in international institutions, showing understanding beyond the text</li>
+                                <li>Even Points 1 and 2, while correct, mostly <strong>repeat stimulus content</strong> rather than adding analytical insight from the student's own HL knowledge</li>
+                            </ul>
+                            <p style="margin-top:10px"><strong>Elevation move:</strong> Use the stimulus as a springboard. Name the HL concept your point connects to (e.g., CBDR, structural power, sovereignty) and explain why it matters. This shows the examiner you understand the political dynamics, not just the facts in the text.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HIGH EXEMPLAR -->
+                <div class="exemplar open" onclick="toggleExemplar(this)">
+                    <div class="exemplar-header">
+                        <div class="exemplar-badge high">3/3</div>
+                        <div class="exemplar-info">
+                            <h3>High Response</h3>
+                            <div class="score">3 out of 3 marks · Full marks</div>
+                        </div>
+                    </div>
+                    <div class="exemplar-body">
+                        <div class="response-box">
+                            <div class="rl">📝 Student Response</div>
+                            <p>This stimulus addresses the <strong>Environment</strong> GPC, focusing on the governance gap in climate finance. First, the fund has struggled because the principle of Common But Differentiated Responsibilities (CBDR), which underpins climate negotiations, creates no binding enforcement mechanism. The stimulus shows that the US pledged just $17.5 million against an estimated $400 billion annual need. CBDR recognizes that wealthy nations bear greater responsibility, but without a compliance mechanism, pledges remain voluntary, meaning the principle fails to translate moral obligation into financial action. <span class="mark-tag mark-earned">✓ Mark 1: names CBDR (own knowledge) and uses stimulus data to show why it fails in practice</span></p>
+                            <p>Second, the UNFCCC's outdated binary classification system undermines the fund. China, the world's largest current emitter, classified itself as a developing nation and contributed only $10 million voluntarily. This demonstrates a flaw in the 1992 framework, which was designed when China's emissions were a fraction of current levels. The binary does not account for emerging economies that are both developing and major polluters. <span class="mark-tag mark-earned">✓ Mark 2: applies own knowledge of the 1992 UNFCCC framework to explain a structural loophole</span></p>
+                            <p>Third, housing the fund at the World Bank creates what political scientists call a <strong>democratic deficit</strong> in global governance. Voting power is proportional to financial contribution, so donor nations retain structural control over disbursement. SIDS and LDCs, which bear the greatest climate burden, have the least voice. This mirrors broader critiques of Bretton Woods institutions as instruments of structural power rather than equitable multilateral cooperation. <span class="mark-tag mark-earned">✓ Mark 3: applies concepts of democratic deficit and structural power (own knowledge) to stimulus context</span></p>
+                        </div>
+                        <div class="verdict high-v">
+                            <h4>✅ Examiner Verdict: 3/3</h4>
+                            <p><strong>Why this earns full marks:</strong></p>
+                            <ul>
+                                <li><strong>Three genuinely distinct reasons</strong>, each addressing a different dimension (CBDR enforcement gap, classification framework, democratic deficit)</li>
+                                <li><strong>Clear own knowledge throughout.</strong> The student names specific HL concepts: CBDR, the 1992 UNFCCC framework, democratic deficit, structural power, and Bretton Woods critiques. These are not in the stimulus</li>
+                                <li><strong>Uses the stimulus as a springboard, not a script.</strong> Stimulus data ($17.5M, $10M, World Bank governance) triggers analytical points, but the student's own understanding drives the argument</li>
+                                <li><strong>Concise</strong> at approximately 180 words total, well within the 8-minute time budget</li>
+                            </ul>
+                            <p style="margin-top:10px"><strong>What makes this "high" rather than just "correct":</strong> The student names the political concepts behind the problems (CBDR, democratic deficit, structural power) instead of just describing what the stimulus says. This shows the examiner that the student understands the underlying political dynamics from their own HL studies, which is exactly what Q1 rewards.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-size:1rem;font-weight:700;margin-top:40px;margin-bottom:4px">Prompt B: Distinguish</h3>
+            <p style="font-size:.84rem;color:var(--muted);margin-bottom:12px">"Distinguish between the perspectives of developed and developing nations on climate finance, as presented in the stimulus."</p>
+
+            <div class="exemplar-container">
+                <!-- PROMPT B: MEDIUM EXEMPLAR -->
+                <div class="exemplar open" onclick="toggleExemplar(this)">
+                    <div class="exemplar-header">
+                        <div class="exemplar-badge medium">2/3</div>
+                        <div class="exemplar-info">
+                            <h3>Medium Response</h3>
+                            <div class="score">2 out of 3 marks · Partially successful</div>
+                        </div>
+                    </div>
+                    <div class="exemplar-body">
+                        <div class="response-box">
+                            <div class="rl">📝 Student Response</div>
+                            <p>Within the <strong>Environment</strong> GPC, developed and developing nations hold fundamentally different views on climate finance. Developed nations like the United States view climate finance as a voluntary contribution. The US pledged only $17.5 million to the Loss and Damage Fund, suggesting that wealthy nations see this as discretionary rather than obligatory. <span class="mark-tag mark-earned">✓ Mark 1: valid distinction with stimulus evidence</span></p>
+                            <p>In contrast, developing nations see climate finance as a matter of survival. Tina Stege, the Climate Envoy of the Marshall Islands, called the fund "a betrayal in practice" because the pledges are too small to address the real needs of vulnerable countries. <span class="mark-tag mark-earned">✓ Mark 2: clear contrast with quote evidence</span></p>
+                            <p>Another difference is that developed countries have not committed enough money, whereas developing countries need much more funding. <span class="mark-tag mark-missed">✗ Mark 3: restates the same distinction from Point 1 without a new dimension</span></p>
+                        </div>
+                        <div class="verdict medium-v">
+                            <h4>⚖️ Examiner Verdict: 2/3</h4>
+                            <p><strong>What worked:</strong></p>
+                            <ul>
+                                <li>Points 1 and 2 present a clear developed vs. developing contrast, each supported by specific stimulus evidence ($17.5M pledge, Stege quote)</li>
+                                <li>The student uses comparative language ("in contrast") which is appropriate for a "distinguish" question</li>
+                            </ul>
+                            <p style="margin-top:10px"><strong>Why it lost a mark:</strong></p>
+                            <ul>
+                                <li>Point 3 <strong>repeats the financial gap</strong> already covered in Point 1. "Not committed enough" vs. "need much more" is the same idea rephrased</li>
+                                <li>The response also <strong>lacks own knowledge</strong>. Neither point names an HL concept (e.g., CBDR, structural power, democratic deficit). The student describes what the stimulus says but does not demonstrate understanding from their own study</li>
+                                <li>A third dimension could be <strong>governance power</strong> (World Bank voting structure as a democratic deficit) or <strong>climate justice framing</strong> (developing nations viewing finance as reparations, not aid)</li>
+                            </ul>
+                            <p style="margin-top:10px"><strong>Elevation move:</strong> Replace Point 3 with a genuinely new dimension. Name the HL concept behind it (e.g., "This reflects the concept of structural power in global governance"). Show the examiner you understand the politics, not just the text.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROMPT B: HIGH EXEMPLAR -->
+                <div class="exemplar open" onclick="toggleExemplar(this)">
+                    <div class="exemplar-header">
+                        <div class="exemplar-badge high">3/3</div>
+                        <div class="exemplar-info">
+                            <h3>High Response</h3>
+                            <div class="score">3 out of 3 marks · Full marks</div>
+                        </div>
+                    </div>
+                    <div class="exemplar-body">
+                        <div class="response-box">
+                            <div class="rl">📝 Student Response</div>
+                            <p>The stimulus sits within the <strong>Environment</strong> GPC and intersects with <strong>Equality</strong> and <strong>Poverty</strong>. First, developed and developing nations differ on the principle of <strong>Common But Differentiated Responsibilities (CBDR)</strong>. Developed nations interpret CBDR as a basis for voluntary, discretionary contributions; the US pledged just $17.5 million. Developing nations see CBDR as establishing a legal and moral obligation, demanding $1.3 trillion annually at COP29 because they view climate finance as compensation owed by the historical polluters who caused the crisis. <span class="mark-tag mark-earned">✓ Mark 1: names CBDR (own knowledge) and shows how each side interprets it differently</span></p>
+                            <p>Second, they differ on governance legitimacy. Developed nations accept the World Bank's donor-weighted voting structure, which reflects a liberal institutionalist view that financial contribution should determine influence. Developing nations, particularly SIDS and LDCs, see this as a <strong>democratic deficit</strong> where the most climate-vulnerable states have the least voice in how funds are distributed. <span class="mark-tag mark-earned">✓ Mark 2: applies democratic deficit concept (own knowledge) to distinguish governance perspectives</span></p>
+                            <p>Third, the two groups frame the issue through different lenses. Developed nations treat climate finance as foreign aid, implying generosity. Developing nations frame it as <strong>climate justice</strong>, arguing that wealthy nations owe reparations for historical emissions. Tina Stege's description of the fund as "a betrayal in practice" reflects a postcolonial critique: the nations that caused the crisis are setting the terms of the response. <span class="mark-tag mark-earned">✓ Mark 3: applies climate justice and postcolonial critique frameworks (own knowledge)</span></p>
+                        </div>
+                        <div class="verdict high-v">
+                            <h4>✅ Examiner Verdict: 3/3</h4>
+                            <p><strong>Why this earns full marks:</strong></p>
+                            <ul>
+                                <li><strong>Three genuinely distinct dimensions of contrast</strong>: CBDR interpretation, governance legitimacy, and ideological framing (aid vs. justice)</li>
+                                <li><strong>Clear own knowledge throughout.</strong> The student names CBDR, democratic deficit, liberal institutionalism, climate justice, and postcolonial critique. None of these concepts are in the stimulus</li>
+                                <li><strong>Both sides represented in every point.</strong> Each distinction shows how the same issue (e.g., CBDR, World Bank governance) is interpreted differently by each group</li>
+                                <li><strong>Concise</strong> at approximately 180 words total, well within the 8-minute time budget</li>
+                            </ul>
+                            <p style="margin-top:10px"><strong>What makes this "high" rather than just "correct":</strong> The student names the political frameworks behind each perspective (CBDR, democratic deficit, climate justice, postcolonial critique) instead of just describing what each side wants. This shows the examiner that the student understands the theoretical underpinnings from their own HL studies, not just the surface-level content of the stimulus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-purple">
+                <div class="alert-icon">🔑</div>
+                <div>
+                    <h4>The Difference Between 2/3 and 3/3</h4>
+                    <p>The medium responses fall back on vague general claims that repeat the stimulus without adding insight. The high responses use the stimulus to <strong>trigger original thinking</strong>, then demonstrate understanding through their own knowledge of HL topics. Remember: the stimulus stimulates your thinking, but repeating its content will not earn high marks. Your own analytical understanding is what earns marks.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: PITFALLS -->
+        <section class="section" id="pitfalls">
+            <div class="section-header">
+                <div class="section-num sn-danger">6</div>
+                <div class="section-title"><span>Q1-Specific Traps</span>Common Pitfalls</div>
+            </div>
+            <div class="dd-grid">
+                <div class="dd-col do">
+                    <h3>✅ Do This</h3>
+                    <ul>
+                        <li>Read the question <strong>before</strong> the stimulus so you know what you're looking for</li>
+                        <li>Match your response structure to the command term (e.g., "distinguish" = comparison, "suggest" = separate points)</li>
+                        <li>Use the stimulus to <strong>trigger your thinking</strong>, then apply your own HL knowledge</li>
+                        <li>Reference specific elements from the stimulus <strong>as they relate to your HL topics</strong></li>
+                        <li>Keep it under 150 words total to save time for Q2 and Q3</li>
+                        <li>Number your points if asked for multiple (makes it easy for the examiner to award marks)</li>
+                    </ul>
+                </div>
+                <div class="dd-col dont">
+                    <h3>❌ Don't Do This</h3>
+                    <ul>
+                        <li>Write a full essay. Q1 rewards efficiency, not length</li>
+                        <li>Simply <strong>repeat or paraphrase</strong> the stimulus. This is not a source interpretation task and repeating content will not earn high marks</li>
+                        <li>Give overlapping points that are really the same idea twice</li>
+                        <li>Use the wrong command term approach. "Suggesting" when asked to "distinguish" will lose marks even if your content is correct</li>
+                        <li>Leave a vague third point and hope the examiner is generous</li>
+                        <li>Spend more than 8 minutes because every extra minute comes from your Q3 time</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert alert-danger" style="margin-top:24px">
+                <div class="alert-icon">🚨</div>
+                <div>
+                    <h4>The #1 Q1 Mistake</h4>
+                    <p><strong>"Repackaging the same point in different words."</strong> If the question asks for three reasons and you give one reason three different ways, you get 1 mark, not 3. Each point must address a <strong>genuinely different</strong> dimension of the issue. Before writing your final point, ask yourself: "Is this actually new, or am I just rewording Point 1?"</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>IB Global Politics HL · Paper 3 Q1 Scaffold · Mr. Martinez · March 2026</p>
+        <p style="margin-top:6px;font-size:.72rem">Designed to complement the <a href="paper3-explainer.html" style="color:var(--accent);font-weight:600">Paper 3 Complete Guide</a> and the <a href="paper3-practice-exam.html" style="color:var(--accent);font-weight:600">Practice Exam</a>.</p>
+    </footer>
+
+    <script>
+        // Command term toggle
+        function toggleCT(el){
+            const wasActive = el.classList.contains('active');
+            document.querySelectorAll('.ct-card').forEach(c => c.classList.remove('active'));
+            if(!wasActive) el.classList.add('active');
+        }
+
+        // Exemplar toggle
+        function toggleExemplar(el){
+            // Only toggle if click is on the header area
+            el.classList.toggle('open');
+        }
+        // Prevent body click from toggling
+        document.querySelectorAll('.exemplar-body').forEach(b => {
+            b.addEventListener('click', e => e.stopPropagation());
+        });
+
+        // Nav active state
+        const tabs = document.querySelectorAll('.nav-tab');
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if(e.isIntersecting){
+                    tabs.forEach(t => t.classList.remove('active'));
+                    const t = document.querySelector(`.nav-tab[href="#${e.target.id}"]`);
+                    if(t) t.classList.add('active');
+                }
+            });
+        }, {rootMargin:'-50% 0px -50% 0px'});
+        sections.forEach(s => observer.observe(s));
+    </script>
+</body>
+</html>
