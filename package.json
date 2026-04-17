@@ -4,6 +4,7 @@
     "puppeteer-core": "^24.39.1"
   },
   "devDependencies": {
-    "docx": "^9.6.1"
+    "docx": "^9.6.1",
+    "dotenv": "^17.4.2"
   }
 }

@@ -2,6 +2,13 @@
 #  Antigravity Workspace — .gitignore
 # ============================================================
 
+# --- Web app projects (each has its own git repo) ---
+# Track these independently via their own git histories
+ahsas/
+global-command-center/
+glopo-companion/
+magazine/
+
 # --- macOS system files ---
 .DS_Store
 .DS_Store?
